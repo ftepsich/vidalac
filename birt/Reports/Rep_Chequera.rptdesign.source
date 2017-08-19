@@ -1,0 +1,842 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.21" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 2.5.2.v20100208 Build &lt;2.5.2.v20100210-0630></property>
+    <property name="units">cm</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">120</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">librerias/ConectorDB.rptlibrary</property>
+            <property name="namespace">ConectorDB</property>
+        </structure>
+        <structure>
+            <property name="fileName">librerias/CabeceraInterna.rptlibrary</property>
+            <property name="namespace">CabeceraInterna</property>
+        </structure>
+    </list-property>
+    <list-property name="cssStyleSheets">
+        <structure>
+            <property name="fileName">css/EstiloBase.css</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="Id" id="2543">
+            <property name="valueType">static</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Base" id="186"
+ extends="ConectorDB.DataSource">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+            </list-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Chequera_Detalle" id="2440">
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">idChequera</property>
+                    <property name="paramName">Id</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">idComprobante</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Beneficiario</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">Razonsocial</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">ChNumero</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">FechaDeEmision</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">FechaDeCobro</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">FechaDeVencimiento</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">Monto</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">NumeroComprobante</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">idEstado</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">Estado</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">idComprobante</property>
+                    <property name="nativeName">idComprobante</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">Beneficiario</property>
+                    <property name="nativeName">Beneficiario</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">Razonsocial</property>
+                    <property name="nativeName">Razonsocial</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">ChNumero</property>
+                    <property name="nativeName">ChNumero</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">FechaDeEmision</property>
+                    <property name="nativeName">FechaDeEmision</property>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">FechaDeCobro</property>
+                    <property name="nativeName">FechaDeCobro</property>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">FechaDeVencimiento</property>
+                    <property name="nativeName">FechaDeVencimiento</property>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">Monto</property>
+                    <property name="nativeName">Monto</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">NumeroComprobante</property>
+                    <property name="nativeName">NumeroComprobante</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">idEstado</property>
+                    <property name="nativeName">idEstado</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">Estado</property>
+                    <property name="nativeName">Estado</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT 	CD.Comprobante 								AS idComprobante,
+		CH.PagueseA									AS Beneficiario,
+		P.RazonSocial 								AS Razonsocial,
+		LPAD(CONVERT(CH.Numero, CHAR(8)), 8, '0') 	AS ChNumero,
+		CH.FechaDeEmision							AS FechaDeEmision,
+		CH.FechaDeCobro								AS FechaDeCobro,
+		CH.FechaDeVencimiento						AS FechaDeVencimiento,
+		ifnull(CH.Monto,0) 									AS Monto,
+		fNumeroCompleto(CD.Comprobante,'C') 		AS NumeroComprobante,
+        CHE.Id										AS idEstado,
+        CHE.Descripcion								AS Estado
+From Cheques CH 				
+INNER JOIN ChequesEstados CHE		ON CHE.Id				= CH.ChequeEstado
+LEFT JOIN Personas P 				ON P.Id 				= CH.Persona
+LEFT JOIN ComprobantesDetalles CD 	ON CD.Cheque 			= CH.Id
+WHERE CH.Chequera = ?]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Chequera_Cabecera" id="2594">
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">id1</property>
+                    <property name="paramName">Id</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">id2</property>
+                    <property name="paramName">Id</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">id3</property>
+                    <property name="paramName">Id</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">BancoSucursal</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">ChraNumero</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">CantidadCheques</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">CtaNumero</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">UltimoCheque</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">PrimerCheque</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">BancoSucursal</property>
+                    <property name="nativeName">BancoSucursal</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">ChraNumero</property>
+                    <property name="nativeName">ChraNumero</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">CantidadCheques</property>
+                    <property name="nativeName">CantidadCheques</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">CtaNumero</property>
+                    <property name="nativeName">CtaNumero</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">UltimoCheque</property>
+                    <property name="nativeName">UltimoCheque</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">PrimerCheque</property>
+                    <property name="nativeName">PrimerCheque</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT	SB.Descripcion 														AS BancoSucursal,
+		concat (convert(Chra.NumeroDeChequera,char(10)), ' serie ', Chra.Serie)				AS ChraNumero,
+		Chra.Cantidad														AS CantidadCheques,
+		concat (TC.Codigo, ' ', CB.Numero)									AS CtaNumero,
+        (select MAX(CH1.Numero) from Cheques CH1 where CH1.Chequera = ?)	AS UltimoCheque,
+        (select MIN(CH2.Numero) from Cheques CH2 where CH2.Chequera = ?)	AS PrimerCheque
+FROM Chequeras Chra
+INNER JOIN Cheques CH 				ON Chra.Id 				= CH.Chequera
+INNER JOIN CuentasBancarias CB		ON CB.Id 				= Chra.CuentaBancaria
+INNER JOIN TiposDeCuentas TC		ON TC.Id				= CB.TipoDeCuenta
+INNER JOIN BancosSucursales SB 		ON SB.Id 				= CB.BancoSucursal
+WHERE Chra.Id = ?]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie">
+            <property name="orientation">landscape</property>
+            <overridden-values>
+                <ref-entry baseId="2434" name="Cabecera" id="2434"/>
+                <ref-entry baseId="2435" id="2435"/>
+                <ref-entry baseId="2436" id="2436"/>
+                <ref-entry baseId="2437" id="2437"/>
+                <ref-entry baseId="2438" name="NewLabel1" id="2438"/>
+                <ref-entry baseId="2404" name="NewGrid" id="2404"/>
+                <ref-entry baseId="2405" id="2405"/>
+                <ref-entry baseId="2406" id="2406"/>
+                <ref-entry baseId="2419" id="2419"/>
+                <ref-entry baseId="2417" id="2417"/>
+                <ref-entry baseId="2407" id="2407"/>
+                <ref-entry baseId="2408" id="2408"/>
+                <ref-entry baseId="2409" id="2409"/>
+                <ref-entry baseId="2433" name="NewLabel" id="2433"/>
+                <ref-entry baseId="2410" id="2410"/>
+                <ref-entry baseId="2432" name="NewText" id="2432"/>
+                <ref-entry baseId="2418" id="2418"/>
+                <ref-entry baseId="2416" id="2416"/>
+                <ref-entry baseId="2411" id="2411"/>
+                <ref-entry baseId="2421" name="NewGrid1" id="2421"/>
+                <ref-entry baseId="2422" id="2422"/>
+                <ref-entry baseId="2423" id="2423"/>
+                <ref-entry baseId="2424" id="2424"/>
+                <ref-entry baseId="2425" id="2425"/>
+                <ref-entry baseId="2426" id="2426"/>
+                <ref-entry baseId="2427" name="NewAutoText" id="2427"/>
+                <ref-entry baseId="2428" id="2428"/>
+                <ref-entry baseId="2429" name="NewText1" id="2429"/>
+                <ref-entry baseId="2430" id="2430"/>
+                <ref-entry baseId="2431" name="NewAutoText1" id="2431"/>
+            </overridden-values>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid name="Separador 1" id="2478">
+            <property name="height">5pt</property>
+            <column id="2479"/>
+            <row id="2480">
+                <cell id="2481"/>
+            </row>
+        </grid>
+        <grid id="2544">
+            <property name="dataSet">Chequera_Detalle</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">idComprobante</property>
+                    <expression name="expression" type="javascript">dataSetRow["idComprobante"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">Beneficiario</property>
+                    <expression name="expression" type="javascript">dataSetRow["Beneficiario"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">ChNumero</property>
+                    <expression name="expression" type="javascript">dataSetRow["ChNumero"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaDeEmision</property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaDeEmision"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaDeCobro</property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaDeCobro"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaDeVencimiento</property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaDeVencimiento"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">Monto</property>
+                    <expression name="expression" type="javascript">dataSetRow["Monto"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">NumeroComprobante</property>
+                    <expression name="expression" type="javascript">dataSetRow["NumeroComprobante"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">idEstado</property>
+                    <expression name="expression" type="javascript">dataSetRow["idEstado"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">Estado</property>
+                    <expression name="expression" type="javascript">dataSetRow["Estado"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="2545"/>
+            <row id="2546">
+                <cell id="2547">
+                    <label id="2556">
+                        <property name="style">encabezado-Estilo-1</property>
+                        <text-property name="text">Reporte de Chequera</text-property>
+                    </label>
+                    <grid id="2557">
+                        <property name="width">28.321cm</property>
+                        <property name="dataSet">Chequera_Cabecera</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">BancoSucursal</property>
+                                <expression name="expression" type="javascript">dataSetRow["BancoSucursal"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ChraNumero</property>
+                                <expression name="expression" type="javascript">dataSetRow["ChraNumero"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">CantidadCheques</property>
+                                <expression name="expression" type="javascript">dataSetRow["CantidadCheques"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">CtaNumero</property>
+                                <expression name="expression" type="javascript">dataSetRow["CtaNumero"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">UltimoCheque</property>
+                                <expression name="expression" type="javascript">dataSetRow["UltimoCheque"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">PrimerCheque</property>
+                                <expression name="expression" type="javascript">dataSetRow["PrimerCheque"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                        </list-property>
+                        <column id="2558">
+                            <property name="width">2.54cm</property>
+                        </column>
+                        <column id="2559">
+                            <property name="width">14.753166666666667cm</property>
+                        </column>
+                        <column id="2560">
+                            <property name="width">2.921cm</property>
+                        </column>
+                        <column id="2561">
+                            <property name="width">8.106833333333334cm</property>
+                        </column>
+                        <row id="2562">
+                            <cell id="2563">
+                                <label id="2577">
+                                    <property name="style">nombre-cabecera</property>
+                                    <text-property name="text">Banco</text-property>
+                                </label>
+                            </cell>
+                            <cell id="2564">
+                                <property name="style">campo-cabecera</property>
+                                <data id="2595">
+                                    <property name="resultSetColumn">BancoSucursal</property>
+                                </data>
+                            </cell>
+                            <cell id="2565">
+                                <label id="2582">
+                                    <property name="style">nombre-cabecera</property>
+                                    <text-property name="text">Cant. Cheques</text-property>
+                                </label>
+                            </cell>
+                            <cell id="2566">
+                                <property name="style">campo-cabecera</property>
+                                <data id="2601">
+                                    <property name="resultSetColumn">CantidadCheques</property>
+                                </data>
+                            </cell>
+                        </row>
+                        <row id="2567">
+                            <cell id="2568">
+                                <label id="2578">
+                                    <property name="style">nombre-cabecera</property>
+                                    <text-property name="text">Cuenta</text-property>
+                                </label>
+                            </cell>
+                            <cell id="2569">
+                                <property name="style">campo-cabecera</property>
+                                <data id="2597">
+                                    <property name="resultSetColumn">CtaNumero</property>
+                                </data>
+                            </cell>
+                            <cell id="2570">
+                                <label id="2580">
+                                    <property name="style">nombre-cabecera</property>
+                                    <text-property name="text">Primer Cheque</text-property>
+                                </label>
+                            </cell>
+                            <cell id="2571">
+                                <property name="style">campo-cabecera</property>
+                                <data id="2600">
+                                    <property name="resultSetColumn">PrimerCheque</property>
+                                </data>
+                            </cell>
+                        </row>
+                        <row id="2572">
+                            <cell id="2573">
+                                <label id="2579">
+                                    <property name="style">nombre-cabecera</property>
+                                    <text-property name="text">Chequera</text-property>
+                                </label>
+                            </cell>
+                            <cell id="2574">
+                                <property name="style">campo-cabecera</property>
+                                <data id="2602">
+                                    <property name="resultSetColumn">ChraNumero</property>
+                                </data>
+                            </cell>
+                            <cell id="2575">
+                                <label id="2581">
+                                    <property name="style">nombre-cabecera</property>
+                                    <text-property name="text">UltimoCheque</text-property>
+                                </label>
+                            </cell>
+                            <cell id="2576">
+                                <property name="style">campo-cabecera</property>
+                                <data id="2598">
+                                    <property name="resultSetColumn">UltimoCheque</property>
+                                </data>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
+        </grid>
+        <grid name="Separador 11" id="2550">
+            <property name="height">5pt</property>
+            <column id="2551"/>
+            <row id="2552">
+                <cell id="2553"/>
+            </row>
+        </grid>
+        <table id="2497">
+            <property name="masterPage">Simple MasterPage</property>
+            <property name="width">28.336875cm</property>
+            <property name="dataSet">Chequera_Detalle</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">idComprobante</property>
+                    <expression name="expression" type="javascript">dataSetRow["idComprobante"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">Beneficiario</property>
+                    <expression name="expression" type="javascript">dataSetRow["Beneficiario"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">ChNumero</property>
+                    <expression name="expression" type="javascript">dataSetRow["ChNumero"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaDeEmision</property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaDeEmision"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaDeCobro</property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaDeCobro"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaDeVencimiento</property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaDeVencimiento"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">Monto</property>
+                    <expression name="expression" type="javascript">dataSetRow["Monto"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">NumeroComprobante</property>
+                    <expression name="expression" type="javascript">dataSetRow["NumeroComprobante"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">idEstado</property>
+                    <expression name="expression" type="javascript">dataSetRow["idEstado"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">Estado</property>
+                    <expression name="expression" type="javascript">dataSetRow["Estado"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Razonsocial</property>
+                    <text-property name="displayName">Razonsocial</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Razonsocial"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <property name="pageBreakInterval">0</property>
+            <column id="2522">
+                <property name="width">2.9104166666666664cm</property>
+            </column>
+            <column id="2606">
+                <property name="width">6.852708333333333cm</property>
+            </column>
+            <column id="2523">
+                <property name="width">7.699375cm</property>
+            </column>
+            <column id="2524">
+                <property name="width">2.1166666666666667cm</property>
+            </column>
+            <column id="2525">
+                <property name="width">2.354791666666667cm</property>
+            </column>
+            <column id="2526">
+                <property name="width">2.513541666666667cm</property>
+            </column>
+            <column id="2527">
+                <property name="width">1.7991666666666668cm</property>
+            </column>
+            <column id="2528">
+                <property name="width">2.06375cm</property>
+            </column>
+            <header>
+                <row id="2498">
+                    <cell id="2499">
+                        <label id="2554">
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Estado</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2603">
+                        <label id="2607">
+                            <text-property name="text">Razon Social</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2500">
+                        <label id="2529">
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Beneficiario</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2501">
+                        <label id="2533">
+                            <property name="textAlign">left</property>
+                            <text-property name="text">F. Emision</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2502">
+                        <label id="2535">
+                            <property name="textAlign">left</property>
+                            <text-property name="text">F. Venc.</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2503">
+                        <label id="2537">
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Comprobante</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2504">
+                        <label id="2539">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Monto</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2505">
+                        <label id="2541">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Cheque</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="2506">
+                    <list-property name="highlightRules">
+                        <structure>
+                            <property name="operator">eq</property>
+                            <expression name="testExpr" type="javascript">row['__rownum'] % 2</expression>
+                            <simple-property-list name="value1">
+                                <value type="javascript">0</value>
+                            </simple-property-list>
+                            <property name="style">table-detail-2</property>
+                        </structure>
+                        <structure>
+                            <property name="operator">eq</property>
+                            <property name="backgroundColor">#F3DADF</property>
+                            <property name="color">#FF0000</property>
+                            <expression name="testExpr" type="javascript">row["idEstado"]</expression>
+                            <simple-property-list name="value1">
+                                <value type="javascript">5</value>
+                            </simple-property-list>
+                        </structure>
+                        <structure>
+                            <property name="operator">eq</property>
+                            <property name="backgroundColor">#D9EED7</property>
+                            <property name="color">#008000</property>
+                            <expression name="testExpr" type="javascript">row["idEstado"]</expression>
+                            <simple-property-list name="value1">
+                                <value type="javascript">6</value>
+                            </simple-property-list>
+                        </structure>
+                        <structure>
+                            <property name="operator">eq</property>
+                            <property name="backgroundColor">#E2EBF8</property>
+                            <property name="fontStyle">italic</property>
+                            <property name="color">#0000FF</property>
+                            <expression name="testExpr" type="javascript">row["idEstado"]</expression>
+                            <simple-property-list name="value1">
+                                <value type="javascript">1</value>
+                            </simple-property-list>
+                        </structure>
+                    </list-property>
+                    <cell id="2507">
+                        <data id="2555">
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">Estado</property>
+                        </data>
+                    </cell>
+                    <cell id="2604">
+                        <data id="2608">
+                            <property name="resultSetColumn">Razonsocial</property>
+                        </data>
+                    </cell>
+                    <cell id="2508">
+                        <data id="2530">
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">Beneficiario</property>
+                        </data>
+                    </cell>
+                    <cell id="2509">
+                        <data id="2534">
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">FechaDeEmision</property>
+                        </data>
+                    </cell>
+                    <cell id="2510">
+                        <data id="2536">
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">FechaDeVencimiento</property>
+                        </data>
+                    </cell>
+                    <cell id="2511">
+                        <data id="2538">
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">NumeroComprobante</property>
+                        </data>
+                    </cell>
+                    <cell id="2512">
+                        <data id="2540">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">Monto</property>
+                        </data>
+                    </cell>
+                    <cell id="2513">
+                        <data id="2542">
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">ChNumero</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="2514">
+                    <cell id="2515"/>
+                    <cell id="2605"/>
+                    <cell id="2516"/>
+                    <cell id="2517"/>
+                    <cell id="2518"/>
+                    <cell id="2519"/>
+                    <cell id="2520"/>
+                    <cell id="2521"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

@@ -1,0 +1,25 @@
+Ext.onReady(function() {
+
+    var loginWin = new Rad.loginWindow({
+        onSuccess: function() {
+            document.location = '/desktop';
+            /*
+            var head = document.getElementsByTagName("head")[0];
+            var fileRef = document.createElement('script');
+
+            fileRef.setAttribute("type", "text/javascript");
+            fileRef.setAttribute("src", 'desktop/alljs');
+
+            head.appendChild(fileRef);
+            */
+        }
+    });
+
+    // Manejo de errores de peticiones Ajax
+    var hideMask = function () {
+        Ext.get('loading').remove();
+        loginWin.show();
+    };
+
+    hideMask.defer(250);
+});

@@ -1,0 +1,94 @@
+
+div.arbol {
+    overflow-y: scroll;
+    height:100%; 
+}
+.arbol span {
+    display: block;
+    margin: 0px 15px;
+    padding-top: 4px; 
+    padding-left: 5px;
+    cursor: pointer;
+}
+.arbol span.selected {
+    background-color: rgba(186, 209, 138, 1) !important;
+
+}
+
+.arbol span > span{
+    padding:0px;
+    margin: 0px;
+    display: inline-block;
+}
+
+.arbol > ul > li > span {
+    color: #377226;
+    font-weight:bold;
+    margin: 0 0px;
+}
+
+.arbol ul {
+    padding: 0 0 0 1px;
+    margin: 1px 0 0 15px;
+}
+
+.arbol ul li.resaltado {
+    
+    /*color: #C2D695;*/
+}
+.arbol ul li.resaltado > span{
+    background: -moz-linear-gradient(left, rgba(226,240,196,1) 0%, rgba(226,240,196,0) 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(226,240,196,1)), color-stop(100%,rgba(226,240,196,0)));
+    background: -webkit-linear-gradient(left, rgba(226,240,196,1) 0%,rgba(226,240,196,0) 100%);
+    background: -o-linear-gradient(left, rgba(226,240,196,1) 0%,rgba(226,240,196,0) 100%);
+    background: -ms-linear-gradient(left, rgba(226,240,196,1) 0%,rgba(226,240,196,0) 100%);
+    background: linear-gradient(to right, rgba(226,240,196,1) 0%,rgba(226,240,196,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2f0c4', endColorstr='#00e2f0c4',GradientType=1 );
+}
+.arbol ul li.producto > span {
+    border-bottom: 2px solid #C2D695;
+    border-left:2px solid #C2D695;
+}
+
+.arbol ul li  {
+    border-left: 1px solid #C2D695;
+    position: relative;
+}
+
+/*.arbol > ul > li  {
+    border-left: 0px solid #C2D695;
+}*/
+
+.arbol ul > li  {
+    padding-bottom: 7px;
+}
+
+.arbol ul li:before {
+    content: '';
+    width: 14px;
+    position: absolute;
+    border-bottom: 1px solid #C2D695;
+    left: 0px;
+    top: 10px;
+}
+
+
+.arbol > ul > li:before {
+    border-bottom: 0px solid #C2D695;
+    
+}
+
+
+.arbol ul li:last-child{
+   border-left:none;
+}
+
+.arbol ul li:last-child:before {
+   border-left:1px solid #C2D695;
+   height: 10px;
+   margin-top:-10px;
+}
+
+.arbol > ul > li:last-child:before {
+    border-left:0px solid #C2D695;
+}

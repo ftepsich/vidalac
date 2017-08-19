@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.5.0.v201506092134 Build &lt;@BUILD@></property>
+    <property name="units">cm</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">fixed layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">librerias/ConectorDB.rptlibrary</property>
+            <property name="namespace">ConectorDB</property>
+        </structure>
+    </list-property>
+    <list-property name="cssStyleSheets">
+        <structure>
+            <property name="fileName">css/EstiloBase.css</property>
+            <property name="useExternalCss">false</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="idLiquidacion" id="2579">
+            <property name="valueType">static</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Data Source" id="17"
+ extends="ConectorDB.DataSource">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+            </list-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Detalle" id="2228">
+            <list-property name="computedColumns">
+                <structure>
+                    <property name="name">Totales</property>
+                    <expression name="expression">row["Remunerativos"] + row["NoRemunerativos"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Neto</property>
+                    <expression name="expression">row["Remunerativos"] + row["NoRemunerativos"] + row["Descuentos"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">NetoConRedondeo</property>
+                    <expression name="expression">row["Neto"] + row["Redondeo"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">idLiq</property>
+                    <property name="paramName">idLiquidacion</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">LegajoNumero</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Cuit</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">RazonSocial</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">Remunerativos</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">NoRemunerativos</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">Descuentos</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">Redondeo</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">Id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">Totales</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">Neto</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">NetoConRedondeo</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">LegajoNumero</property>
+                    <property name="nativeName">LegajoNumero</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">Cuit</property>
+                    <property name="nativeName">Cuit</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">RazonSocial</property>
+                    <property name="nativeName">RazonSocial</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">Remunerativos</property>
+                    <property name="nativeName">Remunerativos</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">NoRemunerativos</property>
+                    <property name="nativeName">NoRemunerativos</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">Descuentos</property>
+                    <property name="nativeName">Descuentos</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">Redondeo</property>
+                    <property name="nativeName">Redondeo</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">Id</property>
+                    <property name="nativeName">Id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select P2.LegajoNumero AS LegajoNumero, 
+P2.Cuit AS Cuit,
+P2.RazonSocial AS RazonSocial,
+(
+select sum(Monto)
+from   LiquidacionesRecibosDetalles LRD
+inner join LiquidacionesRecibos LR  on LR.Id = LRD.LiquidacionRecibo
+inner join VariablesDetalles VD     on VD.Id = LRD.VariableDetalle
+inner join Variables V              on V.Id = VD.Variable
+where   LR.Id  = LR2.Id
+and     LR.Persona      = LR2.Persona
+and     V.TipoDeConceptoLiquidacion in (1,2)
+and 	V.Id not in (104,108,118)
+) as Remunerativos,
+(
+select sum(Monto)
+from   LiquidacionesRecibosDetalles LRD
+inner join LiquidacionesRecibos LR  on LR.Id = LRD.LiquidacionRecibo
+inner join VariablesDetalles VD     on VD.Id = LRD.VariableDetalle
+inner join Variables V              on V.Id = VD.Variable
+where   LR.Id  = LR2.Id
+and     LR.Persona      = LR2.Persona
+and     V.TipoDeConceptoLiquidacion in (3,5)
+and 	V.Id not in (104,108,118)
+) as NoRemunerativos,
+(
+select sum(Monto)
+from   LiquidacionesRecibosDetalles LRD
+inner join LiquidacionesRecibos LR  on LR.Id = LRD.LiquidacionRecibo
+inner join VariablesDetalles VD     on VD.Id = LRD.VariableDetalle
+inner join Variables V              on V.Id = VD.Variable
+where   LR.Id  = LR2.Id
+and     LR.Persona      = LR2.Persona
+and     (	
+		(V.TipoDeConceptoLiquidacion in (4) and V.Id not in (104,108,118)) 
+		OR 	
+		(V.TipoDeConceptoLiquidacion in (3,5) and V.Id = 108) /* Beneficion para que compense el impuesto */
+	)
+) as Descuentos,
+(
+select sum(Monto)
+from   LiquidacionesRecibosDetalles LRD
+inner join LiquidacionesRecibos LR  on LR.Id = LRD.LiquidacionRecibo
+inner join VariablesDetalles VD     on VD.Id = LRD.VariableDetalle
+inner join Variables V              on V.Id = VD.Variable
+where   LR.Id  = LR2.Id
+and     LR.Persona      = LR2.Persona
+and     V.TipoDeConceptoLiquidacion in (3,5)
+and 	V.Id in (118)
+) as Redondeo,
+LR2.Id
+from    LiquidacionesRecibos LR2
+inner join Personas P2 on P2.Id = LR2.Persona
+inner join Liquidaciones L2          on L2.Id = LR2.Liquidacion and LR2.Periodo = L2.LiquidacionPeriodo
+Where       LR2.Liquidacion = ?
+order by    P2.LegajoNumero
+]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="NewSimpleMasterPage" id="2389">
+            <property name="type">a4</property>
+            <property name="orientation">landscape</property>
+            <property name="leftMargin">0.25in</property>
+            <property name="showHeaderOnFirst">true</property>
+            <property name="showFooterOnLast">true</property>
+            <page-header>
+                <grid id="188">
+                    <property name="width">100%</property>
+                    <column id="189">
+                        <property name="width">5.283333333333333in</property>
+                    </column>
+                    <column id="190">
+                        <property name="width">2.591666666666667in</property>
+                    </column>
+                    <row id="191">
+                        <property name="verticalAlign">bottom</property>
+                        <cell id="192">
+                            <label id="196">
+                                <property name="style">nombre-comprobante</property>
+                                <property name="fontSize">9pt</property>
+                                <property name="textAlign">left</property>
+                                <text-property name="text">{EMPRESA}</text-property>
+                            </label>
+                        </cell>
+                        <cell id="193">
+                            <label id="197">
+                                <property name="style">Titulo-comprobante-grande</property>
+                                <property name="fontSize">10pt</property>
+                                <property name="textAlign">center</property>
+                                <text-property name="text">{LIQUIDACION}</text-property>
+                            </label>
+                        </cell>
+                    </row>
+                </grid>
+            </page-header>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid name="Separador 1" id="2478">
+            <property name="borderLeftColor">#FFFFFF</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">medium</property>
+            <property name="borderRightColor">#FFFFFF</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">medium</property>
+            <property name="height">5pt</property>
+            <column id="2479"/>
+            <row id="2480">
+                <cell id="2481"/>
+            </row>
+        </grid>
+        <grid name="Titulos" id="2447">
+            <property name="width">100%</property>
+            <column id="2448">
+                <property name="width">19.706166666666668cm</property>
+            </column>
+            <row id="2452">
+                <cell id="2453">
+                    <label id="2457">
+                        <property name="style">encabezado-Estilo-1</property>
+                        <property name="fontSize">10pt</property>
+                        <text-property name="text">{TEXTO}</text-property>
+                    </label>
+                </cell>
+            </row>
+        </grid>
+        <grid name="Separador 2" id="2474">
+            <property name="height">5pt</property>
+            <column id="2475"/>
+            <row id="2476">
+                <cell id="2477"/>
+            </row>
+        </grid>
+        <table id="2524">
+            <property name="width">100%</property>
+            <property name="dataSet">Detalle</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">LegajoNumero</property>
+                    <expression name="expression" type="javascript">dataSetRow["LegajoNumero"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">Cuit</property>
+                    <expression name="expression" type="javascript">dataSetRow["Cuit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">RazonSocial</property>
+                    <expression name="expression" type="javascript">dataSetRow["RazonSocial"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Remunerativos</property>
+                    <expression name="expression" type="javascript">dataSetRow["Remunerativos"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">NoRemunerativos</property>
+                    <expression name="expression" type="javascript">dataSetRow["NoRemunerativos"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Descuentos</property>
+                    <expression name="expression" type="javascript">dataSetRow["Descuentos"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Id</property>
+                    <expression name="expression" type="javascript">dataSetRow["Id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">Totales</property>
+                    <expression name="expression" type="javascript">dataSetRow["Totales"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Neto</property>
+                    <expression name="expression" type="javascript">dataSetRow["Neto"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">SumR</property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["Remunerativos"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">SumNR</property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["NoRemunerativos"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">SumT</property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["Totales"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">SumD</property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["Descuentos"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">SumN</property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["Neto"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">Cantidad</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["RazonSocial"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">NetoConRedondeo</property>
+                    <text-property name="displayName">NetoConRedondeo</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["NetoConRedondeo"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">SumNconR</property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["NetoConRedondeo"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+            </list-property>
+            <column id="2549">
+                <property name="width">1.5028333333333335cm</property>
+            </column>
+            <column id="2550">
+                <property name="width">4.1275cm</property>
+            </column>
+            <column id="2551">
+                <property name="fontSize">10pt</property>
+                <property name="width">2cm</property>
+            </column>
+            <column id="2552">
+                <property name="fontSize">10pt</property>
+                <property name="width">2cm</property>
+            </column>
+            <column id="2553">
+                <property name="fontSize">10pt</property>
+                <property name="width">2cm</property>
+            </column>
+            <column id="2554">
+                <property name="fontSize">10pt</property>
+                <property name="width">2cm</property>
+            </column>
+            <column id="2555">
+                <property name="fontSize">10pt</property>
+                <property name="width">2cm</property>
+            </column>
+            <column id="2588">
+                <property name="fontSize">10pt</property>
+                <property name="width">2cm</property>
+            </column>
+            <header>
+                <row id="2525">
+                    <property name="style">label-table-vacia</property>
+                    <property name="fontSize">8pt</property>
+                    <cell id="2526">
+                        <label id="2556">
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Legajo</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2527">
+                        <label id="2558">
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Persona</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2528">
+                        <property name="fontSize">8pt</property>
+                        <label id="2560">
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Rem</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2529">
+                        <property name="fontSize">8pt</property>
+                        <label id="2562">
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">No Rem </text-property>
+                        </label>
+                    </cell>
+                    <cell id="2530">
+                        <property name="fontSize">8pt</property>
+                        <label id="2567">
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Total</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2531">
+                        <property name="fontSize">8pt</property>
+                        <label id="2564">
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Descuentos</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2532">
+                        <property name="fontSize">8pt</property>
+                        <label id="2568">
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Neto</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2585">
+                        <property name="fontSize">8pt</property>
+                        <label id="2589">
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Neto Con Redondeo</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="2533">
+                    <property name="style">table-detail-10</property>
+                    <property name="fontSize">8pt</property>
+                    <list-property name="highlightRules">
+                        <structure>
+                            <property name="operator">eq</property>
+                            <expression name="testExpr" type="javascript">row['__rownum'] % 1</expression>
+                            <simple-property-list name="value1">
+                                <value type="javascript">0</value>
+                            </simple-property-list>
+                            <property name="style">table-detail-2-10</property>
+                        </structure>
+                    </list-property>
+                    <cell id="2534">
+                        <data id="2557">
+                            <property name="fontSize">8pt</property>
+                            <property name="resultSetColumn">LegajoNumero</property>
+                        </data>
+                    </cell>
+                    <cell id="2535">
+                        <data id="2559">
+                            <property name="fontSize">8pt</property>
+                            <property name="resultSetColumn">RazonSocial</property>
+                        </data>
+                    </cell>
+                    <cell id="2536">
+                        <data id="2561">
+                            <property name="fontSize">8pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">Remunerativos</property>
+                        </data>
+                    </cell>
+                    <cell id="2537">
+                        <data id="2563">
+                            <property name="fontSize">8pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">NoRemunerativos</property>
+                        </data>
+                    </cell>
+                    <cell id="2538">
+                        <data id="2570">
+                            <property name="fontSize">8pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="fontStyle">italic</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">Totales</property>
+                        </data>
+                    </cell>
+                    <cell id="2539">
+                        <data id="2565">
+                            <property name="fontSize">8pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">Descuentos</property>
+                        </data>
+                    </cell>
+                    <cell id="2540">
+                        <data id="2572">
+                            <property name="fontSize">8pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="fontStyle">italic</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">Neto</property>
+                        </data>
+                    </cell>
+                    <cell id="2586">
+                        <data id="2590">
+                            <property name="fontSize">8pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="fontStyle">italic</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">NetoConRedondeo</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="2541">
+                    <property name="fontSize">10pt</property>
+                    <cell id="2542">
+                        <label id="2578">
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Totales:</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2543">
+                        <property name="borderBottomColor">#808080</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#808080</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#808080</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#808080</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="2580">
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Cantidad</property>
+                        </data>
+                    </cell>
+                    <cell id="2544">
+                        <data id="2573">
+                            <property name="fontSize">9pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">SumR</property>
+                        </data>
+                    </cell>
+                    <cell id="2545">
+                        <data id="2574">
+                            <property name="fontSize">9pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">SumNR</property>
+                        </data>
+                    </cell>
+                    <cell id="2546">
+                        <data id="2575">
+                            <property name="fontSize">9pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">SumT</property>
+                        </data>
+                    </cell>
+                    <cell id="2547">
+                        <data id="2576">
+                            <property name="fontSize">9pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">SumD</property>
+                        </data>
+                    </cell>
+                    <cell id="2548">
+                        <data id="2577">
+                            <property name="fontSize">9pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">SumN</property>
+                        </data>
+                    </cell>
+                    <cell id="2587">
+                        <property name="borderBottomColor">#808080</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#808080</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#808080</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#808080</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <property name="textAlign">right</property>
+                        <data id="2591">
+                            <property name="fontSize">9pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                            </structure>
+                            <property name="resultSetColumn">SumNconR</property>
+                        </data>
+                    </cell>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

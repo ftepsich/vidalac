@@ -1,0 +1,14 @@
+﻿{
+    xtype: 'panel',
+    layout: 'form',
+    bodyStyle: 'margin-left:55px;margin-top:10px;',
+    items: [
+        {bodyStyle: 'margin-bottom:20px;',border: false, html:'<span style="color:#336699;font-family:Arial;font-size:11pt;">Este asistente lo guiara en el proceso de generacion de una orden de pago.</span>'},
+        <<Id>>,
+        <<Persona>>,
+        <<FechaEmision>>,
+        <<LibroIVA>>,
+        <<Observaciones>>,
+        <<ObservacionesImpresas>>
+    ]
+}

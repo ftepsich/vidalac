@@ -1,0 +1,33 @@
+{
+    layout: 'fit',
+    xtype: 'panel',
+    items:[{
+        xtype: 'panel',
+        layout: 'column',
+        items: [
+            {
+                layout: 'form',
+                columnWidth: .5,
+                bodyStyle: 'padding: 5px;',
+                items: [
+                    <<Id>>,
+                    <<PaisDestino>>,
+                    <<ConceptoIncluido>>,
+                    <<Incoterm>>,
+                    <<IncotermDescripcion>>
+                ]
+            },
+            {
+                layout: 'form',
+                columnWidth: .5,
+                bodyStyle: 'padding: 5px;',
+                items: [
+                    <<Comprobante>>,
+                    <<CuitPaisDestino>>,
+                    <<Idioma>>,
+                    <<FormaDePago>>
+                ]
+            }
+        ]
+    }]
+}

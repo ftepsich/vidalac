@@ -1,0 +1,74 @@
+<chart>
+	<axis_category alpha='0' />
+	<axis_ticks value_ticks='true' category_ticks='false' major_thickness='2' minor_thickness='1' minor_count='1' minor_color='222222' position='outside' />
+	<axis_value shadow='low' min='0' max='120' size='10' color='ffffff' alpha='50' steps='6' />
+
+	<chart_border top_thickness='2' bottom_thickness='2' left_thickness='2' right_thickness='2' />
+	<chart_data>
+	
+	<<Data>>
+	<!--
+		<row>
+			<null/>
+			<!--<string></string>
+			<<Strings>>
+		</row>
+		<row>
+			<!-- <string>Region A</string>
+			<<Temperaturas>>
+		</row>
+		<row>
+			<!-- <string>Region B</string>
+			<<Humedad>>
+		</row>
+	-->
+	</chart_data>
+	<chart_grid_h alpha='10' thickness='1' type='solid' />
+	<chart_grid_v alpha='10' thickness='1' type='solid' />
+	<chart_guide horizontal='true' thickness='1' color='ffffff' alpha='50' type='dashed' radius='5' line_color='FFFF00' line_alpha='75' line_thickness='2' text_color='FFFF00' text_h_alpha='90' />	
+	<chart_note type='bullet' size='11' color='AAAAFF' alpha='90' x='0' y='-125' offset_y='5' background_color='8888FF' background_alpha='65' shadow='low' />
+	<chart_pref line_thickness='2' point_shape='none' fill_shape='false' />
+	<chart_rect x='40' y='20' width='335' height='200' positive_color='000000' positive_alpha='30' bevel='bg' />
+	<chart_type>Line</chart_type>
+
+	<!--
+	<draw>
+		<text color='000000' alpha='15' rotation='-90' size='30' x='-10' y='300' width='300' height='150' h_align='center' v_align='top' shadow='low'>Temperatura</text>
+		<text alpha='15' size='40' x='0' y='0' width='320' height='300' v_align='bottom' shadow='low'>Tiempo</text>
+		<image layer='background' url='images/charts/slider_bg.gif' x='62' y='228' width='289' height='17' />
+
+		<button url_idle='images/charts/button_all_idle.jpg' url_over='images/charts/button_all_over.jpg' url_press='images/charts/button_all_press.jpg' x='278' y='265' width='44' height='21' />
+		<button url_idle='images/charts/button_1_idle.jpg' url_over='images/charts/button_1_over.jpg' url_press='images/charts/button_1_press.jpg' x='325' y='265' width='22' height='21' />
+		<button url_idle='images/charts/button_2_idle.jpg' url_over='images/charts/button_2_over.jpg' url_press='images/charts/button_2_press.jpg' x='350' y='265' width='22' height='21' />
+	</draw>
+	-->
+	
+	<!--
+	<filter>
+		<shadow id='low' distance='2' angle='45' alpha='50' blurX='5' blurY='5' />
+		<shadow id='high' distance='5' angle='45' alpha='25' blurX='10' blurY='10' />
+		<bevel id='bg' angle='45' blurX='15' blurY='15' distance='5' highlightAlpha='25' highlightColor='ffffff' shadowAlpha='50' type='outer' />
+	</filter>
+	-->
+	
+	<context_menu full_screen='true' />
+
+	<legend layout='hide' />
+	<!--
+	<link>
+		<area x='278' y='265' width='44' height='21' url='start=0&span=100' target='scroll' />
+		<area x='325' y='265' width='22' height='21' url='start=28&span=40' target='scroll' />
+		<area x='350' y='265' width='22' height='21' url='start=58&span=40' target='scroll' />
+	</link>
+	-->
+	
+	<!--
+	<scroll scroll_detail='65' x='38' y='227' width='337' height='20' url_button_1_idle='images/charts/slider_L.gif' url_button_2_idle='images/charts/slider_R.gif' button_length='23' url_button_1_over='images/charts/slider_over_L.gif' url_button_1_press='images/charts/slider_L.gif' url_button_2_over='images/charts/slider_over_R.gif' url_button_2_press='images/charts/slider_R.gif' url_slider_body='images/charts/slider_handle.gif' url_slider_handle_1='images/charts/slider_handle_L.gif' url_slider_handle_2='images/charts/slider_handle_R.gif' slider_handle_length='10' gap='2' start='10' span='50' drag='true' alpha='100'/>
+	-->
+	
+	<series_color>
+		<color>77bb11</color>
+		<color>cc5511</color>
+	</series_color>
+
+</chart>

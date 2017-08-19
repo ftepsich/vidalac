@@ -1,0 +1,112 @@
+{
+    xtype: 'panel',
+    layout: 'form',
+    buttonAlign: 'center',
+    id: 'FacturasVentasArticulosForm',
+    cambiarTipo: function (i) {
+    
+        var articulo = this.ownerCt.getForm().findField('Articulo');
+        var cuenta   = this.ownerCt.getForm().findField('CuentaCasual')
+        var obs      = this.ownerCt.getForm().findField('Observaciones')
+        var cantidad = this.ownerCt.getForm().findField('Cantidad');
+        var sel      = Ext.getCmp('FacturasVentasArticulos-selector-tipo');
+        
+        sel.setValue(parseInt(i));
+		
+        switch (i) {
+        
+            // Articulos
+            case '0':
+                articulo.allowBlank = false;
+                articulo.show();
+                articulo.store.baseParams.fetch = 'EsArticuloParaVenta';
+
+                obs.allowBlank = true;
+                
+                cantidad.setValue(0);
+                cantidad.show();
+
+                cuenta.hide();
+                cuenta.allowBlank = true;
+                cuenta.reset();
+                
+                break;
+
+            // Servicios
+            case '1':
+                articulo.allowBlank = false;
+                articulo.show();
+
+                articulo.store.baseParams.fetch = 'EsServicioParaVenta';
+
+                obs.allowBlank = true;
+
+                cantidad.setValue(1);
+                cantidad.hide();
+
+                cuenta.hide();
+                cuenta.allowBlank = true;
+                cuenta.reset();
+                
+                break;
+
+            // Varios
+            case '2':
+                articulo.hide();
+                articulo.allowBlank = true;
+                articulo.reset();
+                
+                obs.allowBlank = false;
+
+                cantidad.setValue(0);
+                cantidad.show();
+                
+                cuenta.allowBlank = false;
+                cuenta.reset();
+                cuenta.show();
+                
+                break;
+        }
+	
+	},
+	buttons: [{
+		text:		'Guardar',
+		formBind:	true,
+		handler:	function() {
+			this.findParentByType(Rad.Form).submit();
+		}
+	}],
+	items: [
+	    new Ext.form.ComboBox ({
+		    id: 'FacturasVentasArticulos-selector-tipo',
+		    fieldLabel		: 'Tipo',
+		    displayField	: 'Descripcion',
+		    valueField		: 'Id',
+		    mode			: 'local',
+		    triggerAction	: 'all',
+		    editable		: false,
+		    value: 0,
+		    store: new Ext.data.SimpleStore ({
+			    fields	: [ 'Id','Descripcion' ],
+			    data	: [ ['0','Articulos'],['1','Servicios'],['2','Varios'] ],
+		    }),
+		    listeners: {
+			    select: function (combo, record, index) {
+				    var panel = Ext.getCmp('FacturasVentasArticulosForm');
+				    var articulo = panel.ownerCt.getForm().findField('Articulo');
+				    articulo.clearValue();
+				    panel.cambiarTipo(record.data.Id);
+			    }
+		    }
+		}),
+		<<Id>>,
+		<<Comprobante>>,				
+		<<Articulo>>,
+		<<Observaciones>>,
+		<<ConceptoImpositivo>>,				
+		<<Cantidad>>,
+		<<PrecioUnitario>>,
+		<<CuentaCasual>>
+		
+	]
+}

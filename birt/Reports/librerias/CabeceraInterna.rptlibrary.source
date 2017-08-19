@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.21" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 2.5.2.v20100208 Build &lt;2.5.2.v20100210-0630></property>
+    <property name="units">in</property>
+    <property name="theme">defaultTheme</property>
+    <themes>
+        <theme name="defaultTheme" id="4">
+            <list-property name="cssStyleSheets">
+                <structure>
+                    <property name="fileName">../css/EstiloBase.css</property>
+                </structure>
+            </list-property>
+        </theme>
+    </themes>
+    <page-setup>
+        <simple-master-page name="Cabecera_y_Pie" id="3">
+            <property name="type">a4</property>
+            <property name="orientation">auto</property>
+            <page-header>
+                <grid name="Cabecera" id="2434">
+                    <property name="width">100%</property>
+                    <column id="2435"/>
+                    <row id="2436">
+                        <cell id="2437">
+                            <label name="NewLabel1" id="2438">
+                                <property name="style">nombre-comprobante</property>
+                                <text-property name="text">{{EMPRESA_NOMBRE_LARGO}}</text-property>
+                            </label>
+                        </cell>
+                    </row>
+                </grid>
+            </page-header>
+            <page-footer>
+                <grid name="NewGrid" id="2404">
+                    <property name="height">0.4in</property>
+                    <property name="width">100%</property>
+                    <column id="2405">
+                        <property name="width">1.6933333333333334cm</property>
+                    </column>
+                    <column id="2406">
+                        <property name="width">6.117166666666667cm</property>
+                    </column>
+                    <column id="2419">
+                        <property name="width">3.894666666666667cm</property>
+                    </column>
+                    <column id="2417">
+                        <property name="width">5.101166666666667cm</property>
+                    </column>
+                    <column id="2407">
+                        <property name="width">2.8363333333333336cm</property>
+                    </column>
+                    <row id="2408">
+                        <property name="height">0.6773333333333333cm</property>
+                        <property name="style">pie</property>
+                        <cell id="2409">
+                            <label name="NewLabel" id="2433">
+                                <text-property name="text">Impreso el :</text-property>
+                            </label>
+                        </cell>
+                        <cell id="2410">
+                            <text name="NewText" id="2432">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<value-of format="dd/MM/YYYY">new Date()</value-of>]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="2418"/>
+                        <cell id="2416"/>
+                        <cell id="2411">
+                            <grid name="NewGrid1" id="2421">
+                                <column id="2422"/>
+                                <column id="2423"/>
+                                <column id="2424"/>
+                                <row id="2425">
+                                    <cell id="2426">
+                                        <property name="width">1cm</property>
+                                        <auto-text name="NewAutoText" id="2427">
+                                            <property name="textAlign">center</property>
+                                            <property name="type">page-number</property>
+                                        </auto-text>
+                                    </cell>
+                                    <cell id="2428">
+                                        <property name="width">5mm</property>
+                                        <text name="NewText1" id="2429">
+                                            <property name="textAlign">center</property>
+                                            <property name="contentType">plain</property>
+                                            <text-property name="content"><![CDATA[/]]></text-property>
+                                        </text>
+                                    </cell>
+                                    <cell id="2430">
+                                        <property name="width">1cm</property>
+                                        <auto-text name="NewAutoText1" id="2431">
+                                            <property name="textAlign">center</property>
+                                            <property name="type">total-page</property>
+                                        </auto-text>
+                                    </cell>
+                                </row>
+                            </grid>
+                        </cell>
+                    </row>
+                </grid>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+</library>

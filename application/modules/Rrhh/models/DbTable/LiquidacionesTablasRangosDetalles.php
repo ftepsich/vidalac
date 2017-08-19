@@ -1,0 +1,5 @@
+<?php
+class Rrhh_Model_DbTable_LiquidacionesTablasRangosDetalles extends Rrhh_Model_DbTable_LiquidacionesTablasDetalles
+{
+
+}

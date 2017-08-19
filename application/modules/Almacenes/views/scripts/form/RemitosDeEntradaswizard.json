@@ -1,0 +1,115 @@
+﻿{
+	xtype: 'panel',
+	layout: 'border',
+	items: [
+		{
+			region: 'north',
+			layout: 'column',
+			height: 160,
+			items: [
+				{
+					layout: 'form',
+					columnWidth: .5,
+					items: [
+						<<Id>>,
+						<<Persona>>,
+						<<TipoDeComprobante>>,
+						{
+							layout: 'column',
+							items: [ 
+								{ 
+									layout: 'form',
+									columnWidth: .5,
+									items: [ <<Punto>> ]							
+								},
+								{ 
+									layout: 'form',
+									labelSeparator: '-',
+									labelWidth: 10,
+									columnWidth: .5,
+									items: [ <<Numero>> ]							
+								},
+							]
+						},
+						<<FechaEmision>>,
+						<<FechaEntrega>>,
+						
+						new Ext.form.ComboBox ({
+							fieldLabel		: 'Transporte',
+							displayField	: 'Descripcion',
+							mode			: 'local',
+							triggerAction	: 'all',
+							editable		: false,
+							store: new Ext.data.SimpleStore ({
+								id		: 'storeTransportesdfsd',
+								fields	: [ 'Id','Descripcion' ],
+								data	: [ [0, '-'], [1, 'Transporte Propio'], [2, 'Transporte Proveedor'] ]
+							}),
+							listeners: {
+								select: function (combo, record, index) {
+									var form = this.form.getForm();
+									var teed = form.findField('TransportistaEntregoEnDestino');
+									var trdo = form.findField('TransportistaRetiroDeOrigen');
+									var persona = form.findField('Persona');
+									
+									switch (record.data.Id) {
+										// -
+										case 0:
+											teed.show();
+											trdo.show();
+										break;
+										// Transporte Propio
+										case 1:
+											teed.hide(); teed.clearValue();
+											trdo.hide(); trdo.clearValue();
+										break;
+										// Transporte Proveedor
+										case 2:
+											var rProveedor = persona.store.getById(persona.getValue());
+											if (rProveedor.get('EsTransporte') == 1) {
+												teed.setValue(persona.getValue());
+												trdo.setValue(persona.getValue());
+												teed.hide(); trdo.hide();
+											} else {
+												teed.clearValue(); teed.show();
+												trdo.clearValue(); trdo.show();
+											}
+										break;
+									}
+								},
+								scope: this
+							}
+						})
+						
+					]
+				},
+				{
+					layout: 'form',
+					columnWidth: .5,
+					labelWidth: 160,
+					items: [
+						<<CotCodigo>>,
+						<<CotFechaValidez>>,
+						<<TransportistaRetiroDeOrigen>>,
+						<<TransportistaEntregoEnDestino>>,
+						<<FleteFormaPago>>,
+						<<DepositoEntrega>>
+					]
+				}
+			]
+		},
+		{
+			region: 'center',
+			height: 50,
+			items: [
+				{
+					layout: 'form',
+					items: [
+						<<Observaciones>>,
+						<<ObservacionesImpresas>>
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,2268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.21" id="1">
+    <property name="author">SmartSoftware</property>
+    <property name="createdBy">Eclipse BIRT Designer Version 2.5.2.v20100208 Build &lt;2.5.2.v20100210-0630></property>
+    <property name="units">cm</property>
+    <method name="initialize"><![CDATA[reportContext.setGlobalVariable("TablaComprobantesPendientesVisible",false);]]></method>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">librerias/ConectorDB.rptlibrary</property>
+            <property name="namespace">ConectorDB</property>
+        </structure>
+        <structure>
+            <property name="fileName">librerias/CabeceraInterna.rptlibrary</property>
+            <property name="namespace">CabeceraInterna</property>
+        </structure>
+    </list-property>
+    <list-property name="cssStyleSheets">
+        <structure>
+            <property name="fileName">css/EstiloBase.css</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="Id" id="124">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <property name="autoSuggestThreshold">1</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Base" id="186"
+ extends="ConectorDB.DataSource">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+            </list-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ComprobanteCabecera" id="690">
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">Id</property>
+                    <property name="paramName">Id</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">IdComprobante</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">TipoDeComprobante</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">CodigoDeComprobante</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">RazonSocial</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">Direccion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">Localidad</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">Provincia</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">NumeroCompleto</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">FechaEmision</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">ModalidadIVA</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">Cuit</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">ObservacionesImpresas</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">Persona</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">IdComprobante</property>
+                    <property name="nativeName">IdComprobante</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">TipoDeComprobante</property>
+                    <property name="nativeName">TipoDeComprobante</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">CodigoDeComprobante</property>
+                    <property name="nativeName">CodigoDeComprobante</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">RazonSocial</property>
+                    <property name="nativeName">RazonSocial</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">Direccion</property>
+                    <property name="nativeName">Direccion</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">Localidad</property>
+                    <property name="nativeName">Localidad</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">Provincia</property>
+                    <property name="nativeName">Provincia</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">NumeroCompleto</property>
+                    <property name="nativeName">NumeroCompleto</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">FechaEmision</property>
+                    <property name="nativeName">FechaEmision</property>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">ModalidadIVA</property>
+                    <property name="nativeName">ModalidadIVA</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">Cuit</property>
+                    <property name="nativeName">Cuit</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">ObservacionesImpresas</property>
+                    <property name="nativeName">ObservacionesImpresas</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">Persona</property>
+                    <property name="nativeName">Persona</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[call Birt_ComprobantePago_Cabecera(?);]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>1.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Id</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>IdComprobante</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>IdComprobante</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Descripcion</design:name>
+            <design:position>2</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TipoDeComprobante</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TipoDeComprobante</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Descripcion</design:name>
+            <design:position>3</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TipoVentaOCompra</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TipoVentaOCompra</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>RazonSocial</design:name>
+            <design:position>4</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>RazonSocial</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>RazonSocial</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Punto</design:name>
+            <design:position>5</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Punto</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Punto</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Numero</design:name>
+            <design:position>6</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Numero</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Numero</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>ValorDeclarado</design:name>
+            <design:position>7</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>12</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ValorDeclarado</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ValorDeclarado</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Direccion</design:name>
+            <design:position>8</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>250</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Direccion</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Direccion</design:label>
+            <design:formattingHints>
+              <design:displaySize>250</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>PisoDepartamento</design:name>
+            <design:position>9</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>30</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PisoDepartamento</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PisoDepartamento</design:label>
+            <design:formattingHints>
+              <design:displaySize>30</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>FechaEmision</design:name>
+            <design:position>10</design:position>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>FechaEmision</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>FechaEmision</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>FechaEntrega</design:name>
+            <design:position>11</design:position>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>FechaEntrega</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>FechaEntrega</design:label>
+            <design:formattingHints>
+              <design:displaySize>19</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Descripcion</design:name>
+            <design:position>12</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Localidad</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Localidad</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Descripcion</design:name>
+            <design:position>13</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Provincia</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Provincia</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>CodigoPostal</design:name>
+            <design:position>14</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>CodigoPostal</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>CodigoPostal</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Cuit</design:name>
+            <design:position>15</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>13</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Cuit</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Cuit</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Descripcion</design:name>
+            <design:position>16</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ModalidadIVA</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ModalidadIVA</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>ObservacionesImpresas</design:name>
+            <design:position>17</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>21845</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ObservacionesImpresas</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ObservacionesImpresas</design:label>
+            <design:formattingHints>
+              <design:displaySize>21845</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>EstadoComoPadre</design:name>
+            <design:position>18</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>EstadoComoPadre</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>EstadoComoPadre</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>EstadoComoHijo</design:name>
+            <design:position>19</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>EstadoComoHijo</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>EstadoComoHijo</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ComprobantesAsociados" id="894">
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">Comprobante</property>
+                    <property name="paramName">Id</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">IdComprobante</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Codigo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">Descripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">Monto</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">NumeroCompleto</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">Hijo</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">Padre</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">FechaEmision</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">FechaCierre</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">IdComprobante</property>
+                    <property name="nativeName">IdComprobante</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">Codigo</property>
+                    <property name="nativeName">Codigo</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">Descripcion</property>
+                    <property name="nativeName">Descripcion</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">Monto</property>
+                    <property name="nativeName">Monto</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">NumeroCompleto</property>
+                    <property name="nativeName">NumeroCompleto</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">Hijo</property>
+                    <property name="nativeName">Hijo</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">Padre</property>
+                    <property name="nativeName">Padre</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">FechaEmision</property>
+                    <property name="nativeName">FechaEmision</property>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">FechaCierre</property>
+                    <property name="nativeName">FechaCierre</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[call Birt_ComprobantePago_CompAsociados(?);]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ComprobantesPendientes" id="907">
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">Id</property>
+                    <property name="paramName">Id</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">Id2</property>
+                    <property name="paramName">Id</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Persona</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">FechaEmision</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">TipoComprobante</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">Codigo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">NumeroCompleto</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">Pago</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">MontoTotal</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">MontoDisponible</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Persona</property>
+                    <property name="nativeName">Persona</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">FechaEmision</property>
+                    <property name="nativeName">FechaEmision</property>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">TipoComprobante</property>
+                    <property name="nativeName">TipoComprobante</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">Codigo</property>
+                    <property name="nativeName">Codigo</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">NumeroCompleto</property>
+                    <property name="nativeName">NumeroCompleto</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">Pago</property>
+                    <property name="nativeName">Pago</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">MontoTotal</property>
+                    <property name="nativeName">MontoTotal</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">MontoDisponible</property>
+                    <property name="nativeName">MontoDisponible</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT 
+C.Persona AS Persona,
+C.FechaEmision AS FechaEmision, 
+TC.Descripcion AS TipoComprobante, 
+TG.Codigo AS Codigo, 
+fNumeroCompleto(C.Id,'CG')  AS NumeroCompleto,
+fEstadoRelHijoPago(C.Id) AS Pago,
+fComprobante_Monto_Total(C.Id) AS MontoTotal,
+fSigno_Comprobante_xID(?,C.Id)*fComprobante_Monto_Disponible(C.Id) AS MontoDisponible
+FROM Comprobantes C
+INNER JOIN TiposDeComprobantes TC ON TC.Id = C.TipoDeComprobante
+INNER JOIN TiposDeGruposDeComprobantes TG ON TG.Id = TC.Grupo
+WHERE fEstadoRelHijoPago(C.Id) COLLATE utf8_general_ci NOT IN ('Totalmente', 'Contado')
+-- AND fEstadoRelHijoPago(C.Id) <>  COLLATE utf8_general_ci
+AND C.Cerrado = 1
+AND C.Anulado = 0
+AND TC.Grupo IN(1,6,7,8,12,13)
+-- AND C.Id NOT IN(SELECT CR.ComprobanteHijo FROM ComprobantesRelacionados CR WHERE CR.ComprobantePadre = ?)
+AND C.Persona = (SELECT C3.Persona FROM Comprobantes C3 WHERE C3.Id = ?)]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>1.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Id</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ComprobantePadre</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ComprobantePadre</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Punto</design:name>
+            <design:position>2</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Punto</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Punto</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Numero</design:name>
+            <design:position>3</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Numero</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Numero</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Persona</design:name>
+            <design:position>4</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Persona</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Persona</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>FechaEmision</design:name>
+            <design:position>5</design:position>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>FechaEmision</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>FechaEmision</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>MontoTotal</design:name>
+            <design:position>6</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>58</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>MontoTotal</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>MontoTotal</design:label>
+            <design:formattingHints>
+              <design:displaySize>60</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Descripcion</design:name>
+            <design:position>7</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TipoComprobante</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TipoComprobante</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ComprobanteDetallePago" id="919">
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">Id</property>
+                    <property name="paramName">Id</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">FormaDePago</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">DetalleDePago</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">PrecioUnitario</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">FormaDePago</property>
+                    <property name="nativeName">FormaDePago</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">DetalleDePago</property>
+                    <property name="nativeName">DetalleDePago</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">PrecioUnitario</property>
+                    <property name="nativeName">PrecioUnitario</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[call Birt_ComprobantePago_DetallePago(?);]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>1.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Id</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Descripcion</design:name>
+            <design:position>2</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>250</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Descripcion</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Descripcion</design:label>
+            <design:formattingHints>
+              <design:displaySize>250</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>PrecioUnitario</design:name>
+            <design:position>3</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>12</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PrecioUnitario</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PrecioUnitario</design:label>
+            <design:formattingHints>
+              <design:displaySize>14</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>BancoD</design:name>
+            <design:position>4</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>250</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>BancoD</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>BancoD</design:label>
+            <design:formattingHints>
+              <design:displaySize>250</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="MontoEnLetras" id="925">
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">Id</property>
+                    <property name="paramName">Id</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">MontoEnLetras</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">MontoEnLetras</property>
+                    <property name="nativeName">MontoEnLetras</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT fNumeroALetras(SUM(PrecioUnitario)) as MontoEnLetras
+FROM ComprobantesDetalles CD
+    LEFT JOIN Comprobantes C 		ON CD.Comprobante = C.Id
+   WHERE C.Id = ?]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>1.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>fNumeroALetras(Sum(PrecioUnitario))</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>512</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>fNumeroALetras(Sum(PrecioUnitario))</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>fNumeroALetras(Sum(PrecioUnitario))</design:label>
+            <design:formattingHints>
+              <design:displaySize>512</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie">
+            <property name="topMargin">0.25in</property>
+            <property name="leftMargin">0.25in</property>
+            <property name="bottomMargin">0.25in</property>
+            <property name="rightMargin">0.15in</property>
+            <overridden-values>
+                <ref-entry baseId="2434" name="Cabecera" id="2434"/>
+                <ref-entry baseId="2435" id="2435"/>
+                <ref-entry baseId="2436" id="2436"/>
+                <ref-entry baseId="2437" id="2437"/>
+                <ref-entry baseId="2438" name="NewLabel1" id="2438"/>
+                <ref-entry baseId="2404" name="NewGrid" id="2404"/>
+                <ref-entry baseId="2405" id="2405"/>
+                <ref-entry baseId="2406" id="2406"/>
+                <ref-entry baseId="2419" id="2419"/>
+                <ref-entry baseId="2417" id="2417"/>
+                <ref-entry baseId="2407" id="2407"/>
+                <ref-entry baseId="2408" id="2408"/>
+                <ref-entry baseId="2409" id="2409"/>
+                <ref-entry baseId="2433" name="NewLabel" id="2433"/>
+                <ref-entry baseId="2410" id="2410"/>
+                <ref-entry baseId="2432" name="NewText" id="2432"/>
+                <ref-entry baseId="2418" id="2418"/>
+                <ref-entry baseId="2416" id="2416"/>
+                <ref-entry baseId="2411" id="2411"/>
+                <ref-entry baseId="2421" name="NewGrid1" id="2421"/>
+                <ref-entry baseId="2422" id="2422"/>
+                <ref-entry baseId="2423" id="2423"/>
+                <ref-entry baseId="2424" id="2424"/>
+                <ref-entry baseId="2425" id="2425"/>
+                <ref-entry baseId="2426" id="2426"/>
+                <ref-entry baseId="2427" name="NewAutoText" id="2427"/>
+                <ref-entry baseId="2428" id="2428"/>
+                <ref-entry baseId="2429" name="NewText1" id="2429"/>
+                <ref-entry baseId="2430" id="2430"/>
+                <ref-entry baseId="2431" name="NewAutoText1" id="2431"/>
+            </overridden-values>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid name="Separador1" id="1023">
+            <property name="style">ids</property>
+            <property name="width">7.85in</property>
+            <column id="1024">
+                <property name="width">5.4in</property>
+            </column>
+            <row id="1029">
+                <cell id="1030">
+                    <property name="style">ids</property>
+                    <property name="paddingBottom">3pt</property>
+                </cell>
+            </row>
+        </grid>
+        <grid name="NumeroDeComprobanteMostrar" id="2486">
+            <property name="width">7.85in</property>
+            <property name="dataSet">ComprobanteCabecera</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">IdComprobante</property>
+                    <expression name="expression" type="javascript">dataSetRow["IdComprobante"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">TipoDeComprobante</property>
+                    <expression name="expression" type="javascript">dataSetRow["TipoDeComprobante"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">RazonSocial</property>
+                    <expression name="expression" type="javascript">dataSetRow["RazonSocial"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Direccion</property>
+                    <expression name="expression" type="javascript">dataSetRow["Direccion"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Localidad</property>
+                    <expression name="expression" type="javascript">dataSetRow["Localidad"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Provincia</property>
+                    <expression name="expression" type="javascript">dataSetRow["Provincia"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">NumeroCompleto</property>
+                    <expression name="expression" type="javascript">dataSetRow["NumeroCompleto"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaEmision</property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaEmision"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">ModalidadIVA</property>
+                    <expression name="expression" type="javascript">dataSetRow["ModalidadIVA"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Cuit</property>
+                    <expression name="expression" type="javascript">dataSetRow["Cuit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">ObservacionesImpresas</property>
+                    <expression name="expression" type="javascript">dataSetRow["ObservacionesImpresas"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Persona</property>
+                    <expression name="expression" type="javascript">dataSetRow["Persona"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <column id="2487">
+                <property name="width">5.925in</property>
+            </column>
+            <column id="2488">
+                <property name="width">1.925in</property>
+            </column>
+            <row id="2489">
+                <cell id="2490">
+                    <property name="textAlign">left</property>
+                    <property name="verticalAlign">bottom</property>
+                    <label id="2510">
+                        <property name="style">encabezado-Estilo-2Rojo</property>
+                        <text-property name="text">Reporte de Comprobante Emitido</text-property>
+                    </label>
+                </cell>
+                <cell id="2491">
+                    <text-data name="ComprobanteNumero" id="2511">
+                        <property name="style">encabezado-Estilo-1</property>
+                        <property name="textAlign">left</property>
+                        <expression name="valueExpr">row["TipoDeComprobante"]</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+            <row id="2492">
+                <cell id="2493">
+                    <property name="textAlign">left</property>
+                    <property name="verticalAlign">top</property>
+                    <label id="2512">
+                        <property name="style">encabezado-Estilo-3Rojo</property>
+                        <text-property name="text">Solo para uso interno, no valido como instrumento legal.</text-property>
+                    </label>
+                </cell>
+                <cell id="2494">
+                    <text-data name="ComprobanteNumero1" id="2485">
+                        <property name="style">encabezado-Estilo-1</property>
+                        <property name="textAlign">left</property>
+                        <expression name="valueExpr">BirtStr.concat("Nº  " ,  row["NumeroCompleto"])</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+        </grid>
+        <grid name="Separador2" id="2513">
+            <property name="style">ids</property>
+            <property name="width">7.85in</property>
+            <column id="2514">
+                <property name="width">5.4in</property>
+            </column>
+            <row id="2515">
+                <cell id="2516">
+                    <property name="style">ids</property>
+                    <property name="paddingBottom">3pt</property>
+                </cell>
+            </row>
+        </grid>
+        <grid name="Cabecera1" id="965">
+            <property name="width">7.85in</property>
+            <property name="dataSet">ComprobanteCabecera</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">IdComprobante</property>
+                    <expression name="expression" type="javascript">dataSetRow["IdComprobante"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">TipoDeComprobante</property>
+                    <expression name="expression" type="javascript">dataSetRow["TipoDeComprobante"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">CodigoDeComprobante</property>
+                    <expression name="expression" type="javascript">dataSetRow["CodigoDeComprobante"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">RazonSocial</property>
+                    <expression name="expression" type="javascript">dataSetRow["RazonSocial"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Direccion</property>
+                    <expression name="expression" type="javascript">dataSetRow["Direccion"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Localidad</property>
+                    <expression name="expression" type="javascript">dataSetRow["Localidad"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Provincia</property>
+                    <expression name="expression" type="javascript">dataSetRow["Provincia"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">NumeroCompleto</property>
+                    <expression name="expression" type="javascript">dataSetRow["NumeroCompleto"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaEmision</property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaEmision"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">ModalidadIVA</property>
+                    <expression name="expression" type="javascript">dataSetRow["ModalidadIVA"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Cuit</property>
+                    <expression name="expression" type="javascript">dataSetRow["Cuit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">ObservacionesImpresas</property>
+                    <expression name="expression" type="javascript">dataSetRow["ObservacionesImpresas"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Persona</property>
+                    <expression name="expression" type="javascript">dataSetRow["Persona"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <column id="966">
+                <property name="width">3.323166666666667cm</property>
+            </column>
+            <column id="967">
+                <property name="width">3.45in</property>
+            </column>
+            <column id="1002">
+                <property name="width">0.1in</property>
+            </column>
+            <column id="984">
+                <property name="width">1.1in</property>
+            </column>
+            <column id="968">
+                <property name="width">1.9in</property>
+            </column>
+            <row id="969">
+                <cell id="970">
+                    <property name="paddingTop">1pt</property>
+                    <label id="985">
+                        <property name="style">nombre-cabecera</property>
+                        <text-property name="text">Recibimos de</text-property>
+                    </label>
+                </cell>
+                <cell id="971">
+                    <property name="colSpan">1</property>
+                    <property name="rowSpan">1</property>
+                    <property name="paddingTop">1pt</property>
+                    <data id="994">
+                        <property name="style">campo-cabecera</property>
+                        <property name="dataSet">ComprobanteCabecera</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">RazonSocial</property>
+                                <text-property name="displayName">RazonSocial</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["RazonSocial"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">RazonSocial</property>
+                    </data>
+                </cell>
+                <cell id="2495">
+                    <property name="paddingTop">1pt</property>
+                </cell>
+                <cell id="2496">
+                    <property name="paddingTop">1pt</property>
+                    <label id="1003">
+                        <property name="style">nombre-cabecera</property>
+                        <text-property name="text">En Fecha</text-property>
+                    </label>
+                </cell>
+                <cell id="2497">
+                    <property name="paddingTop">1pt</property>
+                    <data id="1008">
+                        <property name="style">campo-cabecera</property>
+                        <property name="dataSet">ComprobanteCabecera</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">FechaEmision</property>
+                                <text-property name="displayName">FechaEmision</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["FechaEmision"]</expression>
+                                <property name="dataType">date</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">FechaEmision</property>
+                    </data>
+                </cell>
+            </row>
+            <row id="973">
+                <cell id="974">
+                    <property name="paddingTop">1pt</property>
+                    <label id="986">
+                        <property name="style">nombre-cabecera</property>
+                        <text-property name="text">Domicilio</text-property>
+                    </label>
+                </cell>
+                <cell id="975">
+                    <property name="paddingTop">1pt</property>
+                    <data id="995">
+                        <property name="style">campo-cabecera</property>
+                        <property name="dataSet">ComprobanteCabecera</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">Direccion</property>
+                                <text-property name="displayName">Direccion</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["Direccion"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">Direccion</property>
+                    </data>
+                </cell>
+                <cell id="999">
+                    <property name="paddingTop">1pt</property>
+                </cell>
+                <cell id="982">
+                    <property name="paddingTop">1pt</property>
+                    <label id="1004">
+                        <property name="style">nombre-cabecera</property>
+                        <text-property name="text">CUIT</text-property>
+                    </label>
+                </cell>
+                <cell id="976">
+                    <property name="paddingTop">1pt</property>
+                    <data id="1007">
+                        <property name="style">campo-cabecera</property>
+                        <property name="dataSet">ComprobanteCabecera</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">Cuit</property>
+                                <text-property name="displayName">Cuit</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["Cuit"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">Cuit</property>
+                    </data>
+                </cell>
+            </row>
+            <row id="977">
+                <cell id="978">
+                    <property name="paddingTop">1pt</property>
+                    <label id="987">
+                        <property name="style">nombre-cabecera</property>
+                        <text-property name="text">Localidad</text-property>
+                    </label>
+                </cell>
+                <cell id="979">
+                    <property name="paddingTop">1pt</property>
+                    <data id="1041">
+                        <property name="style">campo-cabecera</property>
+                        <property name="dataSet">ComprobanteCabecera</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">Localidad</property>
+                                <text-property name="displayName">Localidad</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["Localidad"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">IdComprobante</property>
+                                <expression name="expression" type="javascript">dataSetRow["IdComprobante"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">TipoDeComprobante</property>
+                                <expression name="expression" type="javascript">dataSetRow["TipoDeComprobante"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">RazonSocial</property>
+                                <expression name="expression" type="javascript">dataSetRow["RazonSocial"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Direccion</property>
+                                <expression name="expression" type="javascript">dataSetRow["Direccion"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Provincia</property>
+                                <expression name="expression" type="javascript">dataSetRow["Provincia"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">NumeroCompleto</property>
+                                <expression name="expression" type="javascript">dataSetRow["NumeroCompleto"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">FechaEmision</property>
+                                <expression name="expression" type="javascript">dataSetRow["FechaEmision"]</expression>
+                                <property name="dataType">date</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ModalidadIVA</property>
+                                <expression name="expression" type="javascript">dataSetRow["ModalidadIVA"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Cuit</property>
+                                <expression name="expression" type="javascript">dataSetRow["Cuit"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ObservacionesImpresas</property>
+                                <expression name="expression" type="javascript">dataSetRow["ObservacionesImpresas"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Persona</property>
+                                <expression name="expression" type="javascript">dataSetRow["Persona"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">Localidad</property>
+                    </data>
+                </cell>
+                <cell id="1000">
+                    <property name="paddingTop">1pt</property>
+                </cell>
+                <cell id="983">
+                    <property name="paddingTop">1pt</property>
+                    <label id="1005">
+                        <property name="style">nombre-cabecera</property>
+                        <text-property name="text">Condición IVA</text-property>
+                    </label>
+                </cell>
+                <cell id="980">
+                    <property name="paddingTop">1pt</property>
+                    <data id="1043">
+                        <property name="style">campo-cabecera</property>
+                        <property name="dataSet">ComprobanteCabecera</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">ModalidadIVA</property>
+                                <text-property name="displayName">ModalidadIVA</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ModalidadIVA"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">ModalidadIVA</property>
+                    </data>
+                </cell>
+            </row>
+            <row id="988">
+                <cell id="989">
+                    <property name="paddingTop">1pt</property>
+                    <label id="993">
+                        <property name="style">nombre-cabecera</property>
+                        <text-property name="text">Provincia</text-property>
+                    </label>
+                </cell>
+                <cell id="990">
+                    <property name="paddingTop">1pt</property>
+                    <data id="1042">
+                        <property name="style">campo-cabecera</property>
+                        <property name="dataSet">ComprobanteCabecera</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">Provincia</property>
+                                <text-property name="displayName">Provincia</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["Provincia"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">Provincia</property>
+                    </data>
+                </cell>
+                <cell id="1001">
+                    <property name="paddingTop">1pt</property>
+                </cell>
+                <cell id="991">
+                    <property name="colSpan">2</property>
+                    <property name="rowSpan">1</property>
+                    <property name="paddingTop">1pt</property>
+                    <property name="verticalAlign">bottom</property>
+                    <text-data id="2681">
+                        <property name="style">ids</property>
+                        <expression name="valueExpr">BirtStr.concat('Nº: ', row["CodigoDeComprobante"] ,' ', row["NumeroCompleto"],'  /  C: ', row["IdComprobante"],'  /  P: ',row["Persona"]);</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+            <row id="1139">
+                <cell id="1140">
+                    <property name="paddingTop">1pt</property>
+                </cell>
+                <cell id="1141">
+                    <property name="paddingTop">1pt</property>
+                </cell>
+                <cell id="1142">
+                    <property name="paddingTop">1pt</property>
+                </cell>
+                <cell id="1143">
+                    <property name="paddingTop">1pt</property>
+                </cell>
+                <cell id="1144">
+                    <property name="paddingTop">1pt</property>
+                </cell>
+            </row>
+        </grid>
+        <grid name="TituloComprobantesAsociados" id="1070">
+            <property name="width">7.85in</property>
+            <column id="1071">
+                <property name="width">19.642666666666667cm</property>
+            </column>
+            <row id="1072">
+                <cell id="1073">
+                    <label id="1074">
+                        <property name="style">nombre-grilla</property>
+                        <text-property name="text">Comprobantes Asociados</text-property>
+                    </label>
+                </cell>
+            </row>
+        </grid>
+        <table name="ComprobantesAsociados" id="1045">
+            <property name="width">19.923125cm</property>
+            <property name="dataSet">ComprobantesAsociados</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">IdComprobante</property>
+                    <expression name="expression" type="javascript">dataSetRow["IdComprobante"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">Codigo</property>
+                    <expression name="expression" type="javascript">dataSetRow["Codigo"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Descripcion</property>
+                    <expression name="expression" type="javascript">dataSetRow["Descripcion"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Monto</property>
+                    <expression name="expression" type="javascript">dataSetRow["Monto"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">NumeroCompleto</property>
+                    <expression name="expression" type="javascript">dataSetRow["NumeroCompleto"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Hijo</property>
+                    <expression name="expression" type="javascript">dataSetRow["Hijo"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">Padre</property>
+                    <expression name="expression" type="javascript">dataSetRow["Padre"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaEmision</property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaEmision"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaCierre</property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaCierre"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["Monto"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">Total_1</property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["Monto"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+            </list-property>
+            <column id="1058">
+                <property name="width">13.335cm</property>
+            </column>
+            <column id="1059">
+                <property name="width">3.5454166666666667cm</property>
+            </column>
+            <column id="1060">
+                <property name="width">2.942166666666667cm</property>
+            </column>
+            <header>
+                <row id="1046">
+                    <cell id="1047">
+                        <label id="1061">
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Comprobante</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1048">
+                        <label id="1062">
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Fecha</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1049">
+                        <label id="1063">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Monto</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="1050">
+                    <cell id="1051">
+                        <data id="1065">
+                            <property name="resultSetColumn">NumeroCompleto</property>
+                        </data>
+                    </cell>
+                    <cell id="1052">
+                        <data id="1066">
+                            <property name="resultSetColumn">FechaEmision</property>
+                        </data>
+                    </cell>
+                    <cell id="1053">
+                        <data id="1067">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">Monto</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="1054">
+                    <cell id="1055"/>
+                    <cell id="1056">
+                        <label id="1064">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Total:</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1057">
+                        <data id="1069">
+                            <property name="style">table-Totales</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">Total_1</property>
+                        </data>
+                    </cell>
+                </row>
+            </footer>
+        </table>
+        <grid name="TituloValoresRecibidos" id="1075">
+            <property name="width">7.85in</property>
+            <column id="1076">
+                <property name="width">19.642666666666667cm</property>
+            </column>
+            <row id="1077">
+                <cell id="1078">
+                    <label id="1079">
+                        <property name="style">nombre-grilla</property>
+                        <text-property name="text">Valores Recibidos</text-property>
+                    </label>
+                </cell>
+            </row>
+        </grid>
+        <table name="ValoresRecibidos" id="1113">
+            <property name="width">19.939cm</property>
+            <property name="dataSet">ComprobanteDetallePago</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">FormaDePago</property>
+                    <expression name="expression" type="javascript">dataSetRow["FormaDePago"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">DetalleDePago</property>
+                    <expression name="expression" type="javascript">dataSetRow["DetalleDePago"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">PrecioUnitario</property>
+                    <expression name="expression" type="javascript">dataSetRow["PrecioUnitario"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">TotalPagado</property>
+                    <text-property name="displayName">TotalPagado</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["PrecioUnitario"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+            </list-property>
+            <column id="1126">
+                <property name="width">3.5348333333333333cm</property>
+            </column>
+            <column id="1127">
+                <property name="width">13.356166666666669cm</property>
+            </column>
+            <column id="1128">
+                <property name="width">2.9633333333333334cm</property>
+            </column>
+            <header>
+                <row id="1114">
+                    <cell id="1115">
+                        <label id="1129">
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Forma</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1116">
+                        <label id="1130">
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Detalle</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1117">
+                        <label id="1131">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Monto</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="1118">
+                    <cell id="1119">
+                        <data id="2518">
+                            <property name="resultSetColumn">FormaDePago</property>
+                        </data>
+                    </cell>
+                    <cell id="1120">
+                        <data id="2519">
+                            <property name="resultSetColumn">DetalleDePago</property>
+                        </data>
+                    </cell>
+                    <cell id="1121">
+                        <data id="2520">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">PrecioUnitario</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="1122">
+                    <cell id="1123"/>
+                    <cell id="1124">
+                        <label id="1135">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Total:</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1125">
+                        <property name="textAlign">right</property>
+                        <data id="2521">
+                            <property name="style">table-Totales</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                            </structure>
+                            <property name="resultSetColumn">TotalPagado</property>
+                        </data>
+                    </cell>
+                </row>
+            </footer>
+        </table>
+        <grid name="Totales" id="194">
+            <property name="height">0.635cm</property>
+            <property name="width">7.85in</property>
+            <column id="195">
+                <property name="width">3.7465cm</property>
+            </column>
+            <column id="196">
+                <property name="width">11.493500000000001cm</property>
+            </column>
+            <column id="428">
+                <property name="width">4.402666666666667cm</property>
+            </column>
+            <row id="422">
+                <property name="height">0.635cm</property>
+                <cell id="423">
+                    <text id="200">
+                        <property name="style">nombre-cabecera</property>
+                        <property name="fontSize">9pt</property>
+                        <property name="contentType">auto</property>
+                        <text-property name="content"><![CDATA[Recibi la Suma de:]]></text-property>
+                    </text>
+                </cell>
+                <cell id="424">
+                    <property name="colSpan">2</property>
+                    <property name="rowSpan">1</property>
+                    <data id="950">
+                        <property name="style">campo-cabecera</property>
+                        <property name="fontSize">10pt</property>
+                        <property name="fontStyle">italic</property>
+                        <property name="dataSet">MontoEnLetras</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">MontoEnLetras</property>
+                                <text-property name="displayName">MontoEnLetras</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["MontoEnLetras"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">MontoEnLetras</property>
+                    </data>
+                </cell>
+            </row>
+        </grid>
+        <grid name="TituloComprobantesPendientes" id="1080">
+            <property name="width">7.85in</property>
+            <column id="1081">
+                <property name="width">19.642666666666667cm</property>
+            </column>
+            <row id="1082">
+                <cell id="1083">
+                    <label id="1084">
+                        <property name="style">nombre-grilla</property>
+                        <text-property name="text">Comprobantes Pendientes</text-property>
+                    </label>
+                </cell>
+            </row>
+        </grid>
+        <table name="ComprobantesPendientes" id="1085">
+            <property name="width">7.85in</property>
+            <property name="dataSet">ComprobantesPendientes</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row.__rownum == -1</expression>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Persona</property>
+                    <expression name="expression" type="javascript">dataSetRow["Persona"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaEmision</property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaEmision"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">TipoComprobante</property>
+                    <expression name="expression" type="javascript">dataSetRow["TipoComprobante"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Codigo</property>
+                    <expression name="expression" type="javascript">dataSetRow["Codigo"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">NumeroCompleto</property>
+                    <expression name="expression" type="javascript">dataSetRow["NumeroCompleto"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Pago</property>
+                    <expression name="expression" type="javascript">dataSetRow["Pago"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">MontoTotal</property>
+                    <expression name="expression" type="javascript">dataSetRow["MontoTotal"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">MontoDisponible</property>
+                    <expression name="expression" type="javascript">dataSetRow["MontoDisponible"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">TotalPendiente</property>
+                    <text-property name="displayName">TotalPendiente</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["MontoDisponible"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+            </list-property>
+            <column id="1106">
+                <property name="width">6.752166666666667cm</property>
+            </column>
+            <column id="1107">
+                <property name="width">9.927166666666666cm</property>
+            </column>
+            <column id="1108">
+                <property name="width">2.942166666666667cm</property>
+            </column>
+            <header>
+                <row id="1086">
+                    <cell id="1087">
+                        <label id="1088">
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Comprobante</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1089">
+                        <label id="1090">
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Fecha</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1091">
+                        <label id="1092">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Monto Pendiente</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="1093">
+                    <method name="onRender"><![CDATA[reportContext.setGlobalVariable("TablaComprobantesPendientesVisible",true);]]></method>
+                    <cell id="1094">
+                        <data id="1110">
+                            <property name="resultSetColumn">NumeroCompleto</property>
+                        </data>
+                    </cell>
+                    <cell id="1096">
+                        <data id="1109">
+                            <property name="resultSetColumn">FechaEmision</property>
+                        </data>
+                    </cell>
+                    <cell id="1098">
+                        <data id="1111">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">MontoDisponible</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="1100">
+                    <cell id="1101"/>
+                    <cell id="1102">
+                        <label id="1103">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Total:</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1104">
+                        <data id="2517">
+                            <property name="style">table-Totales</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">TotalPendiente</property>
+                        </data>
+                    </cell>
+                </row>
+            </footer>
+        </table>
+        <grid name="MensajeTablaVacia" id="2478">
+            <property name="width">7.85in</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">if (BirtComp.equalTo( reportContext.getGlobalVariable("TablaComprobantesPendientesVisible"),true ))&#13;
+	true  // Oculta el mensaje No hay datos&#13;
+else&#13;
+	false  // No oculta el mensaje No hay datos</expression>
+                </structure>
+            </list-property>
+            <column id="2479">
+                <property name="width">19.663833333333333cm</property>
+            </column>
+            <row id="2480">
+                <cell id="2481">
+                    <label id="2477">
+                        <property name="style">label-table-vacia</property>
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                            </structure>
+                        </list-property>
+                        <text-property name="text">No hay comprobantes pendientes.</text-property>
+                    </label>
+                </cell>
+            </row>
+        </grid>
+        <table name="ObservacionesImpresas" id="931">
+            <property name="width">7.85in</property>
+            <property name="dataSet">ComprobanteCabecera</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">ObservacionesImpresas</property>
+                    <text-property name="displayName">ObservacionesImpresas</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ObservacionesImpresas"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <property name="pageBreakInterval">0</property>
+            <column id="938">
+                <property name="width">19.6215cm</property>
+            </column>
+            <detail>
+                <row id="934">
+                    <property name="height">0.8202083333333334cm</property>
+                    <property name="newHandlerOnEachEvent">true</property>
+                    <property name="overflow">hidden</property>
+                    <cell id="935">
+                        <data id="939">
+                            <property name="style">campo-cabecera</property>
+                            <property name="fontSize">10pt</property>
+                            <property name="canShrink">false</property>
+                            <property name="overflow">hidden</property>
+                            <property name="resultSetColumn">ObservacionesImpresas</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+    </body>
+</report>

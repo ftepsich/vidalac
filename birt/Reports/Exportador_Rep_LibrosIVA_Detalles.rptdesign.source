@@ -1,0 +1,1169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.21" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 2.5.2.v20100208 Build &lt;2.5.2.v20100210-0630></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">120</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">librerias/ConectorDB.rptlibrary</property>
+            <property name="namespace">ConectorDB</property>
+        </structure>
+    </list-property>
+    <list-property name="cssStyleSheets">
+        <structure>
+            <property name="fileName">css/EstiloBase.css</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="Libro" id="2490">
+            <property name="valueType">static</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">84</value>
+            </simple-property-list>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="TipoDeLibro" id="2491">
+            <property name="valueType">static</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">1</value>
+            </simple-property-list>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Base" id="186"
+ extends="ConectorDB.DataSource">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+            </list-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Datos" id="2489">
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">Libro</property>
+                    <property name="paramName">Libro</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">TipoDeLibro</property>
+                    <property name="paramName">TipoDeLibro</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Cid</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">LibroIVA</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">RazonSocial</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">Cuit</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">NETO27PARCIAL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">IVA27PARCIAL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">NETO21PARCIAL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">IVA21PARCIAL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">NETO105PARCIAL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">IVA105PARCIAL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">NETO5PARCIAL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">IVA5PARCIAL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">NETO25PARCIAL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">IVA25PARCIAL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">NETOsinIVAPARCIAL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">NETO27GRAL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">IVA27GRAL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">NETO21GRAL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">19</property>
+                        <property name="name">IVA21GRAL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">20</property>
+                        <property name="name">NETO105GRAL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">21</property>
+                        <property name="name">IVA105GRAL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">22</property>
+                        <property name="name">NETO5GRAL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">23</property>
+                        <property name="name">IVA5GRAL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">24</property>
+                        <property name="name">NETO25GRAL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">25</property>
+                        <property name="name">IVA25GRAL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">26</property>
+                        <property name="name">NETOsinIVA</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">27</property>
+                        <property name="name">ImpuestosInternos</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">28</property>
+                        <property name="name">OPercRet</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">29</property>
+                        <property name="name">PerRetIVA</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">30</property>
+                        <property name="name">PerRetGan</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">31</property>
+                        <property name="name">PerRetSuss</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">32</property>
+                        <property name="name">PerRetIB</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">33</property>
+                        <property name="name">ImporteTotalComprobante</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">34</property>
+                        <property name="name">NumeroC</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">35</property>
+                        <property name="name">FechaEmision</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">36</property>
+                        <property name="name">TipoDeLibro</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">37</property>
+                        <property name="name">Periodo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">38</property>
+                        <property name="name">TipoLibroDetalle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">39</property>
+                        <property name="name">PlanDeCuenta</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">40</property>
+                        <property name="name">ArticulosDesc</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">41</property>
+                        <property name="name">NetoParcial</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Cid</property>
+                    <property name="nativeName">Cid</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">LibroIVA</property>
+                    <property name="nativeName">LibroIVA</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">RazonSocial</property>
+                    <property name="nativeName">RazonSocial</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">Cuit</property>
+                    <property name="nativeName">Cuit</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">NETO27PARCIAL</property>
+                    <property name="nativeName">NETO27PARCIAL</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">IVA27PARCIAL</property>
+                    <property name="nativeName">IVA27PARCIAL</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">NETO21PARCIAL</property>
+                    <property name="nativeName">NETO21PARCIAL</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">IVA21PARCIAL</property>
+                    <property name="nativeName">IVA21PARCIAL</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">NETO105PARCIAL</property>
+                    <property name="nativeName">NETO105PARCIAL</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">IVA105PARCIAL</property>
+                    <property name="nativeName">IVA105PARCIAL</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">NETO5PARCIAL</property>
+                    <property name="nativeName">NETO5PARCIAL</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">IVA5PARCIAL</property>
+                    <property name="nativeName">IVA5PARCIAL</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">NETO25PARCIAL</property>
+                    <property name="nativeName">NETO25PARCIAL</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">IVA25PARCIAL</property>
+                    <property name="nativeName">IVA25PARCIAL</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">NETOsinIVAPARCIAL</property>
+                    <property name="nativeName">NETOsinIVAPARCIAL</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">NETO27GRAL</property>
+                    <property name="nativeName">NETO27GRAL</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">IVA27GRAL</property>
+                    <property name="nativeName">IVA27GRAL</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">18</property>
+                    <property name="name">NETO21GRAL</property>
+                    <property name="nativeName">NETO21GRAL</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">19</property>
+                    <property name="name">IVA21GRAL</property>
+                    <property name="nativeName">IVA21GRAL</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">20</property>
+                    <property name="name">NETO105GRAL</property>
+                    <property name="nativeName">NETO105GRAL</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">21</property>
+                    <property name="name">IVA105GRAL</property>
+                    <property name="nativeName">IVA105GRAL</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">22</property>
+                    <property name="name">NETO5GRAL</property>
+                    <property name="nativeName">NETO5GRAL</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">23</property>
+                    <property name="name">IVA5GRAL</property>
+                    <property name="nativeName">IVA5GRAL</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">24</property>
+                    <property name="name">NETO25GRAL</property>
+                    <property name="nativeName">NETO25GRAL</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">25</property>
+                    <property name="name">IVA25GRAL</property>
+                    <property name="nativeName">IVA25GRAL</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">26</property>
+                    <property name="name">NETOsinIVA</property>
+                    <property name="nativeName">NETOsinIVA</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">27</property>
+                    <property name="name">ImpuestosInternos</property>
+                    <property name="nativeName">ImpuestosInternos</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">28</property>
+                    <property name="name">OPercRet</property>
+                    <property name="nativeName">OPercRet</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">29</property>
+                    <property name="name">PerRetIVA</property>
+                    <property name="nativeName">PerRetIVA</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">30</property>
+                    <property name="name">PerRetGan</property>
+                    <property name="nativeName">PerRetGan</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">31</property>
+                    <property name="name">PerRetSuss</property>
+                    <property name="nativeName">PerRetSuss</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">32</property>
+                    <property name="name">PerRetIB</property>
+                    <property name="nativeName">PerRetIB</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">33</property>
+                    <property name="name">ImporteTotalComprobante</property>
+                    <property name="nativeName">ImporteTotalComprobante</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">34</property>
+                    <property name="name">NumeroC</property>
+                    <property name="nativeName">NumeroC</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">35</property>
+                    <property name="name">FechaEmision</property>
+                    <property name="nativeName">FechaEmision</property>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="position">36</property>
+                    <property name="name">TipoDeLibro</property>
+                    <property name="nativeName">TipoDeLibro</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">37</property>
+                    <property name="name">Periodo</property>
+                    <property name="nativeName">Periodo</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">38</property>
+                    <property name="name">TipoLibroDetalle</property>
+                    <property name="nativeName">TipoLibroDetalle</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">39</property>
+                    <property name="name">PlanDeCuenta</property>
+                    <property name="nativeName">PlanDeCuenta</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">40</property>
+                    <property name="name">ArticulosDesc</property>
+                    <property name="nativeName">ArticulosDesc</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">41</property>
+                    <property name="name">NetoParcial</property>
+                    <property name="nativeName">NetoParcial</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[call Birt_LibroIVA_Detallado(?,?)]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="NewSimpleMasterPage" id="2488">
+            <property name="type">custom</property>
+            <property name="height">40in</property>
+            <property name="width">40in</property>
+            <property name="orientation">landscape</property>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <table id="2492">
+            <property name="dataSet">Datos</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Cid</property>
+                    <expression name="expression" type="javascript">dataSetRow["Cid"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">LibroIVA</property>
+                    <expression name="expression" type="javascript">dataSetRow["LibroIVA"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">RazonSocial</property>
+                    <expression name="expression" type="javascript">dataSetRow["RazonSocial"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Cuit</property>
+                    <expression name="expression" type="javascript">dataSetRow["Cuit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">NETO27PARCIAL</property>
+                    <expression name="expression" type="javascript">dataSetRow["NETO27PARCIAL"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">IVA27PARCIAL</property>
+                    <expression name="expression" type="javascript">dataSetRow["IVA27PARCIAL"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">NETO21PARCIAL</property>
+                    <expression name="expression" type="javascript">dataSetRow["NETO21PARCIAL"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">IVA21PARCIAL</property>
+                    <expression name="expression" type="javascript">dataSetRow["IVA21PARCIAL"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">NETO105PARCIAL</property>
+                    <expression name="expression" type="javascript">dataSetRow["NETO105PARCIAL"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">IVA105PARCIAL</property>
+                    <expression name="expression" type="javascript">dataSetRow["IVA105PARCIAL"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">NETOsinIVAPARCIAL</property>
+                    <expression name="expression" type="javascript">dataSetRow["NETOsinIVAPARCIAL"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">NETO27GRAL</property>
+                    <expression name="expression" type="javascript">dataSetRow["NETO27GRAL"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">IVA27GRAL</property>
+                    <expression name="expression" type="javascript">dataSetRow["IVA27GRAL"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">NETO21GRAL</property>
+                    <expression name="expression" type="javascript">dataSetRow["NETO21GRAL"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">IVA21GRAL</property>
+                    <expression name="expression" type="javascript">dataSetRow["IVA21GRAL"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">NETO105GRAL</property>
+                    <expression name="expression" type="javascript">dataSetRow["NETO105GRAL"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">IVA105GRAL</property>
+                    <expression name="expression" type="javascript">dataSetRow["IVA105GRAL"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">NETOsinIVA</property>
+                    <expression name="expression" type="javascript">dataSetRow["NETOsinIVA"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">ImpuestosInternos</property>
+                    <expression name="expression" type="javascript">dataSetRow["ImpuestosInternos"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">OPercRet</property>
+                    <expression name="expression" type="javascript">dataSetRow["OPercRet"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">PerRetIVA</property>
+                    <expression name="expression" type="javascript">dataSetRow["PerRetIVA"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">PerRetGan</property>
+                    <expression name="expression" type="javascript">dataSetRow["PerRetGan"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">PerRetSuss</property>
+                    <expression name="expression" type="javascript">dataSetRow["PerRetSuss"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">PerRetIB</property>
+                    <expression name="expression" type="javascript">dataSetRow["PerRetIB"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">ImporteTotalComprobante</property>
+                    <expression name="expression" type="javascript">dataSetRow["ImporteTotalComprobante"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">NumeroC</property>
+                    <expression name="expression" type="javascript">dataSetRow["NumeroC"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaEmision</property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaEmision"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">TipoDeLibro</property>
+                    <expression name="expression" type="javascript">dataSetRow["TipoDeLibro"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">Periodo</property>
+                    <expression name="expression" type="javascript">dataSetRow["Periodo"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TipoLibroDetalle</property>
+                    <expression name="expression" type="javascript">dataSetRow["TipoLibroDetalle"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">PlanDeCuenta</property>
+                    <expression name="expression" type="javascript">dataSetRow["PlanDeCuenta"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">ArticulosDesc</property>
+                    <expression name="expression" type="javascript">dataSetRow["ArticulosDesc"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">NetoParcial</property>
+                    <expression name="expression" type="javascript">dataSetRow["NetoParcial"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">NETO5PARCIAL</property>
+                    <text-property name="displayName">NETO5PARCIAL</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["NETO5PARCIAL"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">IVA5PARCIAL</property>
+                    <text-property name="displayName">IVA5PARCIAL</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["IVA5PARCIAL"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">NETO25PARCIAL</property>
+                    <text-property name="displayName">NETO25PARCIAL</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["NETO25PARCIAL"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">IVA25PARCIAL</property>
+                    <text-property name="displayName">IVA25PARCIAL</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["IVA25PARCIAL"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <column id="2550"/>
+            <column id="2551"/>
+            <column id="2552"/>
+            <column id="2553"/>
+            <column id="2554"/>
+            <column id="2555"/>
+            <column id="2556"/>
+            <column id="2557"/>
+            <column id="2558"/>
+            <column id="2559"/>
+            <column id="2607"/>
+            <column id="2619"/>
+            <column id="2615"/>
+            <column id="2611"/>
+            <column id="2560"/>
+            <column id="2561"/>
+            <column id="2562"/>
+            <column id="2563"/>
+            <column id="2564"/>
+            <column id="2565"/>
+            <column id="2566"/>
+            <column id="2567"/>
+            <header>
+                <row id="2493">
+                    <cell id="2494">
+                        <label id="2568">
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Razon Social</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2495">
+                        <label id="2570">
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Cuit</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2496">
+                        <label id="2572">
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Fecha Emision</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2497">
+                        <label id="2574">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">NETO sin IVA</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2498">
+                        <label id="2576">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">NETO IVA 21</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2499">
+                        <label id="2578">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">IVA 21</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2500">
+                        <label id="2580">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">NETO IVA 27</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2501">
+                        <label id="2582">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">IVA 27</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2502">
+                        <label id="2584">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">NETO IVA 10.5</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2503">
+                        <label id="2586">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">IVA 10.5</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2604">
+                        <label id="2620">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">NETO IVA 5</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2616">
+                        <label id="2622">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">IVA 5</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2612">
+                        <label id="2624">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">NETO IVA 2.5</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2608">
+                        <label id="2626">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">IVA 2.5</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2504">
+                        <label id="2588">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Impuestos Internos</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2505">
+                        <label id="2590">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Per/Ret IVA</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2506">
+                        <label id="2592">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Per/Ret IB</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2507">
+                        <label id="2594">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Per/Ret Gananacia</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2508">
+                        <label id="2596">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Per/Ret Suss</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2509">
+                        <label id="2598">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Per/Ret Otras</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2510">
+                        <label id="2600">
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Plan de Cuenta</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2511">
+                        <label id="2602">
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Articulos Descripcion</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="2512">
+                    <cell id="2513">
+                        <data id="2569">
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">RazonSocial</property>
+                        </data>
+                    </cell>
+                    <cell id="2514">
+                        <data id="2571">
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">Cuit</property>
+                        </data>
+                    </cell>
+                    <cell id="2515">
+                        <data id="2573">
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">FechaEmision</property>
+                        </data>
+                    </cell>
+                    <cell id="2516">
+                        <data id="2575">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">NETOsinIVAPARCIAL</property>
+                        </data>
+                    </cell>
+                    <cell id="2517">
+                        <data id="2577">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">NETO21PARCIAL</property>
+                        </data>
+                    </cell>
+                    <cell id="2518">
+                        <data id="2579">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">IVA21PARCIAL</property>
+                        </data>
+                    </cell>
+                    <cell id="2519">
+                        <data id="2581">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">NETO27PARCIAL</property>
+                        </data>
+                    </cell>
+                    <cell id="2520">
+                        <data id="2583">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">IVA27PARCIAL</property>
+                        </data>
+                    </cell>
+                    <cell id="2521">
+                        <data id="2585">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">NETO105PARCIAL</property>
+                        </data>
+                    </cell>
+                    <cell id="2522">
+                        <data id="2587">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">IVA105PARCIAL</property>
+                        </data>
+                    </cell>
+                    <cell id="2605">
+                        <data id="2621">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">NETO5PARCIAL</property>
+                        </data>
+                    </cell>
+                    <cell id="2617">
+                        <data id="2623">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">IVA5PARCIAL</property>
+                        </data>
+                    </cell>
+                    <cell id="2613">
+                        <data id="2625">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">NETO25PARCIAL</property>
+                        </data>
+                    </cell>
+                    <cell id="2609">
+                        <data id="2627">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">IVA25PARCIAL</property>
+                        </data>
+                    </cell>
+                    <cell id="2523">
+                        <data id="2589">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">ImpuestosInternos</property>
+                        </data>
+                    </cell>
+                    <cell id="2524">
+                        <data id="2591">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">PerRetIVA</property>
+                        </data>
+                    </cell>
+                    <cell id="2525">
+                        <data id="2593">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">PerRetIB</property>
+                        </data>
+                    </cell>
+                    <cell id="2526">
+                        <data id="2595">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">PerRetGan</property>
+                        </data>
+                    </cell>
+                    <cell id="2527">
+                        <data id="2597">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">PerRetSuss</property>
+                        </data>
+                    </cell>
+                    <cell id="2528">
+                        <data id="2599">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">OPercRet</property>
+                        </data>
+                    </cell>
+                    <cell id="2529">
+                        <data id="2601">
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">PlanDeCuenta</property>
+                        </data>
+                    </cell>
+                    <cell id="2530">
+                        <data id="2603">
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">ArticulosDesc</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="2531">
+                    <cell id="2532"/>
+                    <cell id="2533"/>
+                    <cell id="2534"/>
+                    <cell id="2535"/>
+                    <cell id="2536"/>
+                    <cell id="2537"/>
+                    <cell id="2538"/>
+                    <cell id="2539"/>
+                    <cell id="2540"/>
+                    <cell id="2541"/>
+                    <cell id="2606"/>
+                    <cell id="2618"/>
+                    <cell id="2614"/>
+                    <cell id="2610"/>
+                    <cell id="2542"/>
+                    <cell id="2543"/>
+                    <cell id="2544"/>
+                    <cell id="2545"/>
+                    <cell id="2546"/>
+                    <cell id="2547"/>
+                    <cell id="2548"/>
+                    <cell id="2549"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

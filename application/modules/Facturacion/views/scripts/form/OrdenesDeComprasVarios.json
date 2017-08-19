@@ -1,0 +1,56 @@
+﻿{
+	xtype: 'panel',
+	layout: 'fit',
+	items: [
+		{
+			layout : 'border',
+			border : false,
+			items : [        
+				{
+					region : 'north',
+					layout: 'fit',
+					border: false,
+					autoHeight : true,
+					items :  { 
+						layout: 'column',
+						items: [
+							{
+								layout: 'form',
+								columnWidth: .5,
+								items: [
+									<<Id>>,
+									<<Persona>>,
+									<<Numero>>,
+									<<FechaEmision>>,
+									<<FechaEntrega>>
+									]
+							},
+							{
+								layout: 'form',
+								columnWidth: .5,
+								items: [
+									<<DepositoEntrega>>,
+									<<TransportistaEntregoEnDestino>>,
+									<<Divisa>>,				
+									<<ValorDivisa>>
+								]
+							}
+						]
+					}
+				},
+				{
+					region : 'center',
+					layout: 'fit',
+					border: false,
+					items : [ {
+								layout: 'form',
+								columnWidth: .5,
+								items: [ <<Observaciones>>,
+										 <<ObservacionesImpresas>> 
+										]
+							} ]
+				}
+			]
+		}	
+	]
+}

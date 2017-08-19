@@ -1,0 +1,75 @@
+{
+    xtype: 'panel',
+    layout: 'form',
+    labelWidth: 80,
+    border: false,
+    defaults: { layout: 'form' },
+    buttonAlign: 'center',
+    buttons: [
+        {
+            text: 'Guardar',
+            handler: function() {
+                this.findParentByType(Rad.Form).submit()
+            }
+        }
+    ],
+    items: [
+        <<Id>>,
+        <<ArticuloVersionPadre>>,
+        {
+            xtype: 'fieldset',
+            labelWidth: 68,
+            items: [
+                {
+                    xtype: 'xcombo',
+                    width: '130',
+                    minChars: 3,
+                    displayField: "Descripcion",
+                    autoLoad: false,
+                    autoSelect: true,
+                    selectOnFocus: true,
+                    forceSelection: true,
+                    forceReload: true,
+                    hiddenName: "Articulos",
+                    loadingText: "Cargando...",
+                    lazyRender: true,
+                    searchField: "Descripcion",
+                    store: new Ext.data.JsonStore({
+                        id: 0,
+                        url: "datagateway/combolist/model/Articulos/m/Base",
+                        storeId: "ArticulosStore"
+                    }),
+                    typeAhead: false,
+                    valueField: "Id",
+                    autocomplete: true,
+                    allowBlank: false,
+                    allowNegative: false,
+                    fieldLabel: "Articulo",
+                    name: "Articulos",
+                    anchor: "95%",
+                    listeners: {
+                        'select': function(c, r, i) {
+                            var form = this.findParentByType(Rad.Form).form;
+                            var ArticuloVersionHijo = form.findField('ArticuloVersionHijo');
+                            ArticuloVersionHijo.clearValue();
+                            ArticuloVersionHijo.store.baseParams['Articulo'] = r.data.Id;
+                        }
+                    }
+                },
+                <<ArticuloVersionHijo>>
+            ]
+        },
+        <<Proceso>>,
+        {
+            layout: 'hbox',
+            anchor: '100%',
+            items: [
+                {
+                    layout: 'form',
+                    items: <<Cantidad>>,
+                },
+                <<UnidadDeMedida>>
+            ]
+        }
+    ]
+}

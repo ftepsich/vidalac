@@ -1,0 +1,37 @@
+<div class="mmiTooltip">
+    <div class="panelDeDetalles">
+        <h3>MMI: <?= $this->mmi->Identificador ?></h3>
+        <div class="detalle">
+            <b>Articulo:</b>
+            <span><?= $this->articulo->Descripcion?></span>
+            <b>Fecha de Ingreso:</b>
+            <span><?= $this->fechaIngreso ?></span>
+            <b>Fecha de Vencimiento:</b>
+            <span>
+                <?=$this->fechaVencimiento?>
+            </span>
+            <b>Cantidad Actual:</b>
+            <span>
+                <?= $this->mmi->CantidadActual ?>
+            </span>
+            <b>Cantidad Original:</b>
+            <span>
+                <?= $this->mmi->CantidadOriginal ?>
+            </span>
+            <?
+            if($this->mmi->RemitoArticuloSalida) {
+               $remitoArt = $this->mmi->findParentRow('Almacenes_Model_DbTable_RemitosArticulosDeSalidas', 'RemitosArticulosSalida');
+               $remito = $remitoArt->findParentRow('Almacenes_Model_DbTable_RemitosDeSalidas');
+               $punto  = $remito->findParentRow('Base_Model_DbTable_PuntosDeRemitos');
+               $comprobante = str_pad($punto->Numero, 4, '0',STR_PAD_LEFT).'-'.str_pad($remito->Numero, 8, '0',STR_PAD_LEFT);
+            ?>
+            <b>Asignado para despacho</b>
+            <span>
+                Remito: <?= $comprobante ?>
+            </span> 
+            <?
+            }
+            ?>
+        </div>
+    </div>
+</div>

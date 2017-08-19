@@ -1,0 +1,117 @@
+{
+    xtype: 'panel',
+    layout: 'fit',
+    buttonAlign: 'center',
+    buttons: [
+        {
+            text: 'Guardar',
+            handler: function() { this.findParentByType(Rad.Form).submit() }
+        }
+    ],
+    items: [
+        {
+            layout: 'border',
+
+            items: [{
+                layout :    'form',
+                region : 'center',
+                // height: 330,
+                labelAlign: 'top',
+                labelWidth: 110,
+                items : [
+                    <<Id>>,
+                    <<DescripcionLarga>>,
+                    <<Descripcion>>,
+                    {
+                        xtype: 'tabpanel',
+                        activeTab:0,
+                        height: 320,
+                        defaults:{
+                            bodyStyle: 'padding:5px;'
+                        },
+                        items:[{
+                            title: 'General',
+                            layout: 'form',
+                            items:[
+                                {
+                                    layout: 'column',
+                                    autoHeight: true,
+                                    defaults: { layout: 'form'},
+                                    items: [
+                                        { columnWidth: .25, items: [<<Marca>>, <<Codigo>>] },
+                                        { columnWidth: .25, items: [<<TipoDeControlDeStock>>, <<CodigoDeBarras>>] },
+                                        { columnWidth: .25, items: [<<ArticuloGrupo>>, <<PesoNeto>>] },
+                                        { columnWidth: .25, items: [<<ArticuloSubGrupo>>,<<PesoBruto>>], labelWidth: 60 },
+                                    ]
+                                },{
+                                    xtype:'fieldset',
+                                    title: 'Unidades',
+                                    autoHeight:true,
+                                    items: [
+                                        {
+                                            layout: 'column',
+                                            autoHeight: true,
+                                            defaults: { layout: 'form'},
+                                            items: [
+                                                {columnWidth: .5, items: [<<UnidadDeMedida>>]},
+                                                {columnWidth: .5, items: [<<IVA>>]},
+
+                                            ]
+                                        },
+                                    ]
+                                },{
+                                    xtype: 'fieldset',
+                                    title: 'Generales',
+                                    autoHeight:true,
+                                    items: [
+                                        {
+                                            layout: 'column',
+                                            autoHeight: true,
+                                            defaults: { layout: 'form'},
+                                            items: [
+                                                {columnWidth: .5, items: [<<Cuenta>>]},
+                                                {columnWidth: .5, items: [<<RNPA>>], labelWidth: 60 },
+                                            ]
+                                        },
+                                    ]
+                                }
+                            ]
+                        },{
+                            title: 'Detalle',
+                            layout: 'form',
+                            items:[<<Detalle>>]
+                        }]
+                    }
+
+                ]
+            },
+            {
+
+                layout : 'form',
+                region: 'south',
+                height: 80,
+                items: [{
+                    xtype:'fieldset',
+                    title: 'Propiedades',
+
+                    autoHeight:true,
+                    height: 80,
+                    items: [
+
+                        {
+                            layout: 'column',
+                            autoHeight: true,
+                            defaults: { layout: 'form'},
+                            items: [
+                                { columnWidth: .30, items: [<<EsParaVenta>>], labelWidth: 90 },
+                                { columnWidth: .30, items: [<<EsParaCompra>>], labelWidth: 110 },
+                                { columnWidth: .30, items: [<<EnDesuso>>], labelWidth: 100 }
+                            ]
+                        }
+
+                    ]
+                }]
+            }]
+        }
+    ]
+}

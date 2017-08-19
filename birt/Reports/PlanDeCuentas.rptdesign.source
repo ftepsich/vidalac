@@ -1,0 +1,1192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.21" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 2.5.2.v20100211 Build &lt;2.5.2.v20100210-0630></property>
+    <property name="units">cm</property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">59</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">59</property>
+        </structure>
+    </list-property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">ConectorDB.rptlibrary</property>
+            <property name="namespace">ConectorDB</property>
+        </structure>
+    </list-property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Data Source" id="7" extends="ConectorDB.DataSource">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+            </list-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Nivel0" id="59">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Id</property>
+                    <text-property name="displayName">Id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Padre</property>
+                    <text-property name="displayName">Padre</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Descripcion</property>
+                    <text-property name="displayName">Descripcion</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Padre</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">Descripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Id</property>
+                    <property name="nativeName">Id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">Padre</property>
+                    <property name="nativeName">Padre</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">Descripcion</property>
+                    <property name="nativeName">Descripcion</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select Id,Padre,Descripcion
+from PlanesDeCuentas 
+where Padre is null
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>1.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Id</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Padre</design:name>
+            <design:position>2</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Padre</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Padre</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Descripcion</design:name>
+            <design:position>3</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Descripcion</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Descripcion</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Nivel1" id="62">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Id</property>
+                    <text-property name="displayName">Id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Padre</property>
+                    <text-property name="displayName">Padre</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Descripcion</property>
+                    <text-property name="displayName">Descripcion</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Padre</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">Descripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Id</property>
+                    <property name="nativeName">Id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">Padre</property>
+                    <property name="nativeName">Padre</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">Descripcion</property>
+                    <property name="nativeName">Descripcion</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select Id,Padre,Descripcion
+from PlanesDeCuentas
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>1.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Id</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Padre</design:name>
+            <design:position>2</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Padre</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Padre</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Descripcion</design:name>
+            <design:position>3</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Descripcion</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Descripcion</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Nivel2" id="140">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Id</property>
+                    <text-property name="displayName">Id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Padre</property>
+                    <text-property name="displayName">Padre</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Descripcion</property>
+                    <text-property name="displayName">Descripcion</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Padre</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">Descripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Id</property>
+                    <property name="nativeName">Id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">Padre</property>
+                    <property name="nativeName">Padre</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">Descripcion</property>
+                    <property name="nativeName">Descripcion</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select Id,Padre,Descripcion
+from PlanesDeCuentas 
+
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>1.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Id</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Padre</design:name>
+            <design:position>2</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Padre</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Padre</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Descripcion</design:name>
+            <design:position>3</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Descripcion</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Descripcion</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Nivel3" id="162">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Id</property>
+                    <text-property name="displayName">Id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Padre</property>
+                    <text-property name="displayName">Padre</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Descripcion</property>
+                    <text-property name="displayName">Descripcion</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Padre</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">Descripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Id</property>
+                    <property name="nativeName">Id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">Padre</property>
+                    <property name="nativeName">Padre</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">Descripcion</property>
+                    <property name="nativeName">Descripcion</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select Id,Padre,Descripcion
+from PlanesDeCuentas 
+
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>1.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Id</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Padre</design:name>
+            <design:position>2</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Padre</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Padre</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Descripcion</design:name>
+            <design:position>3</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Descripcion</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Descripcion</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Nivel4" id="178">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Id</property>
+                    <text-property name="displayName">Id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Padre</property>
+                    <text-property name="displayName">Padre</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Descripcion</property>
+                    <text-property name="displayName">Descripcion</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Jerarquia</property>
+                    <text-property name="displayName">Jerarquia</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Padre</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">Descripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">Jerarquia</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Id</property>
+                    <property name="nativeName">Id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">Padre</property>
+                    <property name="nativeName">Padre</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">Descripcion</property>
+                    <property name="nativeName">Descripcion</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">Jerarquia</property>
+                    <property name="nativeName">Jerarquia</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select Id,Padre,Descripcion,Jerarquia
+from PlanesDeCuentas 
+
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>1.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Id</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Padre</design:name>
+            <design:position>2</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Padre</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Padre</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Descripcion</design:name>
+            <design:position>3</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Descripcion</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Descripcion</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Nivel5" id="193">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Id</property>
+                    <text-property name="displayName">Id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Padre</property>
+                    <text-property name="displayName">Padre</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Descripcion</property>
+                    <text-property name="displayName">Descripcion</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Padre</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">Descripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Id</property>
+                    <property name="nativeName">Id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">Padre</property>
+                    <property name="nativeName">Padre</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">Descripcion</property>
+                    <property name="nativeName">Descripcion</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select Id,Padre,Descripcion
+from PlanesDeCuentas 
+
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>1.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Id</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Padre</design:name>
+            <design:position>2</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Padre</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Padre</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Descripcion</design:name>
+            <design:position>3</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Descripcion</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Descripcion</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="type">a4</property>
+            <property name="orientation">landscape</property>
+            <property name="topMargin">0.1in</property>
+            <property name="leftMargin">0.25in</property>
+            <property name="bottomMargin">0.1in</property>
+            <property name="overflow">auto</property>
+            <property name="footerHeight">0in</property>
+            <page-header>
+                <text id="197">
+                    <property name="fontSize">16pt</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="fontStyle">italic</property>
+                    <property name="contentType">auto</property>
+                    <text-property name="content"><![CDATA[Plan de Cuentas]]></text-property>
+                </text>
+            </page-header>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <table name="TablaN0" id="102">
+            <property name="verticalAlign">middle</property>
+            <property name="overflow">auto</property>
+            <property name="width">0%</property>
+            <property name="dataSet">Nivel0</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Id</property>
+                    <expression name="expression" type="javascript">dataSetRow["Id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">Padre</property>
+                    <expression name="expression" type="javascript">dataSetRow["Padre"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">Descripcion</property>
+                    <expression name="expression" type="javascript">dataSetRow["Descripcion"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <property name="pageBreakInterval">0</property>
+            <column id="121">
+                <property name="width">2.2489583333333334cm</property>
+            </column>
+            <column id="122">
+                <property name="width">3.9158333333333335cm</property>
+            </column>
+            <column id="123">
+                <property name="width">5.979583333333333cm</property>
+            </column>
+            <column id="124">
+                <property name="width">4.0216666666666665cm</property>
+            </column>
+            <column id="125">
+                <property name="width">11.615208333333335cm</property>
+            </column>
+            <detail>
+                <row id="109">
+                    <property name="height">0%</property>
+                    <property name="suppressDuplicates">false</property>
+                    <property name="newHandlerOnEachEvent">false</property>
+                    <property name="display">block</property>
+                    <property name="masterPage">Simple MasterPage</property>
+                    <property name="pageBreakAfter">auto</property>
+                    <property name="pageBreakBefore">auto</property>
+                    <property name="canShrink">true</property>
+                    <property name="overflow">auto</property>
+                    <cell id="110">
+                        <property name="height">0%</property>
+                        <property name="verticalAlign">middle</property>
+                        <data id="127">
+                            <property name="fontSize">8pt</property>
+                            <property name="resultSetColumn">Descripcion</property>
+                        </data>
+                    </cell>
+                    <cell id="111">
+                        <property name="colSpan">4</property>
+                        <property name="rowSpan">1</property>
+                        <table name="TablaN1" id="128">
+                            <property name="overflow">auto</property>
+                            <property name="width">25.320625cm</property>
+                            <property name="dataSet">Nivel1</property>
+                            <list-property name="boundDataColumns">
+                                <structure>
+                                    <property name="name">Id</property>
+                                    <expression name="expression" type="javascript">dataSetRow["Id"]</expression>
+                                    <property name="dataType">integer</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">Padre</property>
+                                    <expression name="expression" type="javascript">dataSetRow["Padre"]</expression>
+                                    <property name="dataType">integer</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">Descripcion</property>
+                                    <expression name="expression" type="javascript">dataSetRow["Descripcion"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                            </list-property>
+                            <property name="pageBreakInterval">0</property>
+                            <list-property name="filter">
+                                <structure>
+                                    <property name="operator">eq</property>
+                                    <expression name="expr" type="javascript">row["Padre"]</expression>
+                                    <simple-property-list name="value1">
+                                        <value>row._outer["Id"]</value>
+                                    </simple-property-list>
+                                </structure>
+                            </list-property>
+                            <column id="135">
+                                <property name="width">3.413125cm</property>
+                            </column>
+                            <column id="139">
+                                <property name="width">21.9075cm</property>
+                            </column>
+                            <detail>
+                                <row id="131">
+                                    <property name="height">0%</property>
+                                    <property name="suppressDuplicates">false</property>
+                                    <property name="overflow">auto</property>
+                                    <cell id="132">
+                                        <property name="height">0%</property>
+                                        <property name="borderTopColor">#000000</property>
+                                        <property name="borderTopStyle">dotted</property>
+                                        <property name="borderTopWidth">thin</property>
+                                        <property name="verticalAlign">middle</property>
+                                        <data id="137">
+                                            <property name="fontSize">8pt</property>
+                                            <property name="resultSetColumn">Descripcion</property>
+                                        </data>
+                                    </cell>
+                                    <cell id="138">
+                                        <table name="TablaN2" id="141">
+                                            <property name="canShrink">false</property>
+                                            <property name="overflow">auto</property>
+                                            <property name="width">21.828125cm</property>
+                                            <property name="dataSet">Nivel2</property>
+                                            <list-property name="boundDataColumns">
+                                                <structure>
+                                                    <property name="name">Id</property>
+                                                    <expression name="expression" type="javascript">dataSetRow["Id"]</expression>
+                                                    <property name="dataType">integer</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">Padre</property>
+                                                    <expression name="expression" type="javascript">dataSetRow["Padre"]</expression>
+                                                    <property name="dataType">integer</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">Descripcion</property>
+                                                    <expression name="expression" type="javascript">dataSetRow["Descripcion"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                            </list-property>
+                                            <property name="repeatHeader">false</property>
+                                            <property name="pageBreakInterval">0</property>
+                                            <list-property name="filter">
+                                                <structure>
+                                                    <property name="operator">eq</property>
+                                                    <expression name="expr" type="javascript">row["Padre"]</expression>
+                                                    <simple-property-list name="value1">
+                                                        <value>row._outer["Id"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                            </list-property>
+                                            <column id="151">
+                                                <property name="width">4.736041666666667cm</property>
+                                            </column>
+                                            <column id="152">
+                                                <property name="width">17.092083333333335cm</property>
+                                            </column>
+                                            <detail>
+                                                <row id="145">
+                                                    <property name="height">0%</property>
+                                                    <property name="suppressDuplicates">false</property>
+                                                    <property name="overflow">auto</property>
+                                                    <cell id="146">
+                                                        <property name="borderTopColor">#000000</property>
+                                                        <property name="borderTopStyle">dotted</property>
+                                                        <property name="borderTopWidth">thin</property>
+                                                        <property name="verticalAlign">middle</property>
+                                                        <data id="153">
+                                                            <property name="fontSize">8pt</property>
+                                                            <property name="resultSetColumn">Descripcion</property>
+                                                        </data>
+                                                    </cell>
+                                                    <cell id="147">
+                                                        <table name="TablaN3" id="163">
+                                                            <property name="overflow">auto</property>
+                                                            <property name="width">16.906875cm</property>
+                                                            <property name="dataSet">Nivel3</property>
+                                                            <list-property name="boundDataColumns">
+                                                                <structure>
+                                                                    <property name="name">Id</property>
+                                                                    <expression name="expression" type="javascript">dataSetRow["Id"]</expression>
+                                                                    <property name="dataType">integer</property>
+                                                                </structure>
+                                                                <structure>
+                                                                    <property name="name">Padre</property>
+                                                                    <expression name="expression" type="javascript">dataSetRow["Padre"]</expression>
+                                                                    <property name="dataType">integer</property>
+                                                                </structure>
+                                                                <structure>
+                                                                    <property name="name">Descripcion</property>
+                                                                    <expression name="expression" type="javascript">dataSetRow["Descripcion"]</expression>
+                                                                    <property name="dataType">string</property>
+                                                                </structure>
+                                                            </list-property>
+                                                            <property name="repeatHeader">false</property>
+                                                            <property name="pageBreakInterval">0</property>
+                                                            <list-property name="filter">
+                                                                <structure>
+                                                                    <property name="operator">eq</property>
+                                                                    <expression name="expr" type="javascript">row["Padre"]</expression>
+                                                                    <simple-property-list name="value1">
+                                                                        <value>row._outer["Id"]</value>
+                                                                    </simple-property-list>
+                                                                </structure>
+                                                            </list-property>
+                                                            <column id="173">
+                                                                <property name="width">6.429375cm</property>
+                                                            </column>
+                                                            <column id="174">
+                                                                <property name="width">10.477500000000001cm</property>
+                                                            </column>
+                                                            <detail>
+                                                                <row id="167">
+                                                                    <property name="height">0%</property>
+                                                                    <property name="overflow">auto</property>
+                                                                    <cell id="168">
+                                                                        <property name="borderTopColor">#000000</property>
+                                                                        <property name="borderTopStyle">dotted</property>
+                                                                        <property name="borderTopWidth">thin</property>
+                                                                        <property name="verticalAlign">middle</property>
+                                                                        <data id="176">
+                                                                            <property name="fontSize">6pt</property>
+                                                                            <property name="resultSetColumn">Descripcion</property>
+                                                                        </data>
+                                                                    </cell>
+                                                                    <cell id="169">
+                                                                        <table name="TablaN4" id="179">
+                                                                            <property name="overflow">auto</property>
+                                                                            <property name="width">10.16cm</property>
+                                                                            <property name="dataSet">Nivel4</property>
+                                                                            <list-property name="boundDataColumns">
+                                                                                <structure>
+                                                                                    <property name="name">Id</property>
+                                                                                    <expression name="expression" type="javascript">dataSetRow["Id"]</expression>
+                                                                                    <property name="dataType">integer</property>
+                                                                                </structure>
+                                                                                <structure>
+                                                                                    <property name="name">Padre</property>
+                                                                                    <expression name="expression" type="javascript">dataSetRow["Padre"]</expression>
+                                                                                    <property name="dataType">integer</property>
+                                                                                </structure>
+                                                                                <structure>
+                                                                                    <property name="name">Descripcion</property>
+                                                                                    <expression name="expression" type="javascript">dataSetRow["Descripcion"]</expression>
+                                                                                    <property name="dataType">string</property>
+                                                                                </structure>
+                                                                                <structure>
+                                                                                    <property name="name">Jerarquia</property>
+                                                                                    <text-property name="displayName">Jerarquia</text-property>
+                                                                                    <expression name="expression" type="javascript">dataSetRow["Jerarquia"]</expression>
+                                                                                    <property name="dataType">string</property>
+                                                                                </structure>
+                                                                            </list-property>
+                                                                            <property name="pageBreakInterval">0</property>
+                                                                            <list-property name="filter">
+                                                                                <structure>
+                                                                                    <property name="operator">eq</property>
+                                                                                    <expression name="expr" type="javascript">row["Padre"]</expression>
+                                                                                    <simple-property-list name="value1">
+                                                                                        <value>row._outer["Id"]</value>
+                                                                                    </simple-property-list>
+                                                                                </structure>
+                                                                            </list-property>
+                                                                            <column id="195">
+                                                                                <property name="width">2.196041666666667cm</property>
+                                                                            </column>
+                                                                            <column id="189">
+                                                                                <property name="width">7.9375cm</property>
+                                                                            </column>
+                                                                            <detail>
+                                                                                <row id="183">
+                                                                                    <property name="height">0%</property>
+                                                                                    <property name="borderTopColor">#000000</property>
+                                                                                    <property name="borderTopStyle">dotted</property>
+                                                                                    <property name="borderTopWidth">thin</property>
+                                                                                    <property name="overflow">auto</property>
+                                                                                    <cell id="194">
+                                                                                        <data id="196">
+                                                                                            <property name="fontSize">7pt</property>
+                                                                                            <property name="resultSetColumn">Jerarquia</property>
+                                                                                        </data>
+                                                                                    </cell>
+                                                                                    <cell id="184">
+                                                                                        <data id="192">
+                                                                                            <property name="fontSize">6pt</property>
+                                                                                            <list-property name="visibility">
+                                                                                                <structure>
+                                                                                                    <property name="format">all</property>
+                                                                                                    <expression name="valueExpr" type="javascript">row["Descripcion"]== " "</expression>
+                                                                                                </structure>
+                                                                                            </list-property>
+                                                                                            <property name="resultSetColumn">Descripcion</property>
+                                                                                        </data>
+                                                                                    </cell>
+                                                                                </row>
+                                                                            </detail>
+                                                                        </table>
+                                                                    </cell>
+                                                                </row>
+                                                            </detail>
+                                                        </table>
+                                                    </cell>
+                                                </row>
+                                            </detail>
+                                        </table>
+                                    </cell>
+                                </row>
+                            </detail>
+                        </table>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+    </body>
+</report>

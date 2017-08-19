@@ -1,0 +1,48 @@
+<!--=========================================================================== -->
+<!-- this is the XML source for the second chart -->
+
+<chart>
+
+	<!-- the child chart (top, scrolling chart) -->
+	<axis_category shadow='low' skip='11' size='10' alpha='80' />
+	<axis_value color='ffffff' shadow='low' show_min='false' />
+
+	<chart_border top_thickness='1' bottom_thickness='1' left_thickness='1' right_thickness='1' />              
+	<chart_data>
+		<row>
+			<null/>
+			<<ejex>>
+		</row>
+		<row>
+			<string><<ejey1Descripcion>></string>
+			<<ejey1>>
+		</row>
+		<row>
+			<string><<ejey2Descripcion>></string>
+			<<ejey2>>
+		</row>
+	</chart_data>
+	<chart_grid_h alpha='7' thickness='10' />
+	<chart_grid_v alpha='7' thickness='1' />
+	<chart_guide vertical='true' horizontal='true' thickness='1' color='0' alpha='75' type='dotted' snap_h='true' snap_v='true' radius='3' fill_alpha='75' fill_color='FF4400' line_thickness='0' text_h_alpha='90' text_v_alpha='90' text_color='0' background_color='ff4400' size='10' />
+	<chart_pref line_thickness='2' point_shape='none' fill_shape='false' />
+	<chart_rect x='0' y='0' bevel='bg' shadow='high' height='200' positive_alpha='75' />
+	<chart_type>Line</chart_type>
+
+	<filter>
+		<shadow id='high' distance='5' angle='45' alpha='35' blurX='10' blurY='10' />
+		<shadow id='low' distance='2' angle='45' alpha='35' blurX='5' blurY='5' />
+		<shadow id='data' distance='1' angle='45' alpha='15' blurX='2' blurY='2' />
+		<bevel id='bg' angle='45' blurX='50' blurY='50' distance='10' highlightAlpha='10' highlightColor='ff88ff' shadowAlpha='20' inner='true' />
+	</filter>
+	
+	<scroll scroll_detail='100' transition='dissolve' delay='1' x='0' y='220' width='501' height='50' url_button_1_idle='default' url_button_2_idle='default' url_slider_body='images/black.swf' url_slider_handle_1='images/preview_handle_1.swf' url_slider_handle_2='images/preview_handle_2.swf' button_length='0' slider_handle_length='22' start='20' span='40' reverse_handle='true' drag='true' external_control='false' />
+
+	<legend shadow='data' y='35' bullet='circle' fill_alpha='0' />
+	
+	<series_color>
+		<color>7777dd</color>
+		<color>eeaa55</color>
+	</series_color>
+
+</chart>
