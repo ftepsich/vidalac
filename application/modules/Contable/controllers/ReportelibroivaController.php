@@ -70,12 +70,12 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
             $test       = ($param['modelo'] == 6 || $param['modelo'] == 7) ? "" : "__TEST__";
             $datos      = $M->exportadorAFIPres3685 ($param['libro'], $param['tipo'], $parte, $forma);
             $e          = new FileExport(FileExport::MODE_SEPARATOR);
-            $e->setLineEnd("\r\n");
+            $e->setLineEnd("\n");
             $e->addAll($datos);
-            $contenido  = str_replace("\r\n\r\n","\r\n",$e->getContent());
-
+              $contenido  = str_replace("\n\n","",$e->getContent());
+            
             $R = $M->find($param['libro'])->current();
-            $Nombre = $R->Anio."-".str_pad($R->Mes,2,'0',STR_PAD_LEFT). "_" .$test.$Nombre.$alicuota."_".date('YmdHis').".txt";
+            $Nombre = $R->Anio."-".str_pad($R->Mes,2,'0',STR_PAD_LEFT). "_" .$test.$Nombre.$alicuota."___".date('YmdHis').".txt";
 
             header("Content-disposition: attachment; filename=$Nombre");
             header("Content-type: text/csv");
@@ -97,7 +97,7 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
 
             } else {
                 $Nombre = $Nombre . "__paraControl_NoValido_AFIP__";
-                // decimal con coma
+                // desimal con coma
                 $formatoSalida = function($e){
                     return str_replace('.',',',$e);
                 };
@@ -134,8 +134,8 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
         } 
 
         if ($param['modelo'] == 1   || $param['modelo'] == 2    || $param['modelo'] == 5    || 
-            $param['modelo'] == 12  || $param['modelo'] == 13   || $param['modelo'] == 14   ||
-            $param['modelo'] == 15  || $param['modelo'] == 16
+            $param['modelo'] == 10  || $param['modelo'] == 11   || $param['modelo'] == 12   ||
+            $param['modelo'] == 13  || $param['modelo'] == 14
             ) {
 
             // Va para el Bird
@@ -163,18 +163,18 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
                 case 5:
                     $file = APPLICATION_PATH . "/../birt/Reports/Rep_LibrosIVA_conPercepcionRetencion.rptdesign";
                     break;
-                case 12:
+                case 10:
                     $file = APPLICATION_PATH . "/../birt/Reports/Rep_LibrosIVA_conPlanDeCuenta.rptdesign";
                     break;
-                case 13:
+                case 11:
                     $idLibro = $param['libro'];
                     $file = APPLICATION_PATH . "/../birt/Reports/Rep_LibrosIVA_Retenciones_Percepciones.rptdesign";
                     break;
-                case 14:
+                case 12:
                     $formato = 'xls';
                     $file = APPLICATION_PATH . "/../birt/Reports/Exportador_Rep_LibrosIVA_Retenciones_Percepciones.rptdesign";
                     break;
-                case 15:
+                case 13:
                     // $idLibro = $param['libro'];
                     $texto = "Detalle Libro de IVA $tTipo periodo $tPeriodo";
                     $formato = 'xls';
@@ -183,7 +183,7 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
                     $report->setParameter('TipoDeLibro', $param['tipo'], 'Int');
                     $file = APPLICATION_PATH . "/../birt/Reports/Exportador_Rep_LibrosIVA_Detalles.rptdesign";
                     break;
-                case 16:
+                case 14:
                     $formato = 'xls';
                     $texto = "Detalle Libro de IVA $tTipo periodo $tPeriodo con la Provincia";
                     $file = APPLICATION_PATH . "/../birt/Reports/Rep_LibrosIVA_conProvincia.rptdesign";
@@ -203,12 +203,11 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
             $report->renderFromFile($file, $formato, array(
                 'TEXTO'   => $texto,
                 'WHERE'   => $where,
-                'IDLIBRO' => $idLibro,
-                'TIPOLIBRO' => $param['tipo']
+                'IDLIBRO' => $idLibro
             ));
 
             $nombreRep      = str_replace(  array(" ","/"), array("_","-") , $texto);
-            $NombreReporte  = 'Reporte_'.$nombreRep."_".date('YmdHis');
+            $NombreReporte  = 'Reporte_'.$nombreRep."___".date('YmdHis');
 
             $report->sendStream($NombreReporte);
 
