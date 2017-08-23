@@ -75,7 +75,7 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
               $contenido  = str_replace("\n\n","",$e->getContent());
             
             $R = $M->find($param['libro'])->current();
-            $Nombre = $R->Anio."-".str_pad($R->Mes,2,'0',STR_PAD_LEFT). "_" .$test.$Nombre.$alicuota."___".date('YmdHis').".txt";
+            $Nombre = $R->Anio."-".str_pad($R->Mes,2,'0',STR_PAD_LEFT). "_" .$test.$Nombre.$alicuota."_".date('YmdHis').".txt";
 
             header("Content-disposition: attachment; filename=$Nombre");
             header("Content-type: text/csv");
@@ -97,7 +97,7 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
 
             } else {
                 $Nombre = $Nombre . "__paraControl_NoValido_AFIP__";
-                // desimal con coma
+                // decimal con coma
                 $formatoSalida = function($e){
                     return str_replace('.',',',$e);
                 };
@@ -134,8 +134,8 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
         } 
 
         if ($param['modelo'] == 1   || $param['modelo'] == 2    || $param['modelo'] == 5    || 
-            $param['modelo'] == 10  || $param['modelo'] == 11   || $param['modelo'] == 12   ||
-            $param['modelo'] == 13  || $param['modelo'] == 14
+            $param['modelo'] == 12  || $param['modelo'] == 13   || $param['modelo'] == 14   ||
+            $param['modelo'] == 15  || $param['modelo'] == 16
             ) {
 
             // Va para el Bird
@@ -163,18 +163,18 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
                 case 5:
                     $file = APPLICATION_PATH . "/../birt/Reports/Rep_LibrosIVA_conPercepcionRetencion.rptdesign";
                     break;
-                case 10:
+                case 12:
                     $file = APPLICATION_PATH . "/../birt/Reports/Rep_LibrosIVA_conPlanDeCuenta.rptdesign";
                     break;
-                case 11:
+                case 13:
                     $idLibro = $param['libro'];
                     $file = APPLICATION_PATH . "/../birt/Reports/Rep_LibrosIVA_Retenciones_Percepciones.rptdesign";
                     break;
-                case 12:
+                case 14:
                     $formato = 'xls';
                     $file = APPLICATION_PATH . "/../birt/Reports/Exportador_Rep_LibrosIVA_Retenciones_Percepciones.rptdesign";
                     break;
-                case 13:
+                case 15:
                     // $idLibro = $param['libro'];
                     $texto = "Detalle Libro de IVA $tTipo periodo $tPeriodo";
                     $formato = 'xls';
@@ -183,7 +183,7 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
                     $report->setParameter('TipoDeLibro', $param['tipo'], 'Int');
                     $file = APPLICATION_PATH . "/../birt/Reports/Exportador_Rep_LibrosIVA_Detalles.rptdesign";
                     break;
-                case 14:
+                case 16:
                     $formato = 'xls';
                     $texto = "Detalle Libro de IVA $tTipo periodo $tPeriodo con la Provincia";
                     $file = APPLICATION_PATH . "/../birt/Reports/Rep_LibrosIVA_conProvincia.rptdesign";
@@ -207,7 +207,7 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
             ));
 
             $nombreRep      = str_replace(  array(" ","/"), array("_","-") , $texto);
-            $NombreReporte  = 'Reporte_'.$nombreRep."___".date('YmdHis');
+            $NombreReporte  = 'Reporte_'.$nombreRep."_".date('YmdHis');
 
             $report->sendStream($NombreReporte);
 
