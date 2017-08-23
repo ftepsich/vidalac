@@ -75,7 +75,7 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
             $contenido  = str_replace("\r\n\r\n","\r\n",$e->getContent());
 
             $R = $M->find($param['libro'])->current();
-            $Nombre = $R->Anio."-".str_pad($R->Mes,2,'0',STR_PAD_LEFT). "_" .$test.$Nombre.$alicuota."___".date('YmdHis').".txt";
+            $Nombre = $R->Anio."-".str_pad($R->Mes,2,'0',STR_PAD_LEFT). "_" .$test.$Nombre.$alicuota."_".date('YmdHis').".txt";
 
             header("Content-disposition: attachment; filename=$Nombre");
             header("Content-type: text/csv");
@@ -97,7 +97,7 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
 
             } else {
                 $Nombre = $Nombre . "__paraControl_NoValido_AFIP__";
-                // desimal con coma
+                // decimal con coma
                 $formatoSalida = function($e){
                     return str_replace('.',',',$e);
                 };
@@ -208,7 +208,7 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
             ));
 
             $nombreRep      = str_replace(  array(" ","/"), array("_","-") , $texto);
-            $NombreReporte  = 'Reporte_'.$nombreRep."___".date('YmdHis');
+            $NombreReporte  = 'Reporte_'.$nombreRep."_".date('YmdHis');
 
             $report->sendStream($NombreReporte);
 

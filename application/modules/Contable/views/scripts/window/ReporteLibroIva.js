@@ -82,7 +82,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                                 ['Con Jurisdiccion', '2'],
                                 ['Con Provincia de la Direccion', '16'],
                                 ['Con Percepciones y Retenciones', '5'],
-                                ['Solo Percepciones y Retenciones', '13'],                                
+                                ['Ret. y Percep. Ingresos Brutos sufridas', '13'],                                
                                 ['Exportador solo Percepciones y Retenciones', '14'],
                                 ['Exportador Libro IVA detallado', '15'],                                
                                 ['Con Plan de Cuenta', '12'],
