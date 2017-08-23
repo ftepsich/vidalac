@@ -183,7 +183,7 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
                     $report->setParameter('TipoDeLibro', $param['tipo'], 'Int');
                     $file = APPLICATION_PATH . "/../birt/Reports/Exportador_Rep_LibrosIVA_Detalles.rptdesign";
                     break;
-                case 14:
+                case 16:
                     $formato = 'xls';
                     $texto = "Detalle Libro de IVA $tTipo periodo $tPeriodo con la Provincia";
                     $file = APPLICATION_PATH . "/../birt/Reports/Rep_LibrosIVA_conProvincia.rptdesign";
