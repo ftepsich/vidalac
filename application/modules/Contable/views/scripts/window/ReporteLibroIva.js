@@ -89,11 +89,11 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                                 ['Exportador AFIP (pre 3685)', '3'],
                                 ['Exportador AFIP res 3685 Cabecera', '6'],
                                 ['Exportador AFIP res 3685 Alicuotas', '7'],
-                                ['Test Exp. AFIP res 3685 Cabecera (separado por coma)', '8'],
-                                ['Test Exp. AFIP res 3685 Detalle  (separado por coma)', '9'],
+                               // ['Test Exp. AFIP res 3685 Cabecera (separado por coma)', '8'],
+                                //['Test Exp. AFIP res 3685 Detalle  (separado por coma)', '9'],
                                 ['SIAGER Retenciones', '10'],
                                 ['SIAGER Percepciones', '11'],
-                                ['Test Exportador AFIP (pre 3685) -- para control con valores negativos', '4']
+                               // ['Test Exportador AFIP (pre 3685) -- para control con valores negativos', '4']
                         ]
                     }),
                     value: 1,
