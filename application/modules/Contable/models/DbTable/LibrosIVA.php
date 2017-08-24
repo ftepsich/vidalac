@@ -147,15 +147,13 @@ class Contable_Model_DbTable_LibrosIVA extends Rad_Db_Table
         return $R;
     }
     
-    /*
-	Aca iria el metodo . Lo que hice fue una readaptacion de lo de alicuotas, como para tener una referencia
-    public function siagerRetencionPercepcion($idLibro,$idTipoDeLibro){
+    public function exportadorSIAGER($idLibro,$idTipoDeLibro){
         switch ($idTipoDeLibro) {
             case 1:
-                $sql = "call SP_SiagerPercepcion($idLibro, $idTipoDeLibro)";
+                $sql = "call SIAGER_exportador_Percepciones($idLibro, $idTipoDeLibro)";
                 break;
             case 2:
-                $sql = "call SP_SiagerRetencion($idLibro, $idTipoDeLibro)";
+                $sql = "call SIAGER_exportador_Retenciones($idLibro, $idTipoDeLibro)";
                 break;
             throw new Rad_Db_Table_Exception('No existe el libro seleccionado.');
                 break;
@@ -163,7 +161,7 @@ class Contable_Model_DbTable_LibrosIVA extends Rad_Db_Table
         $reporte = $this->_db->fetchAll($sql);
         return $reporte;
     }
-*/
+	
     /**
      * Retorna el contienido de un libro de iva con el formato pedido por AFIP
      * ---------

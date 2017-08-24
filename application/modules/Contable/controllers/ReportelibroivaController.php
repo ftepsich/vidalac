@@ -97,6 +97,21 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
            echo $contenido;
         }
 
+        if ($param['modelo'] == 10 || $param['modelo'] == 11) { // SIAGER Retenciones / Percepciones
+
+           $M     = new Contable_Model_DbTable_LibrosIVA();
+           $datos = $M->exportadorSIAGER($param['libro'], $param['tipo']);
+           $e     = new FileExport(FileExport::MODE_SEPARATOR);
+           $e->setLineEnd("\r\n");
+           $e->addAll($datos);
+           $contenido  = str_replace("\n\n","",$e->getContent());
+           $R = $M->find($param['libro'])->current();
+           $Nombre = $R->Anio."-".str_pad($R->Mes,2,'0',STR_PAD_LEFT). "_SIAGER_".( ($param['modelo'] == 10) ? "Retenciones" : "Percepciones")."_".date('YmdHis').".txt";
+           header("Content-disposition: attachment; filename=$Nombre");
+           header("Content-type: text/csv");
+           echo $contenido;
+        }
+        
         if ($param['modelo'] == 3 || $param['modelo'] == 4) {
 
             // Exporto en formato CSV para la Afip
