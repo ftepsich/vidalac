@@ -1,0 +1,186 @@
+# test:
+#     -
+#         - myclass: metodo
+
+
+# test/algomas:
+#     -
+#         - myclass2: metodo
+
+# Cerrado de Comprobantes
+Comprobante_Cerrar:
+    -
+        - Contable_Model_EstadosCuentasPersonas: verificarLimiteDeCredito
+    -
+        - Contable_Model_DbTable_CuentasCorrientes: asentarComprobante
+    -
+        - Contable_Model_DbTable_LibrosIVADetalles: asentarLibroIVA
+    -
+        - Almacenes_Model_DbTable_ArticulosStock: actualizarStock
+#    -
+#        - Contable_Model_DbTable_LibrosDiarios: armarAsientoContable
+    -
+        - Contable_Model_DbTable_CajasMovimientos: asentarMovimientoDesdeComprobante
+    -
+        - Base_Model_DbTable_PersonasRegistrosDePrecios: reasignarPrecioArticulo
+
+
+# Anulado de Comprobantes
+Comprobante_Anular:
+    -
+        - Contable_Model_DbTable_CuentasCorrientes: quitarComprobante
+    -
+        - Facturacion_Model_DbTable_ComprobantesRelacionados: eliminarRelacionesHijos
+    -
+        - Contable_Model_DbTable_LibrosIVADetalles: quitarComprobante
+#    -
+#        - Contable_Model_DbTable_LibrosDiarios: quitarAsientoContable
+    -
+        - Contable_Model_DbTable_CajasMovimientos: quitarMovimientoDesdeComprobante
+    -
+        - Base_Model_DbTable_PersonasRegistrosDePrecios: desasignarPrecioArticulo
+
+# Insertado Articulo de Factura Compra
+Facturacion_FCA_Insertado:
+    -
+        - Facturacion_Model_DbTable_FacturasComprasRemitos: reasociarHijoConPadre
+
+# Updateado Articulo de Factura Compra
+Facturacion_FCA_Updateado:
+    -
+        - Facturacion_Model_DbTable_FacturasComprasRemitos: reasociarHijoConPadre
+
+# Borrado Articulo de Factura Compra
+Facturacion_FCA_Borrado:
+    -
+        - Facturacion_Model_DbTable_FacturasComprasRemitos: reasociarHijoConPadre 
+
+# Insertado Articulo de Factura Venta
+Facturacion_FVA_Insertado:
+    -
+        - Facturacion_Model_DbTable_FacturasComprasRemitos: reasociarHijoConPadre
+
+
+# Updateado Articulo de Factura Venta
+Facturacion_FVA_Updateado:
+    -
+        - Facturacion_Model_DbTable_FacturasComprasRemitos: reasociarHijoConPadre
+
+
+# Borrado Articulo de Factura Venta
+Facturacion_FVA_Borrado:
+    -
+        - Facturacion_Model_DbTable_FacturasComprasRemitos: reasociarHijoConPadre
+
+
+
+Almacenes_RA_Insertado:
+    -
+        - Facturacion_Model_DbTable_OrdenesDeComprasRemitos: reasociarHijoConPadre
+
+
+Almacenes_RA_Updateado:
+    -
+        - Facturacion_Model_DbTable_OrdenesDeComprasRemitos: reasociarHijoConPadre
+
+
+Almacenes_RA_Borrado:
+    -
+        - Facturacion_Model_DbTable_OrdenesDeComprasRemitos: reasociarHijoConPadre
+
+
+Facturacion_F_preBorrar:
+    -
+        - Contable_Model_DbTable_LibrosIVADetalles: quitarComprobante
+#    -
+#        - Contable_Model_DbTable_LibrosDiarios: quitarAsientoContable
+    -
+        - Base_Model_DbTable_PersonasRegistrosDePrecios: desasignarPrecioArticulo
+
+
+Facturacion_CP_preBorrar:
+    -
+        - Contable_Model_DbTable_LibrosIVADetalles: quitarComprobante
+#    -   
+#        - Contable_Model_DbTable_LibrosDiarios: quitarAsientoContable
+
+
+Contable_DepSaliente_Insertado:
+    -
+        - Contable_Model_DbTable_CajasMovimientos: asentarMovimientoDesdeTransaccion
+
+
+Contable_DepSaliente_Borrado: 
+    -
+        - Contable_Model_DbTable_CajasMovimientos: quitarMovimientoDesdeTransaccion
+
+
+Contable_DepPropioEntrante_Insertado:
+    -
+        - Base_Model_DbTable_CuentasBancariasMovimientos: asentarMovimientoDesdeTransaccion
+
+
+Contable_DepPropioEntrante_Borrado:
+    -
+        - Base_Model_DbTable_CuentasBancariasMovimientos: quitarMovimientoDesdeTransaccion
+
+
+Contable_ExtBancaria_Insertado:
+    -
+        - Contable_Model_DbTable_CajasMovimientos: asentarMovimientoDesdeTransaccion
+    -
+        - Base_Model_DbTable_CuentasBancariasMovimientos: asentarMovimientoDesdeTransaccion
+
+
+Contable_ExtBancaria_Borrado:
+    -
+        - Contable_Model_DbTable_CajasMovimientos: quitarMovimientoDesdeTransaccion
+    -
+        - Base_Model_DbTable_CuentasBancariasMovimientos: quitarMovimientoDesdeTransaccion
+
+
+
+Contable_DepEntrante_Insertado:
+    -
+        - Base_Model_DbTable_CuentasBancariasMovimientos: asentarMovimientoDesdeTransaccion
+
+
+Contable_DepEntrante_Borrado:
+    -
+        - Base_Model_DbTable_CuentasBancariasMovimientos: quitarMovimientoDesdeTransaccion
+
+
+Contable_TranEntrante_Insertado:    
+    -
+        - Base_Model_DbTable_CuentasBancariasMovimientos: asentarMovimientoDesdeTransaccion
+
+
+Contable_TranEntrante_Borrado: 
+    -
+        - Base_Model_DbTable_CuentasBancariasMovimientos: quitarMovimientoDesdeTransaccion
+
+
+Contable_TranSaliente_Insertado:
+    -
+        - Base_Model_DbTable_CuentasBancariasMovimientos: asentarMovimientoDesdeTransaccion
+
+
+Contable_TranSaliente_Borrado:
+    -
+        - Base_Model_DbTable_CuentasBancariasMovimientos: quitarMovimientoDesdeTransaccion
+
+
+Contable_PropiaTranSaliente_Insertado:
+    -
+        - Base_Model_DbTable_CuentasBancariasMovimientos: movimientosEntreCuentas
+
+
+Contable_PropiaTranSaliente_Borrado:
+    -
+        - Base_Model_DbTable_CuentasBancariasMovimientos: quitarMovimientoDesdeTransaccion
+
+
+Rad_GridDataGateway_ListPostProcess/Produccion_Model_DbTable_OrdenesDeProduccionesDetalles/reducido:
+    -
+        - Produccion_Model_DbTable_OrdenesDeProduccionesDetalles: addExtraMetadata
+
