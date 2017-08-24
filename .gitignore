@@ -21,4 +21,4 @@ public/wallpapers/thumbs/*
 # Application specific
 /.vagrant
 vendor/
-
+application/configs/application.ini
