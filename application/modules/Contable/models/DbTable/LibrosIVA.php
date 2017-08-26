@@ -67,16 +67,12 @@ class Contable_Model_DbTable_LibrosIVA extends Rad_Db_Table
         $this->_db->beginTransaction();
         try {
             $reg = $this->fetchAll($where);
-
             foreach ($reg as $row){
                 $mes = ($data['Mes']) ? $data['Mes'] : $row['Mes'];
                 $anio = ($data['Anio']) ? $data['Anio'] : $row['Anio'];
-
                 $data['Descripcion'] = $anio.'-'.str_pad($mes, 2, '0', STR_PAD_LEFT);
-
                 parent::update($data, $where);
             }
-
             $this->_db->commit();
         } catch (Exception $e) {
             $this->_db->rollBack();
@@ -97,11 +93,8 @@ class Contable_Model_DbTable_LibrosIVA extends Rad_Db_Table
         $R_LIVA         = $this->fetchRow('1=1', array('Anio desc','Mes desc'));
         $ultimaFecha    = $R_LIVA->Anio . '-' . str_pad($R_LIVA->Mes, 2, '0', STR_PAD_LEFT) . '-01';
         $nuevaFecha     = new DateTime($anio . '-' . str_pad($mes, 2, '0', STR_PAD_LEFT) . '-01');
-
         $date           = new DateTime($ultimaFecha);
-
         $date->modify('+1 month');
-
         while ($date <= $nuevaFecha) {
             $mes        = $date->format('m');
             $anio       = $date->format('Y');
@@ -115,7 +108,6 @@ class Contable_Model_DbTable_LibrosIVA extends Rad_Db_Table
 
             $date->modify('+1 month');
         }
-
         return $id;
     }
 
@@ -150,10 +142,10 @@ class Contable_Model_DbTable_LibrosIVA extends Rad_Db_Table
     public function exportadorSIAGER($idLibro,$idTipoDeLibro){
         switch ($idTipoDeLibro) {
             case 1:
-                $sql = "call SIAGER_exportador_Percepciones($idLibro, $idTipoDeLibro)";
+                $sql = "call SIAGER_exportador_Retenciones($idLibro, $idTipoDeLibro)";
                 break;
             case 2:
-                $sql = "call SIAGER_exportador_Retenciones($idLibro, $idTipoDeLibro)";
+                $sql = "call SIAGER_exportador_Percepciones($idLibro, $idTipoDeLibro)";
                 break;
             throw new Rad_Db_Table_Exception('No existe el libro seleccionado.');
                 break;
@@ -177,7 +169,6 @@ class Contable_Model_DbTable_LibrosIVA extends Rad_Db_Table
         $txtTipo    = ($tipoDeLibro == 1) ? "Compra" : "Venta";
         $txtParte   = ($parte == 1) ? "" : "_Detalle";
         $sql        = "call AFIP_exportador_LibroIVA_".$txtTipo."_res3685".$txtParte."($idLibro, $forma)";
-
         $R = $this->_db->fetchAll($sql);
         if (!count($R)) throw new Rad_Db_Table_Exception('No se encuentra el libro de IVA a exportar o no tiene registros.');
         return $R;
@@ -211,7 +202,6 @@ class Contable_Model_DbTable_LibrosIVA extends Rad_Db_Table
         }
         return $this;
     }
-
 
     public function fetchAbiertos ($where = null, $order = null, $count = null, $offset = null)
     {
