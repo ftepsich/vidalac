@@ -242,4 +242,11 @@ class Base_Model_DbTable_ConceptosImpositivos extends Rad_Db_Table
         $where = $this->_addCondition($where, $condicion);
         return parent:: fetchAll($where, $order, $count, $offset);
     }
+
+    public function exportadorSIAGER(){     
+     $sql = "call SIAGER_exportador_Retenciones()";
+     throw new Rad_Db_Table_Exception('No se puede generar el reporte.'); 
+     $reporte = $this->_db->fetchAll($sql);
+     return $reporte;
+    }
 }
