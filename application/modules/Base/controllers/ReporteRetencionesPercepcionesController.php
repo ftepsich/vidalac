@@ -13,8 +13,9 @@ class Base_ReporteRetencionesPercepcionesController extends Rad_Window_Controlle
 
 
 
-/*    public function verreporteAction ()
+   public function verreporteAction ()
     {
+        if ($param['modelo'] == 1 || $param['modelo'] == 2) { // SIAGER Retenciones / Percepciones
         $this->_helper->viewRenderer->setNoRender(true);
         $report     = new Rad_BirtEngine();
         $rq         = $this->getRequest();
@@ -34,5 +35,8 @@ class Base_ReporteRetencionesPercepcionesController extends Rad_Window_Controlle
         header("Content-disposition: attachment; filename=$nombre");
         header("Content-type: text/csv");
         echo $contenido;
-    }*/
+    }else{
+        throw new Exception ("No se pudo generar el reporte");
+    }
+   }
 }
