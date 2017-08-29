@@ -43,7 +43,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
     {
         return {
             xtype: 'form',
-            url : '/Contable/ReporteLibroIva/verreporte',
+            url : '/Base/ReporteRetencionesPercepciones/verreporte',
             layout: 'form',
             border: false,
             bodyStyle: 'padding:10px',
@@ -56,41 +56,9 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     store: new Ext.data.ArrayStore({
                         fields: ['desc', 'id'],
                         data : [
-                                ['Compra', '1'],
-                                ['Venta', '2']
-                        ]
-                    }),
-                    value: 2,
-                    anchor: '95%',
-                    alowBlank: false,
-                    displayField:'desc',
-                    valueField: 'id',
-                    typeAhead: true,
-                    fieldLabel: 'Tipo',
-                    name: 'tipo',
-                    mode: 'local',
-                    forceSelection: true,
-                    triggerAction: 'all',
-                    selectOnFocus:true
-                },
-                {
-                    xtype: 'xcombo',
-                    store: new Ext.data.ArrayStore({
-                        fields: ['desc', 'id'],
-                        data : [
-                                ['Clasico', '1'],
-                                ['Con Jurisdiccion', '2'],
-                                ['Con Provincia de la Direccion', '16'],
-                                ['Con Percepciones y Retenciones', '5'],
-                                ['Ret. y Percep. Ingresos Brutos sufridas', '13'],                                
-                                ['Exportador solo Percepciones y Retenciones', '14'],
-                                ['Exportador Libro IVA detallado', '15'],                                
-                                ['Con Plan de Cuenta', '12'],
-                                ['Exportador AFIP (pre 3685)', '3'],
-                                ['Exportador AFIP res 3685 Cabecera', '6'],
-                                ['Exportador AFIP res 3685 Alicuotas', '7'],
-                               // ['Test Exp. AFIP res 3685 Cabecera (separado por coma)', '8'],
-                               // ['Test Exportador AFIP (pre 3685) -- para control con valores negativos', '4']
+                                ['SIAGER - Retencion', '1'],
+                                ['SIAGER - Percepcion', '2'],
+                             
                         ]
                     }),
                     value: 1,
@@ -127,22 +95,13 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     autocomplete: false,
                     allowBlank: false,
                     allowNegative: false,
-                    fieldLabel: "Libro",
-                    name: "libroIva",
+                    fieldLabel: "Periodo",
+                    name: "periodo",
                     displayFieldTpl: "{Descripcion}",
                     forceSelection: true,
                     triggerAction: 'all',
                     selectOnFocus: true
                 },
-                {
-                    xtype: 'radiogroup',
-                    fieldLabel: 'Formato',
-                    width: 150,
-                    items: [
-                        { boxLabel: 'PDF', name: 'formato', inputValue: 'pdf', checked: true },
-                        { boxLabel: 'Excel', name: 'formato', inputValue: 'xls' }
-                    ]
-                }
             ],
             buttons:[
                 {
@@ -150,13 +109,6 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     handler: function () {
                        values = this.ownerCt.ownerCt.getForm().getValues();
                        var  params = '';
-
-                       if (values.tipo) {
-                           params += '/tipo/'+values.tipo;
-                       } else {
-                           Ext.Msg.alert('Atencion', 'Debe seleccionar un Tipo de Libro');
-                           return;
-                       }
 
                        if (values.modelo) {
                            params += '/modelo/'+values.modelo;
@@ -166,7 +118,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                        }
 
                        if (values.libroIva) {
-                           params += '/libro/'+values.libroIva;
+                           params += '/libro/'+values.periodo;
                        } else {
                            Ext.Msg.alert('Atencion', 'Debe seleccionar un Periodo');
                            return;
@@ -181,10 +133,10 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
 
                        app.publish('/desktop/modules/js/commonApps/showUrl.js', {
                            action: 'launch',
-                           url: '/Contable/ReporteLibroIva/verreporte'+params,
+                           url: '/Base/ReportePercepcionRetencion/verreporte'+params,
                            width: 900,
                            height: 500,
-                           title: 'Libro Iva'
+                           title: 'Reporte Retenciones y Percepciones'
                        });
                     }
                 }

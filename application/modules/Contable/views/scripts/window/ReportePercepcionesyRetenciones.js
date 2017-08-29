@@ -18,31 +18,9 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
         }
         win.show();
     },
-	
+
     create: function()
     {
-
-        this.cabecera = new Ext.ux.form.ComboBox({
-            displayField:'desc',
-            valueField: 'id',
-            typeAhead: true,
-            fieldLabel: 'Encabezado',
-            name: 'cabecera',
-            //anchor : '100%',
-            value:1,
-            mode: 'local',
-            forceSelection: true,
-            triggerAction: 'all',
-            selectOnFocus: true,
-            store: new Ext.data.ArrayStore({
-                fields: ['desc', 'id'],
-                data : [
-                    ['Interno (simple)', '1'],
-                    ['Completo (detallado)', '2']
-                ]
-            })
-        });
-
         defaultWinCfg = {
             id: this.id+'-win',
             title: this.title,
@@ -52,22 +30,20 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
             resizable:false,
             animCollapse: false,
             layout: 'fit',
-            width: 600,
-            height:350,
-
+            width: 450,
+            height:200,
             items: [
                 this.renderWindowContent()
             ]
         };
-
         return app.desktop.createWindow(defaultWinCfg);
     },
-	
+
     renderWindowContent: function ()
     {
         return {
             xtype: 'form',
-            url : '/Contable/ReportePercepcionesyRetenciones/verreporte',
+            url : '/Base/ReporteRetencionesPercepciones/verreporte',
             layout: 'form',
             border: false,
             bodyStyle: 'padding:10px',
@@ -80,142 +56,94 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     store: new Ext.data.ArrayStore({
                         fields: ['desc', 'id'],
                         data : [
-                                ['Detallado', '1'],
-                                ['Agrupado', '2']
+                                ['SIAGER - Retencion', '1'],
+                                ['SIAGER - Percepcion', '2'],
+                             
                         ]
                     }),
                     value: 1,
+                    anchor: '95%',
                     alowBlank: false,
                     displayField:'desc',
                     valueField: 'id',
                     typeAhead: true,
-                    fieldLabel: 'Reporte',
-                    name: 'reporte',
+                    fieldLabel: 'Modelo',
+                    name: 'modelo',
                     mode: 'local',
                     forceSelection: true,
                     triggerAction: 'all',
                     selectOnFocus:true
                 },
-                this.cabecera,                
                 {
-                   xtype: 'xdatefield',
-                   ref: '../desde',
-                   format: 'd/m/Y',
-                   dateFormat:'Y-m-d',
-                   name: 'desde',
-                   fieldLabel : 'Desde'
-                },
-                {
-                   xtype: 'xdatefield',
-                   ref: '../hasta',
-                   format: 'd/m/Y',
-                   dateFormat:'Y-m-d',
-                   name: 'hasta',
-                   fieldLabel : 'Hasta'
-                },
-                {
-                    ref: '../persona',
-                    "xtype":"xcombo",
-                    "width":320,
-                    "displayField":"RazonSocial",
-                    "autoLoad":true,
-                    "selectOnFocus":true,
-                    "forceSelection":true,
-                    "forceReload":true,
-                    "hiddenName":"Persona",
-                    "loadingText":"Cargando...",
-                    "lazyRender":true,
-                    "store":new Ext.data.JsonStore({"id":0,"url":"datagateway\/combolist\/model\/Personas\/m\/Base\/search\/RazonSocial","storeId":"PersonaStore"}),
-                    "typeAhead":true,
-                    "valueField":"Id",
-                    "pageSize":20,
-                    "editable":true,
-                    "autocomplete":true,
-                    "allowNegative":false,
-                    "fieldLabel":"Cliente / Prov.",
-                    "name":"Persona",
-                    "displayFieldTpl":"{RazonSocial}",
-                    "tpl":"<tpl for=\".\"><div class=x-combo-list-item><h3>{RazonSocial}<\/h3>{Denominacion}<\/div><\/tpl>",
-                    "link":"\/Base\/administrarClientes",
-                    "descriptionPanel":{"tpl":"\n        <h1>Informacion<\/h1>\n        <b>Cuit:<\/b> {Cuit}<br>\n        <b>Inscripcion IVA:<\/b> {ModalidadIva_cdisplay}<br>\n        <b>Inscripcion Gan.:<\/b> {ModalidadGanancia_cdisplay}<br>\n        <b>Localidad:<\/b> {Localidad_cdisplay}"}
-                },
-                {
-                    fieldLabel: 'Libro IVA',
-                    xtype: 'superboxselect',
-                    anchor: '90%',
+                    xtype: 'xcombo',
                     displayField: 'Descripcion',
-                    name: 'libroiva',
-                    valueField: 'Id',
-                    allowBlank: true,
-                    msgTarget: 'under',
+                    autoLoad: true,
+                    anchor: '95%',
+                    selectOnFocus: true,
+                    forceSelection: true,
+                    forceReload: true,
+                    hiddenName: "libroIva",
+                    loadingText: "Cargando...",
+                    lazyRender: true,
+                    store: new Ext.data.JsonStore({ "id":0,
+                                                    "url":"datagateway\/combolist\/model\/LibrosIVA/m\/Contable\/search\/Descripcion\/sort\/Id\/dir\/desc",
+                                                    "storeId":"BancoSucursalStore"}),
+                    typeAhead: true,
+                    valueField: "Id",
+                    pageSize: 20,
+                    editable: true,
+                    autocomplete: false,
+                    allowBlank: false,
+                    allowNegative: false,
+                    fieldLabel: "Periodo",
+                    name: "periodo",
+                    displayFieldTpl: "{Descripcion}",
+                    forceSelection: true,
                     triggerAction: 'all',
-                    store: new Ext.data.JsonStore({
-                        id: 0,
-                        url: "datagateway/combolist/model/LibrosIVA/m/Contable",
-                        storeId: "LibroIVAStore"
-                    })
+                    selectOnFocus: true
                 },
-                {
-                    xtype: 'radiogroup',
-                    fieldLabel: 'Formato',
-                    width: 150,
-                    items: [
-                        { boxLabel: 'PDF', name: 'formato', inputValue: 'pdf', checked: true },
-                        { boxLabel: 'Excel', name: 'formato', inputValue: 'xls' }
-                    ]
-                }
             ],
             buttons:[
                 {
                     text:  'Ver Reporte',
                     handler: function () {
-                        values = this.ownerCt.ownerCt.getForm().getValues();
-                        var  params = '';
+                       values = this.ownerCt.ownerCt.getForm().getValues();
+                       var  params = '';
 
-                        if (values.desde == 'undefined' || !values.hasta == 'undefined') {
-                            Ext.Msg.alert('Atencion', 'Debe completar las fechas');
-                            return;
-                        } else {
-                            params += '/desde/'+values.desde;
-                            if (values.hasta != 'undefined') {
-                                params += '/hasta/'+values.hasta;
-                            }
-                        }
-                       
-                        if (values.reporte != '') {
-                            params += '/reporte/'+values.reporte;
-                        }
-                        
-                        if (values.Persona != '') {
-                            params += '/persona/'+values.Persona;
-                        }
+                       if (values.modelo) {
+                           params += '/modelo/'+values.modelo;
+                       } else {
+                           Ext.Msg.alert('Atencion', 'Debe seleccionar un modelo de reporte');
+                           return;
+                       }
 
-                        if (values.cabecera != '') {
-                            params += '/cabecera/'+values.cabecera;
-                        }
+                       if (values.libroIva) {
+                           params += '/libro/'+values.periodo;
+                       } else {
+                           Ext.Msg.alert('Atencion', 'Debe seleccionar un Periodo');
+                           return;
+                       }
 
-                        if (values.formato != '') {
-                            params += '/formato/'+values.formato;
-                        }
+                       if (values.formato) {
+                           params += '/formato/'+values.formato;
+                       } else {
+                           Ext.Msg.alert('Atencion', 'Debe seleccionar un formato de salida');
+                           return;
+                       }
 
-                        if (values.libroiva != '') {
-                            params += '/libroiva/';
-                            params += (values.libroiva instanceof Array) ? values.libroiva.join(',') : values.libroiva;
-                        }
-
-                        app.publish('/desktop/modules/js/commonApps/showUrl.js', {
-                            action: 'launch',
-                            url: '/Contable/ReportePercepcionesyRetenciones/verreporte'+params,
-                            width: 900,
-                            height: 500,
-                            title: 'Reporte Percepciones y Retenciones'
-                        });
+                       app.publish('/desktop/modules/js/commonApps/showUrl.js', {
+                           action: 'launch',
+                           url: '/Base/ReportePercepcionRetencion/verreporte'+params,
+                           width: 900,
+                           height: 500,
+                           title: 'Reporte Retenciones y Percepciones'
+                       });
                     }
                 }
             ]
         };
     }
-	
+
 });
 
 new Apps.<?=$this->name?>();
