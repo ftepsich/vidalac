@@ -131,7 +131,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
 
                        app.publish('/desktop/modules/js/commonApps/showUrl.js', {
                            action: 'launch',
-                           url: '/Base/ReportenRetencionesPercepciones/verreporte'+params,
+                           url: '/Base/ReporteRetencionesPercepciones/verreporte'+params,
                            width: 900,
                            height: 500,
                            title: 'Reporte Retenciones y Percepciones'
