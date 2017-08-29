@@ -82,12 +82,10 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     selectOnFocus: true,
                     forceSelection: true,
                     forceReload: true,
-                    hiddenName: "libroIva",
+                    hiddenName: "reporte",
                     loadingText: "Cargando...",
                     lazyRender: true,
-                    store: new Ext.data.JsonStore({ "id":0,
-                                                    "url":"datagateway\/combolist\/model\/LibrosIVA/m\/Contable\/search\/Descripcion\/sort\/Id\/dir\/desc",
-                                                    "storeId":"BancoSucursalStore"}),
+                
                     typeAhead: true,
                     valueField: "Id",
                     pageSize: 20,
@@ -133,7 +131,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
 
                        app.publish('/desktop/modules/js/commonApps/showUrl.js', {
                            action: 'launch',
-                           url: '/Base/ReportePercepcionRetencion/verreporte'+params,
+                           url: '/Base/ReportenRetencionesPercepciones/verreporte'+params,
                            width: 900,
                            height: 500,
                            title: 'Reporte Retenciones y Percepciones'
