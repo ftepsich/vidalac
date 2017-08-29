@@ -2,7 +2,7 @@
 use Rad\Util\FileExport;
 
 
-class Base_ReporteLibroIvaController extends Rad_Window_Controller_Action
+class Base_ReporteRetencionesPercepcionesController extends Rad_Window_Controller_Action
 {
     protected $title = 'Reporte Percepciones y Retenciones';
 
