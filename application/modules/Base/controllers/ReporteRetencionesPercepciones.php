@@ -4,7 +4,7 @@ use Rad\Util\FileExport;
 
 class Base_ReporteRetencionesPercepcionesController extends Rad_Window_Controller_Action
 {
-    protected $title = 'Reporte Percepciones y Retenciones';
+    protected $title = 'Reporte Retenciones y Percepciones';
 
     public function initWindow()
     {
@@ -23,7 +23,7 @@ class Base_ReporteRetencionesPercepcionesController extends Rad_Window_Controlle
         
         // SIAGER Retenciones / Percepciones
            
-        $modelo     = new Contable_Model_DbTable_LibrosIVA();
+        $modelo     = new Base_Model_DbTable_ConceptosIMpositivos();
         $datos = $modelo->exportadorSIAGER();
         $exportador     = new FileExport(FileExport::MODE_SEPARATOR);
         $exportador->setLineEnd("\r\n");
