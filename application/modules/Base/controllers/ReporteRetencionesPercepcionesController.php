@@ -15,7 +15,7 @@ class Base_ReporteRetencionesPercepcionesController extends Rad_Window_Controlle
 
    public function verreporteAction ()
     {
-        if ($param['modelo'] == 1 || $param['modelo'] == 2) { // SIAGER Retenciones / Percepciones
+       
         $this->_helper->viewRenderer->setNoRender(true);
         $report     = new Rad_BirtEngine();
         $rq         = $this->getRequest();
@@ -23,7 +23,7 @@ class Base_ReporteRetencionesPercepcionesController extends Rad_Window_Controlle
         $param['modelo'] = $db->quote($rq->modelo, 'INTEGER');
         
         // SIAGER Retenciones / Percepciones
-           
+     if ($param['modelo'] == 1 || $param['modelo'] == 2) { // SIAGER Retenciones / Percepciones       
         $modelo     = new Base_Model_DbTable_ConceptosImpositivos();
         $datos = $modelo->exportadorSIAGER();
         $exportador     = new FileExport(FileExport::MODE_SEPARATOR);
