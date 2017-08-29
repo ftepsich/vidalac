@@ -50,14 +50,15 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
             defaults: {
                 border: false
             },
-            items: [              
+            items: [
                 {
                     xtype: 'xcombo',
                     store: new Ext.data.ArrayStore({
                         fields: ['desc', 'id'],
-                        data : [      
-                                ['SIAGER Retenciones', '1'],
-                                ['SIAGER Percepciones', '2'],
+                        data : [
+                                ['SIAGER - Retencion', '1'],
+                                ['SIAGER - Percepcion', '2'],
+                             
                         ]
                     }),
                     value: 1,
@@ -81,12 +82,10 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     selectOnFocus: true,
                     forceSelection: true,
                     forceReload: true,
-                    hiddenName: "periodo",
+                    hiddenName: "reporte",
                     loadingText: "Cargando...",
                     lazyRender: true,
-                    store: new Ext.data.JsonStore({ "id":0,
-                                                    "url":"datagateway\/combolist\/model\/LibrosIVA/m\/Contable\/search\/Descripcion\/sort\/Id\/dir\/desc",
-                                                    "storeId":"BancoSucursalStore"}),
+                
                     typeAhead: true,
                     valueField: "Id",
                     pageSize: 20,
@@ -116,7 +115,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                            return;
                        }
 
-                       if (values.periodo) {
+                       if (values.libroIva) {
                            params += '/libro/'+values.periodo;
                        } else {
                            Ext.Msg.alert('Atencion', 'Debe seleccionar un Periodo');
@@ -132,10 +131,10 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
 
                        app.publish('/desktop/modules/js/commonApps/showUrl.js', {
                            action: 'launch',
-                           url: '/Base/ReportePercepcionesRetenciones/verreporte'+params,
+                           url: '/Base/ReportenRetencionesPercepciones/verreporte'+params,
                            width: 900,
                            height: 500,
-                           title: 'Reporte Retenciones y Retenciones'
+                           title: 'Reporte Retenciones y Percepciones'
                        });
                     }
                 }
