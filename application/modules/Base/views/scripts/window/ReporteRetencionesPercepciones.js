@@ -52,13 +52,14 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
             },
             items: [
                 {
+                  
                     xtype: 'xcombo',
                     store: new Ext.data.ArrayStore({
                         fields: ['desc', 'id'],
                         data : [
-                                ['SIAGER - Retencion', '1'],
-                                ['SIAGER - Percepcion', '2'],
-                             
+                                ['SIAGER - Retenciones', '1'],
+                                ['SIAGER - Retenciones', '2'],
+                               
                         ]
                     }),
                     value: 1,
@@ -82,10 +83,12 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     selectOnFocus: true,
                     forceSelection: true,
                     forceReload: true,
-                    hiddenName: "reporte",
+                    hiddenName: "periodo",
                     loadingText: "Cargando...",
                     lazyRender: true,
-                
+                    store: new Ext.data.JsonStore({ "id":0,
+                                                    "url":"datagateway\/combolist\/model\/LibrosIVA/m\/Contable\/search\/Descripcion\/sort\/Id\/dir\/desc",
+                                                    "storeId":"BancoSucursalStore"}),
                     typeAhead: true,
                     valueField: "Id",
                     pageSize: 20,
@@ -94,12 +97,12 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     allowBlank: false,
                     allowNegative: false,
                     fieldLabel: "Periodo",
-                    name: "periodo",
+                    name: "libroIva",
                     displayFieldTpl: "{Descripcion}",
                     forceSelection: true,
                     triggerAction: 'all',
                     selectOnFocus: true
-                },
+                }
             ],
             buttons:[
                 {
@@ -107,7 +110,6 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     handler: function () {
                        values = this.ownerCt.ownerCt.getForm().getValues();
                        var  params = '';
-
                        if (values.modelo) {
                            params += '/modelo/'+values.modelo;
                        } else {
@@ -116,7 +118,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                        }
 
                        if (values.libroIva) {
-                           params += '/libro/'+values.periodo;
+                           params += '/libro/'+values.libroIva;
                        } else {
                            Ext.Msg.alert('Atencion', 'Debe seleccionar un Periodo');
                            return;
@@ -134,7 +136,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                            url: '/Base/ReporteRetencionesPercepciones/verreporte'+params,
                            width: 900,
                            height: 500,
-                           title: 'Reporte Retenciones y Percepciones'
+                           title: 'Retenciones y Percepciones'
                        });
                     }
                 }

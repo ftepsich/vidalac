@@ -13,7 +13,7 @@ class Base_ReporteRetencionesPercepcionesController extends Rad_Window_Controlle
 
 
 
-    public function verreporteAction ()
+/*    public function verreporteAction ()
     {
         $this->_helper->viewRenderer->setNoRender(true);
         $report     = new Rad_BirtEngine();
@@ -34,5 +34,5 @@ class Base_ReporteRetencionesPercepcionesController extends Rad_Window_Controlle
         header("Content-disposition: attachment; filename=$nombre");
         header("Content-type: text/csv");
         echo $contenido;
-    }
+    }*/
 }
