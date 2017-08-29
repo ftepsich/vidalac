@@ -58,7 +58,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                         fields: ['desc', 'id'],
                         data : [
                                 ['SIAGER - Retenciones', '1'],
-                                ['SIAGER - Retenciones', '2'],
+                                ['SIAGER - Percepciones', '2'],
                                
                         ]
                     }),
