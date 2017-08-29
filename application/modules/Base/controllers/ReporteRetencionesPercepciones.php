@@ -23,7 +23,7 @@ class Base_ReporteRetencionesPercepcionesController extends Rad_Window_Controlle
         
         // SIAGER Retenciones / Percepciones
            
-        $modelo     = new Base_Model_DbTable_ConceptosIMpositivos();
+        $modelo     = new Base_Model_DbTable_ConceptosImpositivos();
         $datos = $modelo->exportadorSIAGER();
         $exportador     = new FileExport(FileExport::MODE_SEPARATOR);
         $exportador->setLineEnd("\r\n");
