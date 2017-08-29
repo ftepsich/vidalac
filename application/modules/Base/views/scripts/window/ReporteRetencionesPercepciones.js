@@ -97,7 +97,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     allowBlank: false,
                     allowNegative: false,
                     fieldLabel: "Periodo",
-                    name: "libroIva",
+                    name: "periodo",
                     displayFieldTpl: "{Descripcion}",
                     forceSelection: true,
                     triggerAction: 'all',
@@ -117,21 +117,13 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                            return;
                        }
 
-                       if (values.libroIva) {
-                           params += '/libro/'+values.libroIva;
+                       if (values.periodo) {
+                           params += '/libro/'+values.periodo;
                        } else {
                            Ext.Msg.alert('Atencion', 'Debe seleccionar un Periodo');
                            return;
                        }
-
-                       if (values.formato) {
-                           params += '/formato/'+values.formato;
-                       } else {
-                           Ext.Msg.alert('Atencion', 'Debe seleccionar un formato de salida');
-                           return;
-                       }
-
-                       app.publish('/desktop/modules/js/commonApps/showUrl.js', {
+                         app.publish('/desktop/modules/js/commonApps/showUrl.js', {
                            action: 'launch',
                            url: '/Base/ReporteRetencionesPercepciones/verreporte'+params,
                            width: 900,
