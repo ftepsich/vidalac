@@ -39,4 +39,34 @@ class Base_ReporteRetencionesPercepcionesController extends Rad_Window_Controlle
         throw new Exception ("No se pudo generar el reporte");
     }
    }
+
+   $M_L    = new Base_Model_DbTable_ConceptosImpositivos();
+   $R_L    = $M_L->find($param['libro'])->current();
+   if ($R_L) {
+       $tPeriodo = $R_L->Descripcion;
+   } else {
+       $tPeriodo = 'Desconocido';
+   }
+   $texto      = "Concepto $tTipo periodo $tPeriodo";
+   $idLibro    = $param['concepto'];
+   $formato    = ($rq->formato) ? $rq->formato : 'pdf';
+
+
+   switch ($param['modelo']) {
+       case 1:
+           $file = APPLICATION_PATH . "/../birt/Reports/Rep_Retenciones.rptdesign";
+           break;
+       case 2:
+           $file = APPLICATION_PATH . "/../birt/Reports/Rep_LibrosIVA_Percepciones.rptdesign";
+           break;
+   }
+   $where = " WHERE ".$this->buildWhere($param);
+   $report->renderFromFile($file, $formato, array(
+    'TEXTO'   => $texto,
+    'WHERE'   => $where,
+    'IDLIBRO' => $idLibro
+));
+$nombreRep      = str_replace(  array(" ","/"), array("_","-") , $texto);
+$NombreReporte  = 'Reporte_'.$nombreRep."_".date('YmdHis');
+$report->sendStream($NombreReporte);
 }

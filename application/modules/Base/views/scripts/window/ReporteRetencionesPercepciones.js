@@ -102,6 +102,15 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     forceSelection: true,
                     triggerAction: 'all',
                     selectOnFocus: true
+                },
+                {
+                    xtype: 'radiogroup',
+                    fieldLabel: 'Formato',
+                    width: 150,
+                    items: [
+                        { boxLabel: 'PDF', name: 'formato', inputValue: 'pdf', checked: true },
+                        { boxLabel: 'Excel', name: 'formato', inputValue: 'xls' }
+                    ]
                 }
             ],
             buttons:[
@@ -110,6 +119,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     handler: function () {
                        values = this.ownerCt.ownerCt.getForm().getValues();
                        var  params = '';
+
                        if (values.modelo) {
                            params += '/modelo/'+values.modelo;
                        } else {
@@ -117,10 +127,17 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                            return;
                        }
 
-                       if (values.periodo) {
+                       if (values.libroIva) {
                            params += '/libro/'+values.periodo;
                        } else {
                            Ext.Msg.alert('Atencion', 'Debe seleccionar un Periodo');
+                           return;
+                       }
+
+                       if (values.formato) {
+                           params += '/formato/'+values.formato;
+                       } else {
+                           Ext.Msg.alert('Atencion', 'Debe seleccionar un formato de salida');
                            return;
                        }
                          app.publish('/desktop/modules/js/commonApps/showUrl.js', {
