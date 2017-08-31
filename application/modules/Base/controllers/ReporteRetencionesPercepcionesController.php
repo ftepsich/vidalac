@@ -53,7 +53,7 @@ class Base_ReporteRetencionesPercepcionesController extends Rad_Window_Controlle
                 $file = APPLICATION_PATH . "/../birt/Reports/Rep_Retenciones.rptdesign";
                 break;
             case 2:
-                $file = APPLICATION_PATH . "/../birt/Reports/Rep_LibrosIVA_Percepciones.rptdesign";
+                $file = APPLICATION_PATH . "/../birt/Reports/Rep_Percepciones.rptdesign";
                 break;
         }
         $where = " WHERE " . $this->buildWhere($param);
