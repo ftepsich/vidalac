@@ -108,7 +108,8 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     fieldLabel: 'Formato',
                     width: 150,
                     items: [
-                        { boxLabel: 'PDF', name: 'formato', inputValue: 'pdf', checked: true },
+                        { boxLabel: 'TXT', name: 'formato', inputValue: 'pdf'},
+                        { boxLabel: 'PDF', name: 'formato', inputValue: 'pdf'},
                         { boxLabel: 'Excel', name: 'formato', inputValue: 'xls' }
                     ]
                 }
@@ -127,7 +128,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                            return;
                        }
 
-                       if (values.libroIva) {
+                       if (values.periodo) {
                            params += '/libro/'+values.periodo;
                        } else {
                            Ext.Msg.alert('Atencion', 'Debe seleccionar un Periodo');
