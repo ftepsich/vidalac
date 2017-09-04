@@ -63,18 +63,10 @@
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Datos" id="2489">
             <list-property name="parameters">
                 <structure>
-                    <property name="name">TipodeAgente</property>
-                    <property name="paramName">TipodeAgente</property>
+                    <property name="name">Libro</property>
+                    <property name="paramName">Libro</property>
                     <property name="dataType">integer</property>
                     <property name="position">1</property>
-                    <property name="isInput">true</property>
-                    <property name="isOutput">false</property>
-                </structure>
-                <structure>
-                    <property name="name">MotivoMovimiento</property>
-                    <property name="paramName">MotivoMovimiento</property>
-                    <property name="dataType">integer</property>
-                    <property name="position">2</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -83,62 +75,88 @@
                 <list-property name="resultSet">
                     <structure>
                         <property name="position">1</property>
+                        <property name="name">TipoAgente</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">MotivoMovimiento</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                             <structure>
+                        <property name="position">3</property>
+                        <property name="name">RazonSocial</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                        <property name="position">4</property>
                         <property name="name">Cuit</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">2</property>
-                        <property name="name">FechaPercepcion</property>
+                        <property name="position">5</property>
+                        <property name="name">NumeroConstancia</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">FechaRetencion</property>
                         <property name="dataType">date</property>
                     </structure>
                     <structure>
-                        <property name="position">3</property>
-                        <property name="name">TipoDeComprobante</property>
+                        <property name="position">7</property>
+                        <property name="name">FechaComprobante</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">TipoComprobante</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">4</property>
+                        <property name="position">9</property>
                         <property name="name">LetraComprobante</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">5</property>
+                        <property name="position">10</property>
                         <property name="name">NumeroComprobante</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">6</property>
+                        <property name="position">11</property>
                         <property name="name">ImporteBase</property>
-                        <property name="dataType">integer</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">7</property>
+                        <property name="position">12</property>
                         <property name="name">Alicuota</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">8</property>
-                        <property name="name">ImportePercibido</property>
-                        <property name="dataType">integer</property>
+                        <property name="position">13</property>
+                        <property name="name">ImporteRetenido</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">9</property>
+                        <property name="position">14</property>
                         <property name="name">Anulacion</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">10</property>
+                        <property name="position">15</property>
                         <property name="name">ContribuyenteConvMultilateral</property>
                         <property name="dataType">integer</property>
-                    </structure>                    
+                    </structure>
+                   
                 </list-property>
             </structure>
             <property name="dataSource">Base</property>
             <list-property name="resultSet">
                 <structure>
                     <property name="position">1</property>
-                    <property name="name">TipodeAgente</property>
-                    <property name="nativeName">Cid</property>
+                    <property name="name">TipoAgente</property>
+                    <property name="nativeName">TipoAgente</property>
                     <property name="dataType">integer</property>
                 </structure>
                 <structure>
@@ -148,71 +166,84 @@
                     <property name="dataType">integer</property>
                 </structure>
                 <structure>
+                         <structure>
                     <property name="position">3</property>
-                    <property name="name">CUIT</property>
+                    <property name="name">RazonSocial</property>
                     <property name="nativeName">RazonSocial</property>
                     <property name="dataType">string</property>
                 </structure>
-                <structure>
                     <property name="position">4</property>
-                    <property name="name">FechaPercepcion</property>
-                    <property name="nativeName">FechaPercepcion</property>
-                    <property name="dataType">date</property>
+                    <property name="name">Cuit</property>
+                    <property name="nativeName">Cuit</property>
+                    <property name="dataType">string</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
-                    <property name="name">TipodeComprobante</property>
-                    <property name="nativeName">TipodeComprobante</property>
+                    <property name="name">NumeroConstancia</property>
+                    <property name="nativeName">NumeroConstancia</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
                     <property name="position">6</property>
+                    <property name="name">FechaRetencion</property>
+                    <property name="nativeName">FechaRetencion</property>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">FechaComprobante</property>
+                    <property name="nativeName">FechaComprobante</property>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">TipoComprobante</property>
+                    <property name="nativeName">TipoComprobante</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
                     <property name="name">LetraComprobante</property>
                     <property name="nativeName">LetraComprobante</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">7</property>
+                    <property name="position">10</property>
                     <property name="name">NumeroComprobante</property>
                     <property name="nativeName">NumeroComprobante</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">8</property>
+                    <property name="position">11</property>
                     <property name="name">ImporteBase</property>
                     <property name="nativeName">ImporteBase</property>
-                    <property name="dataType">integer</property>
+                    <property name="dataType">decimal</property>
                 </structure>
                 <structure>
-                    <property name="position">9</property>
-                    <property name="name">NETO105PARCIAL</property>
-                    <property name="nativeName">NETO105PARCIAL</property>
-                    <property name="dataType">integer</property>
-                </structure>
-                <structure>
-                    <property name="position">10</property>
+                    <property name="position">12</property>
                     <property name="name">Alicuota</property>
                     <property name="nativeName">Alicuota</property>
                     <property name="dataType">integer</property>
                 </structure>
                 <structure>
-                    <property name="position">11</property>
-                    <property name="name">ImportePercibido</property>
-                    <property name="nativeName">ImportePercibido</property>
-                    <property name="dataType">integer</property>
+                    <property name="position">13</property>
+                    <property name="name">ImporteRetenido</property>
+                    <property name="nativeName">ImporteRetenido</property>
+                    <property name="dataType">decimal</property>
                 </structure>
                 <structure>
-                    <property name="position">12</property>
+                    <property name="position">14</property>
                     <property name="name">Anulacion</property>
                     <property name="nativeName">Anulacion</property>
                     <property name="dataType">integer</property>
                 </structure>
                 <structure>
-                    <property name="position">14</property>
+                    <property name="position">15</property>
                     <property name="name">ContribuyenteConvMultilateral</property>
                     <property name="nativeName">ContribuyenteConvMultilateral</property>
                     <property name="dataType">integer</property>
-                </structure>            
+                </structure>
+               
             </list-property>
             <xml-property name="queryText"><![CDATA[call SIAGER_exportador_Retenciones(?)]]></xml-property>
         </oda-data-set>
@@ -264,8 +295,8 @@
             <property name="dataSet">Datos</property>
             <list-property name="boundDataColumns">
                 <structure>
-                    <property name="name">TipoDeAgente</property>
-                    <expression name="expression" type="javascript">dataSetRow["TipoDeAgente"]</expression>
+                    <property name="name">TipoAgente</property>
+                    <expression name="expression" type="javascript">dataSetRow["TipoAgente"]</expression>
                     <property name="dataType">integer</property>
                 </structure>
                 <structure>
@@ -274,18 +305,33 @@
                     <property name="dataType">integer</property>
                 </structure>
                 <structure>
+                    <property name="name">RazonSocial</property>
+                    <expression name="expression" type="javascript">dataSetRow["RazonSocial"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
                     <property name="name">Cuit</property>
                     <expression name="expression" type="javascript">dataSetRow["Cuit"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">FechaPercepcion</property>
-                    <expression name="expression" type="javascript">dataSetRow["FechaPercepcion"]</expression>
+                    <property name="name">NumeroConstancia</property>
+                    <expression name="expression" type="javascript">dataSetRow["NumeroConstancia"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaRetencion</property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaRetencion"]</expression>
                     <property name="dataType">date</property>
                 </structure>
                 <structure>
-                    <property name="name">TipoDeComprobante</property>
-                    <expression name="expression" type="javascript">dataSetRow["TipoDeComprobante"]</expression>
+                    <property name="name">FechaComprobante</property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaComprobante"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">TipoComprobante</property>
+                    <expression name="expression" type="javascript">dataSetRow["TipoComprobante"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -301,7 +347,7 @@
                 <structure>
                     <property name="name">ImporteBase</property>
                     <expression name="expression" type="javascript">dataSetRow["ImporteBase"]</expression>
-                    <property name="dataType">integer</property>
+                    <property name="dataType">decimal</property>
                 </structure>
                 <structure>
                     <property name="name">Alicuota</property>
@@ -309,9 +355,14 @@
                     <property name="dataType">integer</property>
                 </structure>
                 <structure>
-                    <property name="name">ImportePercibido</property>
-                    <expression name="expression" type="javascript">dataSetRow["ImportePercibido"]</expression>
-                    <property name="dataType">integer</property>
+                    <property name="name">IVA27GRAL</property>
+                    <expression name="expression" type="javascript">dataSetRow["IVA27GRAL"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">ImporteRetenido</property>
+                    <expression name="expression" type="javascript">dataSetRow["ImporteRetenido"]</expression>
+                    <property name="dataType">decimal</property>
                 </structure>
                 <structure>
                     <property name="name">Anulacion</property>
@@ -322,9 +373,9 @@
                     <property name="name">ContribuyenteConvMultilateral</property>
                     <expression name="expression" type="javascript">dataSetRow["ContribuyenteConvMultilateral"]</expression>
                     <property name="dataType">integer</property>
-                </structure>         
+                </structure>             
             </list-property>
-            <column id="2550"/>
+       <column id="2550"/>
             <column id="2551"/>
             <column id="2552"/>
             <column id="2553"/>
@@ -336,128 +387,167 @@
             <column id="2559"/>
             <column id="2607"/>
             <column id="2619"/>
+            <column id="2615"/>
+            <column id="2611"/>
+            <column id="2560"/>
+            <column id="2561"/>        
             <header>
                 <row id="2493">
                     <cell id="2494">
                         <label id="2568">
                             <property name="textAlign">left</property>
-                            <text-property name="text">Tipo de Agente</text-property>
+                            <text-property name="text">Razon Social</text-property>
                         </label>
                     </cell>
                     <cell id="2495">
                         <label id="2570">
                             <property name="textAlign">left</property>
-                            <text-property name="text">Motivo Movimiento</text-property>
+                            <text-property name="text">Cuit</text-property>
                         </label>
                     </cell>
                     <cell id="2496">
                         <label id="2572">
                             <property name="textAlign">left</property>
-                            <text-property name="text">Cuit</text-property>
+                            <text-property name="text">Tipo de Agente</text-property>
                         </label>
                     </cell>
                     <cell id="2497">
                         <label id="2574">
                             <property name="textAlign">right</property>
-                            <text-property name="text">Fecha Percepcion</text-property>
+                            <text-property name="text">Motivo de Movimiento</text-property>
                         </label>
                     </cell>
                     <cell id="2498">
                         <label id="2576">
                             <property name="textAlign">right</property>
-                            <text-property name="text">Tipo de Comprobante</text-property>
+                            <text-property name="text">Numero de Constancia</text-property>
                         </label>
                     </cell>
                     <cell id="2499">
                         <label id="2578">
                             <property name="textAlign">right</property>
-                            <text-property name="text">Letra Comprobante</text-property>
+                            <text-property name="text">Fecha de la Retencion</text-property>
                         </label>
                     </cell>
                     <cell id="2500">
                         <label id="2580">
                             <property name="textAlign">right</property>
-                            <text-property name="text">Numero Comprobante</text-property>
+                            <text-property name="text">Fecha del Comprobante</text-property>
                         </label>
                     </cell>
                     <cell id="2501">
                         <label id="2582">
                             <property name="textAlign">right</property>
-                            <text-property name="text">Importe Base</text-property>
+                            <text-property name="text">Tipo de Comprobante</text-property>
                         </label>
                     </cell>
                     <cell id="2502">
                         <label id="2584">
                             <property name="textAlign">right</property>
-                            <text-property name="text">Alicuota</text-property>
+                            <text-property name="text">Letra Comprobante</text-property>
                         </label>
                     </cell>
                     <cell id="2503">
                         <label id="2586">
                             <property name="textAlign">right</property>
-                            <text-property name="text">Importe Percibido</text-property>
+                            <text-property name="text">Numero Comprobante</text-property>
                         </label>
                     </cell>
                     <cell id="2604">
                         <label id="2620">
                             <property name="textAlign">right</property>
-                            <text-property name="text">Anulacion</text-property>
+                            <text-property name="text">Importe Base</text-property>
                         </label>
                     </cell>
                     <cell id="2616">
                         <label id="2622">
                             <property name="textAlign">right</property>
-                            <text-property name="text">Contribuyente Conv. Multilateral</text-property>
+                            <text-property name="text">Alicuota</text-property>
                         </label>
-                    </cell>                   
-                </row>
+                    </cell>
+                    <cell id="2612">
+                        <label id="2624">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Importe Retenido</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2608">
+                        <label id="2626">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Anulacion</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2504">
+                        <label id="2588">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Contribuyente Conv Multilateral</text-property>
+                        </label>
+                    </cell>
             </header>
             <detail>
                 <row id="2512">
                     <cell id="2513">
                         <data id="2569">
                             <property name="textAlign">left</property>
-                            <property name="resultSetColumn">TipoDeAgente</property>
+                            <property name="resultSetColumn">RazonSocial</property>
                         </data>
                     </cell>
                     <cell id="2514">
                         <data id="2571">
                             <property name="textAlign">left</property>
-                            <property name="resultSetColumn">MotivoMovimiento</property>
+                            <property name="resultSetColumn">Cuit</property>
                         </data>
                     </cell>
                     <cell id="2515">
                         <data id="2573">
                             <property name="textAlign">left</property>
-                            <property name="resultSetColumn">Cuit</property>
+                            <property name="resultSetColumn">TipoAgente</property>
                         </data>
                     </cell>
                     <cell id="2516">
                         <data id="2575">
                             <property name="textAlign">right</property>
-                            <property name="resultSetColumn">FechaPercepcion</property>
+                            <property name="resultSetColumn">MotivoMovimiento</property>
                         </data>
                     </cell>
                     <cell id="2517">
                         <data id="2577">
                             <property name="textAlign">right</property>
-                            <property name="resultSetColumn">TipoDeComprobante</property>
+                            <property name="resultSetColumn">NumeroConstancia</property>
                         </data>
                     </cell>
                     <cell id="2518">
                         <data id="2579">
                             <property name="textAlign">right</property>
-                            <property name="resultSetColumn">LetraComprobante</property>
+                            <property name="resultSetColumn">FechaRetencion</property>
                         </data>
                     </cell>
                     <cell id="2519">
                         <data id="2581">
                             <property name="textAlign">right</property>
-                            <property name="resultSetColumn">NumeroComprobante</property>
+                            <property name="resultSetColumn">FechaComprobante</property>
                         </data>
                     </cell>
                     <cell id="2520">
                         <data id="2583">
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">TipoComprobante</property>
+                        </data>
+                    </cell>
+                    <cell id="2521">
+                        <data id="2585">
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">LetraComprobante</property>
+                        </data>
+                    </cell>
+                    <cell id="2522">
+                        <data id="2587">
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">NumeroComprobante</property>
+                        </data>
+                    </cell>
+                    <cell id="2605">
+                        <data id="2621">
                             <structure name="numberFormat">
                                 <property name="category">Currency</property>
                                 <property name="pattern">#,##0.00</property>
@@ -466,40 +556,38 @@
                             <property name="resultSetColumn">ImporteBase</property>
                         </data>
                     </cell>
-                    <cell id="2521">
-                        <data id="2585">
+                    <cell id="2617">
+                        <data id="2623">
                             <property name="textAlign">right</property>
                             <property name="resultSetColumn">Alicuota</property>
                         </data>
                     </cell>
-                    <cell id="2522">
-                        <data id="2587">
+                    <cell id="2613">
+                        <data id="2625">
                             <structure name="numberFormat">
                                 <property name="category">Currency</property>
                                 <property name="pattern">#,##0.00</property>
                             </structure>
                             <property name="textAlign">right</property>
-                            <property name="resultSetColumn">ImportePercibido</property>
+                            <property name="resultSetColumn">ImporteRetenido</property>
                         </data>
                     </cell>
-                    <cell id="2605">
-                        <data id="2621">
+                    <cell id="2609">
+                        <data id="2627">
                             <property name="textAlign">right</property>
                             <property name="resultSetColumn">Anulacion</property>
                         </data>
                     </cell>
-                    <cell id="2617">
-                        <data id="2623">
+                    <cell id="2523">
+                        <data id="2589">        
                             <property name="textAlign">right</property>
                             <property name="resultSetColumn">ContribuyenteConvMultilateral</property>
                         </data>
-                    </cell>
-                   
-                </row>
+                    </cell>          
             </detail>
             <footer>
                 <row id="2531">
-                    <cell id="2532"/>
+                <cell id="2532"/>
                     <cell id="2533"/>
                     <cell id="2534"/>
                     <cell id="2535"/>
@@ -511,7 +599,9 @@
                     <cell id="2541"/>
                     <cell id="2606"/>
                     <cell id="2618"/>
-       
+                    <cell id="2614"/>
+                    <cell id="2610"/>
+                    <cell id="2542"/>                  
                 </row>
             </footer>
         </table>
