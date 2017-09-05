@@ -16,37 +16,8 @@
             <property name="fileName">css/EstiloBase.css</property>
         </structure>
     </list-property>
-    <parameters>
-        <scalar-parameter name="Libro" id="2490">
-            <property name="valueType">static</property>
-            <property name="dataType">integer</property>
-            <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="constant">84</value>
-            </simple-property-list>
-            <property name="paramType">simple</property>
-            <property name="controlType">text-box</property>
-            <structure name="format">
-                <property name="category">Unformatted</property>
-            </structure>
-        </scalar-parameter>
-        <scalar-parameter name="TipoDeLibro" id="2491">
-            <property name="valueType">static</property>
-            <property name="dataType">integer</property>
-            <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="constant">1</value>
-            </simple-property-list>
-            <property name="paramType">simple</property>
-            <property name="controlType">text-box</property>
-            <structure name="format">
-                <property name="category">Unformatted</property>
-            </structure>
-        </scalar-parameter>
-    </parameters>
     <data-sources>
-        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Base" id="186"
- extends="ConectorDB.DataSource">
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Base" id="186" extends="ConectorDB.DataSource">
             <list-property name="privateDriverProperties">
                 <ex-property>
                     <name>contentBidiFormatStr</name>
@@ -61,16 +32,6 @@
     </data-sources>
     <data-sets>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Datos" id="2489">
-            <list-property name="parameters">
-                <structure>
-                    <property name="name">Libro</property>
-                    <property name="paramName">Libro</property>
-                    <property name="dataType">integer</property>
-                    <property name="position">1</property>
-                    <property name="isInput">true</property>
-                    <property name="isOutput">false</property>
-                </structure>
-            </list-property>
             <structure name="cachedMetaData">
                 <list-property name="resultSet">
                     <structure>
@@ -84,11 +45,11 @@
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                             <structure>
                         <property name="position">3</property>
                         <property name="name">RazonSocial</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
                         <property name="position">4</property>
                         <property name="name">Cuit</property>
                         <property name="dataType">string</property>
@@ -101,12 +62,12 @@
                     <structure>
                         <property name="position">6</property>
                         <property name="name">FechaRetencion</property>
-                        <property name="dataType">date</property>
+                        <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">7</property>
                         <property name="name">FechaComprobante</property>
-                        <property name="dataType">date</property>
+                        <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">8</property>
@@ -148,7 +109,6 @@
                         <property name="name">ContribuyenteConvMultilateral</property>
                         <property name="dataType">integer</property>
                     </structure>
-                   
                 </list-property>
             </structure>
             <property name="dataSource">Base</property>
@@ -166,12 +126,12 @@
                     <property name="dataType">integer</property>
                 </structure>
                 <structure>
-                         <structure>
                     <property name="position">3</property>
                     <property name="name">RazonSocial</property>
                     <property name="nativeName">RazonSocial</property>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
                     <property name="position">4</property>
                     <property name="name">Cuit</property>
                     <property name="nativeName">Cuit</property>
@@ -187,13 +147,13 @@
                     <property name="position">6</property>
                     <property name="name">FechaRetencion</property>
                     <property name="nativeName">FechaRetencion</property>
-                    <property name="dataType">date</property>
+                    <property name="dataType">string</property>
                 </structure>
                 <structure>
                     <property name="position">7</property>
                     <property name="name">FechaComprobante</property>
                     <property name="nativeName">FechaComprobante</property>
-                    <property name="dataType">date</property>
+                    <property name="dataType">string</property>
                 </structure>
                 <structure>
                     <property name="position">8</property>
@@ -223,7 +183,7 @@
                     <property name="position">12</property>
                     <property name="name">Alicuota</property>
                     <property name="nativeName">Alicuota</property>
-                    <property name="dataType">integer</property>
+                    <property name="dataType">decimal</property>
                 </structure>
                 <structure>
                     <property name="position">13</property>
@@ -235,17 +195,53 @@
                     <property name="position">14</property>
                     <property name="name">Anulacion</property>
                     <property name="nativeName">Anulacion</property>
-                    <property name="dataType">integer</property>
+                    <property name="dataType">string</property>
                 </structure>
                 <structure>
                     <property name="position">15</property>
                     <property name="name">ContribuyenteConvMultilateral</property>
                     <property name="nativeName">ContribuyenteConvMultilateral</property>
-                    <property name="dataType">integer</property>
+                    <property name="dataType">string</property>
                 </structure>
                
             </list-property>
-            <xml-property name="queryText"><![CDATA[call SIAGER_exportador_Retenciones(?)]]></xml-property>
+            <xml-property name="queryText"><![CDATA[
+SELECT
+    '2' AS TipoAgente,
+    '24' AS MotivoMovimiento,
+    P.RazonSocial,
+    LPAD( REPLACE( P.Cuit ,'-','') ,11,'0') AS Cuit,
+    LPAD( CONCAT(CR.Periodo,CR.Numero),12,'0') AS NumeroConstancia,
+    C2.FechaEmision AS FechaRetencion,
+    C.FechaEmision  AS FechaComprobante,
+    LPAD(TC.Siager,6,' ') AS TipoComprobante,
+    CASE
+    WHEN (TC.TipoDeLetra = 1) THEN 'A'
+    WHEN (TC.TipoDeLetra = 2) THEN 'B'
+    WHEN (TC.TipoDeLetra = 3) THEN 'C'
+    WHEN (TC.TipoDeLetra = 5) THEN 'M'
+    ELSE ' '
+    END AS LetraComprobante,
+    CONCAT(LPAD(C.Punto,4,'0'),LPAD(C.Numero,8,'0')) AS NumeroComprobante,
+    LPAD( ABS( TRUNCATE (C2.MontoImponible,2)),15,'0') AS ImporteBase,
+    LPAD( ABS( TRUNCATE (C2.ConceptoImpositivoPorcentaje,2)),6,'0') AS Alicuota,
+    LPAD( ABS( TRUNCATE (C2.Monto,2)),15,'0') AS ImporteRetenido,
+    'No' AS Anulacion,
+    CASE WHEN P.TipoInscripcionIB = 3 THEN 'Sí' ELSE 'No' END AS ContribuyenteConvMultilateral
+FROM Comprobantes C2
+INNER JOIN ConceptosImpositivos CI    ON C2.ConceptoImpositivo = CI.Id
+INNER JOIN Comprobantes C             ON C.Id                  = C2.ComprobantePadre
+INNER JOIN TiposDeComprobantes  TC    ON C.TipoDeComprobante   = TC.Id
+INNER JOIN ComprobantesRetenciones CR ON CR.Comprobante        = C2.Id AND CR.ComprobantePadre = C.Id
+INNER JOIN Personas P                 ON P.Id                  = C.Persona
+WHERE C2.FechaEmision BETWEEN STR_TO_DATE(CONCAT("{PERIODO}",'-01'), '%Y-%m-%d') AND STR_TO_DATE(LAST_DAY(CONCAT("{PERIODO}",'-01')), '%Y-%m-%d')
+  AND C.Cerrado = 1
+  AND CI.EsRetencion    = 1
+  AND CI.TipoDeConcepto = 3
+  AND CI.ParaAplicativo = 'SIAGER'
+  AND IFNULL(C.Anulado,0) <> 1
+ORDER BY C.FechaEmision
+]]></xml-property>
         </oda-data-set>
     </data-sets>
     <styles>
@@ -352,7 +348,7 @@
                 <structure>
                     <property name="name">Alicuota</property>
                     <expression name="expression" type="javascript">dataSetRow["Alicuota"]</expression>
-                    <property name="dataType">integer</property>
+                    <property name="dataType">decimal</property>
                 </structure>
                 <structure>
                     <property name="name">ImporteRetenido</property>
@@ -362,15 +358,15 @@
                 <structure>
                     <property name="name">Anulacion</property>
                     <expression name="expression" type="javascript">dataSetRow["Anulacion"]</expression>
-                    <property name="dataType">integer</property>
+                    <property name="dataType">string</property>
                 </structure>
                 <structure>
                     <property name="name">ContribuyenteConvMultilateral</property>
                     <expression name="expression" type="javascript">dataSetRow["ContribuyenteConvMultilateral"]</expression>
-                    <property name="dataType">integer</property>
+                    <property name="dataType">string</property>
                 </structure>             
             </list-property>
-       <column id="2550"/>
+            <column id="2550"/>
             <column id="2551"/>
             <column id="2552"/>
             <column id="2553"/>
@@ -380,12 +376,6 @@
             <column id="2557"/>
             <column id="2558"/>
             <column id="2559"/>
-            <column id="2607"/>
-            <column id="2619"/>
-            <column id="2615"/>
-            <column id="2611"/>
-            <column id="2560"/>
-            <column id="2561"/>        
             <header>
                 <row id="2493">
                     <cell id="2494">
@@ -400,18 +390,6 @@
                             <text-property name="text">Cuit</text-property>
                         </label>
                     </cell>
-                    <cell id="2496">
-                        <label id="2572">
-                            <property name="textAlign">left</property>
-                            <text-property name="text">Tipo de Agente</text-property>
-                        </label>
-                    </cell>
-                    <cell id="2497">
-                        <label id="2574">
-                            <property name="textAlign">right</property>
-                            <text-property name="text">Motivo de Movimiento</text-property>
-                        </label>
-                    </cell>
                     <cell id="2498">
                         <label id="2576">
                             <property name="textAlign">right</property>
@@ -424,22 +402,10 @@
                             <text-property name="text">Fecha de la Retencion</text-property>
                         </label>
                     </cell>
-                    <cell id="2500">
-                        <label id="2580">
-                            <property name="textAlign">right</property>
-                            <text-property name="text">Fecha del Comprobante</text-property>
-                        </label>
-                    </cell>
                     <cell id="2501">
                         <label id="2582">
                             <property name="textAlign">right</property>
                             <text-property name="text">Tipo de Comprobante</text-property>
-                        </label>
-                    </cell>
-                    <cell id="2502">
-                        <label id="2584">
-                            <property name="textAlign">right</property>
-                            <text-property name="text">Letra Comprobante</text-property>
                         </label>
                     </cell>
                     <cell id="2503">
@@ -466,18 +432,13 @@
                             <text-property name="text">Importe Retenido</text-property>
                         </label>
                     </cell>
-                    <cell id="2608">
-                        <label id="2626">
-                            <property name="textAlign">right</property>
-                            <text-property name="text">Anulacion</text-property>
-                        </label>
-                    </cell>
                     <cell id="2504">
                         <label id="2588">
                             <property name="textAlign">right</property>
                             <text-property name="text">Contribuyente Conv Multilateral</text-property>
                         </label>
                     </cell>
+                </row>
             </header>
             <detail>
                 <row id="2512">
@@ -493,18 +454,6 @@
                             <property name="resultSetColumn">Cuit</property>
                         </data>
                     </cell>
-                    <cell id="2515">
-                        <data id="2573">
-                            <property name="textAlign">left</property>
-                            <property name="resultSetColumn">TipoAgente</property>
-                        </data>
-                    </cell>
-                    <cell id="2516">
-                        <data id="2575">
-                            <property name="textAlign">right</property>
-                            <property name="resultSetColumn">MotivoMovimiento</property>
-                        </data>
-                    </cell>
                     <cell id="2517">
                         <data id="2577">
                             <property name="textAlign">right</property>
@@ -517,22 +466,10 @@
                             <property name="resultSetColumn">FechaRetencion</property>
                         </data>
                     </cell>
-                    <cell id="2519">
-                        <data id="2581">
-                            <property name="textAlign">right</property>
-                            <property name="resultSetColumn">FechaComprobante</property>
-                        </data>
-                    </cell>
                     <cell id="2520">
                         <data id="2583">
                             <property name="textAlign">right</property>
                             <property name="resultSetColumn">TipoComprobante</property>
-                        </data>
-                    </cell>
-                    <cell id="2521">
-                        <data id="2585">
-                            <property name="textAlign">right</property>
-                            <property name="resultSetColumn">LetraComprobante</property>
                         </data>
                     </cell>
                     <cell id="2522">
@@ -567,22 +504,17 @@
                             <property name="resultSetColumn">ImporteRetenido</property>
                         </data>
                     </cell>
-                    <cell id="2609">
-                        <data id="2627">
-                            <property name="textAlign">right</property>
-                            <property name="resultSetColumn">Anulacion</property>
-                        </data>
-                    </cell>
                     <cell id="2523">
                         <data id="2589">        
                             <property name="textAlign">right</property>
                             <property name="resultSetColumn">ContribuyenteConvMultilateral</property>
                         </data>
-                    </cell>          
+                    </cell>
+                </row>     
             </detail>
             <footer>
                 <row id="2531">
-                <cell id="2532"/>
+                    <cell id="2532"/>
                     <cell id="2533"/>
                     <cell id="2534"/>
                     <cell id="2535"/>
@@ -592,12 +524,6 @@
                     <cell id="2539"/>
                     <cell id="2540"/>
                     <cell id="2541"/>
-                    <cell id="2606"/>
-                    <cell id="2618"/>
-                    <cell id="2614"/>
-                    <cell id="2610"/>
-                    <cell id="2542"/>
-                  
                 </row>
             </footer>
         </table>
