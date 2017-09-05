@@ -254,10 +254,10 @@ ORDER BY C.FechaEmision
         </style>
     </styles>
     <page-setup>
-        <simple-master-page name="NewSimpleMasterPage" id="2488">
-            <property name="type">custom</property>
-            <property name="height">40in</property>
-            <property name="width">40in</property>
+        <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie">
+            <property name="type">us-legal</property>
+             <property name="leftMargin">0.15in</property>
+            <property name="rightMargin">0.15in</property>
             <property name="orientation">landscape</property>
         </simple-master-page>
     </page-setup>
