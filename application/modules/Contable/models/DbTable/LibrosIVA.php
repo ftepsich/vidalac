@@ -137,23 +137,7 @@ class Contable_Model_DbTable_LibrosIVA extends Rad_Db_Table
             throw new Rad_Db_Table_Exception('No se encuentra el libro de IVA a exportar o no tiene registros.');
         }
         return $R;
-    }
-    
-    public function exportadorSIAGER($idLibro,$idTipoDeLibro){
-        switch ($idTipoDeLibro) {
-            case 1:
-                $sql = "call SIAGER_exportador_Retenciones($idLibro, $idTipoDeLibro)";
-                break;
-            case 2:
-                $sql = "call SIAGER_exportador_Percepciones($idLibro, $idTipoDeLibro)";
-                break;
-            throw new Rad_Db_Table_Exception('No existe el libro seleccionado.');
-                break;
-        }
-        $reporte = $this->_db->fetchAll($sql);
-        return $reporte;
-    }
-	
+    }	
     /**
      * Retorna el contienido de un libro de iva con el formato pedido por AFIP
      * ---------

@@ -26,19 +26,26 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
         $where = array();
         if ( $param['libro']) $where[] = "UnionLibroIVA.LibroIVA = {$param['libro']}";
         if ( $param['tipo'])  $where[] = "UnionLibroIVA.TipoDeLibro = {$param['tipo']}";
+
         $where = implode (' and ',$where);
+
         return $where;
     }
 
     public function verreporteAction ()
     {
         $this->_helper->viewRenderer->setNoRender(true);
+
         $report     = new Rad_BirtEngine();
+
         $rq         = $this->getRequest();
+
         $db         = Zend_Registry::get('db');
+
         $param['libro']  = $db->quote($rq->libro, 'INTEGER');
         $param['tipo']   = $db->quote($rq->tipo, 'INTEGER');
         $param['modelo'] = $db->quote($rq->modelo, 'INTEGER');
+
         $idLibro = '';
 
         if ($param['tipo'] == 1) {
@@ -62,31 +69,18 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
             // $test para que en el nombre ponga test cuando no lo hagan como Afip pide
             $test       = ($param['modelo'] == 6 || $param['modelo'] == 7) ? "" : "__TEST__";
             $datos      = $M->exportadorAFIPres3685 ($param['libro'], $param['tipo'], $parte, $forma);
-            $e          = new FileExport(FileExport::MODE_SEPARATOR);
-            $e->setLineEnd("\n");
-            $e->addAll($datos);
-              $contenido  = str_replace("\n\n","",$e->getContent());
             
+            $e          = new FileExport(FileExport::MODE_SEPARATOR);
+            $e->setLineEnd("\r\n");
+            $e->addAll($datos);
+            $contenido  = str_replace("\r\n\r\n","\r\n",$e->getContent());
+
             $R = $M->find($param['libro'])->current();
             $Nombre = $R->Anio."-".str_pad($R->Mes,2,'0',STR_PAD_LEFT). "_" .$test.$Nombre.$alicuota."_".date('YmdHis').".txt";
 
             header("Content-disposition: attachment; filename=$Nombre");
             header("Content-type: text/csv");
             echo $contenido;
-        }
-        
-         if ($param['modelo'] == 10 || $param['modelo'] == 11) { // SIAGER Retenciones / Percepciones
-           $M     = new Contable_Model_DbTable_LibrosIVA();
-           $datos = $M->exportadorSIAGER($param['libro'], $param['tipo']);
-           $e     = new FileExport(FileExport::MODE_SEPARATOR);
-           $e->setLineEnd("\r\n");
-           $e->addAll($datos);
-           $contenido  = str_replace("\n\n","",$e->getContent());
-           $R = $M->find($param['libro'])->current();
-           $Nombre = $R->Anio."-".str_pad($R->Mes,2,'0',STR_PAD_LEFT). "_SIAGER_".( ($param['modelo'] == 10) ? "Retenciones" : "Percepciones")."_".date('YmdHis').".txt";
-           header("Content-disposition: attachment; filename=$Nombre");
-           header("Content-type: text/csv");
-           echo $contenido;
         }
 
         if ($param['modelo'] == 3 || $param['modelo'] == 4) {
@@ -100,11 +94,11 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
                 // Valor absoluto, decimal con coma
                 $formatoSalida = function($e){
                     return str_replace('.',',',abs($e));
+                };
 
-            };
-             } else {
+            } else {
                 $Nombre = $Nombre . "__paraControl_NoValido_AFIP__";
-                // decimal con coma
+                // desimal con coma
                 $formatoSalida = function($e){
                     return str_replace('.',',',$e);
                 };
@@ -128,9 +122,12 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
                 )
             );
             $e->addAll($datos);
-            $contenido = $e->getContent();         
+
+            $contenido = $e->getContent();
+            
             $R = $M->find($param['libro'])->current();
             $Nombre = $Nombre . "_" . str_pad($R->Mes,2,'0',STR_PAD_LEFT) . "_" . $R->Anio . ".CSV";
+
             header("Content-disposition: attachment; filename=$Nombre");
             header("Content-type: text/csv");
             echo $contenido;
@@ -179,8 +176,10 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
                     $file = APPLICATION_PATH . "/../birt/Reports/Exportador_Rep_LibrosIVA_Retenciones_Percepciones.rptdesign";
                     break;
                 case 15:
+                    // $idLibro = $param['libro'];
                     $texto = "Detalle Libro de IVA $tTipo periodo $tPeriodo";
                     $formato = 'xls';
+                    // $report = new Rad_BirtEngine();
                     $report->setParameter('Libro', $param['libro'], 'Int');
                     $report->setParameter('TipoDeLibro', $param['tipo'], 'Int');
                     $file = APPLICATION_PATH . "/../birt/Reports/Exportador_Rep_LibrosIVA_Detalles.rptdesign";
@@ -205,11 +204,16 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action
             $report->renderFromFile($file, $formato, array(
                 'TEXTO'   => $texto,
                 'WHERE'   => $where,
-                'IDLIBRO' => $idLibro
+                'IDLIBRO' => $idLibro,
+                'TIPOLIBRO' => $param['tipo']
             ));
+
             $nombreRep      = str_replace(  array(" ","/"), array("_","-") , $texto);
             $NombreReporte  = 'Reporte_'.$nombreRep."_".date('YmdHis');
+
             $report->sendStream($NombreReporte);
+
         }
+
     }
 }
