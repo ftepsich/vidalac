@@ -108,7 +108,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     fieldLabel: 'Formato',
                     width: 150,
                     items: [
-                        { boxLabel: 'TXT', name: 'formato', inputValue: 'pdf'},
+                        { boxLabel: 'TXT', name: 'formato', inputValue: 'txt'},
                         { boxLabel: 'PDF', name: 'formato', inputValue: 'pdf'},
                         { boxLabel: 'Excel', name: 'formato', inputValue: 'xls' }
                     ]
