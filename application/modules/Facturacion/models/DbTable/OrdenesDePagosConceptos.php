@@ -79,7 +79,7 @@ class Facturacion_Model_DbTable_OrdenesDePagosConceptos extends Facturacion_Mode
                 $data['ConceptoImpositivoPorcentaje'] = $this->recuperarPorcentajeConcepto($data['Persona'], $data['ConceptoImpositivo']);
             }
             
-            $data['FechaEmision'] = date('Y-m-d');
+           // $data['FechaEmision'] = date('Y-m-d');
 
             // Aunque no quede monto Imponible inserto igual
             if ($MontoImponible > 0.00001) {
