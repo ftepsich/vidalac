@@ -298,6 +298,37 @@ class Facturacion_OrdenesDePagosController extends Rad_Window_Controller_Action
         );
         $this->view->gridCuponesTarjetas = $tarjetasDeCredito;
         unset($config);
+        
+         /**
+         * Pagos con Tarjetas de Credito
+         */
+        $config->title = 'Compensaciones';
+   
+        $config->buildToolbar = new Zend_Json_Expr("function() {
+            var id = this.getId();
+            this.tbar = new Ext.Toolbar({
+                items:[{
+                    text:     'Cargar Compensaciones',
+                    iconCls:  'add',
+                    handler:  function() {
+                        this.publish('/desktop/modules/Window/abm/index/m/Facturacion/model/FacturasCompras', { action: 'launch' });
+                    },
+                    scope:    this,
+                }]
+            });
+        }");
+
+        $config->ddText    = '{0} Compensacion(s) seleccionada(s)';
+
+        $config->loadAuto  = false;
+        $compensaciones = $this->view->radGrid(
+            'Facturacion_Model_DbTable_FacturasCompras',
+            $config,
+            null,
+            'salida'
+        );
+        $this->view->gridFacturasCompras = $compensaciones;
+        unset($config);
 
     }
 
@@ -405,6 +436,25 @@ class Facturacion_OrdenesDePagosController extends Rad_Window_Controller_Action
         try {
             $pagos     = new Facturacion_Model_DbTable_OrdenesDePagosDetalles;
             $respuesta = $pagos->insertPagosTarjeta($idOrdenDePago, $idCupones);
+            $respuesta = json_encode($respuesta);
+            echo "{success: true, pagos: $respuesta}";
+        } catch (Rad_Db_Table_Exception $e) {
+            //error_log($e->getMessage());
+            echo "{success: false, msg: '" . addslashes($e->getMessage()) . "'}";
+        }
+    }
+    
+        public function agregarcompensacionAction()
+    {
+        $this->_helper->viewRenderer->setNoRender(true);
+
+        $request       = $this->getRequest();
+        $idOrdenDePago = $request->getParam('idOrdenDePago');
+        $idFacturasCompras    = $request->getParam('ids');
+
+        try {
+            $pagos     = new Facturacion_Model_DbTable_OrdenesDePagosDetalles;
+            $respuesta = $pagos->insertPagosTarjeta($idOrdenDePago, $idFacturasCompras);
             $respuesta = json_encode($respuesta);
             echo "{success: true, pagos: $respuesta}";
         } catch (Rad_Db_Table_Exception $e) {

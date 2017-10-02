@@ -167,6 +167,9 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                         this.gridTranB.loadAsDetailGrid(detailGrid, IdProveedor.getValue());
                         // cargo grilla de pagos con Tarjeta bancarias
                         this.gridCuponesTarjetas.loadAsDetailGrid(detailGrid, IdProveedor.getValue());
+                         // cargo grilla de pagos con Facturas Compras para compensaciones
+                        this.gridFacturasCompras.loadAsDetailGrid(detailGrid,IdProveedor.getValue());
+                        
                         Models.Facturacion_Model_OrdenesDePagosMapper.getTotal(IdOrdenDePago.getValue(), function(result, e) {
                             if (e.status) {
                                 this.montoAPagar = parseFloat(result).toFixed(2);
@@ -271,6 +274,8 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     case this.scope.gridCuponesTarjetas.id:
                         action = 'agregarcupontarjeta';
                         break;
+                    case this.scope.gridFacturasCompras.id:
+                        action = 'agregarcompensacion'
                 }
                 if (action != null) {
                     for(var i = 0, len = data.selections.length; i < len; i++) {
@@ -325,8 +330,14 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
         // Tarjetas de Credito
         this.gridCuponesTarjetas   = Ext.ComponentMgr.create(<?=$this->gridCuponesTarjetas?>);
         this.gridCuponesTarjetas.__suscribeToModelEvent('TarjetasDeCreditoCuponesSalientes');
+        
+        this.gridFacturasCompras = Ext.ComponentMgr.create(<?=$this->gridFacturasCompras?>);
+        this.gridFacturasCompras.__suscribeToModelEvent('Compensaciones');
         // Cantidades de Facturas Compras
         this.gridComprobantesArt = Ext.ComponentMgr.create(<?=$this->gridComprobantesArt?>);
+        
+       
+     
         // Ordenes de Pagos Detalls (pagos)
         this.gridOPD 	 = Ext.ComponentMgr.create(<?=$this->gridOPD?>);
 
@@ -417,12 +428,16 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                         }
                     ]
                 },
+
                 this.gridCheques,
                 this.gridTranB,
                 this.gridCuponesTarjetas,
-            ]
+                this.gridFacturasCompras,
+           
+           ]
         };
     },
+
 
     renderPaso2: function () {
         return {
@@ -526,6 +541,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
         this.gridCheques.store.reload();
         this.gridTranB.store.reload();
         this.gridCuponesTarjetas.store.reload();
+        this.gridFacturasCompras.store.reload();
     },
 
     refreshSaldo: function () {
