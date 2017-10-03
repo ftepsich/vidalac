@@ -298,38 +298,7 @@ class Facturacion_OrdenesDePagosController extends Rad_Window_Controller_Action
         );
         $this->view->gridCuponesTarjetas = $tarjetasDeCredito;
         unset($config);
-<<<<<<< HEAD
-=======
-        
-  
-        $config->title = 'Compensaciones';
-   
-        $config->buildToolbar = new Zend_Json_Expr("function() {
-            var id = this.getId();
-            this.tbar = new Ext.Toolbar({
-                items:[{
-                    text:     'Cargar Compensaciones',
-                    iconCls:  'add',
-                    handler:  function() {
-                        this.publish('/desktop/modules/Window/abm/index/m/Facturacion/model/FacturasCompras', { action: 'launch' });
-                    },
-                    scope:    this,
-                }]
-            });
-        }");
 
-        $config->ddText    = '{0} Compensacion(s) seleccionada(s)';
-
-        $config->loadAuto  = false;
-        $compensaciones = $this->view->radGrid(
-            'Facturacion_Model_DbTable_FacturasCompras',
-            $config,
-            null,
-            'salida'
-        );
-        $this->view->gridFacturasCompras = $compensaciones;
-        unset($config);
->>>>>>> parent of 1fb81c7... Revert "an updated commit message"
 
     }
 
