@@ -299,7 +299,9 @@ class Facturacion_OrdenesDePagosController extends Rad_Window_Controller_Action
         $this->view->gridCuponesTarjetas = $tarjetasDeCredito;
         unset($config);
         
-  
+         /**
+         * Pagos con Tarjetas de Credito
+         */
         $config->title = 'Compensaciones';
    
         $config->buildToolbar = new Zend_Json_Expr("function() {
