@@ -21,7 +21,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table
      * @var string
      */
     protected $_name = "CuentasCorrientes";
-
+    protected $_sort = array ('FechaComprobante ASC');
     /**
      * Mapa de referencias
      * @var array
@@ -110,8 +110,8 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table
                 $asiento->Haber = $row->getTable()->recuperarMontoTotal($row->Id);
                 $asiento->Debe  = 0;
                 if ( $row->EsProveedor == 1 ) {
-                    $asiento->Haber = 0;
                     $asiento->Debe  = $row->getTable()->recuperarMontoTotal($row->Id);
+                    $asiento->Haber = 0;
                 }
                 break;
 
@@ -120,8 +120,8 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table
                 $asiento->Haber = 0;
                 $asiento->Debe  = $row->getTable()->recuperarMontoTotal($row->Id);
                 if ( $row->EsCliente == 1 ) {
-                    $asiento->Haber = $row->getTable()->recuperarMontoTotal($row->Id);
-                    $asiento->Debe  = 0;
+                    $asiento->Debe = $row->getTable()->recuperarMontoTotal($row->Id);
+                    $asiento->Haber  = 0;
                 }
                 break;
 
@@ -154,8 +154,8 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table
                 $asiento->Haber = $row->getTable()->recuperarMontoTotal($row->Id);
                 $asiento->Debe  = 0;
                 if ( $row->EsCliente == 1 ) {
-                    $asiento->Haber = 0;
-                    $asiento->Debe  = $row->getTable()->recuperarMontoTotal($row->Id);
+                    $asiento->Haber  = $row->getTable()->recuperarMontoTotal($row->Id);
+                    $asiento->Debe = 0;
                 }
                 break;
 
@@ -207,7 +207,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table
                             FROM        TiposDeComprobantes TC
                             WHERE       (
                                         (TC.Grupo IN (6,7,11,12) and TC.Id not in (65,66))
-                                        OR (`TC`.`Id` IN (72,73,74,75,76,82,83,84,85,86))
+                                        OR (`TC`.`Id` IN (41,72,73,74,75,76,82,83,84,85,86))
                                         OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci like '%Saldo s/Recibo%')
                                         )
                     )";
