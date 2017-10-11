@@ -206,7 +206,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table
                             SELECT      TC.Id
                             FROM        TiposDeComprobantes TC
                             WHERE       (
-                                        (TC.Grupo IN (6,7,11,12) and TC.Id not in (65,66))
+                                        (TC.Grupo IN (6,7,11,12,13) and TC.Id not in (65,66))
                                         OR (`TC`.`Id` IN (41,72,73,74,75,76,82,83,84,85,86))
                                         OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci like '%Saldo s/Recibo%')
                                         )
@@ -221,8 +221,8 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table
                             SELECT      TC.Id
                             FROM        TiposDeComprobantes TC
                             WHERE       (
-                                        TC.Grupo in (1,8,9,13)
-                                        OR (`TC`.`Id` IN (67,68,69,70,71,77,78,79,80,81))
+                                        TC.Grupo in (1,8,9)
+                                        OR (`TC`.`Id` IN (29,67,68,69,70,71,77,78,79,80,81))
                                         OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci like '%Saldo s/Orden de Pago%')
                                         )
                     )";
