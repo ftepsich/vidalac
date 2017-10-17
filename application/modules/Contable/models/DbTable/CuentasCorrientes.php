@@ -47,12 +47,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table
         )
     );
 
-    public function init()
-    {
-        parent::init();
-        $this->_defaultValues['EsCliente']   = 0;
-        $this->_defaultValues['EsProveedor'] = 0;
-    }
+
     /**
      * Modelos dependientes
      * @var array
@@ -214,7 +209,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table
                             SELECT      TC.Id
                             FROM        TiposDeComprobantes TC
  			    WHERE       (
-					(TC.Grupo IN (6,7,11,12,13) and TC.Id not in (65,66) and CuentasCorrientes.EsProveedor = 0 or CuentasCorrientes.EsCliente = 1)
+					(TC.Grupo IN (6,7,11,12,13) and TC.Id not in (65,66))
                                         OR (`TC`.`Id` IN (72,73,74,75,76,82,83,84,85,86))
                                         OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci like '%Saldo s/Recibo%')
                                         )
@@ -229,7 +224,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table
                             SELECT      TC.Id
                             FROM        TiposDeComprobantes TC
 			    WHERE       (
-                                        (TC.Grupo in (1,7,8,9,13) and CuentasCorrientes.EsCliente = 0 or CuentasCorrientes.EsProveedor = 1)
+                                        (TC.Grupo in (1,7,8,9,13))
                                         OR (`TC`.`Id` IN (67,68,69,70,71,77,78,79,80,81))
                                         OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci like '%Saldo s/Orden de Pago%')
                                         )
