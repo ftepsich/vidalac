@@ -21,6 +21,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table
      * @var string
      */
     protected $_name = "CuentasCorrientes";
+    protected $_where = array ('Descripcion,TipoDeComprobante,FechaComprobante,Debe,Haber');
     protected $_sort = array ('FechaComprobante ASC');
     /**
      * Mapa de referencias
@@ -45,7 +46,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table
             'refTable' => 'TiposDeComprobantes',
             'refColumns' => 'Id',
         )
-    );
+             );
 
 
     /**
@@ -162,6 +163,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table
                 break;
 
         }
+
         $this->delete("Comprobante = $row->Id");
 
         if ($asiento->Haber || $asiento->Debe) {
@@ -206,13 +208,14 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table
     public function fetchCuentaCorrienteComoCliente ($where = null, $order = null, $count = null, $offset = null)
     {
         $condicion  = "CuentasCorrientes.TipoDeComprobante in (
-                            SELECT      TC.Id
-                            FROM        TiposDeComprobantes TC
- 			    WHERE       (
-					(TC.Grupo IN (6,7,11,12,13) and TC.Id not in (65,66))
-                                        OR (`TC`.`Id` IN (72,73,74,75,76,82,83,84,85,86))
+                            SELECT      C.Id
+                            FROM        Comprobantes C
+                            WHERE (
+                            
+					(TiposDeComprobantes.Grupo IN (6,7,11,12,13) and TiposDeComprobantes.Id not in (65,66) or EsCliente = 1 )
+                                        OR (`TiposDeComprobantes`.`Id` IN (72,73,74,75,76,82,83,84,85,86))
                                         OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci like '%Saldo s/Recibo%')
-                                        )
+                                   )     
                     )";
         $where      = $this->_addCondition($where, $condicion);
         return parent:: fetchAll($where, $order, $count, $offset);
@@ -221,11 +224,11 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table
     public function fetchCuentaCorrienteComoProveedor ($where = null, $order = null, $count = null, $offset = null)
     {
         $condicion  = "CuentasCorrientes.TipoDeComprobante in (
-                            SELECT      TC.Id
-                            FROM        TiposDeComprobantes TC
+                            SELECT      C.Id
+                            FROM        Comprobantes C
 			    WHERE       (
-                                        (TC.Grupo in (1,7,8,9,13))
-                                        OR (`TC`.`Id` IN (67,68,69,70,71,77,78,79,80,81))
+                                        (TiposDeComprobantes.Grupo in (1,7,8,9,13)  and C.EsCliente = 0 or C.EsProveedor = 1)
+                                        OR (`TiposDeComprobantes`.`Id` IN (67,68,69,70,71,77,78,79,80,81))
                                         OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci like '%Saldo s/Orden de Pago%')
                                         )
                     )";
