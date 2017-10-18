@@ -21,8 +21,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table
      * @var string
      */
     protected $_name = "CuentasCorrientes";
-    protected $_where = array ('Descripcion,TipoDeComprobante,FechaComprobante,Debe,Haber');
-    protected $_sort = array ('FechaComprobante ASC');
+
     /**
      * Mapa de referencias
      * @var array
