@@ -167,8 +167,6 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table
 
         if ($asiento->Haber || $asiento->Debe) {
             $asiento->TipoDeComprobante = $row->TipoDeComprobante;
-	    $asiento->EsCliente = $row->EsCliente;
-            $asiento->EsProveedor = $row->EsProveedor;
             $asiento->save();
         }
     }
