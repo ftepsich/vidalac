@@ -64,17 +64,19 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'TiposDeComprobantes',
             'refColumns' => 'Id',
+        ),
+            'Comprobantes' => array(
+            'columns' => 'Comprobante',
+            'refTableClass' => 'Facturacion_Model_DbTable_Comprobantes',
+            'refJoinColumns' => array('EsCliente'),
+            'comboBox' => true,
+            'comboSource' => 'datagateway/combolist',
+            'refTable' => 'Comprobantes',
+            'refColumns' => 'Id',
         )
     );
 
-    public function init() {
 
-        parent::init();
-
-        $this->_defaultValues['EsCliente'] = 0;
-
-        $this->_defaultValues['EsProveedor'] = 0;
-    }
 
     /**
 
@@ -347,13 +349,14 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
 
     public function fetchCuentaCorrienteComoCliente($where = null, $order = null, $count = null, $offset = null) {
         $condicion = "CuentasCorrientes.TipoDeComprobante in (
-                            SELECT      TC.Id
-                            FROM        TiposDeComprobantes TC
+                            SELECT      tdc.Id
+                            FROM        TiposDeComprobantes tdc
+                            JOIN        Comprobantes c
+                            ON          c.TipoDeComprobante = tdc.id
  			    WHERE       (
-					(TC.Grupo IN (6,7,11,12) and TC.Id not in (65,66) or CuentasCorrientes.EsCliente = 1)
-                                        OR (TC.Grupo = 13 and (CuentasCorrientes.EsCliente = 1 and CuentasCorrientes.EsProveedor=0))    
-                                        OR (`TC`.`Id` IN (72,73,74,75,76,82,83,84,85,86))
-                                        OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci like '%Saldo s/Recibo%')
+			    ((tdc.Grupo IN (6,7,11,12) and tdc.Id not in (65,66)) or comprobantes.EsCliente = 1) 
+                            OR (tdc.Grupo = 13 and comprobantes.EsCliente = 1) 
+                            OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci like '%Saldo s/Recibo%')
                                         )
                     )";
 
@@ -363,11 +366,13 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
 
     public function fetchCuentaCorrienteComoProveedor($where = null, $order = null, $count = null, $offset = null) {
         $condicion = "CuentasCorrientes.TipoDeComprobante in (
-                            SELECT      TC.Id
-                            FROM        TiposDeComprobantes TC
+                            SELECT      tdc.Id
+                            FROM        TiposDeComprobantes tdc
+                            JOIN        Comprobantes c
+                            ON          c.TipoDeComprobante = tdc.id
 			    WHERE       (
-                                        (TC.Grupo in (1,7,8,9,13) and CuentasCorrientes.EsCliente = 0 or CuentasCorrientes.EsProveedor = 1)
-                                        OR (`TC`.`Id` IN (67,68,69,70,71,77,78,79,80,81))
+                                        (tdc.Grupo in (1,8,9,13) and (c.EsCliente = 1 and c.EsProveedor = 0))
+                                        OR (tdc.Grupo = 7 and c.EsProveedor = 1) 
                                         OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci like '%Saldo s/Orden de Pago%')
                                         )
 
