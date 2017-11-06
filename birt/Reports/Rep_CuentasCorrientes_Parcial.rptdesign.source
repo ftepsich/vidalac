@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.21" id="1">
     <property name="createdBy">Eclipse BIRT Designer Version 2.5.2.v20100208 Build &lt;2.5.2.v20100210-0630></property>
@@ -131,9 +132,9 @@
             <xml-property name="queryText"><![CDATA[
 SELECT DISTINCT 
 P.RazonSocial AS RazonSocial,
-fNumeroCompleto(C.`Id`,'GC') AS Numero,
+fNumeroCompleto(C.`Id`,'S') AS Numero,
 C.FechaEmision AS FechaEmision,
- IFNULL(fComprobante_Monto_Total(C.Id),0) - IFNULL(fComprobante_Monto_Disponible(C.Id),0) AS Pendiente,
+0 AS Pendiente,
 IFNULL(fComprobante_Monto_Total(C.Id),0) AS Total,
 CASE WHEN IFNULL(fComprobante_Monto_Disponible(C.Id),0) = 0 THEN 'TOTAL' 
 WHEN IFNULL(fComprobante_Monto_Total(C.Id),0) - IFNULL(fComprobante_Monto_Disponible(C.Id),0) <> 0 THEN 'PARCIAL'
@@ -146,14 +147,14 @@ INNER JOIN Personas P ON C.`Persona` = P.Id
 AND C.FechaEmision <= {FECHA}
 AND CASE {TIPO} WHEN 1 THEN
     (
-    (TC.Grupo IN (6,7,11,12) AND TC.Id NOT IN (65,66))
-    OR (`TC`.`Id` IN (72,73,74,75,76,82,83,84,85,86))
+    (TC.Grupo IN (6,7,12) AND TC.Id NOT IN (65,66))
+    OR (`TC`.`Id` IN (7,72,73,74,75,76,82,83,84,85,86))
     OR (fNumeroCompleto(C.`Id`,'S')  COLLATE utf8_spanish_ci LIKE '%Saldo s/Recibo%')
     )
     WHEN 2 THEN
     (
-    (`TC`.`Grupo` IN (1,8,9,13))
-    OR (`TC`.`Id` IN (67,68,69,70,71,77,78,79,80,81))
+    (`TC`.`Grupo` IN (1,8,13))
+    OR (`TC`.`Id` IN (48,67,68,69,70,71,77,78,79,80,81))
     OR (fNumeroCompleto(C.`Id`,'S')  COLLATE utf8_spanish_ci LIKE '%Saldo s/Orden de Pago%')
     )
 END
@@ -278,7 +279,7 @@ ORDER BY P.RazonSocial,C.FechaEmision]]></xml-property>
                 <structure>
                     <property name="name">Aggregation</property>
                     <text-property name="displayName">Total</text-property>
-                    <property name="dataType">decimal</property>
+                    <property name="dataType">float</property>
                     <property name="aggregateFunction">SUM</property>
                     <list-property name="arguments">
                         <structure>

@@ -213,10 +213,15 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table
 
     public function fetchCuentaCorrienteComoCliente ($where = null, $order = null, $count = null, $offset = null)
     {
-        $condicion  = "CuentasCorrientes.TipoDeComprobante in (     
-                       (TiposDeComprobantes.Grupo IN (6,7,11,12) and TiposDeComprobantes.Id not in (65,66) and Comprobantes.EsProveedor = 0 )
-                        OR (TiposDeComprobantes.Grupo = 13 AND Comprobantes.EsCliente = 1)
-                        OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci like '%Saldo s/Recibo%')
+        $condicion  = "CuentasCorrientes.TipoDeComprobante in (
+                            SELECT      C.Id
+                            FROM        Comprobantes C
+                            WHERE (
+                            
+					(TiposDeComprobantes.Grupo IN (6,7,11,12) and TiposDeComprobantes.Id not in (65,66) and Comprobantes.EsProveedor = 0 )
+                                        OR (TiposDeComprobantes.Grupo = 13 AND Comprobantes.EsCliente = 1)
+                                        OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci like '%Saldo s/Recibo%')
+                                   )     
                     )";
         $where      = $this->_addCondition($where, $condicion);
         return parent:: fetchAll($where, $order, $count, $offset);
@@ -225,9 +230,13 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table
     public function fetchCuentaCorrienteComoProveedor ($where = null, $order = null, $count = null, $offset = null)
     {
         $condicion  = "CuentasCorrientes.TipoDeComprobante in (
-                         (TiposDeComprobantes.Grupo in (1,8,9,13) and Comprobantes.EsCliente = 0)
-                         OR (TiposDeComprobantes.Grupo = 7 AND Comprobantes.EsProveedor = 1)
-                         OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci like '%Saldo s/Orden de Pago%')
+                            SELECT      C.Id
+                            FROM        Comprobantes C
+			    WHERE       (
+                                        (TiposDeComprobantes.Grupo in (1,8,9,13) and Comprobantes.EsCliente = 0)
+                                        OR (TiposDeComprobantes.Grupo = 7 AND Comprobantes.EsProveedor = 1)
+                                        OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci like '%Saldo s/Orden de Pago%')
+                                        )
                     )";
         $where      = $this->_addCondition($where, $condicion);
         return parent:: fetchAll($where, $order, $count, $offset);
