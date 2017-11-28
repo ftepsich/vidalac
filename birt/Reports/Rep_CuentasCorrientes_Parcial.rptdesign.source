@@ -148,13 +148,12 @@ AND C.FechaEmision <= {FECHA}
 AND CASE {TIPO} WHEN 1 THEN
     (
     (TC.Grupo IN (6,7,12) AND TC.Id NOT IN (65,66))
-    OR (`TC`.`Id` IN (7,72,73,74,75,76,82,83,84,85,86))
+
     OR (fNumeroCompleto(C.`Id`,'S')  COLLATE utf8_spanish_ci LIKE '%Saldo s/Recibo%')
     )
     WHEN 2 THEN
     (
     (`TC`.`Grupo` IN (1,8,13))
-    OR (`TC`.`Id` IN (48,67,68,69,70,71,77,78,79,80,81))
     OR (fNumeroCompleto(C.`Id`,'S')  COLLATE utf8_spanish_ci LIKE '%Saldo s/Orden de Pago%')
     )
 END

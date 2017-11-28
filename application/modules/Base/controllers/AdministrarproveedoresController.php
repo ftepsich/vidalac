@@ -182,10 +182,11 @@ class Base_AdministrarProveedoresController extends Rad_Window_Controller_Action
         /**
          * Grilla Cuentas Corrientes
          */
+        $config->region = 'center';
         $config->loadAuto = false;
         $config->id = $this->getName() . '_GridCtaCteProveedoresC';
         $config->iniSection = 'conbarra';
-        $config->fetch = 'CuentaCorrienteComoCliente';
+        $config->fetch = 'CuentaCorriente';
 
         $this->view->gridCtaCteC = $this->view->radGrid(
             'Contable_Model_DbTable_CuentasCorrientes',
