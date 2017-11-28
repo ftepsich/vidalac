@@ -312,19 +312,5 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
                 echo $contenido;                
             break;
         }
-
-
-        
-
-
-
-
-        //$x = "$where -- $join";
-        //throw new Rad_Db_Table_Exception($x);
-        //throw new Rad_Db_Table_Exception(html_entity_decode($rq->filtro));
-
-
-        
-
     }
 }
