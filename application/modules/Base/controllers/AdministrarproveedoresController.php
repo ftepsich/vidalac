@@ -148,12 +148,13 @@ class Base_AdministrarProveedoresController extends Rad_Window_Controller_Action
         unset($config);
 
         /**
-         * Grillas de cta cte
+         * Grilla Cuentas Corrientes
          */
         $config->region = 'center';
         $config->loadAuto = false;
         $config->id = $this->getName() . '_GridCtaCteProveedores';
         $config->iniSection = 'conbarra';
+        $config->fetch = 'CuentaCorriente';
 
         $this->view->gridCtaCte = $this->view->radGrid(
             'Contable_Model_DbTable_CuentasCorrientes',
@@ -186,7 +187,7 @@ class Base_AdministrarProveedoresController extends Rad_Window_Controller_Action
         $config->loadAuto = false;
         $config->id = $this->getName() . '_GridCtaCteProveedoresC';
         $config->iniSection = 'conbarra';
-        $config->fetch = 'CuentaCorriente';
+        $config->fetch = 'CuentaCorrienteComoCliente';
 
         $this->view->gridCtaCteC = $this->view->radGrid(
             'Contable_Model_DbTable_CuentasCorrientes',
