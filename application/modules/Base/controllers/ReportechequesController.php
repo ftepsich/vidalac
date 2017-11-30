@@ -220,13 +220,12 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
         $param['cuentaBancariaPropia']  = ($rq->cuentaBancariaPropia)   ? $db->quote($rq->cuentaBancariaPropia, 'INTEGER')  : "";
         $param['cuentaBancariaDestino'] = ($rq->cuentaBancariaDestino)  ? $db->quote($rq->cuentaBancariaDestino, 'INTEGER') : "";
         // Fechas
-        Rad_Log::debug($rq->emisionDesde == '');
-        $param['emisionDesde']     = ($rq->emisionDesde     !== 'undefined' ) ? $db->quote($rq->emisionDesde)             : ""; 
-        $param['emisionHasta']     = ($rq->emisionHasta     !== 'undefined' ) ? $db->quote($rq->emisionHasta)             : "";
-        $param['vencimientoDesde'] = ($rq->vencimientoDesde !== 'undefined' ) ? $db->quote($rq->vencimientoDesde)         : ""; 
-        $param['vencimientoHasta'] = ($rq->vencimientoHasta !== 'undefined' ) ? $db->quote($rq->vencimientoHasta)         : "";
-        $param['cobroDesde']       = ($rq->cobroDesde       !== 'undefined' ) ? $db->quote($rq->cobroDesde)               : ""; 
-        $param['cobroHasta']       = ($rq->cobroHasta       !== 'undefined' ) ? $db->quote($rq->cobroHasta)               : "";
+        $param['emisionDesde']     = (trim($rq->emisionDesde) !== '' && $rq->emisionDesde     !== 'undefined' ) ? $db->quote($rq->emisionDesde)             : ""; 
+        $param['emisionHasta']     = (trim($rq->emisionHasta) !== '' && $rq->emisionHasta     !== 'undefined' ) ? $db->quote($rq->emisionHasta)             : "";
+        $param['vencimientoDesde'] = (trim($rq->vencimientoDesde) !== '' && $rq->vencimientoDesde !== 'undefined' ) ? $db->quote($rq->vencimientoDesde)         : ""; 
+        $param['vencimientoHasta'] = (trim($rq->vencimientoHasta) !== '' && $rq->vencimientoHasta !== 'undefined' ) ? $db->quote($rq->vencimientoHasta)         : "";
+        $param['cobroDesde']       = (trim($rq->cobroDesde) !== '' && $rq->cobroDesde       !== 'undefined' ) ? $db->quote($rq->cobroDesde)               : ""; 
+        $param['cobroHasta']       = (trim($rq->cobroHasta) !== '' && $rq->cobroHasta       !== 'undefined' ) ? $db->quote($rq->cobroHasta)               : "";
         // Estado
         $param['cobrado']          = ($rq->cobrado)          ? $db->quote($rq->cobrado, 'INTEGER')       : "";
         $param['impreso']          = ($rq->impreso)          ? $db->quote($rq->impreso, 'INTEGER')       : "";
@@ -262,7 +261,7 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
                 $where = ' where C.ChequeEstado not in (1,5) and '.$this->buildWhere($param).' '.$this->buildOrder($param);
                 $join  = $this->buildJoin($param);
                 $file  = APPLICATION_PATH . '/../birt/Reports/Rep_Cheques.rptdesign';
-                Rad_Log::debug($where);
+                //Rad_Log::debug($where);
                 $report->renderFromFile($file, $formato, 
                     array(
                         'WHERE'     => $where,
