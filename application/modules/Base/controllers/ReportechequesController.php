@@ -173,14 +173,14 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
         if ($param['terceroEmisor'])     $where[] = "C.TerceroEmisor like {$param['terceroEmisor']}";
         if ($param['cuitTerceroEmisor']) $where[] = "C.CuitTerceroEmisor like {$param['cuitTerceroEmisor']}";
         // Fechas
-        if ($param['emisionDesde'])      $where[] = "C.FechaDeEmision >= {$param['emisionDesde']}";
-        if ($param['emisionHasta'])      $where[] = "C.FechaDeEmision <= {$param['emisionHasta']}";         
-        if ($param['vencimientoDesde'])  $where[] = "C.FechaDeVencimiento >= {$param['vencimientoDesde']}";
-        if ($param['vencimientoHasta'])  $where[] = "C.FechaDeVencimiento <= {$param['vencimientoHasta']}";
+        if ($param['emisionDesde'] !== '')      $where[] = "C.FechaDeEmision >= {$param['emisionDesde']}";
+        if ($param['emisionHasta'] !== '')      $where[] = "C.FechaDeEmision <= {$param['emisionHasta']}";         
+        if ($param['vencimientoDesde'] !== '')  $where[] = "C.FechaDeVencimiento >= {$param['vencimientoDesde']}";
+        if ($param['vencimientoHasta'] !== '')  $where[] = "C.FechaDeVencimiento <= {$param['vencimientoHasta']}";
 	// Se debe suprimir la condición de búsqueda por rango de "Fecha de Cobro" es seleccionado el estado Cobrado = "NO".
         if ($param['cobrado'] && $param['cobrado'] != 2) {
-           if ($param['cobroDesde'])        $where[] = "C.FechaDeCobro >= {$param['cobroDesde']}";
-           if ($param['cobroHasta'])        $where[] = "C.FechaDeCobro <= {$param['cobroHasta']}";
+           if ($param['cobroDesde'] !== '')        $where[] = "C.FechaDeCobro >= {$param['cobroDesde']}";
+           if ($param['cobroHasta'] !== '')        $where[] = "C.FechaDeCobro <= {$param['cobroHasta']}";
         }
         // Estado
         if ($param['cobrado'] && $param['cobrado'] != 3) {
