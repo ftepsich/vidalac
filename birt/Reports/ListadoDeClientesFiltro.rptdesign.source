@@ -461,7 +461,7 @@
             </list-property>
             <xml-property name="queryText"><![CDATA[SELECT Personas.Id,Personas.RazonSocial,Personas.Denominacion,Personas.FechaDeAlta,Personas.Cuit,ModalidadesIVA.Descripcion
 FROM Personas 
-LEFT JOIN ModalidadesIVA ON ModalidadesIVA.Id = Personas.ModalidadIva {WHERE}]]></xml-property>
+LEFT JOIN ModalidadesIVA ON ModalidadesIVA.Id = Personas.ModalidadIva {WHERE} ORDER BY Personas.RazonSocial ASC]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>1.0</Version>
