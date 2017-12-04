@@ -193,7 +193,7 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
         if ($param['vencimientoDesde'])  $where[] = "C.FechaDeVencimiento >= {$param['vencimientoDesde']}";
         if ($param['vencimientoHasta'])  $where[] = "C.FechaDeVencimiento <= {$param['vencimientoHasta']}";
         if ($param['cobroDesde'])        $where[] = "C.FechaDeCobro >= {$param['cobroDesde']}";
-        if ($param['cobroHasta'])        $where[] = "C.FechaDeCobro <= {$param['cobroHasta']}"; 
+        if ($param['cobroHasta'])        $where[] = "C.FechaDeCobro <= {$param['cobroHast']}"; 
 
         // Estado
         if ($param['cobrado'] && $param['cobrado'] != 3) {
