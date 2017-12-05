@@ -177,15 +177,29 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
         if ($param['emisionHasta'] !== '')      $where[] = "C.FechaDeEmision <= {$param['emisionHasta']}";         
         if ($param['vencimientoDesde'] !== '')  $where[] = "C.FechaDeVencimiento >= {$param['vencimientoDesde']}";
         if ($param['vencimientoHasta'] !== '')  $where[] = "C.FechaDeVencimiento <= {$param['vencimientoHasta']}";
-	// Se debe suprimir la condición de búsqueda por rango de "Fecha de Cobro" es seleccionado el estado Cobrado = "NO".
-        if ($param['cobrado'] && $param['cobrado'] != 2) {
-           if ($param['cobroDesde'] !== '')        $where[] = "C.FechaDeCobro >= {$param['cobroDesde']}";
-           if ($param['cobroHasta'] !== '')        $where[] = "C.FechaDeCobro <= {$param['cobroHasta']}";
-        }
-        // Estado
-        if ($param['cobrado'] && $param['cobrado'] != 3) {
-            $cobrado    = ($param['cobrado'] == 2 ) ? 0 : $param['cobrado'];
-            $where[]    = "ifnull(C.Cobrado,0) = {$cobrado}";
+        switch ($param['cobrado']) {
+            case 1: # Si
+                $cobrado = "ifnull(C.Cobrado,0) = 1";
+                if ($param['cobroDesde'] !== '') $cobrado .= " and C.FechaDeCobro >= {$param['cobroDesde']}";
+                if ($param['cobroHasta'] !== '') $cobrado .= " and C.FechaDeCobro <= {$param['cobroHasta']}";
+                $where[] = "{$cobrado}";
+                break;
+
+            case 2: # No
+                $cobrado = "ifnull(C.Cobrado,0) = 0";
+                $where[] = "{$cobrado}";
+                break;
+
+            default:
+                $cobrado = "ifnull(C.Cobrado,0) IN (0,1)";
+                if ( $param['cobroDesde'] !== '' && $param['cobroHasta'] !== '' ) {
+                    $cobrado .= " and ( C.FechaDeCobro is null or ( ";
+                    if ($param['cobroDesde'] !== '') $cobrado .= " C.FechaDeCobro >= {$param['cobroDesde']}";
+                    if ($param['cobroHasta'] !== '') $cobrado .= " and C.FechaDeCobro <= {$param['cobroHasta']}";
+                    $cobrado .= " ) )";
+                }
+                $where[] = "{$cobrado}";
+                break;
         }
         if ($param['impreso'] && $param['impreso'] != 3) {
             $impreso = ($param['impreso'] == 2 ) ? 0 : $param['impreso'];
