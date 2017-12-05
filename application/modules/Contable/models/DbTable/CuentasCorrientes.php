@@ -191,7 +191,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
                     FROM ComprobantesRelacionados CR 
                     JOIN Comprobantes C ON CR.ComprobanteHijo = C.Id 
                     WHERE CR.ComprobantePadre = $row->Id
-                      AND C.TipoDeComprobante = 24
+                      AND C.TipoDeComprobante IN ( 24, 25, 26, 27, 28 ) 
                       AND C.Cerrado           = 1
                       AND C.Anulado           = 0";
 
