@@ -150,12 +150,22 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
         else {
             $where[] = "C.TipoDeEmisorDeCheque <> 1";
         }        
-        if ($param['bancoSucursal'])     $where[] = "C.BancoSucursal = {$param['bancoSucursal']}";
-        if ($param['chequera'])          $where[] = "C.Chequera = {$param['chequera']}";
-        if ($param['numeroDesde'])       $where[] = "C.Numero >= {$param['numeroDesde']}";
-        if ($param['numeroHasta'])       $where[] = "C.Numero <= {$param['numeroHasta']}";
-		if ($param['razonSocial'])       $where[] = "C.Persona = {$param['razonSocial']}";
-		if ($param['pagueseA'])			 $where[] = "C.PagueseA like {$param['pagueseA']}";
+        if ($param['bancoSucursal']) {
+            $where[] = "C.BancoSucursal = {$param['bancoSucursal']}";
+        }
+        if ($param['chequera']) {
+            $where[] = "C.Chequera = {$param['chequera']}";
+        }
+        if ($param['numeroDesde']) {
+            $where[] = "C.Numero >= {$param['numeroDesde']}";
+        }
+        if ($param['numeroHasta']) {
+            $where[] = "C.Numero <= {$param['numeroHasta']}";
+        }
+        if ($param['razonSocial']) {
+            $where[] = "C.Persona = {$param['razonSocial']}";
+        }
+        if ($param['pagueseA'])			 $where[] = "C.PagueseA like {$param['pagueseA']}";
 		if ($param['noAlaOrden'] && $param['noAlaOrden'] != 3)  {
             $noAlaOrden = ($param['noAlaOrden'] == 2 ) ? 0 : $param['noAlaOrden'];
             $where[]    = "ifnull(C.noAlaOrden,0) = {$noAlaOrden}";
@@ -164,24 +174,52 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
             $cruzado = ($param['cruzado'] == 2 ) ? 0 : $param['cruzado'];
             $where[] = "ifnull(C.Cruzado,0) = {$cruzado}";  
         } 
-	    if ($param['montoDesde'])        $where[] = "C.Monto >= {$param['montoDesde']}";
-	    if ($param['montoHasta'])        $where[] = "C.Monto <= {$param['montoHasta']}";
-	    if ($param['ordenDePago'])       $where[] = "COOP.Numero = {$param['ordenDePago']}";
-	    if ($param['recibo'])            $where[] = "COR.Numero = {$param['recibo']}";
-        if ($param['cuentaBancariaPropia'])       $where[] = "CH.CuentaBancaria = {$param['cuentaBancariaPropia']}";
-        if ($param['cuentaBancariaDestino'])      $where[] = "C.CuentaDeMovimiento = {$param['cuentaBancariaDestino']}";
-        if ($param['terceroEmisor'])     $where[] = "C.TerceroEmisor like {$param['terceroEmisor']}";
-        if ($param['cuitTerceroEmisor']) $where[] = "C.CuitTerceroEmisor like {$param['cuitTerceroEmisor']}";
+        if ($param['montoDesde']) {
+            $where[] = "C.Monto >= {$param['montoDesde']}";
+        }
+        if ($param['montoHasta']) {
+            $where[] = "C.Monto <= {$param['montoHasta']}";
+        }
+        if ($param['ordenDePago']) {
+            $where[] = "COOP.Numero = {$param['ordenDePago']}";
+        }
+        if ($param['recibo']) {
+            $where[] = "COR.Numero = {$param['recibo']}";
+        }
+        if ($param['cuentaBancariaPropia']) {
+            $where[] = "CH.CuentaBancaria = {$param['cuentaBancariaPropia']}";
+        }
+        if ($param['cuentaBancariaDestino']) {
+            $where[] = "C.CuentaDeMovimiento = {$param['cuentaBancariaDestino']}";
+        }
+        if ($param['terceroEmisor']) {
+            $where[] = "C.TerceroEmisor like {$param['terceroEmisor']}";
+        }
+        if ($param['cuitTerceroEmisor']) {
+            $where[] = "C.CuitTerceroEmisor like {$param['cuitTerceroEmisor']}";
+        }
         // Fechas
-        if ($param['emisionDesde'] !== '')      $where[] = "C.FechaDeEmision >= {$param['emisionDesde']}";
-        if ($param['emisionHasta'] !== '')      $where[] = "C.FechaDeEmision <= {$param['emisionHasta']}";         
-        if ($param['vencimientoDesde'] !== '')  $where[] = "C.FechaDeVencimiento >= {$param['vencimientoDesde']}";
-        if ($param['vencimientoHasta'] !== '')  $where[] = "C.FechaDeVencimiento <= {$param['vencimientoHasta']}";
+        if ($param['emisionDesde'] !== '') {
+            $where[] = "C.FechaDeEmision >= {$param['emisionDesde']}";
+        }
+        if ($param['emisionHasta'] !== '') {
+            $where[] = "C.FechaDeEmision <= {$param['emisionHasta']}";
+        }
+        if ($param['vencimientoDesde'] !== '') {
+            $where[] = "C.FechaDeVencimiento >= {$param['vencimientoDesde']}";
+        }
+        if ($param['vencimientoHasta'] !== '') {
+            $where[] = "C.FechaDeVencimiento <= {$param['vencimientoHasta']}";
+        }
         switch ($param['cobrado']) {
             case 1: # Si
                 $cobrado = "ifnull(C.Cobrado,0) = 1";
-                if ($param['cobroDesde'] !== '') $cobrado .= " and C.FechaDeCobro >= {$param['cobroDesde']}";
-                if ($param['cobroHasta'] !== '') $cobrado .= " and C.FechaDeCobro <= {$param['cobroHasta']}";
+                if ($param['cobroDesde'] !== '') {
+                    $cobrado .= " and C.FechaDeCobro >= {$param['cobroDesde']}";
+                }
+                if ($param['cobroHasta'] !== '') {
+                    $cobrado .= " and C.FechaDeCobro <= {$param['cobroHasta']}";
+                }
                 $where[] = "{$cobrado}";
                 break;
 
@@ -194,8 +232,12 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
                 $cobrado = "ifnull(C.Cobrado,0) IN (0,1)";
                 if ( $param['cobroDesde'] !== '' && $param['cobroHasta'] !== '' ) {
                     $cobrado .= " and ( C.FechaDeCobro is null or ( ";
-                    if ($param['cobroDesde'] !== '') $cobrado .= " C.FechaDeCobro >= {$param['cobroDesde']}";
-                    if ($param['cobroHasta'] !== '') $cobrado .= " and C.FechaDeCobro <= {$param['cobroHasta']}";
+                    if ($param['cobroDesde'] !== '') {
+                        $cobrado .= " C.FechaDeCobro >= {$param['cobroDesde']}";
+                    }
+                    if ($param['cobroHasta'] !== '') {
+                        $cobrado .= " and C.FechaDeCobro <= {$param['cobroHasta']}";
+                    }
                     $cobrado .= " ) )";
                 }
                 $where[] = "{$cobrado}";
@@ -206,8 +248,10 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
             $where[] = "ifnull(C.Impreso,0) = {$impreso}";  
         } 
         
-        if ($param['estado'] )       	 $where[] = "C.ChequeEstado = {$param['estado']}";
-       
+        if ($param['estado']) {
+            $where[] = "C.ChequeEstado = {$param['estado']}";
+        }
+
         $where = implode (' and ',$where);
         //throw new Rad_Db_Table_Exception($where);
         return $where;
