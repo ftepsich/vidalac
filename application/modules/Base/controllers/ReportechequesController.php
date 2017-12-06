@@ -28,16 +28,18 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
     }
     protected function buildJoin($param) {
         $join = "";
-        if ($param['ordenDePago']) 
+        if ($param['ordenDePago']) {
             $join = " 
                 LEFT JOIN ComprobantesDetalles CDOP    ON C.Id  = CDOP.Cheque
                 LEFT JOIN Comprobantes COOP            ON COOP.Id = CDOP.Comprobante
             ";
-        if ($param['recibo']) 
+        }
+        if ($param['recibo']) {
             $join = " 
                 LEFT JOIN ComprobantesDetalles CDR     ON C.Id  = CDR.Cheque
                 LEFT JOIN Comprobantes COR             ON COR.Id = CDR.Comprobante
             ";
+        }
         return $join;        
     }
     protected function buildOrder($param) 
