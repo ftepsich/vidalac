@@ -14,12 +14,10 @@ use Rad\Util\FileExport;
 class Base_ReporteChequesController extends Rad_Window_Controller_Action
 {
     protected $title = 'Reporte Cheques Propios';
-
     public function initWindow()
     {
     
     }
-
     public function imprimirAction()
     {
         $this->_helper->viewRenderer->setNoRender(true);
@@ -28,30 +26,24 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
         $ids    = $rq->ids;
         $model->enviarAImpresora($ids);
     }
-
     protected function buildJoin($param) {
         $join = "";
-
         if ($param['ordenDePago']) 
             $join = " 
                 LEFT JOIN ComprobantesDetalles CDOP    ON C.Id  = CDOP.Cheque
                 LEFT JOIN Comprobantes COOP            ON COOP.Id = CDOP.Comprobante
             ";
-
         if ($param['recibo']) 
             $join = " 
                 LEFT JOIN ComprobantesDetalles CDR     ON C.Id  = CDR.Cheque
                 LEFT JOIN Comprobantes COR             ON COR.Id = CDR.Comprobante
             ";
-
         return $join;        
     }
-
     protected function buildOrder($param) 
     {
         $orden   = ' ';
         $sentido =  ( $param['ordenSentido'] ) ? ' desc ' : ' asc ';
-
         if ( $param['ordenCombo']) {
             switch ($param['ordenCombo']) {
                 case 1: $orden .= ' order by C.FechaDeEmision '.$sentido;     break;
@@ -61,16 +53,13 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
                 case 5: $orden .= ' order by P.RazonSocial '.$sentido;        break;
             }
         }
-
         return $orden;
     }
-
     protected function buildSQL($param)
     {
         $join       = $this->buildJoin($param);
         $where      = $this->buildWhere($param);
         $separador  = '|';
-
         $sql = "
                 SELECT 
                     CAST(
@@ -101,9 +90,7 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
                     )
                     AS CHAR CHARACTER SET utf8)  COLLATE utf8_general_ci
                     as renglon
-
                 UNION
-
                 SELECT 
                     CAST(
                     CONCAT(
@@ -151,10 +138,8 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
                 WHERE C.ChequeEstado not in (1,5) and
                 $where
             ";
-
         return $sql;
     }
-
     protected function buildWhere($param)
     {
         $where = array();
@@ -179,15 +164,16 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
             $cruzado = ($param['cruzado'] == 2 ) ? 0 : $param['cruzado'];
             $where[] = "ifnull(C.Cruzado,0) = {$cruzado}";  
         } 
-		if ($param['montoDesde'])        $where[] = "C.Monto >= {$param['montoDesde']}";
-		if ($param['montoHasta'])        $where[] = "C.Monto <= {$param['montoHasta']}";
-		if ($param['ordenDePago'])       $where[] = "COOP.Numero = {$param['ordenDePago']}";
-		if ($param['recibo'])            $where[] = "COR.Numero = {$param['recibo']}";
+	    if ($param['montoDesde'])        $where[] = "C.Monto >= {$param['montoDesde']}";
+	    if ($param['montoHasta'])        $where[] = "C.Monto <= {$param['montoHasta']}";
+	    if ($param['ordenDePago'])       $where[] = "COOP.Numero = {$param['ordenDePago']}";
+	    if ($param['recibo'])            $where[] = "COR.Numero = {$param['recibo']}";
         if ($param['cuentaBancariaPropia'])       $where[] = "CH.CuentaBancaria = {$param['cuentaBancariaPropia']}";
         if ($param['cuentaBancariaDestino'])      $where[] = "C.CuentaDeMovimiento = {$param['cuentaBancariaDestino']}";
         if ($param['terceroEmisor'])     $where[] = "C.TerceroEmisor like {$param['terceroEmisor']}";
         if ($param['cuitTerceroEmisor']) $where[] = "C.CuitTerceroEmisor like {$param['cuitTerceroEmisor']}";
         // Fechas
+<<<<<<< HEAD
         if ($param['emisionDesde'])      $where[] = "C.FechaDeEmision >= {$param['emisionDesde']}";
         if ($param['emisionHasta'])      $where[] = "C.FechaDeEmision <= {$param['emisionHasta']}";         
         if ($param['vencimientoDesde'])  $where[] = "C.FechaDeVencimiento >= {$param['vencimientoDesde']}";
@@ -199,6 +185,35 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
         if ($param['cobrado'] && $param['cobrado'] != 3) {
             $cobrado    = ($param['cobrado'] == 2 ) ? 0 : $param['cobrado'];
             $where[]    = "ifnull(C.Cobrado,0) = {$cobrado}";
+=======
+        if ($param['emisionDesde'] !== '')      $where[] = "C.FechaDeEmision >= {$param['emisionDesde']}";
+        if ($param['emisionHasta'] !== '')      $where[] = "C.FechaDeEmision <= {$param['emisionHasta']}";         
+        if ($param['vencimientoDesde'] !== '')  $where[] = "C.FechaDeVencimiento >= {$param['vencimientoDesde']}";
+        if ($param['vencimientoHasta'] !== '')  $where[] = "C.FechaDeVencimiento <= {$param['vencimientoHasta']}";
+        switch ($param['cobrado']) {
+            case 1: # Si
+                $cobrado = "ifnull(C.Cobrado,0) = 1";
+                if ($param['cobroDesde'] !== '') $cobrado .= " and C.FechaDeCobro >= {$param['cobroDesde']}";
+                if ($param['cobroHasta'] !== '') $cobrado .= " and C.FechaDeCobro <= {$param['cobroHasta']}";
+                $where[] = "{$cobrado}";
+                break;
+
+            case 2: # No
+                $cobrado = "ifnull(C.Cobrado,0) = 0";
+                $where[] = "{$cobrado}";
+                break;
+
+            default:
+                $cobrado = "ifnull(C.Cobrado,0) IN (0,1)";
+                if ( $param['cobroDesde'] !== '' && $param['cobroHasta'] !== '' ) {
+                    $cobrado .= " and ( C.FechaDeCobro is null or ( ";
+                    if ($param['cobroDesde'] !== '') $cobrado .= " C.FechaDeCobro >= {$param['cobroDesde']}";
+                    if ($param['cobroHasta'] !== '') $cobrado .= " and C.FechaDeCobro <= {$param['cobroHasta']}";
+                    $cobrado .= " ) )";
+                }
+                $where[] = "{$cobrado}";
+                break;
+>>>>>>> Reporte_Cheques
         }
         if ($param['impreso'] && $param['impreso'] != 3) {
             $impreso = ($param['impreso'] == 2 ) ? 0 : $param['impreso'];
@@ -211,9 +226,7 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
         //throw new Rad_Db_Table_Exception($where);
         return $where;
     }
-
     protected function buildParametros($rq,$db) {
-
         $param = array();
         // General
         $param['tipo']                  = ($rq->tipo)                   ? $db->quote($rq->tipo)                      : "";
@@ -235,13 +248,12 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
         $param['cuentaBancariaPropia']  = ($rq->cuentaBancariaPropia)   ? $db->quote($rq->cuentaBancariaPropia, 'INTEGER')  : "";
         $param['cuentaBancariaDestino'] = ($rq->cuentaBancariaDestino)  ? $db->quote($rq->cuentaBancariaDestino, 'INTEGER') : "";
         // Fechas
-        $param['emisionDesde']     = ($rq->emisionDesde)     ? $db->quote($rq->emisionDesde)             : ""; 
-        $param['emisionHasta']     = ($rq->emisionHasta)     ? $db->quote($rq->emisionHasta)             : "";
-        $param['vencimientoDesde'] = ($rq->vencimientoDesde) ? $db->quote($rq->vencimientoDesde)         : ""; 
-        $param['vencimientoHasta'] = ($rq->vencimientoHasta) ? $db->quote($rq->vencimientoHasta)         : "";
-        $param['cobroDesde']       = ($rq->cobroDesde)       ? $db->quote($rq->cobroDesde)               : ""; 
-        $param['cobroHasta']       = ($rq->cobroHasta)       ? $db->quote($rq->cobroHasta)               : "";
-
+        $param['emisionDesde']     = (trim($rq->emisionDesde) !== '' && $rq->emisionDesde     !== 'undefined' ) ? $db->quote($rq->emisionDesde)             : ""; 
+        $param['emisionHasta']     = (trim($rq->emisionHasta) !== '' && $rq->emisionHasta     !== 'undefined' ) ? $db->quote($rq->emisionHasta)             : "";
+        $param['vencimientoDesde'] = (trim($rq->vencimientoDesde) !== '' && $rq->vencimientoDesde !== 'undefined' ) ? $db->quote($rq->vencimientoDesde)         : ""; 
+        $param['vencimientoHasta'] = (trim($rq->vencimientoHasta) !== '' && $rq->vencimientoHasta !== 'undefined' ) ? $db->quote($rq->vencimientoHasta)         : "";
+        $param['cobroDesde']       = (trim($rq->cobroDesde) !== '' && $rq->cobroDesde       !== 'undefined' ) ? $db->quote($rq->cobroDesde)               : ""; 
+        $param['cobroHasta']       = (trim($rq->cobroHasta) !== '' && $rq->cobroHasta       !== 'undefined' ) ? $db->quote($rq->cobroHasta)               : "";
         // Estado
         $param['cobrado']          = ($rq->cobrado)          ? $db->quote($rq->cobrado, 'INTEGER')       : "";
         $param['impreso']          = ($rq->impreso)          ? $db->quote($rq->impreso, 'INTEGER')       : "";
@@ -252,27 +264,20 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
         $param['ordenCombo']       = ($rq->ordenCombo)       ? $db->quote($rq->ordenCombo, 'INTEGER')    : "";
         $param['ordenSentido']     = ($rq->ordenSentido)     ? $db->quote($rq->ordenSentido, 'INTEGER')  : "";
         $param['formato']          = ($rq->formato)          ? $db->quote($rq->formato, 'INTEGER')       : "";
-
         return $param;
     }
-
     public function verreporteAction ()
     {
         $this->_helper->viewRenderer->setNoRender(true);
-
         $report = new Rad_BirtEngine();
         $report->setParameter('Id', 2, 'Int');
-
         $rq = $this->getRequest();
         $db = Zend_Registry::get('db');
-
         $param   = $this->buildParametros($rq,$db);
         $formato = ($rq->formato) ? $rq->formato : 'pdf';
-
         switch ($formato) {
             case 'pdf': 
             case 'xls':
-
                 if ($param['cabecera']) {
                     switch ($param['cabecera']) {
                         case 1: $cabeceraUsar   = 'CabeceraInterna';  break;
@@ -284,7 +289,7 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
                 $where = ' where C.ChequeEstado not in (1,5) and '.$this->buildWhere($param).' '.$this->buildOrder($param);
                 $join  = $this->buildJoin($param);
                 $file  = APPLICATION_PATH . '/../birt/Reports/Rep_Cheques.rptdesign';
-                
+                //Rad_Log::debug($where);
                 $report->renderFromFile($file, $formato, 
                     array(
                         'WHERE'     => $where,
@@ -293,7 +298,6 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
                         'FILTRO'    => htmlentities($rq->filtro)
                     )
                 );
-
                 $NombreReporte  = "Reporte_de_Cheques___".date('YmdHis');        
                 $report->sendStream($NombreReporte);
                 
@@ -312,19 +316,5 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
                 echo $contenido;                
             break;
         }
-
-
-        
-
-
-
-
-        //$x = "$where -- $join";
-        //throw new Rad_Db_Table_Exception($x);
-        //throw new Rad_Db_Table_Exception(html_entity_decode($rq->filtro));
-
-
-        
-
     }
 }
