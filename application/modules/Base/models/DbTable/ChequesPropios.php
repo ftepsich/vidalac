@@ -164,22 +164,40 @@ class Base_Model_DbTable_ChequesPropios extends Base_Model_DbTable_Cheques
     public function enviarAImpresora($ids)
     {
         require_once 'PrintIpp/CupsPrintIPP.php';
-        
-        //$ids = implode(',',$id);
-            
+
         $this->sePuedenImprimir($ids);
         
         try {
             $cfg = Rad_Cfg::get();
-            
+
+	    // Validamos que todos los cheques a imprimir correspondan a un mismo Banco.
+
+            $M_ChP = new Base_Model_DbTable_ChequesPropios();
+            $chequesRows = $M_ChP->fetchAll("Id IN ($ids)",'Numero asc');
+            $chequeBancoSucursal=0;
+            foreach ($chequesRows as $cheque) {
+                if ( $chequeBancoSucursal != 0 && $cheque->BancoSucursal != $chequeBancoSucursal )
+                    throw new Rad_Exception('Los cheques a imprimir deben corresponderse a un mismo Banco.');
+                $chequeBancoSucursal = $cheque->BancoSucursal;
+            }
+
+            //Rad_Log::debug( "BancoSucursal : ".$chequeBancoSucursal);
+
             // Generamos el PDF
             $report = new Rad_BirtEngine();
-
             $formato    = "pdf";
-            $where      = "Where Id IN ($ids)";
+            $where      = "WHERE Id IN ($ids)";
+	    // Cheque Genérico
             $file       = APPLICATION_PATH . '/../birt/Reports/Cheques.rptdesign';
-           
+            switch ($chequeBancoSucursal) {
+                // Cheque Banco Macro
+                case  1: $file = APPLICATION_PATH . '/../birt/Reports/Cheques_BancoMacro.rptdesign'; break;
+                // Cheque Banco Bica
+                case 52: $file = APPLICATION_PATH . '/../birt/Reports/Cheques_BancoBica.rptdesign'; break;
+            }
+
             $report->renderFromFile($file, 'pdf', array('WHERE' => $where));
+
 
             /*------------ modificacion para que no imprima con cups ---------------*/
             $NombreReporte  = "Cheques___".date('YmdHis');
