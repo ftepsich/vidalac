@@ -22,3 +22,4 @@ public/wallpapers/thumbs/*
 /.vagrant
 vendor/
 application/configs/application.ini
+application/configs/cert/fe.ini
