@@ -273,38 +273,26 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
             $data,
             'Id = ' . $id
         );
-
-        // Updateo la descripcion con el nro del comprobante en la Cuenta Corriente
-        // Hay que hacerlo debido a que pone el nro en cero ya que se escribe antes que el fiscalizador lo obtenga de AFIP
-        // PK: 08/01/2016
-        /*
-        $M_CC = Service_TableManager::get('Contable_Model_DbTable_CuentasCorrientes');
-        $data['DescripcionComprobante'] = $M_CC->_getDescripcionComprobante($row);
-        $M_CC::update(
-            $data,
-            'Comprobante = '. $id
-        );
-        */
-
-        // modificado 2017/01/10 -- no se por que se comento el anterior
-        $TC     = $row->findParentRow('Facturacion_Model_DbTable_TiposDeComprobantes');
+        $row2   = $this->find($id)->current();
+        $TC     = $row2->findParentRow('Facturacion_Model_DbTable_TiposDeComprobantes');
         $M_CC   = Service_TableManager::get('Contable_Model_DbTable_CuentasCorrientes');
-        $data = array();
+        $data   = array();
         switch ($TC->Grupo) {
             case 6: // Factura de Venta
-                $data['DescripcionComprobante'] = 'FV: ' . $M_CC->_getDescripcionComprobante($row);
+                $data['DescripcionComprobante'] = 'FV: ' . $M_CC->_getDescripcionComprobante($row2);
+                break;
             case 7: // Notas de Credito Emitidas
-                $data['DescripcionComprobante'] = 'NCE: ' . $M_CC->_getDescripcionComprobante($row);
+                $data['DescripcionComprobante'] = 'NCE: ' . $M_CC->_getDescripcionComprobante($row2);
+                break;
             case 12: // Notas de Debito Emitidas
-                $data['DescripcionComprobante'] = 'NDE: ' . $M_CC->_getDescripcionComprobante($row);
+                $data['DescripcionComprobante'] = 'NDE: ' . $M_CC->_getDescripcionComprobante($row2);
+                break;
         }
-
         try {
-            $M_CC::update($data, 'Comprobante = '. $id);
+            $M_CC->update($data, 'Comprobante = '. $id);
         } catch (Exception $e) {
             Rad_Log::debug("Comprobante : $id presenta inconvenientes al momento de fiscalizarlo.");
         }
-
     }
 
     /**
