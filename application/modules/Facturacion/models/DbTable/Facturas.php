@@ -197,27 +197,19 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
      */
     public function insert($data)
     {
-         try {
-            $this->_db->beginTransaction();
-            // reviso que no exista otro abierto al momento de cargar este
-            // solo si no es consumidor final generico (para permitir varios Puntos de ventas simultaneos facturar)
-            if ($data['Persona'] != 1) {
-                $this->salirSi_existeOtroComprobanteSinCerrar($data['Persona'], $data['TipoDeComprobante'], null);
-            }
-
-            // Selecciono el libro de iva correcto
-            if (!$data['LibroIVA']) {
-                $data['LibroIVA'] = $this->seleccionarLibroIVA($data['FechaEmision']);
-            }
-            
-            // inserto
-           parent::insert($data);     
-           $this->_db->commit();
-           return true;
-        } catch (Exception $e) {
-            $this->_db->rollBack();
-            throw $e;
+        // reviso que no exista otro abierto al momento de cargar este
+        // solo si no es consumidor final generico (para permitir varios Puntos de ventas simultaneos facturar)
+        if ($data['Persona'] != 1) {
+            $this->salirSi_existeOtroComprobanteSinCerrar($data['Persona'], $data['TipoDeComprobante'], null);
         }
+
+        // Selecciono el libro de iva correcto
+        if (!$data['LibroIVA']) {
+            $data['LibroIVA'] = $this->seleccionarLibroIVA($data['FechaEmision']);
+        }
+
+        // inserto
+        return parent::insert($data);
     }
 
     /**
