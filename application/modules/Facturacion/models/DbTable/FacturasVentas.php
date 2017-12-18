@@ -54,9 +54,7 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
         'Cerrado'       => '0',
         'Despachado'    => '0',
         'Modificado'    => '0',
-        'Anulado'       => '0',
-        'EsCliente'     => '0',
-        'EsProveedor'   => '0'
+        'Anulado'       => '0'
 
     );
     /**
@@ -201,11 +199,6 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
         $this->_defaultValues['CondicionDePago'] = 1;
         $this->_defaultValues['Numero'] = $this->recuperarProximoNumero($this->_defaultValues['Punto'], null);
         $this->_defaultValues['FechaEmision'] = date('Y-m-d');
-        $this->_defaultValues['EsCliente'] = 0;
-        $this->_defaultValues['EsProveedor'] = 0;
-        //$this->_calculatedFields['EstadoPagado'] = "fEstadoRelHijoPago(Comprobantes.Id) COLLATE utf8_general_ci ";
-        //$this->_calculatedFields['EstadoRecibido'] = "fEstadoRelPadre(Comprobantes.Id) COLLATE utf8_general_ci";
-        //$this->_calculatedFields['MontoTotal'] = "fComprobante_Monto_Total(Comprobantes.Id)";
         parent::init();
         /* Debe ir despues del parent::init para que no me pise con el formato del Padre*/
         $this->_calculatedFields['NumeroCompleto'] = "fNumeroCompleto(Comprobantes.Id,'C') COLLATE utf8_general_ci";
