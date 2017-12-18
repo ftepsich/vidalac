@@ -770,17 +770,6 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
         if ($adaptador->getGeneraNumero()) {
             return 0;
         }
-        /*
-        $sql = "SELECT  C.Numero
-                FROM    Comprobantes AS C
-                    INNER JOIN TiposDeComprobantes AS TC ON C.TipoDeComprobante = TC.Id
-                --    INNER JOIN TiposDeGruposDeComprobantes AS TGC ON TC.Grupo = TGC.Id
-                WHERE   C.Punto = $punto
-                and     TC.Grupo in (6,7)
-                and     C.TipoDeComprobante = $tipo
-                ORDER BY C.Punto DESC, C.Numero DESC
-                LIMIT 1";
-        */
 
         $M_TC = Service_TableManager::get('Facturacion_Model_DbTable_TiposDeComprobantes');
         $R_TC = $M_TC->find($tipo)->current();
