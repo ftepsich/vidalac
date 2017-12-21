@@ -227,7 +227,7 @@ SELECT
     LPAD( ABS( TRUNCATE (C2.ConceptoImpositivoPorcentaje,2)),6,'0') AS Alicuota,
     LPAD( ABS( TRUNCATE (C2.Monto,2)),15,'0') AS ImporteRetenido,
     'No' AS Anulacion,
-    CASE WHEN P.TipoInscripcionIB = 3 THEN 'Sí' ELSE 'No' END AS ContribuyenteConvMultilateral
+    CASE WHEN P.TipoInscripcionIB = 3 THEN 'SÃ­' ELSE 'No' END AS ContribuyenteConvMultilateral
 FROM Comprobantes C2
 INNER JOIN ConceptosImpositivos CI    ON C2.ConceptoImpositivo = CI.Id
 INNER JOIN Comprobantes C             ON C.Id                  = C2.ComprobantePadre
@@ -280,10 +280,12 @@ ORDER BY C.FechaEmision
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie">
-            <property name="type">us-legal</property>
-             <property name="leftMargin">0.15in</property>
-            <property name="rightMargin">0.15in</property>
-            <property name="orientation">landscape</property>
+ 	 <property name="type">a4</property>
+         <property name="leftMargin">0.15in</property>
+         <property name="rightMargin">0.15in</property>
+         <property name="orientation">landscape</property>
+         <property name="showHeaderOnFirst">true</property>
+         <property name="showFooterOnLast">true</property>
         </simple-master-page>
     </page-setup>
     <body>
