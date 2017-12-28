@@ -28,18 +28,29 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
     }
     protected function buildJoin($param) {
         $join = "";
+<<<<<<< HEAD
         if ($param['ordenDePago']) {
+=======
+        if ($param['ordenDePago']) 
+>>>>>>> Compensaciones_Cuentas_Corrientes
             $join = " 
                 LEFT JOIN ComprobantesDetalles CDOP    ON C.Id  = CDOP.Cheque
                 LEFT JOIN Comprobantes COOP            ON COOP.Id = CDOP.Comprobante
             ";
+<<<<<<< HEAD
         }
         if ($param['recibo']) {
+=======
+        if ($param['recibo']) 
+>>>>>>> Compensaciones_Cuentas_Corrientes
             $join = " 
                 LEFT JOIN ComprobantesDetalles CDR     ON C.Id  = CDR.Cheque
                 LEFT JOIN Comprobantes COR             ON COR.Id = CDR.Comprobante
             ";
+<<<<<<< HEAD
         }
+=======
+>>>>>>> Compensaciones_Cuentas_Corrientes
         return $join;        
     }
     protected function buildOrder($param) 
@@ -176,6 +187,7 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
             $cruzado = ($param['cruzado'] == 2 ) ? 0 : $param['cruzado'];
             $where[] = "ifnull(C.Cruzado,0) = {$cruzado}";  
         } 
+<<<<<<< HEAD
         if ($param['montoDesde']) {
             $where[] = "C.Monto >= {$param['montoDesde']}";
         }
@@ -222,6 +234,26 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
                 if ($param['cobroHasta'] !== '') {
                     $cobrado .= " and C.FechaDeCobro <= {$param['cobroHasta']}";
                 }
+=======
+	    if ($param['montoDesde'])        $where[] = "C.Monto >= {$param['montoDesde']}";
+	    if ($param['montoHasta'])        $where[] = "C.Monto <= {$param['montoHasta']}";
+	    if ($param['ordenDePago'])       $where[] = "COOP.Numero = {$param['ordenDePago']}";
+	    if ($param['recibo'])            $where[] = "COR.Numero = {$param['recibo']}";
+        if ($param['cuentaBancariaPropia'])       $where[] = "CH.CuentaBancaria = {$param['cuentaBancariaPropia']}";
+        if ($param['cuentaBancariaDestino'])      $where[] = "C.CuentaDeMovimiento = {$param['cuentaBancariaDestino']}";
+        if ($param['terceroEmisor'])     $where[] = "C.TerceroEmisor like {$param['terceroEmisor']}";
+        if ($param['cuitTerceroEmisor']) $where[] = "C.CuitTerceroEmisor like {$param['cuitTerceroEmisor']}";
+        // Fechas
+        if ($param['emisionDesde'] !== '')      $where[] = "C.FechaDeEmision >= {$param['emisionDesde']}";
+        if ($param['emisionHasta'] !== '')      $where[] = "C.FechaDeEmision <= {$param['emisionHasta']}";         
+        if ($param['vencimientoDesde'] !== '')  $where[] = "C.FechaDeVencimiento >= {$param['vencimientoDesde']}";
+        if ($param['vencimientoHasta'] !== '')  $where[] = "C.FechaDeVencimiento <= {$param['vencimientoHasta']}";
+        switch ($param['cobrado']) {
+            case 1: # Si
+                $cobrado = "ifnull(C.Cobrado,0) = 1";
+                if ($param['cobroDesde'] !== '') $cobrado .= " and C.FechaDeCobro >= {$param['cobroDesde']}";
+                if ($param['cobroHasta'] !== '') $cobrado .= " and C.FechaDeCobro <= {$param['cobroHasta']}";
+>>>>>>> Compensaciones_Cuentas_Corrientes
                 $where[] = "{$cobrado}";
                 break;
 
@@ -234,12 +266,17 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
                 $cobrado = "ifnull(C.Cobrado,0) IN (0,1)";
                 if ( $param['cobroDesde'] !== '' && $param['cobroHasta'] !== '' ) {
                     $cobrado .= " and ( C.FechaDeCobro is null or ( ";
+<<<<<<< HEAD
                     if ($param['cobroDesde'] !== '') {
                         $cobrado .= " C.FechaDeCobro >= {$param['cobroDesde']}";
                     }
                     if ($param['cobroHasta'] !== '') {
                         $cobrado .= " and C.FechaDeCobro <= {$param['cobroHasta']}";
                     }
+=======
+                    if ($param['cobroDesde'] !== '') $cobrado .= " C.FechaDeCobro >= {$param['cobroDesde']}";
+                    if ($param['cobroHasta'] !== '') $cobrado .= " and C.FechaDeCobro <= {$param['cobroHasta']}";
+>>>>>>> Compensaciones_Cuentas_Corrientes
                     $cobrado .= " ) )";
                 }
                 $where[] = "{$cobrado}";
