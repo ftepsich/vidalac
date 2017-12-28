@@ -54,9 +54,7 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
         'Cerrado'       => '0',
         'Despachado'    => '0',
         'Modificado'    => '0',
-        'Anulado'       => '0',
-        'EsCliente'     => '0',
-        'EsProveedor'   => '0'
+        'Anulado'       => '0'
 
     );
     /**
@@ -201,11 +199,6 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
         $this->_defaultValues['CondicionDePago'] = 1;
         $this->_defaultValues['Numero'] = $this->recuperarProximoNumero($this->_defaultValues['Punto'], null);
         $this->_defaultValues['FechaEmision'] = date('Y-m-d');
-        $this->_defaultValues['EsCliente'] = 0;
-        $this->_defaultValues['EsProveedor'] = 0;
-        //$this->_calculatedFields['EstadoPagado'] = "fEstadoRelHijoPago(Comprobantes.Id) COLLATE utf8_general_ci ";
-        //$this->_calculatedFields['EstadoRecibido'] = "fEstadoRelPadre(Comprobantes.Id) COLLATE utf8_general_ci";
-        //$this->_calculatedFields['MontoTotal'] = "fComprobante_Monto_Total(Comprobantes.Id)";
         parent::init();
         /* Debe ir despues del parent::init para que no me pise con el formato del Padre*/
         $this->_calculatedFields['NumeroCompleto'] = "fNumeroCompleto(Comprobantes.Id,'C') COLLATE utf8_general_ci";
@@ -273,38 +266,26 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
             $data,
             'Id = ' . $id
         );
-
-        // Updateo la descripcion con el nro del comprobante en la Cuenta Corriente
-        // Hay que hacerlo debido a que pone el nro en cero ya que se escribe antes que el fiscalizador lo obtenga de AFIP
-        // PK: 08/01/2016
-        /*
-        $M_CC = Service_TableManager::get('Contable_Model_DbTable_CuentasCorrientes');
-        $data['DescripcionComprobante'] = $M_CC->_getDescripcionComprobante($row);
-        $M_CC::update(
-            $data,
-            'Comprobante = '. $id
-        );
-        */
-
-        // modificado 2017/01/10 -- no se por que se comento el anterior
-        $TC     = $row->findParentRow('Facturacion_Model_DbTable_TiposDeComprobantes');
+        $row2   = $this->find($id)->current();
+        $TC     = $row2->findParentRow('Facturacion_Model_DbTable_TiposDeComprobantes');
         $M_CC   = Service_TableManager::get('Contable_Model_DbTable_CuentasCorrientes');
-        $data = array();
+        $data   = array();
         switch ($TC->Grupo) {
             case 6: // Factura de Venta
-                $data['DescripcionComprobante'] = 'FV: ' . $M_CC->_getDescripcionComprobante($row);
+                $data['DescripcionComprobante'] = 'FV: ' . $M_CC->_getDescripcionComprobante($row2);
+                break;
             case 7: // Notas de Credito Emitidas
-                $data['DescripcionComprobante'] = 'NCE: ' . $M_CC->_getDescripcionComprobante($row);
+                $data['DescripcionComprobante'] = 'NCE: ' . $M_CC->_getDescripcionComprobante($row2);
+                break;
             case 12: // Notas de Debito Emitidas
-                $data['DescripcionComprobante'] = 'NDE: ' . $M_CC->_getDescripcionComprobante($row);
+                $data['DescripcionComprobante'] = 'NDE: ' . $M_CC->_getDescripcionComprobante($row2);
+                break;
         }
-
         try {
-            $M_CC::update($data, 'Comprobante = '. $id);
+            $M_CC->update($data, 'Comprobante = '. $id);
         } catch (Exception $e) {
             Rad_Log::debug("Comprobante : $id presenta inconvenientes al momento de fiscalizarlo.");
         }
-
     }
 
     /**
@@ -789,17 +770,6 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
         if ($adaptador->getGeneraNumero()) {
             return 0;
         }
-        /*
-        $sql = "SELECT  C.Numero
-                FROM    Comprobantes AS C
-                    INNER JOIN TiposDeComprobantes AS TC ON C.TipoDeComprobante = TC.Id
-                --    INNER JOIN TiposDeGruposDeComprobantes AS TGC ON TC.Grupo = TGC.Id
-                WHERE   C.Punto = $punto
-                and     TC.Grupo in (6,7)
-                and     C.TipoDeComprobante = $tipo
-                ORDER BY C.Punto DESC, C.Numero DESC
-                LIMIT 1";
-        */
 
         $M_TC = Service_TableManager::get('Facturacion_Model_DbTable_TiposDeComprobantes');
         $R_TC = $M_TC->find($tipo)->current();

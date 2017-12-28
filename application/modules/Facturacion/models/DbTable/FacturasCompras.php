@@ -55,9 +55,7 @@ class Facturacion_Model_DbTable_FacturasCompras extends Facturacion_Model_DbTabl
         'MontoPagado' => '0',
         'Cerrado' => '0',
         'Despachado' => '0',
-        'Anulado' => '0',
-        'EsCliente' => '0',
-        'EsProveedor' => '0'
+        'Anulado' => '0'
     );
     /**
      * Validadores
@@ -210,8 +208,6 @@ class Facturacion_Model_DbTable_FacturasCompras extends Facturacion_Model_DbTabl
     public function init ()
     {
         $this->_defaultValues['CondicionDePago'] = 1;
-        $this->_defaultValues['EsCliente'] = 0;
-        $this->_defaultValues['EsProveedor'] = 0;
         parent::init();
         /* Debe ir despues del parent::init para que no me pise con el formato del Padre*/
         $this->_calculatedFields['NumeroCompleto'] = "fNumeroCompleto(Comprobantes.Id,'C') COLLATE utf8_general_ci";

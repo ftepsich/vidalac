@@ -1,3 +1,3 @@
 # Vidalac
 
-# Sistema de Gestión Contable
+# Sistema de Gestión Contable.

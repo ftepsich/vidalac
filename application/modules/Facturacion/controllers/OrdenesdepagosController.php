@@ -16,6 +16,7 @@ class Facturacion_OrdenesDePagosController extends Rad_Window_Controller_Action
 
     protected $title = "Ordenes de Pago";
 
+    
     /**
      * Inicializa la ventana del modulo
      */

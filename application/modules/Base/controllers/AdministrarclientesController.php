@@ -160,6 +160,7 @@ class Base_AdministrarClientesController extends Rad_Window_Controller_Action
         $config->loadAuto = false;
         $config->id = $this->getName() . '_GridCtaCte';
         $config->iniSection = 'conbarra';
+        $config->fetch = 'CuentaCorriente';
 
         $this->view->gridCtaCte = $this->view->radGrid(
             'Contable_Model_DbTable_CuentasCorrientes',
