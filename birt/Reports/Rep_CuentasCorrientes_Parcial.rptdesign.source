@@ -279,7 +279,7 @@ ORDER BY P.RazonSocial,C.FechaEmision]]></xml-property>
                 <structure>
                     <property name="name">Aggregation</property>
                     <text-property name="displayName">Total</text-property>
-                    <property name="dataType">float</property>
+                    <property name="dataType">decimal</property>
                     <property name="aggregateFunction">SUM</property>
                     <list-property name="arguments">
                         <structure>
