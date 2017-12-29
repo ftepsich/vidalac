@@ -284,7 +284,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
                             FROM        Comprobantes C
 			    WHERE       (
                                         (TiposDeComprobantes.Grupo in (1,8,9,13,20) and Comprobantes.EsCliente = 0)
-                                        OR (TiposDeComprobantes.Grupo = 7 AND Comprobantes.EsProveedor = 1)
+                                        OR (TiposDeComprobantes.Grupo in (7,12) AND Comprobantes.EsProveedor = 1)
                                         OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci like '%Saldo s/Orden de Pago%')
                                         )
                     )";
