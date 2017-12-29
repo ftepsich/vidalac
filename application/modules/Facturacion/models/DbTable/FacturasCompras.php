@@ -67,37 +67,6 @@ class Facturacion_Model_DbTable_FacturasCompras extends Facturacion_Model_DbTabl
      * Letra        -> no vacio, valor valido
      *
      */
-    
-    /*
-        -- Quitado el control de duplicidad de numero de comprobante
-
-        'Numero' => array(
-            'NotEmpty',
-            'allowEmpty'=>false,
-            array(
-                'Db_NoRecordExists',
-                'Comprobantes',
-                'Numero',
-                'Persona = {Persona} AND Punto = {Punto} AND Numero = {Numero} AND TipoDeComprobante = {TipoDeComprobante} AND  Id <> {Id}'
-            ),
-            'messages' => array(
-                'Falta ingresar el Número de Comprobante.',
-                'El numero de Factura de compra ya existe para ese proveedor'
-            )
-        ),
-
-        --- o sino solo controle que se ingrese
-
-        'Numero' => array(
-            'NotEmpty',
-            'allowEmpty'=>false,
-            'messages' => array(
-                'Falta ingresar el Número de Comprobante.'
-            )
-        ),
-
-
-     */
 
     protected $_validators = array(
         'Numero' => array(
