@@ -217,7 +217,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
                 $asiento = $this->createRow();
                 $asiento->Persona = $row->Persona;
                 $asiento->Comprobante = $row->Id;
-,19                $asiento->FechaDeCarga = date('Y-m-d H:i:s');
+                $asiento->FechaDeCarga = date('Y-m-d H:i:s');
                 $asiento->FechaComprobante = date('Y-m-d', strtotime($row->FechaEmision));
                 $asiento->DescripcionComprobante = 'OP: ' . $this->_getDescripcionComprobante($row);
                 $asiento->Debe = $TotalMontoCompensacion;
