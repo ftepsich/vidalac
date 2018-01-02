@@ -25,7 +25,7 @@
 class Facturacion_Model_DbTable_FacturasCompras extends Facturacion_Model_DbTable_Facturas
 {
     protected $_permanentValues = array(
-        'TipoDeComprobante' => array(19, 20, 21, 22, 23, 33, 34, 35, 36, 41, 42, 43, 44, 53, 55, 57, 64, 72, 73, 74, 75, 76, 82, 83, 84, 85, 86)
+        'TipoDeComprobante' => array(19, 20, 21, 22, 23, 33, 34, 35, 36, 41, 42, 43, 44, 53, 55, 57, 64)
     );
 
     protected $_sort = array(
