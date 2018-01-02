@@ -1122,27 +1122,6 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         return $ivas;
     }
 
-    /*  Reescritas mas abajo sin harcoding
-
-    OJO .... estan muymal los id de estas dos funciones
-
-    public function afip_ImporteNetoNoGravado ($idComprobante)
-    {
-        $M_C = new Facturacion_Model_DbTable_Comprobantes(array(), false);
-        // Seteo los id del Concepto Impositivo IVA no Gravado
-        $idIVA_noGravado = 34;
-        return $M_C->recuperarMontoImponibleFacturacion($idIVA_noGravado, $idComprobante);
-    }
-
-    public function afip_ImporteNetoExento ($idComprobante)
-    {
-        $M_C = new Facturacion_Model_DbTable_Comprobantes(array(), false);
-        // Seteo los id del Concepto Impositivo IVA Excento
-        $idIVA_Excento = 33;
-        return $M_C->recuperarMontoImponibleFacturacion($idIVA_Excento, $idComprobante);
-    }
-    */
-
     public function afip_ImporteNetoNoGravado ($idComprobante)
     {
         $M_C    = new Facturacion_Model_DbTable_Comprobantes;

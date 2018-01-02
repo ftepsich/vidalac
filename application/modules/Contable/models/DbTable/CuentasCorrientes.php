@@ -270,10 +270,9 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
                             WHERE (
                             
 					(TiposDeComprobantes.Grupo IN (6,7,11,12) and TiposDeComprobantes.Id not in (65,66) and Comprobantes.EsProveedor = 0 )
-					(TiposDeComprobantes.Grupo IN (6,7,11,12,19) and TiposDeComprobantes.Id not in (65,66) and Comprobantes.EsProveedor = 0 )
-                                        OR (TiposDeComprobantes.Grupo in (8,13) AND Comprobantes.EsCliente = 1)
-                                        OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci like '%Saldo s/Recibo%')
-                                   )     
+                    OR (TiposDeComprobantes.Grupo in (8,13) AND Comprobantes.EsCliente = 1)
+                    OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci like '%Saldo s/Recibo%')
+                    )     
                     )";
         $where = $this->_addCondition($where, $condicion);
         return parent:: fetchAll($where, $order, $count, $offset);
@@ -285,7 +284,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
                             FROM        Comprobantes C
 			    WHERE       (
                                         (TiposDeComprobantes.Grupo in (1,8,9,13,20) and Comprobantes.EsCliente = 0)
-                                        OR (TiposDeComprobantes.Grupo = 7 AND Comprobantes.EsProveedor = 1)
+                                        OR (TiposDeComprobantes.Grupo in (7,12) AND Comprobantes.EsProveedor = 1)
                                         OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci like '%Saldo s/Orden de Pago%')
                                         )
                     )";

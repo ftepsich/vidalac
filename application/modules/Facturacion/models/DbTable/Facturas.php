@@ -154,41 +154,6 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
         }
     }
 
-//    /**
-//     * Fix Comprobantes B
-//     * @param <type> $idComprobante
-//     */
-//    public function afip_ArrayConceptosIVA($idComprobante)
-//    {
-//
-//    }
-//    /**
-//     * Recupera el Monto Total de un comprobante
-//     *
-//     * @param int $idComprobante      identificador del comprobante
-//     *
-//     * @return decimal
-//     */
-//    public function recuperarMontoTotal($idComprobante)
-//    {
-//
-//        $monto = parent::recuperarMontoTotal($idComprobante);
-//
-//        $row = $this->find($idComprobante)->current();
-//        // Si no discrimina impuestos tengo q sumarle el iva al monto total.
-//        if (!$this->elComprobanteDiscriminaIVA($row->TipoDeComprobante)) {
-//            $ivas = $this->getTotalesIva($idComprobante);
-//            foreach ($ivas as $iva) {
-//                $monto += $iva['Monto'];
-//            }
-//
-//        }
-//
-//        return $monto;
-//    }
-
-
-
     /**
      *  Insert
      *

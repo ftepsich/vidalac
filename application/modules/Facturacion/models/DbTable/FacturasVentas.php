@@ -104,14 +104,6 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
         )
     );
 
-    /*
-    protected $_calculatedFields = array(
-        'EstadoPagado'   => "fEstadoRelHijoPago(Comprobantes.Id) COLLATE utf8_general_ci ",
-        'EstadoRecibido' => "fEstadoRelPadre(Comprobantes.Id) COLLATE utf8_general_ci",
-        'MontoTotal' => "fComprobanteTotal(Comprobantes.Id)"
-    );
-     */
-
     // Inicio  protected $_referenceMap --------------------------------------------------------------------------
     protected $_referenceMap = array(
         'TiposDeComprobantes' => array(
