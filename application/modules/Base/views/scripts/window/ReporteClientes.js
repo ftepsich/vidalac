@@ -216,16 +216,18 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     handler: function () {
                        values = this.ownerCt.ownerCt.getForm().getValues();
                        var  params = '';
-
                        if (values.desde != 'undefined') params += '/desde/'+values.desde;
                        if (values.hasta != 'undefined') params += '/hasta/'+values.hasta;
-                       if (!values.Inscripcion)         params += '/inscripcion/'+values.Inscripcion;
-                       if (!values.Provincia)           params += '/provincia/'+values.Provincia;
-                       if (!values.Localidad)           params += '/localidad/'+values.Localidad;
-                       if (!this.tipoPersona)           params += '/tipopersona/'+values.tipoPersona;
-
+                       if (values.Inscripcion != 'undefined') params += '/inscripcion/'+values.Inscripcion;
+                       if (values.locprov == 'Provincia'){
+                          if (values.Provincia != '') params += '/provincia/'+values.Provincia;
+                       }
+                       if (values.locprov == 'Localidad'){
+                          if (values.Localidad != '') params += '/localidad/'+values.Localidad;
+                       }
+                       if (values.tipoPersona != '') params += '/tipopersona/'+values.tipoPersona;
                        if (values.formato != '') params += '/formato/'+values.formato;
-    
+
                        app.publish('/desktop/modules/js/commonApps/showUrl.js', {
                            action: 'launch',
                            url: '/Base/ReporteClientes/verreporte'+params,
