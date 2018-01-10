@@ -1676,7 +1676,7 @@ this.setDisplayValue(encodeCode2Of5i(this.getValue()));  //Set to encoded value
                     <text-data name="ComprobanteNumero1" id="2485">
                         <property name="style">encabezado-Estilo-1</property>
                         <property name="textAlign">left</property>
-                        <expression name="valueExpr">BirtStr.concat("NÂº  " ,  row["NumeroCompleto"])</expression>
+                        <expression name="valueExpr">BirtStr.concat("Nº  " ,  row["NumeroCompleto"])</expression>
                         <property name="contentType">html</property>
                     </text-data>
                     <text-data id="2724">
@@ -1687,7 +1687,7 @@ this.setDisplayValue(encodeCode2Of5i(this.getValue()));  //Set to encoded value
                         <property name="paddingTop">2pt</property>
                         <property name="paddingLeft">2pt</property>
                         <property name="paddingBottom">2pt</property>
-                        <expression name="valueExpr">BirtStr.concat("CODIGO AFIP NÂº  " ,row["AfipCodigoComprobante"])</expression>
+                        <expression name="valueExpr">BirtStr.concat("CODIGO AFIP Nº  " ,row["AfipCodigoComprobante"])</expression>
                         <property name="contentType">html</property>
                     </text-data>
                 </cell>
@@ -2079,7 +2079,7 @@ this.setDisplayValue(encodeCode2Of5i(this.getValue()));  //Set to encoded value
                     <property name="paddingTop">1pt</property>
                     <label id="1005">
                         <property name="style">nombre-cabecera</property>
-                        <text-property name="text">CondiciÃ³n IVA</text-property>
+                        <text-property name="text">Condición IVA</text-property>
                     </label>
                 </cell>
                 <cell id="980">
@@ -2130,7 +2130,7 @@ this.setDisplayValue(encodeCode2Of5i(this.getValue()));  //Set to encoded value
                     <property name="paddingTop">1pt</property>
                     <label id="1145">
                         <property name="style">nombre-cabecera</property>
-                        <text-property name="text">CondiciÃ³n Venta</text-property>
+                        <text-property name="text">Condición Venta</text-property>
                     </label>
                 </cell>
                 <cell id="992">
@@ -2176,7 +2176,7 @@ this.setDisplayValue(encodeCode2Of5i(this.getValue()));  //Set to encoded value
                     <property name="verticalAlign">bottom</property>
                     <text-data id="2681">
                         <property name="style">ids</property>
-                        <expression name="valueExpr">BirtStr.concat('NÂº: ', row["CodigoDeComprobante"] ,' ', row["NumeroCompleto"],'  /  C: ', row["IdComprobante"],'  /  P: ',row["Persona"]);</expression>
+                        <expression name="valueExpr">BirtStr.concat('Nº: ', row["CodigoDeComprobante"] ,' ', row["NumeroCompleto"],'  /  C: ', row["IdComprobante"],'  /  P: ',row["Persona"]);</expression>
                         <property name="contentType">html</property>
                     </text-data>
                 </cell>
@@ -2286,7 +2286,7 @@ this.setDisplayValue(encodeCode2Of5i(this.getValue()));  //Set to encoded value
                     <cell id="1150">
                         <label id="1173">
                             <property name="textAlign">right</property>
-                            <text-property name="text">DescripciÃ³n</text-property>
+                            <text-property name="text">Descripción</text-property>
                         </label>
                     </cell>
                     <cell id="1151">
