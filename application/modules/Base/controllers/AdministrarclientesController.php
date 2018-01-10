@@ -109,7 +109,7 @@ class Base_AdministrarClientesController extends Rad_Window_Controller_Action
         $config->abmWindowTitle = 'Descripcion de Actividades';
         $config->abmWindowWidth = 600;
         $config->abmWindowHeight = 200;
-        $config->title = 'Dec. de Actividades';
+        $config->title = 'Desc. de Actividades';
         $config->id = $this->getName() . '_GridDeclaracionActividades';
         $config->loadAuto = false;
 

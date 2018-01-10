@@ -25,7 +25,7 @@ class Base_ReporteClientesController extends Rad_Window_Controller_Action
         $where = array();
         if ($param['desde'])        $where[] = "Personas.FechaDeAlta >= {$param['desde']}";
         if ($param['hasta'])        $where[] = "Personas.FechaDeAlta <= {$param['hasta']}";
-        if ($param['inscripcion'])  $where[] = "Personas.ModalidadIva  = {$param['inscripcion']}'";
+        if ($param['inscripcion'])  $where[] = "Personas.ModalidadIva  = {$param['inscripcion']}";
         if ($param['provincia'])    $where[]  = "Personas.Id IN ( SELECT Direcciones.Persona FROM Direcciones INNER JOIN Localidades ON Localidades.Id = Direcciones.Localidad WHERE Localidades.Provincia = {$param['provincia']})";
         if ($param['localidad'])    $where[] = "Personas.Id IN ( SELECT Direcciones.Persona FROM Direcciones WHERE Direcciones.localidad = {$param['localidad']})";
         
