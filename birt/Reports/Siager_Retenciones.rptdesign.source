@@ -222,16 +222,17 @@ SELECT
     WHEN (TC.TipoDeLetra = 5) THEN 'M'
     ELSE ' '
     END AS LetraComprobante,
-    CONCAT(LPAD(C.Punto,4,'0'),LPAD(C.Numero,8,'0')) AS NumeroComprobante,
+    CONCAT(LPAD(PV.Numero,4,'0'),LPAD(C.Numero,8,'0')) AS NumeroComprobante,
     LPAD( ABS( TRUNCATE (C2.MontoImponible,2)),15,'0') AS ImporteBase,
     LPAD( ABS( TRUNCATE (C2.ConceptoImpositivoPorcentaje,2)),6,'0') AS Alicuota,
     LPAD( ABS( TRUNCATE (C2.Monto,2)),15,'0') AS ImporteRetenido,
     'No' AS Anulacion,
-    CASE WHEN P.TipoInscripcionIB = 3 THEN 'SÃ­' ELSE 'No' END AS ContribuyenteConvMultilateral
+    CASE WHEN P.TipoInscripcionIB = 3 THEN 'Sí' ELSE 'No' END AS ContribuyenteConvMultilateral
 FROM Comprobantes C2
 INNER JOIN ConceptosImpositivos CI    ON C2.ConceptoImpositivo = CI.Id
 INNER JOIN Comprobantes C             ON C.Id                  = C2.ComprobantePadre
 INNER JOIN TiposDeComprobantes  TC    ON C.TipoDeComprobante   = TC.Id
+INNER JOIN PuntosDeVentas PV          ON C.Punto               = PV.Id
 INNER JOIN ComprobantesRetenciones CR ON CR.Comprobante        = C2.Id AND CR.ComprobantePadre = C.Id
 INNER JOIN Personas P                 ON P.Id                  = C.Persona
 WHERE C2.FechaEmision BETWEEN STR_TO_DATE(CONCAT("{PERIODO}",'-01'), '%Y-%m-%d') AND STR_TO_DATE(LAST_DAY(CONCAT("{PERIODO}",'-01')), '%Y-%m-%d')
