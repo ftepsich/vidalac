@@ -185,13 +185,11 @@
             </list-property>
             <xml-property name="queryText"><![CDATA[
 SELECT
-    '2' AS TipoAgente,
-    '24' AS MotivoMovimiento,
+    '1' AS TipoAgente,
+    '61' AS MotivoMovimiento,
     P.RazonSocial,
     LPAD( REPLACE( P.Cuit ,'-','') ,11,'0') AS Cuit,
-    LPAD( CONCAT(CR.Periodo,CR.Numero),12,'0') AS NumeroConstancia,
-    C2.FechaEmision AS FechaRetencion,
-    C.FechaEmision  AS FechaComprobante,
+    C2.FechaEmision AS FechaPercepcion,
     LPAD(TC.Siager,6,' ') AS TipoComprobante,
     CASE
     WHEN (TC.TipoDeLetra = 1) THEN 'A'
@@ -211,11 +209,10 @@ INNER JOIN ConceptosImpositivos CI    ON C2.ConceptoImpositivo = CI.Id
 INNER JOIN Comprobantes C             ON C.Id                  = C2.ComprobantePadre
 INNER JOIN TiposDeComprobantes  TC    ON C.TipoDeComprobante   = TC.Id
 INNER JOIN PuntosDeVentas PV          ON C.Punto               = PV.Id
-INNER JOIN ComprobantesRetenciones CR ON CR.Comprobante        = C2.Id AND CR.ComprobantePadre = C.Id
 INNER JOIN Personas P                 ON P.Id                  = C.Persona
 WHERE C2.FechaEmision BETWEEN STR_TO_DATE(CONCAT("{PERIODO}",'-01'), '%Y-%m-%d') AND STR_TO_DATE(LAST_DAY(CONCAT("{PERIODO}",'-01')), '%Y-%m-%d')
   AND C.Cerrado = 1
-  AND CI.EsRetencion    = 1
+  AND CI.EsPercepcion   = 1
   AND CI.TipoDeConcepto = 3
   AND CI.ParaAplicativo = 'SIAGER'
   AND IFNULL(C.Anulado,0) <> 1
