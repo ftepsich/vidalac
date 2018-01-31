@@ -433,7 +433,7 @@
                     <property name="contentType">html</property>
                     <property name="borderTopStyle">solid</property>
                     <property name="borderTopWidth">medium</property>
-                    <text-property name="content">Impreso el : <![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                    <text-property name="content">Impreso el : <![CDATA[<value-of format="dd/MM/YYYY">new Date()</value-of>]]></text-property>
                 </text>
             </page-footer>
         </simple-master-page>
