@@ -111,15 +111,15 @@
                     <property name="nativeDataType">12</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select 	P.Id as idPersona,
-		P.RazonSocial,
-		fPersona_CuentaCorriente_A_Fecha(P.Id,{FECHA},{MODELO},{TIPO}) as SaldoCtaCte,
-        concat(	IF(P.EsProveedor=1,'{EsProveedor}',''), IF(P.EsCliente=1,'{EsCliente}','')) as ClienteProveedor
-from 	CuentasCorrientes CC
-inner join 	Personas P on P.Id = CC.Persona
-{WHERE}
-group by CC.Persona
-{ORDEN}]]></xml-property>
+            <xml-property name="queryText">
+            <![CDATA[SELECT P.Id as idPersona,
+                            P.RazonSocial,
+                            fPersona_CuentaCorriente_A_Fecha(P.Id,{FECHA},{MODELO},{TIPO}) AS SaldoCtaCte,
+                            CONCAT(  IF(P.EsProveedor=1,'{EsProveedor}',''), IF(P.EsCliente=1,'{EsCliente}','')) AS ClienteProveedor
+                     FROM Personas P
+                     {WHERE}
+                     {ORDEN}]]>
+            </xml-property>
         </oda-data-set>
     </data-sets>
     <styles>
