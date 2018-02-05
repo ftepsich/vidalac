@@ -276,7 +276,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
         public function fetchCuentaCorrienteComoProveedor($where = null, $order = null, $count = null, $offset = null) {
         $condicion = "(
              (TiposDeComprobantes.Grupo IN (1,8,9,13,20) AND Comprobantes.EsCliente = 0)
-             OR (TiposDeComprobantes.Grupo in (7,12) AND Comprobantes.EsProveedor = 1) 
+             OR (TiposDeComprobantes.Grupo in (6,7,12) AND Comprobantes.EsProveedor = 1) 
              OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci LIKE '%Saldo s/Orden de Pago%') 
              )";
         $where = $this->_addCondition($where, $condicion);
