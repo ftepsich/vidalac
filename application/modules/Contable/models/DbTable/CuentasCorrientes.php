@@ -65,12 +65,12 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
     protected $_dependentTables = array();
 
     public function _getDescripcionComprobante($row) {
-        $M_C = Service_TableManager::get('Facturacion_Model_DbTable_Comprobantes');
+        $comprobantes = Service_TableManager::get('Facturacion_Model_DbTable_Comprobantes');
 
-        $M_PV = new Base_Model_DbTable_PuntosDeVentas(array(), false);
+        $puntosDeVenta = new Base_Model_DbTable_PuntosDeVentas(array(), false);
 
-        if (!$M_C->esComprobanteEntrada($row)) {
-            $R_PV = $M_PV->find($row->Punto)->current();
+        if (!$comprobantes->esComprobanteEntrada($row)) {
+            $R_PV = $puntosDeVenta->find($row->Punto)->current();
             $punto = $R_PV->Numero;
             if (!$R_PV) {
                 throw new Rad_Db_Table_Exception('No se encuentra el punto indicado.');
@@ -94,9 +94,9 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
         $asiento->FechaDeCarga = date('Y-m-d H:i:s');
         $asiento->FechaComprobante = date('Y-m-d', strtotime($row->FechaEmision));
 
-        $TC = $row->findParentRow('Facturacion_Model_DbTable_TiposDeComprobantes');
+        $tipoDeComprobante = $row->findParentRow('Facturacion_Model_DbTable_TiposDeComprobantes');
 
-        switch ($TC->Grupo) {
+        switch ($tipod->Grupo) {
 
             case 1: // Factura de Compra (H)
                 $asiento->DescripcionComprobante = 'FC: ' . $this->_getDescripcionComprobante($row);
@@ -184,9 +184,9 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
      *  @param Zend_Db_Table_Row $row El Row del comprobante que se quiere asentas
      */
     public function asentarCompensacionOP($row) {
-        $TC = $row->findParentRow('Facturacion_Model_DbTable_TiposDeComprobantes');
+        $tipoDeComprobante = $row->findParentRow('Facturacion_Model_DbTable_TiposDeComprobantes');
 
-        if ($TC->Id == 7) { // Orden de Pago
+        if ($tipoDeComprobante->Id == 7) { // Orden de Pago
             $sql = "SELECT IFNULL(SUM(CR.MontoAsociado),0) 
                     FROM ComprobantesRelacionados CR 
                     JOIN Comprobantes C ON CR.ComprobanteHijo = C.Id 
