@@ -1,0 +1,96 @@
+﻿{
+	xtype: 'panel',
+	layout: 'fit',
+	buttons: [
+            {
+                text: 'Guardar',
+                formBind: true,
+                handler: function () {this.findParentByType(Rad.Form).submit()}
+        	}
+        ],	
+	items: [
+		{
+			layout : 'border',
+			border : false,
+			items : [        
+				{
+					region : 'north',
+					layout: 'fit',
+					border: false,
+					autoHeight : true,
+					items :  { 
+						layout: 'column',
+						items: [
+							{
+								layout: 'form',
+								columnWidth: .5,
+								items: [
+									<<Id>>,
+									<<Proveedor>>,
+									<<TipoDeFactura>>,
+									{
+										layout: 'column',
+										items: [ 
+											{ 
+												layout: 'form',
+												columnWidth: .5,
+												items: [ <<FacturaPunto>> ]							
+											},
+											{ 
+												layout: 'form',
+												labelSeparator: '-',
+												labelWidth: 10,
+												columnWidth: .5,
+												items: [ <<FacturaNumero>> ]							
+											},
+										]
+									},
+									<<FechaEmision>>,
+									<<LibroIVA>>
+								]
+							},
+							{
+								layout: 'form',
+								columnWidth: .5,
+								items: [
+													
+									<<Compensable>>,
+									<<FechaVencimiento>>,
+									<<Divisa>>,				
+									<<ValorDivisa>>,
+									<<Descuento>>
+								]
+							}
+						]
+					}
+				},
+				{
+					region : 'center',
+					layout: 'fit',
+					border: false,
+					items : [ {
+								layout: 'form',
+								columnWidth: .5,
+								items: [ <<Observaciones>> ]
+							}
+							]
+				},
+				{
+					region: 'south',
+					height: 260,
+					items: [
+						{
+							xtype: 'tabpanel',
+							height: 250,
+							deferredRender: false,
+							//activeItem : 1,
+							items: 	[	<<Model_DbTable_FacturasComprasArticulos>>,
+										<<Model_DbTable_FacturasComprasConceptos>>
+									]	
+						}
+					]
+				}				
+			]
+		}	
+	]
+}

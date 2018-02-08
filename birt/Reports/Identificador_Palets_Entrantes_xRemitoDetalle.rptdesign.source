@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.21" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 2.5.2.v20100208 Build &lt;2.5.2.v20100210-0630></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">120</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">librerias/ConectorDB.rptlibrary</property>
+            <property name="namespace">ConectorDB</property>
+        </structure>
+        <structure>
+            <property name="fileName">librerias/CabeceraInterna.rptlibrary</property>
+            <property name="namespace">CabeceraInterna</property>
+        </structure>
+    </list-property>
+    <list-property name="cssStyleSheets">
+        <structure>
+            <property name="fileName">css/EstiloBase.css</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="Id" id="2440">
+            <property name="valueType">static</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Base" id="186"
+ extends="ConectorDB.DataSource">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+            </list-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Mmis" id="2439">
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">Id</property>
+                    <property name="paramName">Id</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Mmi</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Mmi</property>
+                    <property name="nativeName">Mmi</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select 	distinct(M.Id) as Mmi
+from 	Mmis M
+where	M.RemitoArticulo = ?]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Datos" id="2487">
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">Id</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">1</property>
+                    <expression name="defaultValue" type="javascript">1</expression>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">RemitoNro</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">CantidadOriginal</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">FechaIngreso</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">FechaVencimiento</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">Identificador</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">Lote</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">EsParaFason</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">Articulo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">Codigo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">Proveedor</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">Palet</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">RemitoNro</property>
+                    <property name="nativeName">RemitoNro</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">CantidadOriginal</property>
+                    <property name="nativeName">CantidadOriginal</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">FechaIngreso</property>
+                    <property name="nativeName">FechaIngreso</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">FechaVencimiento</property>
+                    <property name="nativeName">FechaVencimiento</property>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">Identificador</property>
+                    <property name="nativeName">Identificador</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">Lote</property>
+                    <property name="nativeName">Lote</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">EsParaFason</property>
+                    <property name="nativeName">EsParaFason</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">Articulo</property>
+                    <property name="nativeName">Articulo</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">Codigo</property>
+                    <property name="nativeName">Codigo</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">Proveedor</property>
+                    <property name="nativeName">Proveedor</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">Palet</property>
+                    <property name="nativeName">Palet</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[Select	fNumeroCompleto(C.Id,'') 	as RemitoNro,
+		concat(CAST(M.CantidadOriginal AS CHAR CHARSET utf8), ' ', U.DescripcionR)			as CantidadOriginal,
+        M.FechaIngreso				as FechaIngreso,
+        M.FechaVencimiento			as FechaVencimiento,
+        M.Identificador				as Identificador,
+        M.Lote						as Lote,
+        ifnull(A.EsParaFason,0)		as EsParaFason,
+        A.Descripcion				as Articulo,
+        A.Codigo					as Codigo,
+        concat(P.RazonSocial, ' (',P.CUIT, ')' ) as Proveedor,
+        T.Descripcion				as Palet
+From 	Mmis M
+left join Articulos A 				on A.Id 	= M.Articulo
+left join ComprobantesDetalles CD 	on CD.Id 	= M.RemitoArticulo
+left join Comprobantes C			on C.Id 	= CD.Comprobante
+left join Personas P				on P.Id		= C.Persona
+left join TiposDePalets T 			on T.Id 	= M.TipoDePalet
+left join UnidadesDeMedidas U		on U.Id 	= M.UnidadDeMedida
+where	M.Id = ?]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie">
+            <overridden-values>
+                <ref-entry baseId="2434" name="Cabecera" id="2434"/>
+                <ref-entry baseId="2435" id="2435"/>
+                <ref-entry baseId="2436" id="2436"/>
+                <ref-entry baseId="2437" id="2437"/>
+                <ref-entry baseId="2438" name="NewLabel1" id="2438"/>
+                <ref-entry baseId="2404" name="NewGrid" id="2404"/>
+                <ref-entry baseId="2405" id="2405"/>
+                <ref-entry baseId="2406" id="2406"/>
+                <ref-entry baseId="2419" id="2419"/>
+                <ref-entry baseId="2417" id="2417"/>
+                <ref-entry baseId="2407" id="2407"/>
+                <ref-entry baseId="2408" id="2408"/>
+                <ref-entry baseId="2409" id="2409"/>
+                <ref-entry baseId="2433" name="NewLabel" id="2433"/>
+                <ref-entry baseId="2410" id="2410"/>
+                <ref-entry baseId="2432" name="NewText" id="2432"/>
+                <ref-entry baseId="2418" id="2418"/>
+                <ref-entry baseId="2416" id="2416"/>
+                <ref-entry baseId="2411" id="2411"/>
+                <ref-entry baseId="2421" name="NewGrid1" id="2421"/>
+                <ref-entry baseId="2422" id="2422"/>
+                <ref-entry baseId="2423" id="2423"/>
+                <ref-entry baseId="2424" id="2424"/>
+                <ref-entry baseId="2425" id="2425"/>
+                <ref-entry baseId="2426" id="2426"/>
+                <ref-entry baseId="2427" name="NewAutoText" id="2427"/>
+                <ref-entry baseId="2428" id="2428"/>
+                <ref-entry baseId="2429" name="NewText1" id="2429"/>
+                <ref-entry baseId="2430" id="2430"/>
+                <ref-entry baseId="2431" name="NewAutoText1" id="2431"/>
+            </overridden-values>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <table id="2441">
+            <list-property name="userProperties">
+                <structure>
+                    <property name="name">mId</property>
+                    <property name="type">expression</property>
+                    <expression name="default" type="javascript">row["Mmi"]</expression>
+                </structure>
+            </list-property>
+            <property name="dataSet">Mmis</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Mmi</property>
+                    <text-property name="displayName">Mmi</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Mmi"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <column id="2448"/>
+            <detail>
+                <row id="2444">
+                    <cell id="2445">
+                        <table name="Datos" id="2658">
+                            <property name="dataSet">Datos</property>
+                            <list-property name="paramBindings">
+                                <structure>
+                                    <property name="paramName">Id</property>
+                                    <expression name="expression" type="javascript">row["Mmi"]</expression>
+                                </structure>
+                            </list-property>
+                            <list-property name="boundDataColumns">
+                                <structure>
+                                    <property name="name">RemitoNro</property>
+                                    <expression name="expression" type="javascript">dataSetRow["RemitoNro"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">CantidadOriginal</property>
+                                    <expression name="expression" type="javascript">dataSetRow["CantidadOriginal"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">FechaIngreso</property>
+                                    <expression name="expression" type="javascript">dataSetRow["FechaIngreso"]</expression>
+                                    <property name="dataType">date-time</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">FechaVencimiento</property>
+                                    <expression name="expression" type="javascript">dataSetRow["FechaVencimiento"]</expression>
+                                    <property name="dataType">date</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">Identificador</property>
+                                    <expression name="expression" type="javascript">dataSetRow["Identificador"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">Lote</property>
+                                    <expression name="expression" type="javascript">dataSetRow["Lote"]</expression>
+                                    <property name="dataType">integer</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">EsParaFason</property>
+                                    <expression name="expression" type="javascript">dataSetRow["EsParaFason"]</expression>
+                                    <property name="dataType">decimal</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">Articulo</property>
+                                    <expression name="expression" type="javascript">dataSetRow["Articulo"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">Codigo</property>
+                                    <expression name="expression" type="javascript">dataSetRow["Codigo"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">Proveedor</property>
+                                    <expression name="expression" type="javascript">dataSetRow["Proveedor"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">Palet</property>
+                                    <expression name="expression" type="javascript">dataSetRow["Palet"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                            </list-property>
+                            <column id="2665"/>
+                            <detail>
+                                <row id="2661">
+                                    <cell id="2662">
+                                        <grid name="Contenedor ParaFason" id="2541">
+                                            <list-property name="visibility">
+                                                <structure>
+                                                    <property name="format">all</property>
+                                                    <expression name="valueExpr" type="javascript">row["EsParaFason"] == 0;</expression>
+                                                </structure>
+                                            </list-property>
+                                            <column id="2542"/>
+                                            <row id="2543">
+                                                <cell id="2544">
+                                                    <label id="2480"/>
+                                                    <label id="2663">
+                                                        <property name="fontFamily">"Verdana"</property>
+                                                        <property name="fontSize">36pt</property>
+                                                        <property name="fontWeight">bold</property>
+                                                        <property name="fontStyle">italic</property>
+                                                        <property name="borderBottomColor">#000000</property>
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">medium</property>
+                                                        <property name="borderTopColor">#000000</property>
+                                                        <property name="borderTopStyle">solid</property>
+                                                        <property name="borderTopWidth">medium</property>
+                                                        <property name="textAlign">center</property>
+                                                        <text-property name="text">Para FASON</text-property>
+                                                    </label>
+                                                </cell>
+                                            </row>
+                                        </grid>
+                                        <grid name="Contenedor Origen" id="2633">
+                                            <column id="2634"/>
+                                            <row id="2635">
+                                                <cell id="2636">
+                                                    <label id="2479"/>
+                                                    <label id="2582">
+                                                        <property name="style">nombre-comprobante</property>
+                                                        <property name="textAlign">right</property>
+                                                        <text-property name="text">Origen:</text-property>
+                                                    </label>
+                                                    <grid id="2455">
+                                                        <property name="width">7.958333333333333in</property>
+                                                        <column id="2456">
+                                                            <property name="width">2.1333333333333333in</property>
+                                                        </column>
+                                                        <column id="2459">
+                                                            <property name="width">5.825in</property>
+                                                        </column>
+                                                        <row id="2460">
+                                                            <cell id="2461">
+                                                                <label id="2475">
+                                                                    <property name="style">nombre-cabecera</property>
+                                                                    <property name="fontSize">16pt</property>
+                                                                    <text-property name="text">Proveedor</text-property>
+                                                                </label>
+                                                            </cell>
+                                                            <cell id="2464">
+                                                                <data id="2538">
+                                                                    <property name="style">campo-cabecera</property>
+                                                                    <property name="fontSize">16pt</property>
+                                                                    <property name="dataSet">Datos</property>
+                                                                    <list-property name="boundDataColumns">
+                                                                        <structure>
+                                                                            <property name="name">Proveedor</property>
+                                                                            <text-property name="displayName">Proveedor</text-property>
+                                                                            <expression name="expression" type="javascript">dataSetRow["Proveedor"]</expression>
+                                                                            <property name="dataType">string</property>
+                                                                        </structure>
+                                                                    </list-property>
+                                                                    <property name="resultSetColumn">Proveedor</property>
+                                                                </data>
+                                                            </cell>
+                                                        </row>
+                                                        <row id="2465">
+                                                            <cell id="2466">
+                                                                <label id="2477">
+                                                                    <property name="style">nombre-cabecera</property>
+                                                                    <property name="fontSize">16pt</property>
+                                                                    <text-property name="text">Fecha Ingreso</text-property>
+                                                                </label>
+                                                            </cell>
+                                                            <cell id="2469">
+                                                                <data id="2539">
+                                                                    <property name="style">campo-cabecera</property>
+                                                                    <property name="fontSize">16pt</property>
+                                                                    <property name="dataSet">Datos</property>
+                                                                    <list-property name="boundDataColumns">
+                                                                        <structure>
+                                                                            <property name="name">FechaIngreso</property>
+                                                                            <text-property name="displayName">FechaIngreso</text-property>
+                                                                            <expression name="expression" type="javascript">dataSetRow["FechaIngreso"]</expression>
+                                                                            <property name="dataType">date-time</property>
+                                                                        </structure>
+                                                                    </list-property>
+                                                                    <property name="resultSetColumn">FechaIngreso</property>
+                                                                </data>
+                                                            </cell>
+                                                        </row>
+                                                        <row id="2470">
+                                                            <cell id="2471">
+                                                                <label id="2478">
+                                                                    <property name="style">nombre-cabecera</property>
+                                                                    <property name="fontSize">16pt</property>
+                                                                    <text-property name="text">Remito Entrada</text-property>
+                                                                </label>
+                                                            </cell>
+                                                            <cell id="2474">
+                                                                <data id="2540">
+                                                                    <property name="style">campo-cabecera</property>
+                                                                    <property name="fontSize">16pt</property>
+                                                                    <property name="dataSet">Datos</property>
+                                                                    <list-property name="boundDataColumns">
+                                                                        <structure>
+                                                                            <property name="name">RemitoNro</property>
+                                                                            <text-property name="displayName">RemitoNro</text-property>
+                                                                            <expression name="expression" type="javascript">dataSetRow["RemitoNro"]</expression>
+                                                                            <property name="dataType">string</property>
+                                                                        </structure>
+                                                                    </list-property>
+                                                                    <property name="resultSetColumn">RemitoNro</property>
+                                                                </data>
+                                                            </cell>
+                                                        </row>
+                                                    </grid>
+                                                </cell>
+                                            </row>
+                                        </grid>
+                                        <grid name="Contenedor Detalle" id="2587">
+                                            <column id="2588"/>
+                                            <row id="2589">
+                                                <cell id="2590">
+                                                    <label id="2482">
+                                                        <property name="style">nombre-comprobante</property>
+                                                        <property name="textAlign">right</property>
+                                                        <text-property name="text">Contenido:</text-property>
+                                                    </label>
+                                                    <grid id="2483">
+                                                        <column id="2484"/>
+                                                        <row id="2485">
+                                                            <cell id="2486">
+                                                                <property name="borderBottomColor">#000000</property>
+                                                                <property name="borderBottomStyle">solid</property>
+                                                                <property name="borderBottomWidth">medium</property>
+                                                                <property name="borderLeftColor">#000000</property>
+                                                                <property name="borderLeftStyle">solid</property>
+                                                                <property name="borderLeftWidth">medium</property>
+                                                                <property name="borderRightColor">#000000</property>
+                                                                <property name="borderRightStyle">solid</property>
+                                                                <property name="borderRightWidth">medium</property>
+                                                                <property name="borderTopColor">#000000</property>
+                                                                <property name="borderTopStyle">solid</property>
+                                                                <property name="borderTopWidth">medium</property>
+                                                                <grid id="2514">
+                                                                    <property name="width">7.875in</property>
+                                                                    <property name="dataSet">Datos</property>
+                                                                    <list-property name="boundDataColumns">
+                                                                        <structure>
+                                                                            <property name="name">RemitoNro</property>
+                                                                            <expression name="expression" type="javascript">dataSetRow["RemitoNro"]</expression>
+                                                                            <property name="dataType">string</property>
+                                                                        </structure>
+                                                                        <structure>
+                                                                            <property name="name">CantidadOriginal</property>
+                                                                            <expression name="expression" type="javascript">dataSetRow["CantidadOriginal"]</expression>
+                                                                            <property name="dataType">string</property>
+                                                                        </structure>
+                                                                        <structure>
+                                                                            <property name="name">FechaIngreso</property>
+                                                                            <expression name="expression" type="javascript">dataSetRow["FechaIngreso"]</expression>
+                                                                            <property name="dataType">date-time</property>
+                                                                        </structure>
+                                                                        <structure>
+                                                                            <property name="name">FechaVencimiento</property>
+                                                                            <expression name="expression" type="javascript">dataSetRow["FechaVencimiento"]</expression>
+                                                                            <property name="dataType">date</property>
+                                                                        </structure>
+                                                                        <structure>
+                                                                            <property name="name">Identificador</property>
+                                                                            <expression name="expression" type="javascript">dataSetRow["Identificador"]</expression>
+                                                                            <property name="dataType">string</property>
+                                                                        </structure>
+                                                                        <structure>
+                                                                            <property name="name">Lote</property>
+                                                                            <expression name="expression" type="javascript">dataSetRow["Lote"]</expression>
+                                                                            <property name="dataType">integer</property>
+                                                                        </structure>
+                                                                        <structure>
+                                                                            <property name="name">EsParaFason</property>
+                                                                            <expression name="expression" type="javascript">dataSetRow["EsParaFason"]</expression>
+                                                                            <property name="dataType">integer</property>
+                                                                        </structure>
+                                                                        <structure>
+                                                                            <property name="name">Articulo</property>
+                                                                            <expression name="expression" type="javascript">dataSetRow["Articulo"]</expression>
+                                                                            <property name="dataType">string</property>
+                                                                        </structure>
+                                                                        <structure>
+                                                                            <property name="name">Codigo</property>
+                                                                            <expression name="expression" type="javascript">dataSetRow["Codigo"]</expression>
+                                                                            <property name="dataType">string</property>
+                                                                        </structure>
+                                                                        <structure>
+                                                                            <property name="name">Proveedor</property>
+                                                                            <expression name="expression" type="javascript">dataSetRow["Proveedor"]</expression>
+                                                                            <property name="dataType">string</property>
+                                                                        </structure>
+                                                                        <structure>
+                                                                            <property name="name">Palet</property>
+                                                                            <expression name="expression" type="javascript">dataSetRow["Palet"]</expression>
+                                                                            <property name="dataType">string</property>
+                                                                        </structure>
+                                                                    </list-property>
+                                                                    <column id="2515">
+                                                                        <property name="width">1.8666666666666667in</property>
+                                                                    </column>
+                                                                    <column id="2516">
+                                                                        <property name="width">2.0833333333333335in</property>
+                                                                    </column>
+                                                                    <column id="2517">
+                                                                        <property name="width">1.875in</property>
+                                                                    </column>
+                                                                    <column id="2518">
+                                                                        <property name="width">2.0416666666666665in</property>
+                                                                    </column>
+                                                                    <row id="2519">
+                                                                        <cell id="2520">
+                                                                            <label id="2534">
+                                                                                <property name="style">nombre-cabecera</property>
+                                                                                <property name="fontSize">12pt</property>
+                                                                                <text-property name="text">Articulo</text-property>
+                                                                            </label>
+                                                                        </cell>
+                                                                        <cell id="2521">
+                                                                            <property name="colSpan">3</property>
+                                                                            <property name="rowSpan">1</property>
+                                                                        </cell>
+                                                                    </row>
+                                                                    <row id="2548">
+                                                                        <cell id="2549">
+                                                                            <property name="colSpan">4</property>
+                                                                            <property name="rowSpan">1</property>
+                                                                            <data id="2546">
+                                                                                <property name="fontSize">30pt</property>
+                                                                                <property name="resultSetColumn">Articulo</property>
+                                                                            </data>
+                                                                        </cell>
+                                                                    </row>
+                                                                    <row id="2555">
+                                                                        <cell id="2556"/>
+                                                                        <cell id="2557"/>
+                                                                        <cell id="2558"/>
+                                                                        <cell id="2559"/>
+                                                                    </row>
+                                                                    <row id="2524">
+                                                                        <cell id="2525">
+                                                                            <label id="2536">
+                                                                                <property name="style">nombre-cabecera</property>
+                                                                                <property name="fontSize">12pt</property>
+                                                                                <text-property name="text">Cantidad Original</text-property>
+                                                                            </label>
+                                                                        </cell>
+                                                                        <cell id="2526"/>
+                                                                        <cell id="2527">
+                                                                            <label id="2553">
+                                                                                <property name="style">nombre-cabecera</property>
+                                                                                <property name="fontSize">12pt</property>
+                                                                                <text-property name="text">Codigo</text-property>
+                                                                            </label>
+                                                                        </cell>
+                                                                        <cell id="2528"/>
+                                                                    </row>
+                                                                    <row id="2560">
+                                                                        <cell id="2561">
+                                                                            <property name="colSpan">2</property>
+                                                                            <property name="rowSpan">1</property>
+                                                                            <data id="2547">
+                                                                                <property name="style">campo-cabecera</property>
+                                                                                <property name="fontSize">24pt</property>
+                                                                                <property name="resultSetColumn">CantidadOriginal</property>
+                                                                            </data>
+                                                                        </cell>
+                                                                        <cell id="2563">
+                                                                            <property name="colSpan">2</property>
+                                                                            <property name="rowSpan">1</property>
+                                                                            <data id="2554">
+                                                                                <property name="style">codigo-Barra-Grande</property>
+                                                                                <property name="fontSize">36pt</property>
+                                                                                <property name="resultSetColumn">Codigo</property>
+                                                                            </data>
+                                                                        </cell>
+                                                                    </row>
+                                                                    <row id="2565">
+                                                                        <cell id="2566">
+                                                                            <label id="2570">
+                                                                                <property name="style">nombre-cabecera</property>
+                                                                                <property name="fontSize">12pt</property>
+                                                                                <text-property name="text">Fecha Vencimiento</text-property>
+                                                                            </label>
+                                                                        </cell>
+                                                                        <cell id="2567"/>
+                                                                        <cell id="2568">
+                                                                            <label id="2571">
+                                                                                <property name="style">nombre-cabecera</property>
+                                                                                <property name="fontSize">12pt</property>
+                                                                                <text-property name="text">Lote</text-property>
+                                                                            </label>
+                                                                        </cell>
+                                                                        <cell id="2569"/>
+                                                                    </row>
+                                                                    <row id="2575">
+                                                                        <cell id="2576">
+                                                                            <property name="colSpan">2</property>
+                                                                            <property name="rowSpan">1</property>
+                                                                            <data id="2574">
+                                                                                <property name="style">campo-cabecera</property>
+                                                                                <property name="fontSize">24pt</property>
+                                                                                <property name="resultSetColumn">FechaVencimiento</property>
+                                                                            </data>
+                                                                        </cell>
+                                                                        <cell id="2578">
+                                                                            <property name="colSpan">2</property>
+                                                                            <property name="rowSpan">1</property>
+                                                                            <data id="2573">
+                                                                                <property name="style">campo-cabecera</property>
+                                                                                <property name="fontSize">24pt</property>
+                                                                                <property name="resultSetColumn">Lote</property>
+                                                                            </data>
+                                                                        </cell>
+                                                                    </row>
+                                                                </grid>
+                                                            </cell>
+                                                        </row>
+                                                    </grid>
+                                                </cell>
+                                            </row>
+                                        </grid>
+                                        <grid name="Contenedor Identificador" id="2583">
+                                            <column id="2584"/>
+                                            <row id="2585">
+                                                <cell id="2586">
+                                                    <label id="2580">
+                                                        <property name="style">nombre-comprobante</property>
+                                                        <property name="textAlign">right</property>
+                                                        <text-property name="text">Identificador:</text-property>
+                                                    </label>
+                                                    <data id="2581">
+                                                        <property name="fontSize">144pt</property>
+                                                        <property name="dataSet">Datos</property>
+                                                        <list-property name="boundDataColumns">
+                                                            <structure>
+                                                                <property name="name">Identificador</property>
+                                                                <text-property name="displayName">Identificador</text-property>
+                                                                <expression name="expression" type="javascript">dataSetRow["Identificador"]</expression>
+                                                                <property name="dataType">string</property>
+                                                            </structure>
+                                                        </list-property>
+                                                        <property name="resultSetColumn">Identificador</property>
+                                                    </data>
+                                                </cell>
+                                            </row>
+                                        </grid>
+                                        <grid id="2650">
+                                            <property name="width">7.958333333333333in</property>
+                                            <column id="2651">
+                                                <property name="width">2.066666666666667in</property>
+                                            </column>
+                                            <column id="2652">
+                                                <property name="width">5.891666666666667in</property>
+                                            </column>
+                                            <row id="2653">
+                                                <cell id="2654">
+                                                    <label id="2656">
+                                                        <property name="style">nombre-cabecera</property>
+                                                        <property name="fontSize">12pt</property>
+                                                        <text-property name="text">Palet que usa</text-property>
+                                                    </label>
+                                                </cell>
+                                                <cell id="2655">
+                                                    <data id="2657">
+                                                        <property name="style">campo-cabecera</property>
+                                                        <property name="fontSize">16pt</property>
+                                                        <property name="dataSet">Datos</property>
+                                                        <list-property name="boundDataColumns">
+                                                            <structure>
+                                                                <property name="name">Palet</property>
+                                                                <text-property name="displayName">Palet</text-property>
+                                                                <expression name="expression" type="javascript">dataSetRow["Palet"]</expression>
+                                                                <property name="dataType">string</property>
+                                                            </structure>
+                                                        </list-property>
+                                                        <property name="resultSetColumn">Palet</property>
+                                                    </data>
+                                                </cell>
+                                            </row>
+                                        </grid>
+                                    </cell>
+                                </row>
+                            </detail>
+                        </table>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+    </body>
+</report>

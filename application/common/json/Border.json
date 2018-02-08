@@ -1,0 +1,14 @@
+{
+	xtype : 'panel',
+	layout : "border",
+	items : [        
+		{
+			region : "center",
+			title : "<<JsonTituloCentro>>",
+			layout: 'fit',
+			items : [ 
+						<<JsonGrillaCentro>> 
+					]
+		}
+	]
+}

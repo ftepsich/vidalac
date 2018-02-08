@@ -1,0 +1,157 @@
+{
+    xtype: 'panel',
+    layout: 'form',
+    buttonAlign: 'center',
+    id: 'FacturasComprasArticulosFormpanel',
+    modeloArticulos: 'Articulos', // Define el modelo inicial que se usa para el combo (NO TOCAR)
+    cambiarTipo: function (i) {
+        var articulo = this.ownerCt.getForm().findField('Articulo');
+        var cuenta   = this.ownerCt.getForm().findField('CuentaCasual');
+        var obs      = this.ownerCt.getForm().findField('Observaciones');
+        var cantidad = this.ownerCt.getForm().findField('Cantidad');
+        var sel      = Ext.getCmp('FacturasComprasArticulos-selector-tipo');
+
+        sel.setValue(parseInt(i));
+        
+        switch (i) {
+
+            // Articulos
+            case '0':
+                articulo.allowBlank = false;
+                articulo.store.baseParams.fetch = 'EsArticuloParaCompra';
+                this.cambiarComboArticulos('Articulos');
+                articulo.show();
+                
+                cantidad.setValue(0);
+                cantidad.show();
+                
+                obs.allowBlank = true;
+
+                cuenta.allowBlank = true;
+                cuenta.hide();
+                cuenta.reset();
+
+                break;
+
+            // Servicios
+            case '1':
+                articulo.allowBlank = false;
+                articulo.store.baseParams.fetch = 'EsServicioParaCompra';
+                this.cambiarComboArticulos('Articulos');
+                articulo.show();
+                
+                cantidad.setValue(1);
+                cantidad.hide();
+                
+                obs.allowBlank = true;
+
+                cuenta.allowBlank = true;
+                cuenta.hide();
+                cuenta.reset();
+
+                break;
+
+            // Varios
+            case '2':
+                articulo.allowBlank = true;
+                articulo.hide();
+                articulo.reset();
+                
+                cantidad.setValue(0);
+                cantidad.show();
+
+                obs.allowBlank = false;
+
+                cuenta.allowBlank = false;
+                cuenta.show();
+
+                break;
+                
+            // Gastos Bancarios / Otros Adelantos
+            // No esta en el combo, sino que se establece desde facturasCompras.js
+            // para ciertos Tipos de Grupos de Comprobantes
+            case '3':
+                this.cambiarComboArticulos('ConceptosFacturacionBancarios');
+                cantidad.hide();
+                
+                articulo.show();
+                
+                sel.hide();
+                
+                break;
+        }
+    },
+    
+    /**
+     * Cambia el modelo del que muestra los datos del combo Articulos
+     */
+    cambiarComboArticulos: function (modelo) {
+        if (this.modeloArticulos != modelo) {
+            var articulo = this.ownerCt.getForm().findField('Articulo');
+            switch (modelo) {
+                case 'ConceptosFacturacionBancarios':
+                    delete articulo.store.baseParams.fetch;
+                    articulo.tpl = new Ext.XTemplate('<tpl for="."><div class="x-combo-list-item">{Descripcion}</div></tpl>');
+                    //articulo.refresh();
+                    // ACA VER COMO RECARGAR
+                    var url = api = '/datagateway/combolist/model/ConceptosFacturacionBancarios/m/Base/search/Descripcion';
+                    break;
+                case 'Articulos':
+                default:
+                    articulo.tpl = RadTemplates.articulo;
+                    //articulo.refresh();
+                    var url = api = '/datagateway/combolist/model/Articulos/m/Base/search/Descripcion';
+            }
+            articulo.store.proxy.setUrl(url);
+            articulo.store.proxy.setApi('read', api);
+            this.modeloArticulos = modelo;
+        }
+    },
+    
+    buttons: [{
+        text:       'Guardar',
+        formBind:   true,
+        handler:    function() {
+            var form = this.findParentByType(Rad.Form);
+            var panel = this.ownerCt.ownerCt;
+            if (panel.modeloArticulos == 'ConceptosFacturacionBancarios') {
+                var cantidad = form.getForm().findField('Cantidad');
+                cantidad.setValue(1);
+            }
+            form.submit();
+        }
+    }],
+    
+    items: [
+        new Ext.form.ComboBox ({
+                id: 'FacturasComprasArticulos-selector-tipo',
+                fieldLabel      : 'Tipo',
+                displayField    : 'Descripcion',
+                valueField      : 'Id',
+                mode            : 'local',
+                triggerAction   : 'all',
+                editable        : false,
+                value           : 0,
+                store: new Ext.data.SimpleStore ({
+                    fields  : [ 'Id','Descripcion' ],
+                    data    : [ ['0','Articulos'],['1','Servicios'],['2','Varios'] ],
+                }),
+                listeners: {
+                    select: function (combo, record, index) {
+                        var panel = Ext.getCmp('FacturasComprasArticulosFormpanel');
+                        var articulo = panel.ownerCt.getForm().findField('Articulo');
+                        articulo.clearValue();
+                        panel.cambiarTipo(record.data.Id);
+                    }
+                }
+            }),
+        <<Id>>,
+        <<Comprobante>>,
+        <<Articulo>>,
+        <<Observaciones>>,
+        <<ConceptoImpositivo>>,
+        <<Cantidad>>,
+        <<PrecioUnitario>>,
+        <<CuentaCasual>>
+    ]
+}

@@ -1,0 +1,17 @@
+Marcas:
+  - 
+    Id: 1
+    Descripcion: 'Marca 1'
+
+PlanesDeCuentas:
+  -
+    Id: 1
+    Descripcion: Cuenta 1
+    Jerarquia: "1.1.1.1"
+    Imputable: 1
+    SeOcupa: 1
+
+Articulos:
+
+ArticulosVersiones:
+ArticulosVersionesDetalles: 

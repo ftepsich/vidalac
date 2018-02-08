@@ -1,0 +1,24 @@
+{
+    xtype: 'panel',
+    layout: 'border',
+    items: [
+        {
+            region: 'center',
+            layout: 'column',
+            height: 140,
+            items: [
+                {
+                    layout: 'form',
+                    items: [
+                        <<Id>>,
+                        <<Punto>>,
+                        <<Numero>>,
+                        <<FechaEmision>>,
+                        <<DepositoSalida>>,
+                        <<Observaciones>>
+                    ]
+                }
+            ]
+        }
+    ]
+}

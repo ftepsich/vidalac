@@ -1,0 +1,15 @@
+ArticulosVersionesDetalles:
+  - 
+    Id: 1
+    ArticuloVersionPadre: 1
+    ArticuloVersionHijo: 1
+    Proceso: 
+    Cantidad: 1
+    UnidadDeMedida: 5
+  - 
+    Id: 2
+    ArticuloVersionPadre: 2
+    ArticuloVersionHijo: 1
+    Proceso: 
+    Cantidad: 1
+    UnidadDeMedida: 5

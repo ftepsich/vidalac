@@ -1,0 +1,80 @@
+Ext.BLANK_IMAGE_URL = '/images/s.gif';
+
+//var defaultLang = 'ru';
+
+// create namespace
+//Ext.namespace('RADFramework');
+
+// Desktop
+MyDesktop = new RadDesktop.App({
+    init: function() {
+        Ext.QuickTips.init();
+    },
+	appsMenu:<?= $this->modules ?>,
+    getStartConfig: function() {
+        return {
+            title: '<?=$this->usuario?>',
+            iconCls: 'user',
+            toolItems: [{
+                text: 'Utiles',
+                iconCls: 'x-menu-item-icon',
+                icon: 'images/cog.png',
+                scope: this,
+                menu: [{
+                    text: 'Mapa',
+                    iconCls: 'x-menu-item-icon',
+                    icon: 'images/map.png',
+                    scope: this,
+                    channel: '/desktop/modules/js/commonApps/gmaps.js'
+                },{
+                    text: 'Mail',
+                    iconCls: 'x-menu-item-icon',
+                    icon: 'images/email.png',
+                    scope: this,
+        		    channel: '/desktop/modules/js/commonApps/mail.js'
+        		},{
+                    text: 'Adm. Impresion',
+                    iconCls: 'x-menu-item-icon',
+                    icon: 'images/printer.png',
+                    scope: this,
+                    channel: '/desktop/modules/default/colaimpresion'
+                },{
+                    text: 'Configuracion',
+                    iconCls: 'x-menu-item-icon',
+                    icon: 'images/cog.png',
+                    scope: this,
+                    channel: '/desktop/modules/default/configuracion'
+                }
+                ]
+            },
+			<?= $this->controlPanel ?>
+            {
+                text: 'Ayuda',
+                iconCls: 'x-menu-item-icon',
+                icon: 'images/help.png',
+                scope: this,
+                handler: function() {
+					Ext.ux.Sprocket.PubSub.publish('/desktop/modules/js/commonApps/showUrl.js', {
+						action: 'launch',
+						url: 'http://sitio.smartsoftware.com.ar/smartgestion/ayuda-con-smartgestion/?noMenues=1',
+						width: 1000,
+						height: 500
+					});
+
+                }
+            },
+            '-', {
+                text: 'Salir',
+                iconCls: 'logout',
+                scope: this,
+                handler: function() {
+                    document.location = '/auth/logout';
+                }
+            }]
+        };
+    }
+});
+
+MyDesktop.onReady(function() {
+	Ext.ux.Sprocket.PubSub.publish('/desktop/modules/js/commonApps/detailView.js', { action: 'launch'});
+});

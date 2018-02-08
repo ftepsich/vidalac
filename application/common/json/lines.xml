@@ -1,0 +1,9 @@
+<chart>
+   <chart_type>line</chart_type>
+   <chart_pref line_thickness='3' fill_shape='true' />
+   <license>asdasd</license>
+	<chart_data>
+	<<Data>>
+	</chart_data>
+
+</chart>

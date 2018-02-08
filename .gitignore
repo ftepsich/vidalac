@@ -1,0 +1,26 @@
+data/*
+public/sessionChartImages/*
+docs
+logs/*
+/temp
+/user
+#public/resources/*
+!birt/ReportEngine/configuration/config.log
+birt/ReportEngine/configuration
+birt/Reports/*.rptdesign
+birt/Reports/*.rptlibrary
+birt/Reports/librerias/*.rptlibrary
+public/wallpapers/thumbs/*
+.project
+.buildpath
+.settings
+*.sublime-project
+*.sublime-workspace
+!.GITINCLUDE
+.c9revisions
+# Application specific
+/.vagrant
+vendor/
+application/configs/application.ini
+application/configs/cert/
+.idea/

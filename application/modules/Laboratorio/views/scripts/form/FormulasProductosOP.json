@@ -1,0 +1,27 @@
+{
+    xtype: 'panel',
+    layout: 'form',
+    buttonAlign: 'center',
+    buttons: [
+            {
+                    text: 'Guardar',
+                    handler: function() { this.findParentByType(Rad.Form).submit() }
+            }
+    ],
+    labelWidth: 70,
+    items: [
+        <<Id>>,
+        <<Insumo>>,
+        <<OrdenDeProduccion>>,
+        <<Articulo>>,
+        <<Cantidad>>,
+        <<Porcentaje>>,
+        <<PrecioUnitarioEstimado>>,
+        {
+            xtype: 'hidden',
+            id:'tipoDePrecioFromulasProductosOp',
+            name:  'tipoDePrecio',
+            value: 3
+        }
+    ]
+}

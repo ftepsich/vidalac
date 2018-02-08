@@ -1,0 +1,5 @@
+<?php
+class Facturacion_Model_DbTable_FacturasComprasRemitosDetalles extends Facturacion_Model_DbTable_ComprobantesRelacionadosDetalles
+{
+
+}	

@@ -1,0 +1,42 @@
+{
+    layout :    'fit',
+    xtype: 'panel',
+    buttons: [
+        {
+            text: 'Guardar',
+            handler: function() { this.findParentByType(Rad.Form).submit() }
+        }
+    ],
+    items: [{
+       
+        labelWidth: 110,
+        items : [{
+                layout :    'form',
+                labelAlign: 'top',
+                items:[
+                    <<Id>>,
+                    <<Descripcion>>,
+                    <<Deposito>>,
+                    <<TipoDeAlmacen>>, 
+                    <<Perspectiva>>
+                ]
+            },{
+                xtype:'fieldset',
+                title: 'Rack',
+                autoHeight:true,
+                items :[{
+                    layout: 'column',
+                    autoHeight: true,
+                    defaults:{layout: 'form',style:'padding:3px',bodyStyle:'padding-top:3px'},
+                    items: [
+                        { columnWidth: .20, items: [<<TieneRack>>,<<Separador>>], labelWidth: 80 },
+                        { columnWidth: .20, title: 'Tamaño', items: [<<RackCantFila>>,<<RackCantAltura>>,<<RackCantProfundidad>>], labelWidth: 80 },
+                        { columnWidth: .20, title: 'Descrión', hideLabels:true, items: [<<DescFila>>,<<DescAltura>>,<<DescProfundidad>>]},
+                        { columnWidth: .25, title: 'Incremento', hideLabels:true, items: [<<IncrementoFila>>, <<IncrementoAltura>>,<<IncrementoProfundidad>>] },
+                        { columnWidth: .15, title: 'Completa Ceros', hideLabels:true, items: [<<CompletaCerosFila>>,<<CompletaCerosAltura>>,<<CompletaCerosProfundidad>>], labelWidth: 60 }
+                    ]
+                }]
+            }            
+        ]
+    }]
+}

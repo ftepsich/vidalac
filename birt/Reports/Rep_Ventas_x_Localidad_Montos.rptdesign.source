@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.21" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 2.5.2.v20100208 Build &lt;2.5.2.v20100210-0630></property>
+    <property name="units">cm</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">librerias/ConectorDB.rptlibrary</property>
+            <property name="namespace">ConectorDB</property>
+        </structure>
+        <structure>
+            <property name="fileName">librerias/{CABECERA}.rptlibrary</property>
+            <property name="namespace">CabeceraInterna</property>
+        </structure>
+    </list-property>
+    <list-property name="cssStyleSheets">
+        <structure>
+            <property name="fileName">css/EstiloBase.css</property>
+        </structure>
+    </list-property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Base" id="186">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://127.0.0.1/vidalac</property>
+            <property name="odaUser">root</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">dmlkYWxhYzExNjA1OQ==</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Ventas" id="2196">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Localidad</property>
+                    <text-property name="displayName">Localidad</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Provincia</property>
+                    <text-property name="displayName">Provincia</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">MontoTotal</property>
+                    <text-property name="displayName">MontoTotal</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Localidad</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Provincia</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">MontoTotal</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Localidad</property>
+                    <property name="nativeName">Localidad</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">Provincia</property>
+                    <property name="nativeName">Provincia</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">MontoTotal</property>
+                    <property name="nativeName">MontoTotal</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT 	IFNULL(L.Descripcion,'Sin Datos de Localidad') AS Localidad,
+		IFNULL(PR.Descripcion,'Sin Datos de Provincia') AS Provincia,
+		SUM(fComprobante_Monto_Total(C.Id)) AS MontoTotal
+FROM Comprobantes C
+LEFT JOIN Personas P ON P.Id= C.Persona
+LEFT JOIN Direcciones D ON D.Persona = P.Id
+LEFT JOIN Localidades L ON L.Id = D.Localidad
+LEFT JOIN Provincias PR ON PR.Id = L.Provincia
+LEFT JOIN TiposDeComprobantes TC ON TC.Id = C.TipoDeComprobante
+{WHERE} 
+GROUP BY L.Descripcion,PR.Descripcion
+ORDER BY L.Provincia]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="23" extends="CabeceraInterna.Cabecera_y_Pie">
+            <property name="type">a4</property>
+            <property name="leftMargin">0.25in</property>
+            <property name="headerHeight">0.5in</property>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid name="Separador 1" id="2478">
+            <property name="height">5pt</property>
+            <column id="2479"/>
+            <row id="2480">
+                <cell id="2481"/>
+            </row>
+        </grid>
+        <grid name="Titulos" id="2482">
+            <property name="width">19.706166666666668cm</property>
+            <column id="2483">
+                <property name="width">19.706166666666668cm</property>
+            </column>
+            <row id="2484">
+                <cell id="2485">
+                    <label id="2486">
+                        <property name="style">encabezado-Estilo-1</property>
+                        <text-property name="text">{TEXTO}</text-property>
+                    </label>
+                </cell>
+            </row>
+        </grid>
+        <grid name="Separador 2" id="2487">
+            <property name="height">5pt</property>
+            <column id="2475"/>
+            <row id="2476">
+                <cell id="2477"/>
+            </row>
+        </grid>
+        <table id="2488">
+            <property name="width">19.658541666666665cm</property>
+            <property name="dataSet">Ventas</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Localidad</property>
+                    <expression name="expression" type="javascript">dataSetRow["Localidad"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Provincia</property>
+                    <expression name="expression" type="javascript">dataSetRow["Provincia"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">MontoTotal</property>
+                    <expression name="expression" type="javascript">dataSetRow["MontoTotal"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">SubTotal</property>
+                    <text-property name="displayName">SubTotal</text-property>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>PorProvincia</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["MontoTotal"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">Total</property>
+                    <text-property name="displayName">Total</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["SubTotal"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+            </list-property>
+            <column id="2509">
+                <property name="width">5.6885416666666675cm</property>
+            </column>
+            <column id="2510">
+                <property name="width">10.239375cm</property>
+            </column>
+            <column id="2511">
+                <property name="width">3.730625cm</property>
+            </column>
+            <group id="2512">
+                <property name="groupName">PorProvincia</property>
+                <property name="interval">none</property>
+                <property name="sortDirection">asc</property>
+                <expression name="keyExpr">row["Provincia"]</expression>
+                <structure name="toc"/>
+                <property name="repeatHeader">true</property>
+                <property name="hideDetail">false</property>
+                <property name="pageBreakAfter">auto</property>
+                <property name="pageBreakBefore">auto</property>
+                <property name="pageBreakInside">auto</property>
+                <header>
+                    <row id="2513">
+                        <cell id="2514">
+                            <data id="2521">
+                                <property name="resultSetColumn">Provincia</property>
+                            </data>
+                        </cell>
+                        <cell id="2515"/>
+                        <cell id="2516">
+                            <data id="2527">
+                                <property name="style">table-Totales-Titulos</property>
+                                <structure name="numberFormat">
+                                    <property name="category">Currency</property>
+                                    <property name="pattern">$ #,##0.00</property>
+                                </structure>
+                                <property name="resultSetColumn">SubTotal</property>
+                            </data>
+                        </cell>
+                    </row>
+                </header>
+                <footer>
+                    <row id="2517">
+                        <cell id="2518"/>
+                        <cell id="2519"/>
+                        <cell id="2520">
+                            <property name="textAlign">right</property>
+                        </cell>
+                    </row>
+                </footer>
+            </group>
+            <detail>
+                <row id="2493">
+                    <property name="style">table-detail-1</property>
+                    <list-property name="highlightRules">
+                        <structure>
+                            <property name="operator">eq</property>
+                            <expression name="testExpr" type="javascript">row['__rownum'] % 2</expression>
+                            <simple-property-list name="value1">
+                                <value type="javascript">0</value>
+                            </simple-property-list>
+                            <property name="style">table-detail-2</property>
+                        </structure>
+                    </list-property>
+                    <cell id="2494"/>
+                    <cell id="2495">
+                        <data id="2523">
+                            <property name="resultSetColumn">Localidad</property>
+                        </data>
+                    </cell>
+                    <cell id="2496">
+                        <data id="2524">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">MontoTotal</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="2505">
+                    <cell id="2506"/>
+                    <cell id="2507">
+                        <label id="2526">
+                            <property name="style">table-Totales-Titulos</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Total:</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2508">
+                        <property name="textAlign">right</property>
+                        <data id="2528">
+                            <property name="style">table-Totales</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                            </structure>
+                            <property name="resultSetColumn">Total</property>
+                        </data>
+                    </cell>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

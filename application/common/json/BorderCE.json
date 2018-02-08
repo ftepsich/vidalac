@@ -1,0 +1,27 @@
+{
+	xtype : 'panel',
+	<<JsonParametrosAdicionales>>
+	layout : "border",
+	items : [        
+		{
+			region : "center",
+			title : "<<JsonTituloCentro>>",
+			layout: 'fit',
+			items : [ 
+						<<JsonGrillaCentro>> 
+					]
+		},        
+		{
+			region : "east",
+			collapsible: true,
+			title : "<<JsonTituloEste>>",
+			layout: 'fit',
+            width : <<JsonAnchoEste>>,
+            split : <<JsonSplitEste>>,	
+            //split : true,			
+			items : [ 
+						<<JsonGrillaEste>> 
+					]
+		}
+	]
+}

@@ -1,0 +1,143 @@
+{
+	xtype: 'panel',
+	layout: 'fit',
+	labelWidth: 70,
+	defaults: { layout: 'form' },
+	buttonAlign: 'center',
+	buttons: [
+		{
+			text: 'Guardar',
+			handler: function() { this.findParentByType(Rad.Form).submit() }
+		}
+	],
+	items: [
+		{
+			layout : 'form',
+			labelWidth: 80,
+			items : [      
+				
+				
+				{
+					layout: 'column',
+					autoHeight: true,
+					defaults: { layout: 'form'},
+					items: [
+						{ columnWidth: .35, items: [<<Tipo>>] },
+						{ columnWidth: .40, items: [<<Marca>>], labelWidth: 60 },
+						{ columnWidth: .25, items: [<<RNPA>>], labelWidth: 60 },
+					]
+				},
+				<<Id>>,
+				<<Descripcion>>,
+				<<DescripcionLarga>>,
+				
+				
+				{
+					layout: 'column',
+					autoHeight: true,
+					defaults: { layout: 'form'},
+					items: [
+						{ columnWidth: .45, items: [<<Leyenda>>] },
+						{ columnWidth: .19, items: [<<Codigo>>], labelWidth: 60 },
+						{ columnWidth: .31, items: [<<CodigoDeBarras>>], labelWidth: 100 }
+					]
+				},
+				
+				{
+					xtype: 'fieldset',
+					autoHeight: true,
+					title: 'Producto',
+					items: [
+						{
+							layout: 'column',
+							autoHeight: true,
+							defaults: { layout: 'form'},
+							items: [
+								{ columnWidth: .70, items: [<<Producto>>] },
+								{ columnWidth: .30, items: 
+									{
+										layout: 'column',
+										items: [
+											{ columnWidth: .3, items: [<<Cantidad>>], labelWidth: 25},
+											{ columnWidth: .6, items: [<<UnidadDeMedida>>], labelWidth: 40 }
+										]
+									}
+								}
+							]
+						},
+						{
+						layout: 'column',
+						autoWidth: true,
+						defaults: { layout: 'form' },
+						items: [
+							
+							{
+								columnWidth: .18, labelWidth: 70,
+								items: [
+									<<CantidadPorPackaging1>>, <<CantidadPorPackaging2>>, <<CantidadPorPackaging3>>, <<CantidadPorPackaging4>>
+								]
+							},
+							{
+								columnWidth: .66, labelWidth: 35,
+								items: [ <<Packaging>>, <<Packaging1>>, <<Packaging2>>, <<Packaging3>>, <<Packaging4>> ]
+							},
+							{
+								columnWidth: .16, labelWidth: 55,
+								items: [ <<PackagingGramosPorUnidad>>, <<Packaging1GramosPorUnidad>>, <<Packaging2GramosPorUnidad>>, <<Packaging3GramosPorUnidad>>, <<Packaging4GramosPorUnidad>> ]
+							}
+						]
+					}]
+				},
+				
+				{
+					xtype: 'fieldset',
+					autoHeight: true,
+					items: [{
+						layout: 'column',
+						autoWidth: true,
+						defaults: { layout: 'form', columnWidth: .25 },
+						items: [
+							{ items: [<<EsParaVenta>>, <<EsParaCompra>>], labelWidth: 90 },
+							{ items: [<<EsProducido>>, <<EsInsumo>>], labelWidth: 80 },
+							{ items: [<<RequiereProtocolo>>, <<SeUtilizaParaFason>>], labelWidth: 125 },
+							{ items: [<<RequiereLote>>], labelWidth: 125 }
+						]
+					}]
+				},
+				
+				{
+					
+					layout: 'column',
+					autoHeight: true,
+					defaults: { layout: 'form' },
+					items: [
+						{ columnWidth: .45, items: [<<ArticuloGrupo>>], labelWidth: 70 },
+						{ columnWidth: .55, items: [<<Cuenta>>], labelWidth: 60 }
+					]
+				},
+				
+				{
+					layout: 'column',
+					autoHeight: true,
+					defaults: { layout: 'form' },
+					items: [
+						{ columnWidth: .47, items: [<<ArticuloSubGrupo>>], labelWidth: 70 },
+						{ columnWidth: .43, items: [<<IVA>>], labelWidth: 40 }
+						
+					]
+				},
+				{
+					layout: 'column',
+					autoHeight: true,
+					defaults: { layout: 'form' },
+					items: [
+						{ columnWidth: .47, items: [<<TipoDeControlDeStock>>], labelWidth: 70 }
+				
+
+					]
+				}
+
+			]
+		}
+	]
+}

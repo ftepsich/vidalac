@@ -1,0 +1,63 @@
+﻿{
+	xtype: 'panel',
+	layout: 'border',
+	buttonAlign:	'center',	 
+	items: [
+		{
+			region: 'north',
+			layout: 'column',
+			height: 105,
+			items: [
+				{
+					layout: 'form',
+					columnWidth: .5,
+					items: [
+						<<Id>>,
+						<<Numero>>,
+						<<Persona>>,
+						<<FechaEmision>>,
+						<<FechaEntrega>>,
+						<<DepositoEntrega>>
+					]
+				},
+				{
+					layout: 'form',
+					columnWidth: .5,
+					items: [
+						<<TransportistaEntregoEnDestino>>,
+						{
+							layout: 'column',
+							items: [
+								{
+									layout: 'form',
+									columnWidth: .4,
+									labelWidth:40,
+									items: [ <<Divisa>> ]
+								},
+								{
+									layout: 'form',
+									columnWidth: .6,
+									labelWidth:33,
+									items: [ <<ValorDivisa>> ]
+								},
+							]
+						},
+						<<ListaDePrecio>>
+					]
+				}
+			]
+		},
+		{
+			region: 'center',
+			height: 40,
+			items: [
+				{
+					layout: 'form',
+					items: [
+						<<Observaciones>>
+					]
+				}
+			]
+		}
+	]
+}
