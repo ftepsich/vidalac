@@ -1,8 +1,0 @@
-{
-	xtype : "tabpanel",
-	<<JsonParametrosAdicionales>>
-	items : [ <<JsonPaneles>> ],
-	deferredRender : false,
-	activeTab : 0,
-	enableTabScroll: true
-}
