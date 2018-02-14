@@ -94,9 +94,9 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
         $asiento->FechaDeCarga = date('Y-m-d H:i:s');
         $asiento->FechaComprobante = date('Y-m-d', strtotime($row->FechaEmision));
 
-        $tipoDeComprobante = $row->findParentRow('Facturacion_Model_DbTable_TiposDeComprobantes');
+        $TC = $row->findParentRow('Facturacion_Model_DbTable_TiposDeComprobantes');
 
-        switch ($tipod->Grupo) {
+        switch ($TC->Grupo) {
 
             case 1: // Factura de Compra (H)
                 $asiento->DescripcionComprobante = 'FC: ' . $this->_getDescripcionComprobante($row);
