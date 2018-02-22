@@ -127,11 +127,11 @@ AND CASE {TIPO} WHEN 1 THEN
     OR (TC.Grupo IN (1,8,13) AND C.EsCliente = 1)
     OR (fNumeroCompleto(C.Id,'S')  COLLATE utf8_general_ci LIKE '%Saldo s/Recibo%') )
     WHEN 2 THEN
-    ( (TC.Grupo IN (1,8,9,13,20) AND C.EsCliente = 0)
+    ( (TC.Grupo IN (1,8,9,13,15,20) AND C.EsCliente = 0)
     OR (TC.Grupo IN (6,7,12) AND C.EsProveedor = 1)
     OR (fNumeroCompleto(C.Id,'S') COLLATE utf8_general_ci LIKE '%Saldo s/Orden de Pago%') )
 END
-AND TC.Grupo IN (1,6,7,8,9,11,12,13,19,20)
+AND TC.Grupo IN (1,6,7,8,9,11,12,13,15,19,20)
 AND C.Cerrado = 1
 AND C.Anulado = 0
 ORDER BY P.RazonSocial,C.FechaEmision]]></xml-property>
