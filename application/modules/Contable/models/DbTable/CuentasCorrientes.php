@@ -257,7 +257,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
                 $asiento->TipoDeComprobante = 67;
                 $asiento->save();
 
-                // CompensaciÃƒÂ³n Compras en Recibo
+                // Compensación Compras en Recibo
 
                 $asiento = $this->createRow();
                 $asiento->Persona = $row->Persona;
