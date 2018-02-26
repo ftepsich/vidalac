@@ -179,14 +179,16 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
     }
 
     /**
-     *  Asienta Compensaciones en Ordenes de Pago
+     *  Asienta Compensaciones en Recibos y Ordenes de Pago
      *
      *  @param Zend_Db_Table_Row $row El Row del comprobante que se quiere asentas
      */
-    public function asentarCompensacionOP($row) {
+    public function asentarCompensaciones($row) {
+
         $tipoDeComprobante = $row->findParentRow('Facturacion_Model_DbTable_TiposDeComprobantes');
 
         if ($tipoDeComprobante->Id == 7) { // Orden de Pago
+
             $sql = "SELECT IFNULL(SUM(CR.MontoAsociado),0) 
                     FROM ComprobantesRelacionados CR 
                     JOIN Comprobantes C ON CR.ComprobanteHijo = C.Id 
@@ -199,7 +201,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
 
             if ($TotalMontoCompensacion > 0) {
 
-                // Compensación Ventas en Orden de Pago
+                // CompensaciÃƒÂ³n Ventas en Orden de Pago
 
                 $asiento = $this->createRow();
                 $asiento->Persona = $row->Persona;
@@ -212,7 +214,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
                 $asiento->TipoDeComprobante = 67;
                 $asiento->save();
 
-                // Compensación Compras en Orden de Pago
+                // CompensaciÃƒÂ³n Compras en Orden de Pago
 
                 $asiento = $this->createRow();
                 $asiento->Persona = $row->Persona;
@@ -226,6 +228,50 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
                 $asiento->save();
             }
         }
+
+        if ($tipoDeComprobante->Id == 48) { // Recibo
+
+            $sql = "SELECT ABS(IFNULL(SUM(TC.Multiplicador*CR.MontoAsociado),0))
+                    FROM ComprobantesRelacionados CR
+                    JOIN Comprobantes C ON CR.ComprobanteHijo = C.Id
+                    JOIN Tiposdecomprobantes TC ON C.TipoDeComprobante = TC.Id
+                    WHERE CR.ComprobantePadre = $row->Id
+                      AND TC.Grupo IN (1,8,13)
+                      AND C.Cerrado   = 1
+                      AND C.Anulado   = 0";
+
+            $TotalMontoCompensacion = $this->_db->fetchOne($sql);
+
+            if ($TotalMontoCompensacion <> 0) {
+
+                // CompensaciÃƒÂ³n Ventas en Recibo
+
+                $asiento = $this->createRow();
+                $asiento->Persona = $row->Persona;
+                $asiento->Comprobante = $row->Id;
+                $asiento->FechaDeCarga = date('Y-m-d H:i:s');
+                $asiento->FechaComprobante = date('Y-m-d', strtotime($row->FechaEmision));
+                $asiento->DescripcionComprobante = 'RC: ' . $this->_getDescripcionComprobante($row);
+                $asiento->Debe = $TotalMontoCompensacion;
+                $asiento->Haber = 0;
+                $asiento->TipoDeComprobante = 67;
+                $asiento->save();
+
+                // CompensaciÃƒÂ³n Compras en Recibo
+
+                $asiento = $this->createRow();
+                $asiento->Persona = $row->Persona;
+                $asiento->Comprobante = $row->Id;
+                $asiento->FechaDeCarga = date('Y-m-d H:i:s');
+                $asiento->FechaComprobante = date('Y-m-d', strtotime($row->FechaEmision));
+                $asiento->DescripcionComprobante = 'RC: ' . $this->_getDescripcionComprobante($row);
+                $asiento->Debe  = 0;
+                $asiento->Haber = $TotalMontoCompensacion;
+                $asiento->TipoDeComprobante = 68;
+                $asiento->save();
+            }
+        }
+
     }
 
     public function fetchCuentaCorriente($where = null, $order = null, $count = null, $offset = null) {
@@ -253,14 +299,16 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
     public function getSaldo($idPersona, $aFecha = null) {
 
         $select = $this->select();
-        $select->from($this->_name, 'Sum(Debe)-Sum(Haber) AS saldo');
 
-        $select->where("Persona = $idPersona");
+        $select->from($this, array('IfNull(Sum(Debe),0) AS saldoDebe', 'IfNull(Sum(Haber),0) AS saldoHaber'));
+
+        $select->where("Persona = $idPersona AND TipoDeComprobante not in (67,68)");
 
         if ($aFecha)
             $select->where("FechaComprobante <= '$aFecha'");
 
-        return $this->fetchRow($select)->saldo;
+        return ( $this->fetchRow($select)->saldoDebe - $this->fetchRow($select)->saldoHaber );
+
     }
 
     public function fetchCuentaCorrienteComoCliente($where = null, $order = null, $count = null, $offset = null) {
