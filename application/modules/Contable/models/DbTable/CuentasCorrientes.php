@@ -201,7 +201,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
 
             if ($TotalMontoCompensacion > 0) {
 
-                // CompensaciÃƒÂ³n Ventas en Orden de Pago
+                // Compensación Ventas en Orden de Pago
 
                 $asiento = $this->createRow();
                 $asiento->Persona = $row->Persona;
@@ -214,7 +214,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
                 $asiento->TipoDeComprobante = 67;
                 $asiento->save();
 
-                // CompensaciÃƒÂ³n Compras en Orden de Pago
+                // Compensación Compras en Orden de Pago
 
                 $asiento = $this->createRow();
                 $asiento->Persona = $row->Persona;
@@ -244,7 +244,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
 
             if ($TotalMontoCompensacion <> 0) {
 
-                // CompensaciÃƒÂ³n Ventas en Recibo
+                // Compensación Ventas en Recibo
 
                 $asiento = $this->createRow();
                 $asiento->Persona = $row->Persona;
