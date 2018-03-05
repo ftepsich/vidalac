@@ -55,7 +55,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             );
 
             $backendOptions = array(
-                'cache_dir' => '../data/cache/'
+                'cache_dir' => '/usr/share/nginx/vidalac/data/cache'
             );
 
             $cache = Zend_Cache::factory(
