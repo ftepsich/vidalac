@@ -50,7 +50,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
         'Comprobantes' => array(
             'columns' => 'Comprobante',
             'refTableClass' => 'Facturacion_Model_DbTable_Comprobantes',
-            'refJoinColumns' => array('EsCliente'),
+            'refJoinColumns' => array('EsCliente','EsProveedor'),
             'comboBox' => true,
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Comprobantes',
@@ -65,12 +65,12 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
     protected $_dependentTables = array();
 
     public function _getDescripcionComprobante($row) {
-        $M_C = Service_TableManager::get('Facturacion_Model_DbTable_Comprobantes');
+        $comprobantes = Service_TableManager::get('Facturacion_Model_DbTable_Comprobantes');
 
-        $M_PV = new Base_Model_DbTable_PuntosDeVentas(array(), false);
+        $puntosDeVenta = new Base_Model_DbTable_PuntosDeVentas(array(), false);
 
-        if (!$M_C->esComprobanteEntrada($row)) {
-            $R_PV = $M_PV->find($row->Punto)->current();
+        if (!$comprobantes->esComprobanteEntrada($row)) {
+            $R_PV = $puntosDeVenta->find($row->Punto)->current();
             $punto = $R_PV->Numero;
             if (!$R_PV) {
                 throw new Rad_Db_Table_Exception('No se encuentra el punto indicado.');
@@ -179,14 +179,16 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
     }
 
     /**
-     *  Asienta Compensaciones en Ordenes de Pago
+     *  Asienta Compensaciones en Recibos y Ordenes de Pago
      *
      *  @param Zend_Db_Table_Row $row El Row del comprobante que se quiere asentas
      */
-    public function asentarCompensacionOP($row) {
-        $TC = $row->findParentRow('Facturacion_Model_DbTable_TiposDeComprobantes');
+    public function asentarCompensaciones($row) {
 
-        if ($TC->Id == 7) { // Orden de Pago
+        $tipoDeComprobante = $row->findParentRow('Facturacion_Model_DbTable_TiposDeComprobantes');
+
+        if ($tipoDeComprobante->Id == 7) { // Orden de Pago
+
             $sql = "SELECT IFNULL(SUM(CR.MontoAsociado),0) 
                     FROM ComprobantesRelacionados CR 
                     JOIN Comprobantes C ON CR.ComprobanteHijo = C.Id 
@@ -226,6 +228,50 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
                 $asiento->save();
             }
         }
+
+        if ($tipoDeComprobante->Id == 48) { // Recibo
+
+            $sql = "SELECT ABS(IFNULL(SUM(TC.Multiplicador*CR.MontoAsociado),0))
+                    FROM ComprobantesRelacionados CR
+                    JOIN Comprobantes C ON CR.ComprobanteHijo = C.Id
+                    JOIN Tiposdecomprobantes TC ON C.TipoDeComprobante = TC.Id
+                    WHERE CR.ComprobantePadre = $row->Id
+                      AND TC.Grupo IN (1,8,13)
+                      AND C.Cerrado   = 1
+                      AND C.Anulado   = 0";
+
+            $TotalMontoCompensacion = $this->_db->fetchOne($sql);
+
+            if ($TotalMontoCompensacion <> 0) {
+
+                // Compensación Ventas en Recibo
+
+                $asiento = $this->createRow();
+                $asiento->Persona = $row->Persona;
+                $asiento->Comprobante = $row->Id;
+                $asiento->FechaDeCarga = date('Y-m-d H:i:s');
+                $asiento->FechaComprobante = date('Y-m-d', strtotime($row->FechaEmision));
+                $asiento->DescripcionComprobante = 'RC: ' . $this->_getDescripcionComprobante($row);
+                $asiento->Debe = $TotalMontoCompensacion;
+                $asiento->Haber = 0;
+                $asiento->TipoDeComprobante = 67;
+                $asiento->save();
+
+                // Compensación Compras en Recibo
+
+                $asiento = $this->createRow();
+                $asiento->Persona = $row->Persona;
+                $asiento->Comprobante = $row->Id;
+                $asiento->FechaDeCarga = date('Y-m-d H:i:s');
+                $asiento->FechaComprobante = date('Y-m-d', strtotime($row->FechaEmision));
+                $asiento->DescripcionComprobante = 'RC: ' . $this->_getDescripcionComprobante($row);
+                $asiento->Debe  = 0;
+                $asiento->Haber = $TotalMontoCompensacion;
+                $asiento->TipoDeComprobante = 68;
+                $asiento->save();
+            }
+        }
+
     }
 
     public function fetchCuentaCorriente($where = null, $order = null, $count = null, $offset = null) {
@@ -253,43 +299,36 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
     public function getSaldo($idPersona, $aFecha = null) {
 
         $select = $this->select();
-        $select->from($this->_name, 'Sum(Debe)-Sum(Haber) AS saldo');
 
-        $select->where("Persona = $idPersona");
+        $select->from($this, array('IfNull(Sum(Debe),0) AS saldoDebe', 'IfNull(Sum(Haber),0) AS saldoHaber'));
+
+        $select->where("Persona = $idPersona AND TipoDeComprobante not in (67,68)");
 
         if ($aFecha)
             $select->where("FechaComprobante <= '$aFecha'");
 
-        return $this->fetchRow($select)->saldo;
+        return ( $this->fetchRow($select)->saldoDebe - $this->fetchRow($select)->saldoHaber );
+
     }
 
     public function fetchCuentaCorrienteComoCliente($where = null, $order = null, $count = null, $offset = null) {
-        $condicion = "CuentasCorrientes.TipoDeComprobante in (
-                            SELECT      C.Id
-                            FROM        Comprobantes C
-                            WHERE (
-                            
-					(TiposDeComprobantes.Grupo IN (6,7,11,12) and TiposDeComprobantes.Id not in (65,66) and Comprobantes.EsProveedor = 0 )
-                    OR (TiposDeComprobantes.Grupo in (1,8,13) AND Comprobantes.EsCliente = 1)
-                    OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci like '%Saldo s/Recibo%')
-                    )     
-                    )";
+        $condicion = "( 
+            (TiposDeComprobantes.Grupo IN (6,7,11,12,19) AND TiposDeComprobantes.Id NOT IN (65,66) AND Comprobantes.EsProveedor = 0) 
+            OR (TiposDeComprobantes.Grupo IN (1,8,13,15) AND Comprobantes.EsCliente = 1) 
+            OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci LIKE '%Saldo s/Recibo%') 
+            )";
         $where = $this->_addCondition($where, $condicion);
         return parent:: fetchAll($where, $order, $count, $offset);
-    }
-
-    public function fetchCuentaCorrienteComoProveedor($where = null, $order = null, $count = null, $offset = null) {
-        $condicion = "CuentasCorrientes.TipoDeComprobante in (
-                            SELECT      C.Id
-                            FROM        Comprobantes C
-			    WHERE       (
-                                        (TiposDeComprobantes.Grupo in (1,8,9,13,20) and Comprobantes.EsCliente = 0)
-                                        OR (TiposDeComprobantes.Grupo in (7,12) AND Comprobantes.EsProveedor = 1)
-                                        OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci like '%Saldo s/Orden de Pago%')
-                                        )
-                    )";
+        }
+        
+        public function fetchCuentaCorrienteComoProveedor($where = null, $order = null, $count = null, $offset = null) {
+        $condicion = "(
+             (TiposDeComprobantes.Grupo IN (1,8,9,13,15,20) AND Comprobantes.EsCliente = 0)
+             OR (TiposDeComprobantes.Grupo in (6,7,12) AND Comprobantes.EsProveedor = 1) 
+             OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci LIKE '%Saldo s/Orden de Pago%') 
+             )";
         $where = $this->_addCondition($where, $condicion);
         return parent:: fetchAll($where, $order, $count, $offset);
-    }
+        }
 
 }

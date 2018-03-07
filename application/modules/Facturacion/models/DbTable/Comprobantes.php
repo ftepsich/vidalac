@@ -776,8 +776,12 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
             $M_PCI = new Base_Model_DbTable_PersonasConceptosImpositivos(array(), false);
             $R_PCI = $M_PCI->fetchRow("ConceptoImpositivo = $concepto and Persona = $persona");
             if ($R_PCI) {
-                $porcentaje = $R_PCI->Porcentaje;
+	       // No considerar porcentaje = 0 para asi tomar el porcentaje general del concepto.
+               if ($R_PCI->Porcentaje != 0) { 
+                  $porcentaje = $R_PCI->Porcentaje;
+               }
             }
+
         }
 
         // Si no tiene uno particular lo tomo del general

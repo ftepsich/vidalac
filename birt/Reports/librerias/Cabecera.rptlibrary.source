@@ -132,7 +132,7 @@
                             <text name="NewText1" id="2432">
                                 <property name="textAlign">left</property>
                                 <property name="contentType">html</property>
-                                <text-property name="content"><![CDATA[<value-of format="MM/dd/YYYY">new Date()</value-of>]]></text-property>
+                                <text-property name="content"><![CDATA[<value-of format="dd/MM/YYYY">new Date()</value-of>]]></text-property>
                             </text>
                         </cell>
                         <cell id="2418"/>

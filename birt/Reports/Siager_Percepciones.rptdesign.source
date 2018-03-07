@@ -198,7 +198,7 @@ SELECT
     WHEN (TC.TipoDeLetra = 5) THEN 'M'
     ELSE ' '
     END AS LetraComprobante,
-    CONCAT(LPAD(C.Punto,4,'0'),LPAD(C.Numero,8,'0')) AS NumeroComprobante,
+    CONCAT(LPAD(PV.Numero,4,'0'),LPAD(C.Numero,8,'0')) AS NumeroComprobante,
     LPAD( ABS( TRUNCATE (C2.MontoImponible,2)),15,'0') AS ImporteBase,
     LPAD( ABS( TRUNCATE (C2.ConceptoImpositivoPorcentaje,2)),6,'0') AS Alicuota,
     LPAD( ABS( TRUNCATE (C2.Monto,2)),15,'0') AS ImporteRetenido,
@@ -208,6 +208,7 @@ FROM Comprobantes C2
 INNER JOIN ConceptosImpositivos CI    ON C2.ConceptoImpositivo = CI.Id
 INNER JOIN Comprobantes C             ON C.Id                  = C2.ComprobantePadre
 INNER JOIN TiposDeComprobantes  TC    ON C.TipoDeComprobante   = TC.Id
+INNER JOIN PuntosDeVentas PV          ON C.Punto               = PV.Id
 INNER JOIN Personas P                 ON P.Id                  = C.Persona
 WHERE C2.FechaEmision BETWEEN STR_TO_DATE(CONCAT("{PERIODO}",'-01'), '%Y-%m-%d') AND STR_TO_DATE(LAST_DAY(CONCAT("{PERIODO}",'-01')), '%Y-%m-%d')
   AND C.Cerrado = 1
@@ -254,11 +255,13 @@ ORDER BY C.FechaEmision
         </style>
     </styles>
     <page-setup>
-        <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie">
-            <property name="type">us-legal</property>
-             <property name="leftMargin">0.15in</property>
-            <property name="rightMargin">0.15in</property>
-            <property name="orientation">landscape</property>
+     <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie">
+ 	 <property name="type">a4</property>
+         <property name="leftMargin">0.15in</property>
+         <property name="rightMargin">0.15in</property>
+         <property name="orientation">landscape</property>
+         <property name="showHeaderOnFirst">true</property>
+         <property name="showFooterOnLast">true</property>
         </simple-master-page>
     </page-setup>
     <body>

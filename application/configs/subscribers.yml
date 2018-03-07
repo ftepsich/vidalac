@@ -14,7 +14,7 @@ Comprobante_Cerrar:
     -
         - Contable_Model_DbTable_CuentasCorrientes: asentarComprobante
     -    
-        - Contable_Model_DbTable_CuentasCorrientes: asentarCompensacionOP
+        - Contable_Model_DbTable_CuentasCorrientes: asentarCompensaciones
     -
         - Contable_Model_DbTable_LibrosIVADetalles: asentarLibroIVA
     -
