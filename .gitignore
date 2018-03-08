@@ -23,4 +23,5 @@ public/wallpapers/thumbs/*
 vendor/
 application/configs/application.ini
 application/configs/cert/
+application/Boostrap.php
 .idea/
