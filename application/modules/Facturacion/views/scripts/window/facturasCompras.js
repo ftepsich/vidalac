@@ -4,7 +4,8 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
     title: '<?=$this->title?>',
     appChannel: '/desktop/modules<?=$this->url()?>',
     requires: [
-        '/direct/Facturacion/FacturasCompras?javascript'
+        '/direct/Facturacion/FacturasCompras?javascript',
+        '/direct/Contable/LibrosIVA?javascript'
     ],
 
     eventfind: function (ev) {
@@ -92,7 +93,8 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
 
         // this.addListenerTipoComprobante(this.form);
         this.addListenerPersona(this.form);
-
+        this.addListenerFechaEmision(this.form);
+     
         // despues del submit exitoso se pasa al paso 1 del wizard
         this.form.on(
             'actioncomplete',
@@ -161,6 +163,34 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
     //         this.checkTipoCmp();
     //     }, this);
     // },
+
+    addListenerFechaEmision: function(form) {
+
+        var fechaEmision = this.form.getForm().findField('FechaEmision');
+        var grid = this.grid;
+
+        fechaEmision.on('blur', function(combo, record, index) {
+          var fechaEmision = new Date(this.form.getForm().findField('FechaEmision').getValue());
+          Models.Contable_Model_LibrosIVAMapper.getFechaHastaUltimoLibroIVA(function(result,e){
+             if (e.status) {
+                var fechaHastaLibroIVA = Date.parseDate(result,'Y-m-d');
+                if ( fechaEmision > fechaHastaLibroIVA ) {
+                      Ext.Msg.show({
+                          title : 'Atencion',
+                          msg : ' La Fecha de Emisión que intenta ingresar no es válida. <br> Es posterior al último Libro de IVA creado.',
+                          width : 400,
+                          closable : false,
+                          buttons : Ext.Msg.OK,
+                          multiline : false,
+                          fn : function() { grid.abmWindow.closeAbm(); },
+                          icon : Ext.Msg.WARNING
+                      });
+                      return;
+                }
+             }
+          },this);
+        }, this);
+    },
 
     addListenerPersona: function(form) {
         var persona  = this.form.getForm().findField('Persona');
