@@ -364,12 +364,6 @@ class Facturacion_Model_DbTable_FacturasCompras extends Facturacion_Model_DbTabl
             }
 
             // Controlo que ya no este pagada.
-            // 
-            // TODO: PK 08/01/2016 ---> esto para que diablos esta !!!!!!!!!!!!!!!!
-            $where = "Id = ".$idComprobante;
-            $datos["CondicionDePago"] = 2;
-            Rad_Db_Table::update($datos,$where);
-            // Fin ---> esto para que diablos esta !!!!!!!!!!!!!!!!
 
             $M_OP = new Facturacion_Model_DbTable_OrdenesDePagos(array(), false);
 

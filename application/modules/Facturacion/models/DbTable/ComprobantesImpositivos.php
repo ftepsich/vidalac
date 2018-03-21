@@ -180,6 +180,7 @@ class Facturacion_Model_DbTable_ComprobantesImpositivos extends Facturacion_Mode
             } else {
                 $data['Monto'] = 0;
             }
+      
 
             // Indico que se cargo manualmente
             $data['Modificado'] = 1;
