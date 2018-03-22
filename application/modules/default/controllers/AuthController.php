@@ -78,7 +78,7 @@ class AuthController extends Zend_Controller_Action
                     $response->success = true;
                     $response->usuario = Zend_Auth::getInstance()->getIdentity()->Nombre;
 
-                    Rad_Log::user("Usuario $response->usuario autenticado");
+                    Rad_Log::user("Usuario $username autenticado");
 
                     break;
                 default:
@@ -102,7 +102,6 @@ class AuthController extends Zend_Controller_Action
      */
     public function gethwidAction()
     {
-        //ini_set('display_errors',1);
         $this->_helper->viewRenderer->setNoRender(true);
         $hwId = shell_exec("sudo /usr/sbin/dmidecode |grep 'Serial Number:'");
         echo md5($hwId);
