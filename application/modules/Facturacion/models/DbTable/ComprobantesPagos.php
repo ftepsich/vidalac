@@ -174,6 +174,14 @@ class Facturacion_Model_DbTable_ComprobantesPagos extends Facturacion_Model_DbTa
                 // Publico y Borro
                 Rad_PubSub::publish( $this->_onDeletePublish, $row);
                 parent::delete('Id =' . $row->Id);
+                $tipoComprobante = $row->findParentRow("Facturacion_Model_DbTable_TiposDeComprobantes");
+                //Log Usuarios
+                if ( $row->Numero == 0 ) {
+                    Rad_Log::user("Borró Comprobante ($tipoComprobante->Descripcion N° $row->Id)");
+                } else {
+                    Rad_Log::user("Borró Comprobante ($tipoComprobante->Descripcion N° $row->Numero)");
+                }
+
             }
             $this->_db->commit();
             return true;

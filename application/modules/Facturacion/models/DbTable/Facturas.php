@@ -144,7 +144,12 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
 
                 parent::delete('Comprobantes.Id =' . $R->Id);
                 $tipoComprobante = $R->findParentRow("Facturacion_Model_DbTable_TiposDeComprobantes");
-                Rad_Log::user("Borrado comprobante $idComprobante ($tipoComprobante->Descripcion $R->Numero)");
+                // Log Usuarios
+                if ( $R->Numero == 0 ) {
+                    Rad_Log::user("Borró comprobante ($tipoComprobante->Descripcion ID $R->Id)");
+                } else {
+                    Rad_Log::user("Borró comprobante ($tipoComprobante->Descripcion N° $R->Numero)");
+                }
             }
             $this->_db->commit();
             return true;
