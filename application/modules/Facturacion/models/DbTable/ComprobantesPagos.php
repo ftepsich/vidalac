@@ -177,7 +177,7 @@ class Facturacion_Model_DbTable_ComprobantesPagos extends Facturacion_Model_DbTa
                 $tipoComprobante = $row->findParentRow("Facturacion_Model_DbTable_TiposDeComprobantes");
                 //Log Usuarios
                 if ( $row->Numero == 0 ) {
-                    Rad_Log::user("Borró Comprobante ($tipoComprobante->Descripcion N° $row->Id)");
+                    Rad_Log::user("Borró Comprobante ($tipoComprobante->Descripcion ID $row->Id)");
                 } else {
                     Rad_Log::user("Borró Comprobante ($tipoComprobante->Descripcion N° $row->Numero)");
                 }

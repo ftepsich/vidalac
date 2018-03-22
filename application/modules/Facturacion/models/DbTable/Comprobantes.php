@@ -2115,7 +2115,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         $tipoComprobante = $comprobante->findParentRow("Facturacion_Model_DbTable_TiposDeComprobantes");
         // Log Usuarios
         if ( $comprobante->Numero == 0 ) {
-            Rad_Log::user("Nuevo Comprobante ($tipoComprobante->Descripcion ID $comprobante->ID)");
+            Rad_Log::user("Nuevo Comprobante ($tipoComprobante->Descripcion ID $idComprobante)");
         } else {
             Rad_Log::user("Nuevo Comprobante ($tipoComprobante->Descripcion N° $comprobante->Numero)");
         }
