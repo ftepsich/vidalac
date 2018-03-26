@@ -1322,8 +1322,11 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         }
 
         // Log Usuarios
-        Rad_Log::user("Cerro comprobante $idComprobante ($tipoComprobante->Descripcion $rowComprobante->Numero)");
-
+        If ( $rowComprobante->Numero == 0 ) {
+            Rad_Log::user("Cerró comprobante ($tipoComprobante->Descripcion ID $rowComprobante->ID)");
+        } else {
+            Rad_Log::user("Cerró comprobante ($tipoComprobante->Descripcion N° $rowComprobante->Numero)");
+        }
         // Publico...
         Rad_PubSub::publish('Comprobante_Cerrar', $rowComprobante);
     }
@@ -1344,9 +1347,13 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         $data = array('Anulado' => 1);
         parent::update($data, 'Id = ' . $idComprobante);
         $comprobante = $this->find($idComprobante)->current();
-
         $tipoComprobante = $comprobante->findParentRow("Facturacion_Model_DbTable_TiposDeComprobantes");
-        Rad_Log::user("Anulo comprobante $idComprobante ($tipoComprobante->Descripcion $comprobante->Numero)");
+        // Log Usuarios
+        if ( $comprobante->Numero == 0 ) {
+            Rad_Log::user("Anuló comprobante ($tipoComprobante->Descripcion ID $comprobante->Id)");
+        } else {
+            Rad_Log::user("Anuló comprobante ($tipoComprobante->Descripcion N° $comprobante->Numero)");
+        }
 
         // Publico...
         Rad_PubSub::publish('Comprobante_Anular', $comprobante);
@@ -2091,10 +2098,34 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         return $this;
     }
 
+    /**
+     *  Insert
+     *
+     * @param array $data   Valores que se insertarán
+     *
+     */
+    public function insert($data)
+    {
 
-    /*     * *********************************************************************
+        $idComprobante = Rad_Db_Table::insert($data);
+
+        // Obtiene el registro del comprobante.
+        $comprobante = $this->find($idComprobante)->current();
+        // Obtiene el tipo de comprobante.
+        $tipoComprobante = $comprobante->findParentRow("Facturacion_Model_DbTable_TiposDeComprobantes");
+        // Log Usuarios
+        if ( $comprobante->Numero == 0 ) {
+            Rad_Log::user("Nuevo Comprobante ($tipoComprobante->Descripcion ID $idComprobante)");
+        } else {
+            Rad_Log::user("Nuevo Comprobante ($tipoComprobante->Descripcion N° $comprobante->Numero)");
+        }
+        return $idComprobante;
+
+    }
+
+    /***********************************************************************
       Fetch's
-     * ********************************************************************* */
+     ***********************************************************************/
 
     public function fetchCerrado ($where = null, $order = null, $count = null, $offset = null)
     {

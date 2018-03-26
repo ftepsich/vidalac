@@ -54,9 +54,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 'ignore_user_abort' => true
             );
 
-            $backendOptions = array(
-                'cache_dir' => '/usr/share/nginx/vidalac/data/cache'
-            );
+              $backendOptions = array();
 
             $cache = Zend_Cache::factory(
                 'Core', 'Zend_Cache_Backend_File', $frontendOptions, $backendOptions, false, true

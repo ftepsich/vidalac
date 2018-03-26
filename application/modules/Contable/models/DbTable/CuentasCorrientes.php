@@ -50,7 +50,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
         'Comprobantes' => array(
             'columns' => 'Comprobante',
             'refTableClass' => 'Facturacion_Model_DbTable_Comprobantes',
-            'refJoinColumns' => array('EsCliente','EsProveedor'),
+            'refJoinColumns' => array(''),
             'comboBox' => true,
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Comprobantes',
@@ -237,6 +237,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
                     JOIN Tiposdecomprobantes TC ON C.TipoDeComprobante = TC.Id
                     WHERE CR.ComprobantePadre = $row->Id
                       AND TC.Grupo IN (1,8,13)
+                      AND C.EsCliente = 0
                       AND C.Cerrado   = 1
                       AND C.Anulado   = 0";
 

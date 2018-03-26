@@ -51,19 +51,19 @@ class AuthController extends Zend_Controller_Action
                 ->setCredential($password);
 
         //$authAdapter = new MyAuthAdapter( $this->getRequest()->getParam('login'), $this->getRequest()->getParam('password'));
-        $responce = new stdClass();
+        $response = new stdClass();
         // Attempt authentication, saving the result
         if (!$this->_checkHardware()) {
-            $responce->success = false;
-            $responce->msg = "Este software no fue licenciado para este servidor.<br> SmartSoftware sera notificado.";
+            $response->success = false;
+            $response->msg = "Este software no fue licenciado para este servidor.<br> SmartSoftware sera notificado.";
         } else {
             $result = $auth->authenticate($authAdapter);
             switch ($result->getCode()) {
                 case Zend_Auth_Result::FAILURE_IDENTITY_NOT_FOUND:
                 /** do stuff for nonexistent identity * */
                 case Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID:
-                    $responce->success = false;
-                    $responce->msg = "Usuario o contraseña invalidos!";
+                    $response->success = false;
+                    $response->msg = "Usuario o contraseña invalidos!";
                     Rad_Log::warn("Usuario $username error autenticacion");
                     break;
                 case Zend_Auth_Result::SUCCESS:
@@ -75,22 +75,22 @@ class AuthController extends Zend_Controller_Action
                         'Clave'
                     ));
 
-                    $responce->success = true;
-                    $responce->usuario = Zend_Auth::getInstance()->getIdentity()->Nombre;
+                    $response->success = true;
+                    $response->usuario = Zend_Auth::getInstance()->getIdentity()->Nombre;
 
-                    Rad_Log::user("Usuario autenticado");
+                    Rad_Log::user("Usuario $username autenticado");
 
                     break;
                 default:
                     /** do stuff for other failure * */
-                    $responce->success = false;
-                    $responce->msg = "Error desconocido!";
+                    $response->success = false;
+                    $response->msg = "Error desconocido!";
 
                     break;
             }
         }
 
-        echo json_encode($responce);
+        echo json_encode($response);
     }
 
     /**
@@ -102,7 +102,6 @@ class AuthController extends Zend_Controller_Action
      */
     public function gethwidAction()
     {
-        //ini_set('display_errors',1);
         $this->_helper->viewRenderer->setNoRender(true);
         $hwId = shell_exec("sudo /usr/sbin/dmidecode |grep 'Serial Number:'");
         echo md5($hwId);
