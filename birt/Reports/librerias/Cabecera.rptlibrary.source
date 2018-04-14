@@ -123,6 +123,11 @@
                     <row id="2408">
                         <property name="height">0.6773333333333333cm</property>
                         <property name="style">pie</property>
+                            <cell id="2609">
+                            <label name="NewLabel6" id="2633">
+                                <text-property name="text">Son $ :</text-property>
+                            </label>
+                        </cell>
                         <cell id="2409">
                             <label name="NewLabel5" id="2433">
                                 <text-property name="text">Impreso el :</text-property>
