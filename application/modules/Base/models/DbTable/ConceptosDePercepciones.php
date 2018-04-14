@@ -31,8 +31,8 @@ class Base_Model_DbTable_ConceptosDePercepciones extends Rad_Db_Table
         'TiposDeConceptos' => array(
             'columns'           => 'TipoDeConcepto',
             'refTableClass'     => 'Base_Model_DbTable_TiposDeConceptos',
-            'refJoinColumns'    => array("Descripcion"),                     // De esta relacion queremos traer estos campos por JOIN
-            'comboBox'          => true,                                     // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'refJoinColumns'    => array("Descripcion"),
+            'comboBox'          => true,
             'comboSource'       => 'datagateway/combolist',
             'refTable'          => 'TiposDeConceptos',
             'refColumns'        => 'Id',
@@ -41,8 +41,8 @@ class Base_Model_DbTable_ConceptosDePercepciones extends Rad_Db_Table
         'EntesRecaudadores' => array(
             'columns'           => 'EnteRecaudador',
             'refTableClass'     => 'Base_Model_DbTable_EntesRecaudadores',
-            'refJoinColumns'    => array("Descripcion"),                     // De esta relacion queremos traer estos campos por JOIN
-            'comboBox'          => true,                                     // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'refJoinColumns'    => array("Descripcion"),
+            'comboBox'          => true,
             'comboSource'       => 'datagateway/combolist',
             'refTable'          => 'EntesRecaudadores',
             'refColumns'        => 'Id'
@@ -50,11 +50,21 @@ class Base_Model_DbTable_ConceptosDePercepciones extends Rad_Db_Table
          'TiposDeMontosMinimos'   => array(
             'columns'           => 'TipoDeMontoMinimo',
             'refTableClass'     => 'Base_Model_DbTable_TiposDeMontosMinimos',
-            'refJoinColumns'    => array("Descripcion"),                     // De esta relacion queremos traer estos campos por JOIN
-            'comboBox'          => true,                                     // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'refJoinColumns'    => array("Descripcion"),
+            'comboBox'          => true,
             'comboSource'       => 'datagateway/combolist',
             'refTable'          => 'TiposDeMontosMinimos',
             'refColumns'        => 'Id'
+        ),
+        'Jurisdicciones' => array(
+            'columns'           => 'Jurisdiccion',
+            'refTableClass'     => 'Afip_Model_DbTable_AfipProvincias',
+            'refJoinColumns'    => array('Descripcion'),
+            'comboBox'          => true,
+            'comboSource'       => 'datagateway/combolist',
+            'refTable'          => 'AfipProvincias',
+            'refColumns'        => 'Id',
+            'comboPageSize'     => '10'
         )
     );
     // fin  protected $_referenceMap -----------------------------------------------------------------------------
@@ -111,9 +121,7 @@ class Base_Model_DbTable_ConceptosDePercepciones extends Rad_Db_Table
     public function fetchAll ($where = null, $order = null, $count = null, $offset = null)
     {
         $condicion = "EsPercepcion = 1";
-        
         $where = $this->_addCondition($where, $condicion);
-
         return parent:: fetchAll ($where , $order , $count , $offset );
     }   
 }

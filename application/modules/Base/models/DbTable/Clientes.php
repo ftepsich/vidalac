@@ -105,7 +105,8 @@ class Base_Model_DbTable_Clientes extends Base_Model_DbTable_Personas
                 'Falta ingresar la Razon Social.'
             )
         );        
-        parent::init();        
+        parent::init();
+        $this->_calculatedFields['IBProximosVencimientosCM05'] = "(SELECT COUNT(Id) FROM personasingresosbrutos WHERE Persona = Personas.Id AND FechaVencimientoCM05 IS NOT NULL AND FechaVencimientoCM05 < DATE_ADD(CURDATE(), INTERVAL 10 DAY) )";
     }    
 
     public function fetchTieneComprobantes($where = null, $order = null, $count = null, $offset = null)
