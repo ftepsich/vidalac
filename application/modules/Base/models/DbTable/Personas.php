@@ -71,24 +71,16 @@ class Base_Model_DbTable_Personas extends Rad_Db_Table_SemiReferencial
            'refTable'           => 'TiposDeInscripcionesIB',
            'refColumns'         => 'Id'
        ),
-//        'ZonasDeVentas' => array(
-//            'columns' => 'ZonaDeVenta',
-//            'refTableClass' => 'Model_DbTable_ZonasDeVentas',
-//            'refJoinColumns' => array('Descripcion'),
-//            'comboBox' => true,
-//            'comboSource' => 'datagateway/combolist',
-//            'refTable' => 'ZonasDeVentas',
-//            'refColumns' => 'Id'
-//        ),
-//        'EstadosCiviles' => array(
-//            'columns' => 'EstadoCivil',
-//            'refTableClass' => 'Model_DbTable_EstadosCiviles',
-//            'refJoinColumns' => array('Descripcion'),
-//            'comboBox' => true,
-//            'comboSource' => 'datagateway/combolist',
-//            'refTable' => 'EstadosCiviles',
-//            'refColumns' => 'Id'
-//        ),
+
+    'TiposFormasDePagos' => array(
+        'columns'            => 'TipoFormaDePago',
+        'refTableClass'      => 'Base_Model_DbTable_TiposFormasDePagos',
+        'refJoinColumns'     => array('Descripcion'),
+        'comboBox'           => true,
+        'comboSource'        => 'datagateway/combolist',
+        'refTable'           => 'TiposFormasDePagos',
+        'refColumns'         => 'Id'
+    ),
         'TiposDeDocumentos' => array(
             'columns'           => 'TipoDeDocumento',
             'refTableClass'     => 'Base_Model_DbTable_TiposDeDocumentos',

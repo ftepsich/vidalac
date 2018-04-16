@@ -76,7 +76,17 @@ class Base_Model_DbTable_Clientes extends Base_Model_DbTable_Personas
             'comboSource'       => 'datagateway/combolist',
             'refTable'          => 'TiposDeInscripcionesGanancias',
             'refColumns'        => 'Id'
-        )
+        ),
+        'TiposFormasDePagos' => array(
+            'columns'            => 'TipoFormaDePago',
+            'refTableClass'      => 'Base_Model_DbTable_TiposFormasDePagos',
+            'refJoinColumns'     => array('Descripcion'),
+            'comboBox'           => true,
+            'comboSource'        => 'datagateway/combolist',
+            'refTable'           => 'TiposFormasDePagos',
+            'refColumns'         => 'Id'
+        ),
+
     );
 
     /**
