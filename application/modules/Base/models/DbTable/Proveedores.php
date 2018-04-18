@@ -66,15 +66,6 @@ class Base_Model_DbTable_Proveedores extends Base_Model_DbTable_Personas
             'refTable'          => 'TiposDeDocumentos',
             'refColumns'        => 'Id'
         ),
-        'TiposFormasDePagos' => array(
-            'columns'            => 'TipoFormaDePago',
-            'refTableClass'      => 'Base_Model_DbTable_TiposFormasDePagos',
-            'refJoinColumns'     => array('Descripcion'),
-            'comboBox'           => true,
-            'comboSource'        => 'datagateway/combolist',
-            'refTable'           => 'TiposFormasDePagos',
-            'refColumns'         => 'Id'
-        ),
     );
 
     public function fetchTransporte($where = null, $order = null, $count = null, $offset = null)

@@ -55,6 +55,7 @@ class Base_Model_DbTable_TiposDeDivisas extends Rad_Db_Table
 			);
 
 		parent::init();
-	}
+    }
+
 
 }
