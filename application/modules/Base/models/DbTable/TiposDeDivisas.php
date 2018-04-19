@@ -28,6 +28,7 @@ class Base_Model_DbTable_TiposDeDivisas extends Rad_Db_Table
             'refColumns' => 'Id'
         ),
     );
+    
 
 	public function init()     {
 			$this -> _validators = array(
