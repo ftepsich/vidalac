@@ -127,6 +127,13 @@ IMPORTANTE              IMPORTANTE              IMPORTANTE
   border-color : #C0C0C0;
 }
 
+.pie-sin-borde {
+  font-family : sans-serif;
+  font-size : 7pt;
+  font-variant: small-caps;
+  color : #000000;
+}
+
 .table-group-header-1 {
   background : #FF9966;
   border-bottom : double;
