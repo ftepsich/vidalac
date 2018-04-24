@@ -1785,7 +1785,7 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                             <text-data id="2734">
                                 <property name="fontSize">8pt</property>
                                 <property name="contentType">html</property>
-                                <expression name="valueExpr">if ( row["MontoTotalDivisaCambio"] != null ) { BirtStr.concat("&lt;b&gt;Total ",row["SimboloMonetario"], " : ", row["MontoTotalDivisaCambio"], " Cambio Base BNA Vendedor : ", row["ValorDivisaCambio"], "&lt;/b&gt;. El monto deberá ser cancelado a su vencimiento en U$S o su equivalente en pesos al tipo de cambio BNA vendedor del día de su efectiva acreditación. El incumplimiento de las condiciones pactadas, o diferencias en el tipo de cambio superiores al 2% podrá derivar en un ajuste de precios hasta el momento de su acreditación final.") }</expression>
+                                <expression name="valueExpr">if ( row["MontoTotalDivisaCambio"] != null ) { BirtStr.concat("&lt;b&gt;Total ",row["SimboloMonetario"], " : ", row["MontoTotalDivisaCambio"], " Cambio Base BNA Vendedor : ", row["ValorDivisaCambio"], "&lt;/b&gt;. El monto podrá ser cancelado a su vencimiento en U$S o su equivalente en pesos al tipo de cambio BNA vendedor del día de su efectiva acreditación. El incumplimiento de las condiciones pactadas, o diferencias en el tipo de cambio superiores al 2% podrá derivar en un ajuste de precios al momento de su acreditación final.") }</expression>
                             </text-data>
                         </cell>
                     </row>

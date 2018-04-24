@@ -38,16 +38,6 @@ class Base_Model_DbTable_Proveedores extends Base_Model_DbTable_Personas
             'refTable'          => 'TiposDeInscripcionesGanancias',
             'refColumns'        => 'Id'
         ),
-        'TransportePorDefecto' => array(
-            'columns'           => 'TransportePorDefecto',
-            'refTableClass'     => 'Base_Model_DbTable_Transportistas',
-            'refJoinColumns'    => array('RazonSocial','Denominacion'),
-            'comboBox'          => true,
-            'comboSource'       => 'datagateway/combolist',
-            'refTable'          => 'Personas',
-            'refColumns'        => 'Id',
-            'comboPageSize'     => 10
-		),
         'TiposDeInscripcionesIB' => array(
             'columns'           => 'TipoInscripcionIB',
             'refTableClass'     => 'Base_Model_DbTable_TiposDeInscripcionesIB',

@@ -42,11 +42,11 @@ class AuthController extends Zend_Controller_Action
         $authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
 
         $username = $this->getRequest()->getParam('login');
-        $password = password_hash($this->getRequest()->getParam('password'), PASSWORD_DEFAULT, array('salt' => '754CC93A968B7F919C1C6477457F3') );
+        $password = $this->getRequest()->getParam('password');
 
         $authAdapter->setTableName('Usuarios')
                 ->setIdentityColumn('Nombre')
-                ->setCredentialColumn('ClaveHash')
+                ->setCredentialColumn('Clave')
                 ->setIdentity($username)
                 ->setCredential($password);
 
