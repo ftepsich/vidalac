@@ -1774,7 +1774,7 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                             <text-data id="2731">
                                 <property name="fontSize">8pt</property>
                                 <property name="contentType">html</property>
-                                <expression name="valueExpr">if ( row["MontoTotalDivisaCambio"] != null ) { BirtStr.concat("&lt;b&gt;Son $ : ",row["MontoTotalLetras"],".-&lt;/b&gt;") }</expression>
+                                <expression name="valueExpr">if ( row["MontoTotalDivisaCambio"] != null ) { BirtStr.concat("&lt;b&gt;Son Pesos : ",row["MontoTotalLetras"],".-&lt;/b&gt;") }</expression>
                             </text-data>
                         </cell>
                     </row>
