@@ -81,6 +81,15 @@ class Base_Model_DbTable_Personas extends Rad_Db_Table_SemiReferencial
         'refTable'           => 'TiposFormasDePagos',
         'refColumns'         => 'Id'
     ),
+        'TiposFletesACargo' => array(
+            'columns'            => 'TipoFleteACargo',
+            'refTableClass'      => 'Base_Model_DbTable_TiposFletesACargo',
+            'refJoinColumns'     => array('Descripcion'),
+            'comboBox'           => true,
+            'comboSource'        => 'datagateway/combolist',
+            'refTable'           => 'TiposFletesACargo',
+            'refColumns'         => 'Id'
+        ),
         'TiposDeDocumentos' => array(
             'columns'           => 'TipoDeDocumento',
             'refTableClass'     => 'Base_Model_DbTable_TiposDeDocumentos',
