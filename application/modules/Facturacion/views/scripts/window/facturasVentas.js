@@ -6,7 +6,6 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
     requires: [
       '/direct/Contable/LibrosIVA?javascript',
         '/direct/Facturacion/FacturasVentas?javascript',
-        '/direct/Facturacion/FacturasVentas?javascript',
         '/direct/Base/Personas?javascript',
         '/direct/Base/Clientes?javascript'
     ],
