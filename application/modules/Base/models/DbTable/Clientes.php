@@ -66,6 +66,15 @@ class Base_Model_DbTable_Clientes extends Base_Model_DbTable_Personas
             'refTable'           => 'TiposFormasDePagos',
             'refColumns'         => 'Id'
         ),
+        'TiposFletesACargo' => array(
+            'columns'            => 'TipoFleteACargo',
+            'refTableClass'      => 'Base_Model_DbTable_TiposFletesACargo',
+            'refJoinColumns'     => array('Descripcion'),
+            'comboBox'           => true,
+            'comboSource'        => 'datagateway/combolist',
+            'refTable'           => 'TiposFletesACargo',
+            'refColumns'         => 'Id'
+        )
 
     );
 
