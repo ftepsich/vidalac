@@ -1309,7 +1309,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         $divisaCambio      = null;
         $valorDivisaCambio = null;
         $divisaDolarId     = 2;
-        if (in_array($grupoComprobante, array(6)) && !in_array($persona, array(2489, 2738, 2933, 3023, 3061, 3062, 3354, 3357, 3412, 3420, 3582, 4227)) ) { // FV exceptuando organismos oficiales.
+        if (in_array($grupoComprobante, array(6))) { // Grupos de Comprobantes FV .
             $sql = "SELECT cambioactual FROM tiposdedivisas WHERE id = ".$divisaDolarId;
             $divisaCambio      = $divisaDolarId;
             $valorDivisaCambio = $this->_db->fetchOne($sql);
