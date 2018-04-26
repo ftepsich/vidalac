@@ -71,24 +71,6 @@ class Base_Model_DbTable_Personas extends Rad_Db_Table_SemiReferencial
            'refTable'           => 'TiposDeInscripcionesIB',
            'refColumns'         => 'Id'
        ),
-//        'ZonasDeVentas' => array(
-//            'columns' => 'ZonaDeVenta',
-//            'refTableClass' => 'Model_DbTable_ZonasDeVentas',
-//            'refJoinColumns' => array('Descripcion'),
-//            'comboBox' => true,
-//            'comboSource' => 'datagateway/combolist',
-//            'refTable' => 'ZonasDeVentas',
-//            'refColumns' => 'Id'
-//        ),
-//        'EstadosCiviles' => array(
-//            'columns' => 'EstadoCivil',
-//            'refTableClass' => 'Model_DbTable_EstadosCiviles',
-//            'refJoinColumns' => array('Descripcion'),
-//            'comboBox' => true,
-//            'comboSource' => 'datagateway/combolist',
-//            'refTable' => 'EstadosCiviles',
-//            'refColumns' => 'Id'
-//        ),
         'TiposDeDocumentos' => array(
             'columns'           => 'TipoDeDocumento',
             'refTableClass'     => 'Base_Model_DbTable_TiposDeDocumentos',
@@ -168,8 +150,6 @@ class Base_Model_DbTable_Personas extends Rad_Db_Table_SemiReferencial
     {
         try {
             $this->_db->beginTransaction();
-
-
 
             // no saquen el parent por que sino no anda (sarcasmo! 2014-04-01 18:39)
             parent::update($data,$where);

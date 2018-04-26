@@ -82,22 +82,12 @@ class Base_Model_DbTable_Clientes extends Base_Model_DbTable_Personas
     /**
      * Validadores
      *
-     * CUIT         -> valor unico y no vacio
      * Razon Social -> valor unico y no vacio
      *
      */    
     
     public function init()
-    {/*
-        $this->_validators['Cuit']= array(
-            array(
-                'Db_NoRecordExists',
-                'Personas',
-                'Cuit',
-                'Id <> {Id}'
-            ),
-            'messages' => array('Ya existe ese Cuit.')
-        );*/
+    {
         $this->_validators['RazonSocial']= array(
             'NotEmpty',
             'allowEmpty'=>false,

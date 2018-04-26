@@ -25,3 +25,4 @@ application/configs/application.ini
 application/configs/cert/
 application/Boostrap.php
 .idea/
+/nbproject/private/

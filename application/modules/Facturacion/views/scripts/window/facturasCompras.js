@@ -5,9 +5,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
     appChannel: '/desktop/modules<?=$this->url()?>',
     requires: [
         '/direct/Facturacion/FacturasCompras?javascript',
-
-        '/direct/Base/Personas?javascript'
-
+        '/direct/Base/Personas?javascript',
         '/direct/Contable/LibrosIVA?javascript'
 
     ],

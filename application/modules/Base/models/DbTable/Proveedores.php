@@ -76,10 +76,8 @@ class Base_Model_DbTable_Proveedores extends Base_Model_DbTable_Personas
 
     public function fetchTransporte($where = null, $order = null, $count = null, $offset = null)
     {
-        $condicion = 'EsTransporte = 1';
-        
-        $where = $this->_addCondition($where, $condicion);
-        
+        $condicion = 'EsTransporte = 1';      
+        $where = $this->_addCondition($where, $condicion);     
         return parent::fetchAll($where, $order, $count, $offset);
     }
 
