@@ -550,7 +550,10 @@ class Facturacion_Model_DbTable_ComprobantesPagos extends Facturacion_Model_DbTa
                               -- Convenio Multilateral --
                               WHEN PIB.TipoInscripcionIB = 3 THEN
                                 -- Si el coeficiente es menos a 0.1 = No Retener.
-                                CASE WHEN PIB.CoeficienteCM05 < 0.1 THEN 0 ELSE CI.PorcentajeActual END
+                                CASE WHEN PIB.CoeficienteCM05 < 0.1 THEN 0 
+                                     -- Sino tiene coeficiente o es mayor a 0.1 se toma el porcentaje de la actividad si se encuentra asiganda de lo contrario se asume el porcentaje actual del concepto.
+                                     ELSE CASE WHEN ( CAA.Id IS NOT NULL ) THEN CAA.Porcentaje ELSE CI.PorcentajeActual END 
+                                END
                               -- Contribuyente Directo --
                               WHEN PIB.TipoInscripcionIB = 4 THEN
                                 -- Si tiene una actividad en la jurisdicción se retiene el porcentaje asociado.
@@ -569,8 +572,8 @@ class Facturacion_Model_DbTable_ComprobantesPagos extends Facturacion_Model_DbTa
                         END AS MontoMinimo,
                         CASE
                           WHEN PIB.TipoInscripcionIB = 3 THEN
-                            -- Si el coeficiente es mayor a 0.1 = Base de Retencion 50%
-                            CASE WHEN PIB.CoeficienteCM05 > 0.1 THEN 50 ELSE 100 END
+                            -- Si el coeficiente es mayor a 0.1 y no tienen actividad cargada se asume Base de Retencion 50%
+                            CASE WHEN PIB.CoeficienteCM05 > 0.1 THEN CASE WHEN ( CAA.Id IS NOT NULL ) THEN 50 ELSE 100 END ELSE 100 END
                           ELSE 
                             100
                         END AS PorcentajeBaseMonto
