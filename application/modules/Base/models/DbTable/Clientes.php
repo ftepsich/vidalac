@@ -82,22 +82,12 @@ class Base_Model_DbTable_Clientes extends Base_Model_DbTable_Personas
     /**
      * Validadores
      *
-     * CUIT         -> valor unico y no vacio
      * Razon Social -> valor unico y no vacio
      *
      */    
     
     public function init()
-    {/*
-        $this->_validators['Cuit']= array(
-            array(
-                'Db_NoRecordExists',
-                'Personas',
-                'Cuit',
-                'Id <> {Id}'
-            ),
-            'messages' => array('Ya existe ese Cuit.')
-        );*/
+    {
         $this->_validators['RazonSocial']= array(
             'NotEmpty',
             'allowEmpty'=>false,
@@ -105,7 +95,8 @@ class Base_Model_DbTable_Clientes extends Base_Model_DbTable_Personas
                 'Falta ingresar la Razon Social.'
             )
         );        
-        parent::init();        
+        parent::init();
+        $this->_calculatedFields['IBProximosVencimientosCM05'] = "(SELECT COUNT(Id) FROM personasingresosbrutos WHERE Persona = Personas.Id AND FechaVencimientoCM05 IS NOT NULL AND FechaVencimientoCM05 < DATE_ADD(CURDATE(), INTERVAL 10 DAY) )";
     }    
 
     public function fetchTieneComprobantes($where = null, $order = null, $count = null, $offset = null)

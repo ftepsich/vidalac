@@ -431,6 +431,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
         $filtro = "ParaCompra";
 
         $this->recalcularConceptosFacturacion($idFactura, $idPersona, $fechaEmision, $filtro);
+
         return true;
     }
 
@@ -457,6 +458,9 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
 
             // Calculo los conceptos que no son IVA
             $this->recalcularConceptosNoIVA($idFactura);
+
+            // Calculo como Agente las Percepciones IB
+            $this->recalcularComoAgentePercepcionesIB($idFactura);
         }
     }
 

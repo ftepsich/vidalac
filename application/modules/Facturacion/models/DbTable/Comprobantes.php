@@ -583,13 +583,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         return $NetoGravado + $Impuestos;
     }
 
-    /*
-    public function recuperarMontoTotal ($idComprobante) {
-        $NetoGravado    = $this->recuperarNetoGravado($idComprobante);
-        $Impuestos      = $this->recuperarConceptosImpositivos($idComprobante);
-        return $NetoGravado + $Impuestos;
-    }
-    */
+    
     /**
      * Recupera el Monto sin utilizar de un comprobante
      *
@@ -641,14 +635,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
             throw new Rad_Db_Table_Exception("No se localiza el tipo del comprobante.");
         }
 
-        /*
-          switch ($R_C->TipoDeComprobante) {
-          case 1: case 6: case 13: case 12    : $Multiplicador = 1;  break;     // FC, NCE, OP, NDR
-          case 7: case 8     					: $Multiplicador = -1; break;     // FV, NCR, RC, NDE
-          }
-          $Multiplicador = $Multiplicador * $R_TC->Multiplicador;
-         */
-        $Multiplicador = $R_TC->Multiplicador;
+      $Multiplicador = $R_TC->Multiplicador;
 
         return $Multiplicador;
     }
@@ -940,6 +927,276 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
     }
 
     /**
+     * Rearma como Agente de Percepcion IB las percepciones al momento de emitir una Factura
+     *
+     * @param int 		$idComprobante	identificador de la Factura
+     *
+     * @return boolean
+     */
+    public function recalcularComoAgentePercepcionesIB($idComprobante)
+    {
+        // Recupero el registro de la Factura
+        $R_C = $this->find($idComprobante)->current();
+        if (!$R_C) {
+            throw new Rad_Db_Table_Exception('El Comprobante Padre no existe.');
+        }
+
+        $idPersona      = $R_C->Persona;
+        $fechaEmision   = $R_C->FechaEmision;
+
+        $M_C = new Facturacion_Model_DbTable_Comprobantes(array(), false);
+
+        $sql = "SELECT  PIB.ConceptoImpositivo,
+                        CI.Descripcion,
+                        PIB.TipoInscripcionIB,
+                        CASE 
+                          WHEN ( PIB.Porcentaje IS NULL ) THEN
+                            CASE
+                              -- Sin Datos --
+                              WHEN PIB.TipoInscripcionIB = 1 THEN (CI.PorcentajeActual*2)
+                               -- Exento --
+                              WHEN PIB.TipoInscripcionIB = 2 THEN 0
+                              -- Convenio Multilateral --
+                              WHEN PIB.TipoInscripcionIB = 3 THEN
+                                -- Si el coeficiente es menos a 0.1 = No Retener.
+                                CASE WHEN ( PIB.CoeficienteCM05 < 0.1 ) THEN 0 ELSE CI.PorcentajeActual END
+                              -- Contribuyente Directo --
+                              WHEN PIB.TipoInscripcionIB = 4 THEN
+                                -- Si tiene una actividad en la jurisdicción se retiene el porcentaje asociado.
+                                CASE WHEN ( CAA.Id IS NOT NULL ) THEN CAA.Porcentaje ELSE CI.PorcentajeActual END
+                              -- No Inscripto --
+                              WHEN PIB.TipoInscripcionIB = 5 THEN (CI.PorcentajeActual*2)
+                            END
+                          ELSE 
+                            PIB.Porcentaje 
+                        END AS Porcentaje,
+                        CASE 
+                          WHEN ( PIB.MontoMinimo IS NULL ) THEN 
+                            CI.MontoMinimo 
+                          ELSE 
+                            PIB.MontoMinimo 
+                        END AS MontoMinimo,
+                        100 AS PorcentajeBaseMonto
+                FROM personasingresosbrutos PIB
+                INNER JOIN ConceptosImpositivos   CI  ON CI.Id  = PIB.ConceptoImpositivo
+                LEFT  JOIN CodigosActividadesAfip CAA ON CAA.Id = PIB.ActividadIB
+                WHERE PIB.Persona = $idPersona
+                  AND CI.ParaCobro = 1
+                  AND CI.EsPercepcion = 1
+                  AND CI.EsIVA = 0
+                  -- AND PIB.FechaAlta <= '" . $fechaEmision . "'
+                  AND IFNULL(PIB.FechaBaja,'2999-12-31') >= '" . $fechaEmision . "'
+                ORDER BY CI.Descripcion";
+
+        $R_PIB = $this->_db->fetchAll($sql);
+
+        if (count($R_PIB)) {
+
+            $M_C = new Facturacion_Model_DbTable_Comprobantes(array(), false);
+
+            foreach ($R_PIB as $row) {
+
+                $idConcepto = $row["ConceptoImpositivo"];
+
+                // No se realizan percepciones si el porcentaje estipulado es igual a 0.
+                if ( $row['Porcentaje'] == 0 ) {
+                    continue;
+                }
+                //Rad_Log::debug("Porcentaje : ".$row['Porcentaje']);
+                $MontoPorFacturar = $this->recuperarNetoGravado($idComprobante);
+                //Rad_Log::debug("MontoPorFacturar : ".$MontoPorFacturar);
+                $MontoFacturado = $this->recuperarMontoTotalNGFacturadoSobrePeriodo($idConcepto, $idComprobante);
+                //Rad_Log::debug("MontoFacturado : ".$MontoFacturado);
+                if ( ( $MontoFacturado + $MontoPorFacturar ) <= $row['MontoMinimo'] ) {
+                    $MontoImponible = 0;
+                } else {
+                    $MontoImponible = round( ( $MontoFacturado + $MontoPorFacturar ) * ( $row['PorcentajeBaseMonto'] / 100 ), 2 );
+                }
+                //Rad_Log::debug("MontoImponible : ".$MontoImponible);
+                if ($MontoImponible > 0) {
+
+                    $MontoPorPercibir = round( $MontoImponible * ( $row['Porcentaje'] / 100 ), 2 );
+                    //Rad_Log::debug("MontoPorPercibir : ".$MontoPorPercibir);
+                    $MontoPercibido = $this->recuperarMontoPercepcionesRealizadasSobrePeriodo($idConcepto, $idComprobante);
+                    //Rad_Log::debug("MontoPercibido : ".$MontoPercibido);
+                    $MontoPorPercibir = $MontoPorPercibir - $MontoPercibido;
+                    //Rad_Log::debug("MontoPorPercibir : ".$MontoPorPercibir);
+                    $Renglon = array(
+                        'Persona' => $idPersona,
+                        'ComprobantePadre' => $idComprobante,
+                        'TipoDeComprobante' => '13',
+                        'Punto' => 1,
+                        'Numero' => $M_C->recuperarProximoNumero(1, 13),
+                        'FechaEmision' => $fechaEmision,
+                        'Divisa' => 1,
+                        'ValorDivisa' => 1,
+                        'ConceptoImpositivo' => $row['ConceptoImpositivo'],
+                        'ConceptoImpositivoPorcentaje' => $row['Porcentaje'],
+                        'Observaciones' => $row['Descripcion'],
+                        'MontoImponible' => $MontoImponible,
+                        'Monto' => $MontoPorPercibir
+                    );
+
+                    $R_H = $M_C->recuperarConceptoAsignado($idComprobante, $idConcepto);
+                    // Si ya existe el registro UPDATE.
+                    if ($R_H) {
+                        $idCI = $R_H->Id;
+                        // Si se modifico manualmente no lo updateo
+                        if (!$R_H->Modificado) {
+                            $M_C->update($Renglon, "Id = $idCI");
+                        }
+                    } else {
+                        // Si no existe el registro INSERT.
+                        $idCI = $M_C->insert($Renglon);
+                    }
+
+                } else {
+
+                    $R_H = $M_C->recuperarConceptoAsignado($idComprobante, $idConcepto);
+                    // Si ya existe el registro DELETE.
+                    if ($R_H) {
+                        $idCI = $R_H->Id;
+                        $M_C->delete("Id = $idCI");
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+    /**
+     * Retorna el Total NG de los comprobantes que se facturaron durante el periodo
+     * del concepto impositivo para un Cliente/Proveedor determinado.
+     *
+     * @param int $idConcepto 	    identificador del Concepto Impositivo
+     * @param int $idComprobante    identificador del Comprobante
+     *
+     * @return decimal
+     */
+    public function recuperarMontoTotalNGFacturadoSobrePeriodo($idConcepto, $idComprobante)
+    {
+
+        $M_C  = Service_TableManager::get('Facturacion_Model_DbTable_Comprobantes');
+
+        // Recupero información del Comprobante.
+        $R_C = $M_C->find($idComprobante)->current();
+        if (!$R_C) {
+            throw new Rad_Db_Table_Exception("No se encuentra el comprobante.");
+        }
+
+        $M_CI = Service_TableManager::get('Base_Model_DbTable_ConceptosImpositivos');
+
+        // Recupero información del Concepto Impositivo.
+        $R_CI = $M_CI->find($idConcepto)->current();
+        if (!$R_CI) {
+            throw new Rad_Db_Table_Exception("No se encuentra el concepto impositivo.");
+        }
+
+        // Se predetermina el Tipo de Monto Minimo como Mensual
+        $InicioPeriodo  = Rad_CustomFunctions::firstOfMonth($R_C->FechaEmision);
+        $FinPeriodo     = Rad_CustomFunctions::lastOfMonth($R_C->FechaEmision);
+
+        If ($R_CI->TipoDeMontoMinimo == 3) { // Tipo de Monto Minimo Anual
+            $InicioPeriodo  = Rad_CustomFunctions::firstOfYear($R_C->FechaEmision);
+        }
+
+        $idGrupoComprobante = $M_C->recuperarGrupoComprobante($R_C);
+
+        $sql = "SELECT C.Id
+                FROM   Comprobantes C
+                INNER JOIN TiposDeComprobantes TC ON TC.Id = C.TipoDeComprobante
+                WHERE  C.FechaEmision >= '$InicioPeriodo'
+                  AND  C.FechaEmision <= '$FinPeriodo'
+                  AND  C.Persona = $R_C->Persona
+                  AND  C.Id <> $idComprobante
+                  AND  C.Cerrado = 1
+                  AND  C.Anulado = 0
+                  AND  TC.Grupo  = $idGrupoComprobante
+                  AND  TC.DiscriminaImpuesto = 1";
+
+        $R_M = $this->_db->fetchAll($sql);
+
+        $Monto = 0;
+
+        if (count($R_M)) {
+            foreach ($R_M as $row) {
+                $Monto = $Monto + $this->recuperarNetoGravado($row['Id']);
+            }
+        }
+
+        return $Monto;
+    }
+
+    /**
+     * Retorna el Total de Percepciones Realizadas durante el periodo
+     * del concepto impositivo para un Cliente/Proveedor determinado.
+     *
+     * @param int $idConcepto 	    identificador del Concepto Impositivo
+     * @param int $idComprobante    identificador del Comprobante
+     *
+     * @return decimal
+     */
+    public function recuperarMontoPercepcionesRealizadasSobrePeriodo($idConcepto, $idComprobante)
+    {
+
+        $M_C  = Service_TableManager::get('Facturacion_Model_DbTable_Comprobantes');
+
+        // Recupero información del Comprobante.
+        $R_C = $M_C->find($idComprobante)->current();
+        if (!$R_C) {
+            throw new Rad_Db_Table_Exception("No se encuentra el comprobante.");
+        }
+
+        $M_CI = Service_TableManager::get('Base_Model_DbTable_ConceptosImpositivos');
+
+        // Recupero información del Concepto Impositivo.
+        $R_CI = $M_CI->find($idConcepto)->current();
+        if (!$R_CI) {
+            throw new Rad_Db_Table_Exception("No se encuentra el concepto impositivo.");
+        }
+
+        // Se predetermina el Tipo de Monto Minimo como Mensual
+        $InicioPeriodo  = Rad_CustomFunctions::firstOfMonth($R_C->FechaEmision);
+        $FinPeriodo     = Rad_CustomFunctions::lastOfMonth($R_C->FechaEmision);
+
+        If ($R_CI->TipoDeMontoMinimo == 3) { // Tipo de Monto Minimo Anual
+            $InicioPeriodo  = Rad_CustomFunctions::firstOfYear($R_C->FechaEmision);
+        }
+
+        $idGrupoComprobante = $M_C->recuperarGrupoComprobante($R_C);
+
+        $sql = "SELECT IFNULL(SUM(C.Monto),0) AS Monto
+                FROM   Comprobantes C
+                INNER JOIN Comprobantes CP ON CP.Id = C.ComprobantePadre
+                INNER JOIN TiposDeComprobantes TC ON TC.Id = CP.TipoDeComprobante
+                WHERE  CP.FechaEmision >= '$InicioPeriodo'
+                  AND  CP.FechaEmision <= '$FinPeriodo'
+                  AND  CP.Persona = $R_C->Persona
+                  AND  CP.Id <> $idComprobante
+                  AND  CP.Cerrado = 1
+                  AND  CP.Anulado = 0
+                  AND  TC.Grupo   = $idGrupoComprobante
+                  AND  TC.DiscriminaImpuesto = 1
+                  AND  C.TipoDeComprobante  = 13
+                  AND  C.ConceptoImpositivo = $idConcepto";
+
+        $R_M = $this->_db->fetchAll($sql);
+
+        $Monto = 0;
+
+        if (count($R_M)) {
+            foreach ($R_M as $row) {
+                $Monto = $Monto + $row['Monto'];
+            }
+        }
+
+        return $Monto;
+    }
+
+    /**
      * Retorna el Row de un comprobante
      * puede recibir un row de comprobante o un id de comprobante
      *
@@ -1153,22 +1410,6 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         return $NetoGravadoGeneral - $NetoIvaNoGravado - $NetoIvaExento;// - $NetoIva0;
     }
 
-//    public function afip_MontoConceptosIVA ($idComprobante)
-//    {
-//        $Monto = 0;
-//        $sql = "select  ifnull(sum(C.Monto),0) as Monto
-//                from    Comprobantes C,
-//                        ConceptosImpositivos CI
-//                where   C.ConceptoImpositivo = CI.Id
-//                and     C.ComprobantePadre = $idComprobante
-//                and     CI.esIVA = 1";
-//
-//        $R = $this->_db->fetchRow($sql);
-//        if ($R) {
-//            $Monto = $R['Monto'];
-//        }
-//        return $Monto;
-//    }
 
     public function afip_MontoConceptosNoIVA ($idComprobante)
     {

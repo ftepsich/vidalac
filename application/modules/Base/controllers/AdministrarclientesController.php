@@ -17,163 +17,160 @@ class Base_AdministrarClientesController extends Rad_Window_Controller_Action
 
     public function initWindow()
     {
-        /**
-         * ----------------------------------------------------------------------------------------------------------------
-         * -- GENERALES
-         * ----------------------------------------------------------------------------------------------------------------
+
+         /**
+         * Grilla Generales -> Direcciones
          */
-        
-        /**
-         * Grilla Direcciones
-         */
-        $config->abmWindowTitle = 'Direcciones';
-        $config->abmWindowWidth = 650;
+        $config->abmWindowTitle  = 'Direcciones';
+        $config->abmWindowWidth  = 650;
         $config->abmWindowHeight = 300;
         $config->title = 'Direcciones';
         $config->loadAuto = false;
-        $config->id = $this->getName() . '_GridDirecciones';
-
-        $this->view->gridDirecciones = $this->view->radGrid('Base_Model_DbTable_Direcciones', $config, 'abmeditor', 'clientes');
+        $config->id = $this->getName() . '_GridClientesDirecciones';
+        $this->view->gridClientesDirecciones = $this->view->radGrid(
+            'Base_Model_DbTable_Direcciones',
+            $config,
+            'abmeditor',
+            'clientes');
         unset($config);
 
         /**
-         * Grilla de Telefonos
+         * Grilla Generales -> Telefonos
          */
-        $config->abmWindowTitle = 'Telefonos';
-        $config->abmWindowWidth = 760;
+        $config->abmWindowTitle  = 'Telefonos';
+        $config->abmWindowWidth  = 760;
         $config->abmWindowHeight = 400;
         $config->title = 'Telefonos';
         $config->loadAuto = false;
-        $config->id = $this->getName() . '_GridTelefonos';
-
-        $this->view->gridTelefonos = $this->view->radGrid('Base_Model_DbTable_Telefonos', $config, 'abmeditor');
+        $config->id = $this->getName() . '_GridClientesTelefonos';
+        $this->view->gridClientesTelefonos = $this->view->radGrid(
+            'Base_Model_DbTable_Telefonos',
+            $config,
+            'abmeditor'
+        );
         unset($config);
+        
 
         /**
-         * Grilla Emails
+         * Grilla Generales -> Email
          */
         $config->abmWindowTitle = 'Emails';
-        $config->abmWindowWidth = 500;
-        $config->abmWindowHeight = 250;
         $config->title = 'Emails';
         $config->loadAuto = false;
-        $config->id = $this->getName() . '_GridEmails';
-
-        $this->view->gridEmails = $this->view->radGrid('Base_Model_DbTable_Emails', $config, 'abmeditor');
-        unset($config);
-
-        /**
-         * ----------------------------------------------------------------------------------------------------------------
-         * -- IMPOSITIVO
-         * ----------------------------------------------------------------------------------------------------------------
-         */
-        /**
-         * Grilla Conceptos Impositivos
-         */
-        $config = array(
-            'title' => 'Conc.Imp.Generales',
-            'iniSection' => 'minimoCliente',
-            'fetch'    => 'ParaCliente',
-            'id' =>  $this->getName() . '_GridConceptosImpositivos'
-        );
-        $this->view->gridConceptosImpositivos = $this->view->RadGridManyToMany(
-            'Base_Model_DbTable_ConceptosImpositivos',
-            'Base_Model_DbTable_ClientesConceptosImpositivos',
-            'Base_Model_DbTable_Clientes',
+        $config->id = $this->getName() . '_GridClientesEmails';
+        $this->view->gridClientesEmails = $this->view->radGrid(
+            'Base_Model_DbTable_Emails',
             $config,
-            'NoEsIVA'
+            'abmeditor'
         );
         unset($config);
 
-        /**
-         * Grilla Conceptos Impositivos Modificable
+         /**
+          * Grilla Impositivo -> Ingresos Brutos Clientes
          */
-        $config->abmWindowTitle = 'Conc.Imp.Propios';
-        $config->abmWindowWidth = 700;
-        $config->abmWindowHeight = 250;
-        $config->title = 'Conc.Imp.Propios';
+        $config->abmWindowTitle = 'Ingresos Brutos Clientes';
+        $config->abmWindowWidth = 760;
+        $config->abmWindowHeight = 400;
+        $config->title = 'Ingresos Brutos Clientes';
         $config->loadAuto = false;
-        $config->iniSection = 'ClienteValor';
-        $config->id = $this->getName() . '_GridConceptosImpositivosE';
+        $config->id = $this->getName() . '_GridClientesIngresosBrutos';
+        $config->fetch = 'ParaClientes';
+        $config->iniSection = 'minimoCliente';
 
-        $this->view->gridConceptosImpositivosE = $this->view->radGrid(
-            'Base_Model_DbTable_ClientesConceptosImpositivos',
-            $config,
-            'editor'
-        );
-        unset($config);
-
-        /**
-         * Grilla Declaracion de Actividades
-         */
-        $config->abmWindowTitle = 'Descripcion de Actividades';
-        $config->abmWindowWidth = 600;
-        $config->abmWindowHeight = 200;
-        $config->title = 'Desc. de Actividades';
-        $config->id = $this->getName() . '_GridDeclaracionActividades';
-        $config->loadAuto = false;
-
-        $this->view->gridActividades = $this->view->radGrid(
-            'Base_Model_DbTable_PersonasActividades',
+        $this->view->gridClientesIngresosBrutos = $this->view->radGrid(
+            'Base_Model_DbTable_ClientesIngresosBrutos',
             $config,
             'abmeditor'
         );
         unset($config);
 
         /**
-         * ----------------------------------------------------------------------------------------------------------------
-         * -- CUENTAS BANCARIAS
-         * ----------------------------------------------------------------------------------------------------------------
+         * Grilla Impositivos -> Conceptos Impositivos
          */
+        $config->title = 'Cptos. Impositivos';
+        $config->loadAuto = false;
+        $config->id = $this->getName() . '_GridClientesConceptosImpositivos';
+        $config->iniSection = 'minimoCliente';
+        $config->fetch = 'ParaClientesSinPercepcionesR';
+        $this->view->gridClientesConceptosImpositivos = $this->view->RadGridManyToMany(
+            'Base_Model_DbTable_ConceptosImpositivos',
+            'Base_Model_DbTable_ClientesConceptosImpositivos',
+            'Base_Model_DbTable_Clientes',
+            $config,
+            'clientes'
+        );
+        unset($config);
+
+         /**
+         * Grilla Impositivos -> Valor Conceptos Impositivos
+         */
+        $config->abmWindowTitle  = 'Valor Cptos. Impositivos';
+        $config->abmWindowWidth  = 700;
+        $config->abmWindowHeight = 250;
+        $config->title = 'Valor Cptos. Impositivos';
+        $config->loadAuto = false;
+        $config->autoSave = true;
+        $config->id = $this->getName() . '_GridClientesValoresConceptosImpositivos';
+        $config->iniSection = 'ClienteValor';
+        $this->view->gridClientesValoresConceptosImpositivos = $this->view->radGrid(
+            'Base_Model_DbTable_ClientesConceptosImpositivos',
+            $config,
+            'fasteditor'
+        );
+        unset($config);
+
         /**
          * Grilla Cuentas Bancarias
          */
-        
-        $config->abmWindowTitle = 'Cuenta Bancaria';
+        $config->abmWindowTitle = 'Cuentas Bancarias';
         $config->abmWindowWidth = 550;
         $config->abmWindowHeight = 250;
         $config->title = 'Cuentas Bancarias';
         $config->loadAuto = false;
+        $config->id = $this->getName() . '_GridClientesCuentasBancarias';
         $config->iniSection = 'cliente';
-        $config->id = $this->getName() . '_GridCuentaBancaria';
-        
+        $config->abmForm = new Zend_Json_Expr($this->view->radForm(
+            'Base_Model_DbTable_CuentasBancarias',
+            'datagateway'
+        ));
+        $this->view->gridClientesCuentasBancarias = $this->view->radGrid(
+            'Base_Model_DbTable_CuentasBancarias',
+            $config,
+            'abmeditor'
+        );
+        unset($config);
+                
         $config->abmForm = new Zend_Json_Expr($this->view->radForm(
             'Base_Model_DbTable_CuentasBancarias',
             'datagateway'
         ));
 
-        $this->view->gridCuentasBancarias = $this->view->radGrid(
+        $this->view->gridCtaBan = $this->view->radGrid(
             'Base_Model_DbTable_CuentasBancarias',
             $config,
             'abmeditor'
         );
         unset($config);
 
-        /**
-         * ----------------------------------------------------------------------------------------------------------------
-         * -- CUENTA CORRIENTE
-         * ----------------------------------------------------------------------------------------------------------------
-         */
-        /**
+         /**
          * Grilla Cuentas Corrientes
          */
+        $config->region = 'center';
         $config->loadAuto = false;
-        $config->id = $this->getName() . '_GridCtaCte';
+        $config->id = $this->getName() . '_GridClientesCuentasCorrientes';
         $config->iniSection = 'conbarra';
         $config->fetch = 'CuentaCorriente';
-
-        $this->view->gridCtaCte = $this->view->radGrid(
+        $this->view->gridClientesCuentasCorrientes = $this->view->radGrid(
             'Contable_Model_DbTable_CuentasCorrientes',
-            $config,
-            null
+            $config
         );
         unset($config);
-
         $config->loadAuto = false;
+        $config->region = 'south';
+        $config->height = 60;
         $config->withPaginator = false;
-        $config->id = $this->getName() . '_GridCtaCte_Saldo';
-
-        $this->view->gridCtaCte_Saldo = $this->view->radGrid(
+        $config->id = $this->getName() . '_GridClientesCuentasCorrientesSaldo';
+        $this->view->gridClientesCuentasCorrientesSaldo = $this->view->radGrid(
             'Contable_Model_DbTable_VSaldoCuentasCorrientes',
             $config,
             'editor'
@@ -181,95 +178,67 @@ class Base_AdministrarClientesController extends Rad_Window_Controller_Action
         unset($config);
 
         /**
-         * ----------------------------------------------------------------------------------------------------------------
-         * -- CUENTA CORRIENTE COMO CLIENTE
-         * ----------------------------------------------------------------------------------------------------------------
+         * Grilla Cuentas Corrientes como Cliente
          */
-        /**
-         * Grilla Cuentas Corrientes
-         */
+        $config->region = 'center';
         $config->loadAuto = false;
-        $config->id = $this->getName() . '_GridCtaCteC';
+        $config->id = $this->getName() . '_GridClientesCuentasCorrientesComoCliente';
         $config->iniSection = 'conbarra';
         $config->fetch = 'CuentaCorrienteComoCliente';
-
-        $this->view->gridCtaCteC = $this->view->radGrid(
+        $this->view->gridClientesCuentasCorrientesComoCliente = $this->view->radGrid(
             'Contable_Model_DbTable_CuentasCorrientes',
             $config,
             null
         );
         unset($config);
-
         $config->loadAuto = false;
         $config->withPaginator = false;
-        $config->id = $this->getName() . '_GridCtaCte_SaldoC';
-
-        $this->view->gridCtaCte_SaldoC = $this->view->radGrid(
+        $config->id = $this->getName() . '_GridClientesCuentasCorrientesComoClienteSaldo';
+        $this->view->gridClientesCuentasCorrientesComoClienteSaldo = $this->view->radGrid(
             'Contable_Model_DbTable_VSaldoCuentasCorrientesC',
             $config,
             'editor'
         );
         unset($config);
-
-        /**
-         * ----------------------------------------------------------------------------------------------------------------
-         * -- CUENTA CORRIENTE COMO PROVEEDOR
-         * ----------------------------------------------------------------------------------------------------------------
-         */
-        /**
-         * Grilla Cuentas Corrientes
+ 
+       /**
+         * Grilla Cuentas Corrientes como Proveedor
          */
         $config->loadAuto = false;
-        $config->id = $this->getName() . '_GridCtaCteP';
+        $config->id = $this->getName() . '_GridClientesCuentasCorrientesComoProveedor';
         $config->iniSection = 'conbarra';
         $config->fetch = 'CuentaCorrienteComoProveedor';
-
-        $this->view->gridCtaCteP = $this->view->radGrid(
+        $this->view->gridClientesCuentasCorrientesComoProveedor = $this->view->radGrid(
             'Contable_Model_DbTable_CuentasCorrientes',
             $config,
             null
         );
         unset($config);
-
         $config->loadAuto = false;
         $config->withPaginator = false;
-        $config->id = $this->getName() . '_GridCtaCte_SaldoP';
-
-        $this->view->gridCtaCte_SaldoP = $this->view->radGrid(
+        $config->id = $this->getName() . '_GridClientesCuentasCorrientesComoProveedorSaldo';
+        $this->view->gridClientesCuentasCorrientesComoProveedorSaldo = $this->view->radGrid(
             'Contable_Model_DbTable_VSaldoCuentasCorrientesP',
             $config,
             'editor'
         );
         unset($config);
-
+    
 
         /**
-         * ----------------------------------------------------------------------------------------------------------------
-         * -- ZONAS DE VENTAS
-         * ----------------------------------------------------------------------------------------------------------------
-         */
-        /**
-         * Grilla Zonas de Venta
-         */
+         * Grilla Zona de Ventas
+        */
         $configHija4->abmWindowTitle = 'Clientes por Zona';
         $configHija4->abmWindowWidth = 550;
         $configHija4->abmWindowHeight = 230;
         $configHija4->title = 'Zonas de Ventas';
         $configHija4->loadAuto = false;
-        $configHija4->id = $this->getName() . '_GridZonasDeVentas';
-
-        $this->view->gridZonasDeVentas = $this->view->radGrid(
-            'Base_Model_DbTable_ZonasPorPersonas',
-            $configHija4,
+        $configHija4->id = $this->getName() . '_GridZonasDeVentasClientes';
+         $this->view->gridZonasDeVentasClientes = $this->view->radGrid('Base_Model_DbTable_ZonasPorPersonas',$configHija4,
             'abmeditor'
         );
         unset($config);
 
-        /**
-         * ----------------------------------------------------------------------------------------------------------------
-         * -- MODALIDADES DE PAGO
-         * ----------------------------------------------------------------------------------------------------------------
-         */
         /**
          * Grilla Modalidades de Pago
          */
@@ -278,9 +247,9 @@ class Base_AdministrarClientesController extends Rad_Window_Controller_Action
         $config->abmWindowHeight = 120;
         $config->title = 'Modalidades de Pago';
         $config->loadAuto = false;
-        $config->id = $this->getName() . '_GridModalidadesDePago';
+        $config->id = $this->getName() . '_GridModalidadesDePagoClientes';
 
-        $this->view->gridModalidadesDePago = $this->view->radGrid(
+        $this->view->gridModalidadesDePagoClientes = $this->view->radGrid(
             'Base_Model_DbTable_ClientesModalidadesDePagos',
             $config,
             'abmeditor'
@@ -294,91 +263,91 @@ class Base_AdministrarClientesController extends Rad_Window_Controller_Action
          */
         $detailGrids = array();
 
-        $dg->id = $this->getName() . '_GridTelefonos';
+        $dg->id = $this->getName() . '_GridClientesTelefonos';
         $dg->remotefield = 'Persona';
         $dg->localfield = 'Id';
         $detailGrids[] = $dg;
         unset($dg);
 
-        $dg->id = $this->getName() . '_GridDirecciones';
+        $dg->id = $this->getName() . '_GridClientesDirecciones';
         $dg->remotefield = 'Persona';
         $dg->localfield = 'Id';
         $detailGrids[] = $dg;
         unset($dg);
 
-        $dg->id = $this->getName() . '_GridEmails';
+        $dg->id = $this->getName() . '_GridClientesEmails';
         $dg->remotefield = 'Persona';
         $dg->localfield = 'Id';
         $detailGrids[] = $dg;
         unset($dg);
 
-        $dg->id = $this->getName() . '_GridDeclaracionActividades';
+        $dg->id = $this->getName() . '_GridClientesIngresosBrutos';
         $dg->remotefield = 'Persona';
         $dg->localfield = 'Id';
         $detailGrids[] = $dg;
         unset($dg);
 
-        $dg->id = $this->getName() . '_GridCuentaBancaria';
+        $dg->id = $this->getName() . '_GridClientesConceptosImpositivos';
         $dg->remotefield = 'Persona';
         $dg->localfield = 'Id';
         $detailGrids[] = $dg;
         unset($dg);
 
-        $dg->id = $this->getName() . '_GridZonasDeVentas';
+        $dg->id = $this->getName() . '_GridClientesValoresConceptosImpositivos';
         $dg->remotefield = 'Persona';
         $dg->localfield = 'Id';
         $detailGrids[] = $dg;
         unset($dg);
 
-        $dg->id = $this->getName() . '_GridConceptosImpositivos';
+        $dg->id = $this->getName() . '_GridClientesCuentasBancarias';
         $dg->remotefield = 'Persona';
         $dg->localfield = 'Id';
         $detailGrids[] = $dg;
         unset($dg);
 
-        $dg->id = $this->getName() . '_GridConceptosImpositivosE';
+        $dg->id = $this->getName() . '_GridClientesCuentasCorrientes';
         $dg->remotefield = 'Persona';
         $dg->localfield = 'Id';
         $detailGrids[] = $dg;
         unset($dg);
 
-        $dg->id = $this->getName() . '_GridCtaCte';
+        $dg->id = $this->getName() . '_GridClientesCuentasCorrientesComoCliente';
         $dg->remotefield = 'Persona';
         $dg->localfield = 'Id';
         $detailGrids[] = $dg;
         unset($dg);
 
-        $dg->id = $this->getName() . '_GridCtaCteC';
-        $dg->remotefield = 'Persona';
-        $dg->localfield = 'Id';
-        $detailGrids[] = $dg;
-        unset($dg);
-
-        $dg->id = $this->getName() . '_GridCtaCteP';
+        $dg->id = $this->getName() . '_GridClientesCuentasCorrientesComoProveedor';
         $dg->remotefield = 'Persona';
         $dg->localfield = 'Id';
         $detailGrids[] = $dg;
         unset($dg);        
 
-        $dg->id = $this->getName() . '_GridCtaCte_Saldo';
+        $dg->id = $this->getName() . '_GridClientesCuentasCorrientesSaldo';
         $dg->remotefield = 'Persona';
         $dg->localfield = 'Id';
         $detailGrids[] = $dg;
         unset($dg);
 
-        $dg->id = $this->getName() . '_GridCtaCte_SaldoC';
+        $dg->id = $this->getName() . '_GridClientesCuentasCorrientesComoClienteSaldo';
         $dg->remotefield = 'Persona';
         $dg->localfield = 'Id';
         $detailGrids[] = $dg;
         unset($dg);
 
-        $dg->id = $this->getName() . '_GridCtaCte_SaldoP';
+        $dg->id = $this->getName() . '_GridClientesCuentasCorrientesComoProveedorSaldo';
         $dg->remotefield = 'Persona';
         $dg->localfield = 'Id';
         $detailGrids[] = $dg;
         unset($dg);
 
-        $dg->id = $this->getName() . '_GridModalidadesDePago';
+        $dg->id = $this->getName() . '_GridZonasDeVentasClientes';
+        $dg->remotefield = 'Persona';
+        $dg->localfield = 'Id';
+        $detailGrids[] = $dg;
+        unset($dg);
+
+        $dg->id = $this->getName() . '_GridModalidadesDePagoClientes';
         $dg->remotefield = 'Persona';
         $dg->localfield = 'Id';
         $detailGrids[] = $dg;

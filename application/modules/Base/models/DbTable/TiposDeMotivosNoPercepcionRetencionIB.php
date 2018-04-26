@@ -1,11 +1,11 @@
 ﻿<?php
 require_once 'Rad/Db/Table.php';
 
-class Base_Model_DbTable_CodigosActividadesAfip extends Rad_Db_Table
+class Base_Model_DbTable_TiposDeMotivosNoPercepcionRetencionIB extends Rad_Db_Table
 {
 
     // Tabla
-    protected $_name = "CodigosActividadesAfip";
+    protected $_name = "TiposDeMotivosNoPercepcionRetencionIB";
     protected $_sort = array('Descripcion asc');
     protected $_defaultSource = self::DEFAULT_CLASS;
     protected $_defaultValues = array(
@@ -26,20 +26,21 @@ class Base_Model_DbTable_CodigosActividadesAfip extends Rad_Db_Table
             'comboPageSize'     => '10'
         )
     );
-
     // Validaciones
     protected $_validators = array(
-        'Descripcion' => array(
+        'Codigo' => array(
+            'NotEmpty',
+            'allowEmpty'=>false,
             array(
                 'Db_NoRecordExists',
-                'Provincias',
-                'Descripcion',
-                array(
-                    'field' => 'Id',
-                    'value' => "{Id}"
-                )
+                'TiposDeMotivosNoPercepcionRetencionIB',
+                'Codigo',
+                'Id <> {Id}'
             ),
-            'messages' => 'Ya existe una actividad con el mismo codigo.'
+            'messages' => array(
+                'Falta ingresar el codigo de la actividad.',
+                'Ya existe una actividad con el mismo codigo.'
+            )
         ),
         'Descripcion' => array(
             'NotEmpty',
