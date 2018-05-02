@@ -102,6 +102,17 @@ class Base_Model_DbTable_ConceptosImpositivos extends Rad_Db_Table
             'refTable'          => 'TiposDeMontosMinimos',
             'refColumns'        => 'Id'
         )
+        ,
+        'Jurisdicciones' => array(
+            'columns'           => 'Jurisdiccion',
+            'refTableClass'     => 'Afip_Model_DbTable_AfipProvincias',
+            'refJoinColumns'    => array('Descripcion'),
+            'comboBox'          => true,
+            'comboSource'       => 'datagateway/combolist',
+            'refTable'          => 'AfipProvincias',
+            'refColumns'        => 'Id',
+            'comboPageSize'     => '10'
+        )
     );
 
     protected $_validators = array(
@@ -227,6 +238,21 @@ class Base_Model_DbTable_ConceptosImpositivos extends Rad_Db_Table
         $where = $this->_addCondition($where, $condicion);
         return parent:: fetchAll($where, $order, $count, $offset);
     }
+
+    public function fetchIbPercepcionesR($where = null, $order = null, $count = null, $offset = null)
+    {
+        $condicion = " TipoDeConcepto = 3 and EsPercepcion = 1 and ConceptosImpositivos.Descripcion like '%(R)%' and EsIVA = 0 and EnUso = 1 ";
+        $where = $this->_addCondition($where, $condicion);
+        return parent:: fetchAll($where, $order, $count, $offset);
+    }
+
+    public function fetchIbRetencionesR($where = null, $order = null, $count = null, $offset = null)
+    {
+        $condicion = " TipoDeConcepto = 3 and EsRetencion = 1 and ConceptosImpositivos.Descripcion like '%(R)%' and EsIVA = 0 and EnUso = 1 ";
+        $where = $this->_addCondition($where, $condicion);
+        return parent:: fetchAll($where, $order, $count, $offset);
+    }
+
     public function fetchParaProveedores($where = null, $order = null, $count = null, $offset = null)
     {
         $condicion = "(ParaPago = 1 or ParaCompra=1) and EsIVA = 0 and EnUso = 1";
@@ -235,9 +261,25 @@ class Base_Model_DbTable_ConceptosImpositivos extends Rad_Db_Table
         return parent:: fetchAll($where, $order, $count, $offset);
     }
 
-      public function fetchParaCliente($where = null, $order = null, $count = null, $offset = null)
+    public function fetchParaClientes($where = null, $order = null, $count = null, $offset = null)
     {
         $condicion = "(ParaPago = 1 or ParaVenta=1) and EsIVA = 0 and EnUso = 1";
+        //$order = " EsIVADefault desc";
+        $where = $this->_addCondition($where, $condicion);
+        return parent:: fetchAll($where, $order, $count, $offset);
+    }
+
+    public function fetchParaProveedoresSinRetencionesR($where = null, $order = null, $count = null, $offset = null)
+    {
+        $condicion = "(ParaPago = 1 or ParaCompra=1) and EsIVA = 0 and EnUso = 1 and ConceptosImpositivos.Descripcion Not like '%(R)%'";
+        //$order = " EsIVADefault desc";
+        $where = $this->_addCondition($where, $condicion);
+        return parent:: fetchAll($where, $order, $count, $offset);
+    }
+
+    public function fetchParaClientesSinPercepcionesR($where = null, $order = null, $count = null, $offset = null)
+    {
+        $condicion = "(ParaPago = 1 or ParaVenta=1) and EsIVA = 0 and EnUso = 1 and ConceptosImpositivos.Descripcion Not like '%(R)%'";
         //$order = " EsIVADefault desc";
         $where = $this->_addCondition($where, $condicion);
         return parent:: fetchAll($where, $order, $count, $offset);

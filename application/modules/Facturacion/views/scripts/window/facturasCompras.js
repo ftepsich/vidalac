@@ -5,7 +5,9 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
     appChannel: '/desktop/modules<?=$this->url()?>',
     requires: [
         '/direct/Facturacion/FacturasCompras?javascript',
+        '/direct/Base/Personas?javascript',
         '/direct/Contable/LibrosIVA?javascript'
+
     ],
 
     eventfind: function (ev) {
@@ -194,7 +196,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
 
     addListenerPersona: function(form) {
         var persona  = this.form.getForm().findField('Persona');
-
+        var grid     = this.grid;
         // var tmpFunc = function(store, record, op) {
         //     this.checkTipoCmp();
         //     store.un('load', tmpFunc, this);
@@ -202,6 +204,23 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
         // }
 
         persona.on('select', function(combo, record, index) {
+            Models.Base_Model_PersonasMapper.getBloqueado(record.data.Id, function(result, e) {
+                if (e.status) {
+                    if ( result == 1 ) {
+                        Ext.Msg.show({
+                            title : 'Atencion',
+                            msg : 'El Proveedor seleccionado se encuentra BLOQUEADO.<br><br> No puede utilizarse para la operación que intenta realizar.',
+                            width : 400,
+                            closable : false,
+                            buttons : Ext.Msg.OK,
+                            multiline : false,
+                            fn : function() { persona.reset(); grid.abmWindow.closeAbm(); },
+                            icon : Ext.Msg.WARNING
+                        });
+                        return;
+                    }
+                }
+            }, this);
             this.form.getForm().findField('ComprobanteRelacionado').setValue(null);
         }, this);
     },

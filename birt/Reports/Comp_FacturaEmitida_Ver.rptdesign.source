@@ -218,13 +218,14 @@ reportContext.setGlobalVariable("Anulada_Visible",false);]]></method>
                     </structure>
                 </list-property>
             </structure>
-            <method name="onFetch"><![CDATA[if (row["ObservacionesImpresas"]){
-	reportContext.setGlobalVariable("Observaciones_Visible",true);
-}
-
-if (reportContext.getGlobalVariable("Anulado_Visible") == false){
-	reportContext.getDesignHandle().findMasterPage("Simple MasterPage").setProperty("backgroundImage", "../resource/Watermark_ANULADO.png");
-}]]></method>
+            <method name="onFetch"><![CDATA[
+                reportContext.setGlobalVariable("Persona",dataSetRow["Persona"]);
+                if (row["ObservacionesImpresas"]){
+                    reportContext.setGlobalVariable("Observaciones_Visible",true);
+                }
+                if (reportContext.getGlobalVariable("Anulado_Visible") == false){
+	               reportContext.getDesignHandle().findMasterPage("Simple MasterPage").setProperty("backgroundImage", "../resource/Watermark_ANULADO.png");
+                }]]></method>
             <property name="dataSource">Base</property>
             <list-property name="resultSet">
                 <structure>
@@ -2166,6 +2167,7 @@ AND  	TC.Grupo in (4,10)]]></xml-property>
                                 <property name="category">Currency</property>
                                 <property name="pattern">$ #,##0.00</property>
                             </structure>
+                            <method name="onCreate"><![CDATA[if ( reportContext.getGlobalVariable("Persona") == 3582 ) { this.getStyle().numberFormat="$ #,##0.000"; }]]></method>
                             <property name="textAlign">right</property>
                             <property name="resultSetColumn">PrecioUnitario</property>
                         </data>
