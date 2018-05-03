@@ -163,6 +163,29 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     }
                 }
             }, this);
+            Models.Base_Model_ClientesMapper.getIBItems(record.data.Id, function(result, e) {
+                if (e.status) {
+                    if ( result == 0 ) {
+                        Ext.Msg.show({
+                            title : 'Atencion',
+                            msg : 'El Cliente no tiene situación impositiva cargada. Continuar ?',
+                            width : 400,
+                            closable : false,
+                            buttons : Ext.Msg.YESNO,
+                            multiline : false,
+                            fn : function(btn) { 
+                              if (btn == 'no') {
+                                form.findField('Persona').reset(); 
+                                grid.abmWindow.closeAbm(); 
+                              }
+                            },
+                            icon : Ext.Msg.WARNING
+                        });
+                        return;
+                    }
+                }
+            }, this);
+
             this.updateEstadoDeCuentaPorCliente(record.data.Id);
             // Setea el tipo de comprobante segun la modalidad de iva y el tipo de comprobante
             var form = this.form.getForm();
