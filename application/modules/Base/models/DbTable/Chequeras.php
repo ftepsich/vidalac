@@ -97,26 +97,8 @@ class Base_Model_DbTable_Chequeras extends Rad_Db_Table
                     'Descripcion' => 'TRIM({remote}.Descripcion)'
                 ));
         }
-
-        // $this->addAutoJoin(
-        //         'TiposDeCuentas',
-        //         'CuentasBancarias.TipoDeCuenta = TiposDeCuentas.Id',
-        //         array(
-        //             'TipoDeCuenta' => 'TiposDeCuentas.Descripcion'
-        //         )
-        // );
-        // $this->addAutoJoin(
-        //         'BancosSucursales',
-        //         'CuentasBancarias.BancoSucursal = BancosSucursales.Id',
-        //         array(
-        //             'BancosSucursalesDescripcion' => 'TRIM(BancosSucursales.Descripcion)'
-        //         )
-        // );
     }
 
-
-
-    // =====================================================================================================================
     public function insert ($data)
     {
         try {
@@ -160,13 +142,11 @@ class Base_Model_DbTable_Chequeras extends Rad_Db_Table
         }
     }
 
-    // =====================================================================================================================
     public function delete ($where)
     {
         try {
             $this->_db->beginTransaction();
             // Solo dejo borrarla si todos los cheques estan en blanco
-
             $M_Ch = new Base_Model_DbTable_Cheques(array(), false);
             $R_Ch = $M_Ch->fetchAll($where);
 
@@ -185,15 +165,12 @@ class Base_Model_DbTable_Chequeras extends Rad_Db_Table
             throw $e;
         }
     }
-
-    // =====================================================================================================================
     public function update ($data, $where)
     {
         // Si es automatico ver si ya esta impreso
         throw new Rad_Db_Table_Exception("Las chequeras no pueden ser modificadas, deben borrarse y cargarse nuevamente.");
     }
 
-    // =====================================================================================================================
     protected function _SalirSi_TieneChequesUsados ($IdChequera)
     {
         // Veo que todos los cheques esten en estado 1 = sin usar

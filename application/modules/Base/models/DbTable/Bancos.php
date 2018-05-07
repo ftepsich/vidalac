@@ -24,9 +24,6 @@ class Base_Model_DbTable_Bancos extends Rad_Db_Table
     protected $_dependentTables = array(    'Liquidacion_Model_DbTable_Liquidaciones'
                                         );
 
-
-
-
     // Inicio Public Init ----------------------------------------------------------------------------------------
     public function init()
     {
