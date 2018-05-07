@@ -343,8 +343,6 @@ class Base_Model_DbTable_Articulos extends Rad_Db_Table
     protected function _articulosRecorrerArbol($ArticuloVersionRaiz, $ArticuloVersion, $multiplicador,&$desglose,&$arbol,$MostrarFormula = null)
     {
         $cantidadAcumulada  = 1;
-
-        // get all records from database whose parent is $id
         $sql    = " select      distinct
 
                                 AH.Descripcion          as Articulo,
