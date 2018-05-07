@@ -143,7 +143,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                        if (values.desde != 'undefined' && values.hasta != 'undefined') {
 
                             if(values.desde > values.hasta){
-                                Ext.Msg.alert('Atencion', 'La fecha desde es menor que la fecha hasta.');
+                                Ext.Msg.alert('Atención', 'La fecha desde es menor que la fecha hasta.');
                                 return;
                             }
                         }
