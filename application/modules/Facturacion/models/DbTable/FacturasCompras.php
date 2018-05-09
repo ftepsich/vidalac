@@ -275,7 +275,7 @@ class Facturacion_Model_DbTable_FacturasCompras extends Facturacion_Model_DbTabl
             }
 
             $this->_db->commit();
-
+            
             return true;
         } catch (Exception $e) {
             $this->_db->rollBack();
