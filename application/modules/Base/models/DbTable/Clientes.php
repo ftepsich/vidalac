@@ -38,17 +38,7 @@ class Base_Model_DbTable_Clientes extends Base_Model_DbTable_Personas
             'refTable'          => 'Personas',
             'refColumns'        => 'Id',
             'comboPageSize'     => 10
-        ),/*
-        'TransportePorDefecto' => array(
-            'columns'           => 'TransportePorDefecto',
-            'refTableClass'     => 'Base_Model_DbTable_Proveedores',
-            'refJoinColumns'    => array('RazonSocial'),
-            'comboBox'          => true,
-            'comboSource'       => 'datagateway/combolist/fetch/Transporte',
-            'refTable'          => 'Personas',
-            'refColumns'        => 'Id',
-            'comboPageSize'     => 10
-        ),*/
+        ),
         'TiposDeInscripcionesIB' => array(
             'columns'           => 'TipoInscripcionIB',
             'refTableClass'     => 'Base_Model_DbTable_TiposDeInscripcionesIB',

@@ -111,7 +111,9 @@ class Base_Model_DbTable_Chequeras extends Rad_Db_Table
             $M_BS = new Base_Model_DbTable_CuentasBancarias(array(), false);
             $R_BS = $M_BS->find($data['CuentaBancaria'])->current();
 
-            if (!$R_BS) throw new Rad_Db_Table_Exception("No Tiene sucursal asociada");
+            if (!$R_BS) {
+                throw new Rad_Db_Table_Exception("No Tiene sucursal asociada");
+            }
 
             for ($i = 0; $i < $data['Cantidad']; $i++) {
 
@@ -120,7 +122,9 @@ class Base_Model_DbTable_Chequeras extends Rad_Db_Table
                 //controlo que no exista el cheque
                 $R_Ch = $M_Ch->fetchAll("Numero = $numero and BancoSucursal = $R_BS->BancoSucursal")->current();
 
-                if ($R_Ch) throw new Rad_Db_Table_Exception("Ya existen cheques con ese numero.");
+                if ($R_Ch) {
+                    throw new Rad_Db_Table_Exception("Ya existen cheques con ese numero.");
+                }
 
                 //inserto el cheque
                 $Renglon = array(

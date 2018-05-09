@@ -158,7 +158,6 @@ class Base_Model_DbTable_Cheques extends Rad_Db_Table
 
     public function fetchDarDestino($where = null, $order = null, $count = null, $offset = null)
     {
-        // $condicion = 'ChequeEstado in (4,6,10,11,12,13,14,15,16)';
         $condicion = 'ChequeEstado in (SELECT ce.Id FROM ChequesEstados ce WHERE ifnull(ce.ParaDarDestino,0) <> 0) ';
         $where = $this->_addCondition($where, $condicion);
         return parent::fetchAll($where, $order, $count, $offset);
@@ -190,7 +189,6 @@ class Base_Model_DbTable_Cheques extends Rad_Db_Table
                 $this->_where($select, $where);
             }
         }
-          
         if ($order !== null) {
             $this->_order($select, $order);
         }

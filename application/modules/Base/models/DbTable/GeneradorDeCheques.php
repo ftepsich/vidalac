@@ -74,20 +74,6 @@ class Base_Model_DbTable_GeneradorDeCheques extends Rad_Db_Table
                         'Descripcion' => '{remote}.Descripcion'
                     ));
         }
-        // $this->addAutoJoin(
-        //         'CuentasBancarias',
-        //         'Chequeras.CuentaBancaria = CuentasBancarias.Id',
-        //         array(
-        //             'BancoSucursal' => 'CuentasBancarias.BancoSucursal'
-        //         )
-        // );
-        // $this->addAutoJoin(
-        //         'BancosSucursales',
-        //         'CuentasBancarias.BancoSucursal =  BancosSucursales.Id',
-        //         array(
-        //             'BancoDescripcion' => 'BancosSucursales.Descripcion'
-        //         )
-        // );
     }
 
     public function insert ($data)
@@ -150,7 +136,6 @@ class Base_Model_DbTable_GeneradorDeCheques extends Rad_Db_Table
                     'FechaDeEmision' => $data["FechaGeneracion"],
                     'FechaDeVencimiento' => $fechaCheque,
                     'Monto' => $MontoCheque,
-                    //'MontoEnLetras' 	=> Rad_CustomFunctions::num2letras(round($MontoCheque, 2, PHP_ROUND_HALF_UP)),
                     'PagueseA' => $data["AlaOrden"],
                     'Cruzado' => $data["Cruzado"],
                     'NoALaOrden' => $data["NoALaOrden"],
