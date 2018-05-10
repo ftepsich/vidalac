@@ -135,10 +135,6 @@ class Facturacion_Model_DbTable_ComprobantesImpositivos extends Facturacion_Mode
             $M_C = new Facturacion_Model_DbTable_Comprobantes(array(), false);
             $M_C->salirSi_NoEsComprobanteAoM($data['ComprobantePadre']);
 
-
-            // este control se llevo al insert de FacturasVentasCenceptos en las facturas compras se debe permitir
-            //$this->salirSi_estaElConceptoAsignado($data['ComprobantePadre'], $data['ConceptoImpositivo']);
-
             // Recupero el tipo de comprobante que se trata
             $ImputacionFiscal = $this->recuperarImputacionFiscalDelComprobante($data['ComprobantePadre']);
 
