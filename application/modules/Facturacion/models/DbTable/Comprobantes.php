@@ -8,116 +8,120 @@
  * @class 	Facturacion_Model_DbTable_Comprobantes
  * @extends	Rad_Db_Table
  */
-class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
-    /*
-      protected static $IDCONCEPTO_1050   = 30;
-      protected static $IDCONCEPTO_2100   = 29;
-      protected static $IDCONCEPTO_2700   = 31;
+class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
+{
 
-      protected static $IDAFIP_1050   = 4;
-      protected static $IDAFIP_2100   = 5;
-      protected static $IDAFIP_2700   = 6;
-     */
+    /*
+    protected static $IDCONCEPTO_1050   = 30;
+    protected static $IDCONCEPTO_2100   = 29;
+    protected static $IDCONCEPTO_2700   = 31;
+
+    protected static $IDAFIP_1050   = 4;
+    protected static $IDAFIP_2100   = 5;
+    protected static $IDAFIP_2700   = 6;
+    */
 
     // Tabla mapeada
     protected $_sort = array("Id desc");
     protected $_name = 'Comprobantes';
+
     // Relaciones
     protected $_referenceMap = array(
         'ConceptosImpositivos' => array(
-            'columns' => 'ConceptoImpositivo',
-            'refTableClass' => 'Base_Model_DbTable_ConceptosImpositivos',
+            'columns'        => 'ConceptoImpositivo',
+            'refTableClass'  => 'Base_Model_DbTable_ConceptosImpositivos',
             'refJoinColumns' => array('Descripcion'),
-            'comboBox' => true,
-            'comboSource' => 'datagateway/combolist',
-            'refTable' => 'ConceptosImpositivos',
-            'refColumns' => 'Id',
+            'comboBox'       => true,
+            'comboSource'    => 'datagateway/combolist',
+            'refTable'       => 'ConceptosImpositivos',
+            'refColumns'     => 'Id',
         ),
         'TiposDeDivisas' => array(
-            'columns' => 'Divisa',
-            'refTableClass' => 'Base_Model_DbTable_TiposDeDivisas',
+            'columns'        => 'Divisa',
+            'refTableClass'  => 'Base_Model_DbTable_TiposDeDivisas',
             'refJoinColumns' => array('Descripcion'),
-            'comboBox' => true,
-            'comboSource' => 'datagateway/combolist',
-            'refTable' => 'TiposDeDivisas',
-            'refColumns' => 'Id',
+            'comboBox'       => true,
+            'comboSource'    => 'datagateway/combolist',
+            'refTable'       => 'TiposDeDivisas',
+            'refColumns'     => 'Id',
         ),
         'TiposDeComprobantes' => array(
-            'columns' => 'TipoDeComprobante',
-            'refTableClass' => 'Facturacion_Model_DbTable_TiposDeComprobantes',
+            'columns'        => 'TipoDeComprobante',
+            'refTableClass'  => 'Facturacion_Model_DbTable_TiposDeComprobantes',
             'refJoinColumns' => array('Descripcion'),
-            'comboBox' => true,
-            'comboSource' => 'datagateway/combolist',
-            'refTable' => 'TiposDeComprobantes',
-            'refColumns' => 'Id',
+            'comboBox'       => true,
+            'comboSource'    => 'datagateway/combolist',
+            'refTable'       => 'TiposDeComprobantes',
+            'refColumns'     => 'Id',
         ),
         'Personas' => array(
-            'columns' => 'Persona',
-            'refTableClass' => 'Base_Model_DbTable_Personas',
+            'columns'        => 'Persona',
+            'refTableClass'  => 'Base_Model_DbTable_Personas',
             'refJoinColumns' => array('RazonSocial'),
-            'comboBox' => true,
-            'comboSource' => 'datagateway/combolist',
-            'refTable' => 'Personas',
-            'refColumns' => 'Id',
-            'comboPageSize' => 10
+            'comboBox'       => true,
+            'comboSource'    => 'datagateway/combolist',
+            'refTable'       => 'Personas',
+            'refColumns'     => 'Id',
+            'comboPageSize'  => 10
         ),
         'Clientes' => array(
-            'columns' => 'Persona',
+            'columns'       => 'Persona',
             'refTableClass' => 'Base_Model_DbTable_Clientes',
-            'refTable' => 'Personas',
-            'refColumns' => 'Id'
+            'refTable'      => 'Personas',
+            'refColumns'    => 'Id'
         ),
         'LibrosIVA' => array(
-            'columns' => 'LibroIVA',
-            'refTableClass' => 'Contable_Model_DbTable_LibrosIVA',
+            'columns'        => 'LibroIVA',
+            'refTableClass'  => 'Contable_Model_DbTable_LibrosIVA',
             'refJoinColumns' => array('Descripcion'),
-            'comboBox' => true,
-            'comboSource' => 'ddatagateway/combolist/fetch/Abiertos',
-            'refTable' => 'LibrosIVA',
-            'refColumns' => 'Id'
+            'comboBox'       => true,
+            'comboSource'    => 'ddatagateway/combolist/fetch/Abiertos',
+            'refTable'       => 'LibrosIVA',
+            'refColumns'     => 'Id'
         ),
         'ComprobantesRelacionados' => array(
-            'columns' => 'ComprobanteRelacionado',
-            'refTableClass' => 'Facturacion_Model_DbTable_Comprobantes',
+            'columns'        => 'ComprobanteRelacionado',
+            'refTableClass'  => 'Facturacion_Model_DbTable_Comprobantes',
             'refJoinColumns' => array('Numero'),
-            'comboBox' => true,
-            'comboSource' => 'datagateway/combolist',
-            'refTable' => 'Comprobantes',
-            'refColumns' => 'Id',
-            'comboPageSize' => 10
+            'comboBox'       => true,
+            'comboSource'    => 'datagateway/combolist',
+            'refTable'       => 'Comprobantes',
+            'refColumns'     => 'Id',
+            'comboPageSize'  => 10
         ),
         'ComprobantesPadres' => array(
-            'columns' => 'ComprobantePadre',
-            'refTableClass' => 'Facturacion_Model_DbTable_Comprobantes',
+            'columns'        => 'ComprobantePadre',
+            'refTableClass'  => 'Facturacion_Model_DbTable_Comprobantes',
             'refJoinColumns' => array('Numero'),
-            'comboBox' => true,
-            'comboSource' => 'datagateway/combolist',
-            'refTable' => 'Comprobantes',
-            'refColumns' => 'Id',
+            'comboBox'       => true,
+            'comboSource'    => 'datagateway/combolist',
+            'refTable'       => 'Comprobantes',
+            'refColumns'     => 'Id',
         ),
         'DepositoTercero' => array(
-            'columns' => 'DepositoEntrega',
-            'refTableClass' => 'Base_Model_DbTable_Depositos',
+            'columns'        => 'DepositoEntrega',
+            'refTableClass'  => 'Base_Model_DbTable_Depositos',
             'refJoinColumns' => array("Direccion"),
-            'comboBox' => true,
-            'comboSource' => 'datagateway/combolist',
-            'refTable' => 'Direcciones',
-            'refColumns' => 'Id',
-            'comboPageSize' => 10
+            'comboBox'       => true,
+            'comboSource'    => 'datagateway/combolist',
+            'refTable'       => 'Direcciones',
+            'refColumns'     => 'Id',
+            'comboPageSize'  => 10
         )
     );
 
-    public function init() {
+    public function init()
+    {
         parent::init();
-        $this->_defaultValues['EsCliente'] = 0;
+        $this->_defaultValues['EsCliente']   = 0;
         $this->_defaultValues['EsProveedor'] = 0;
     }
-
     protected $_dependentTables = array(
         'Facturacion_Model_DbTable_FacturasComprasArticulos',
         'Facturacion_Model_DbTable_FacturasVentasArticulos',
         'Facturacion_Model_DbTable_ComprobantesImpositivos',
     );
+
     protected $_calculatedFields = array(
         'NumeroCompleto' => "fNumeroCompleto(Comprobantes.Id,'') COLLATE utf8_general_ci"
     );
@@ -129,16 +133,17 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return int
      */
-    protected function seleccionarLibroIVA($fechaEmision) {
+    protected function seleccionarLibroIVA ($fechaEmision)
+    {
         $Libro = 0;
         //$Fecha = new Zend_Date();
         $M_LIVA = new Contable_Model_DbTable_LibrosIVA(array(), false);
         // Busco el libro correcto para esa factura
-        $clausula = " mes = " . date("m", strtotime($fechaEmision)) . " and anio = " . date("Y", strtotime($fechaEmision));
+            $clausula = " mes = " . date("m", strtotime($fechaEmision)) . " and anio = " . date("Y", strtotime($fechaEmision));
         $R_Libro = $M_LIVA->fetchRow($clausula);
         if (!$R_Libro) {
-            if (Rad_Confirm::confirm("No Existe el Libro de IVA del mes " . date("m", strtotime($fechaEmision)) . ". Desea crearlo?", _FILE_ . _LINE_, array('includeCancel' => false)) == 'yes') {
-                $R_Libro->Id = $M_LIVA->crearLibroIVA(date("m", strtotime($fechaEmision)), date("Y", strtotime($fechaEmision)));
+            if (Rad_Confirm::confirm( "No Existe el Libro de IVA del mes ".date("m", strtotime($fechaEmision)).". Desea crearlo?", _FILE_._LINE_, array('includeCancel' => false)) == 'yes') {
+                $R_Libro->Id = $M_LIVA->crearLibroIVA(date("m", strtotime($fechaEmision)),date("Y", strtotime($fechaEmision)));
             }
         }
 
@@ -165,7 +170,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    protected function _eliminarConceptosHijos($idComprobante, $BorrarModificados) {
+    protected function _eliminarConceptosHijos ($idComprobante, $BorrarModificados)
+    {
         // comentado pq es un proceso interno y no deberia hacer este chequeos
         //        $this->salirSi_estaCerrado($idComprobante);
 
@@ -192,9 +198,10 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      * @param type $idComprobante
      * @param type $IdLibroIVA
      */
-    public function cambiarImputacionIVA($idComprobante, $IdLibroIVA) {
-        $idComprobante = $this->_db->quote($idComprobante, 'INTEGER');
-        $IdLibroIVA = $this->_db->quote($IdLibroIVA, 'INTEGER');
+    public function cambiarImputacionIVA($idComprobante, $IdLibroIVA)
+    {
+        $idComprobante = $this->_db->quote($idComprobante,'INTEGER');
+        $IdLibroIVA    = $this->_db->quote($IdLibroIVA,'INTEGER');
 
         $comprobante = $this->find($idComprobante)->current();
 
@@ -228,14 +235,15 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
             throw new Rad_Db_Table_Exception("El Libro de IVA al que intenta imputar el comprobante esta cerrado.");
         }
         //
-        Rad_Db_Table::update(array('LibroIVA' => $IdLibroIVA), 'Id = ' . $idComprobante);
+        Rad_Db_Table::update(array('LibroIVA'=>$IdLibroIVA),'Id = '.$idComprobante);
 
         // Cambio el Libro a sus hijos (conceptos) USO UNA NUEVA INSTANCIA DE COMPROBANTES PARA QUE NO USE LOS PERMANENT
         $M_C = new Facturacion_Model_DbTable_Comprobantes();
         $M_C->update(
-                array(
-            'LibroIVA' => $IdLibroIVA
-                ), ' Comprobantes.ComprobantePadre = ' . $idComprobante
+            array(
+                'LibroIVA' => $IdLibroIVA
+            ),
+            ' Comprobantes.ComprobantePadre = ' . $idComprobante
         );
 
         // Buscamos el comprobante ya modificado
@@ -245,8 +253,9 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
         $modelLibroIvaDet->asentarLibroIVA($comprobante);
     }
 
-    public function cambiarTipoComprobante($row, $tipo) {
-        Rad_Db_Table::update(['TipoDeComprobante' => $tipo], 'Id =' . $row->Id);
+    public function cambiarTipoComprobante($row, $tipo)
+    {
+        Rad_Db_Table::update(['TipoDeComprobante' => $tipo], 'Id ='.$row->Id );
 
         $comp = $row->getTable()->find($row->Id)->current();
 
@@ -265,7 +274,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function reasignarCIcomoFormaDePago($idComprobantePadre, $idComprobanteImp, $Monto) {
+    public function reasignarCIcomoFormaDePago ($idComprobantePadre, $idComprobanteImp, $Monto)
+    {
         // Armo un array del detalle
         $Renglon = array(
             'Comprobante' => $idComprobantePadre,
@@ -291,7 +301,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    protected function _cerrarConceptosHijos($idComprobante) {
+    protected function _cerrarConceptosHijos ($idComprobante)
+    {
         $this->salirSi_estaCerrado($idComprobante);
 
         $M_CIH = new Facturacion_Model_DbTable_ComprobantesImpositivos(array(), false);
@@ -314,18 +325,19 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function eliminarDetalle($idComprobante) {
-        $M_CD = new Facturacion_Model_DbTable_ComprobantesDetalles(array(), false);
-        $M_C = new Base_Model_DbTable_Cheques(array(), false);
-        $M_TB = new Base_Model_DbTable_TransaccionesBancarias(array(), false);
+    public function eliminarDetalle ($idComprobante)
+    {
+        $M_CD  = new Facturacion_Model_DbTable_ComprobantesDetalles(array(), false);
+        $M_C   = new Base_Model_DbTable_Cheques(array(), false);
+        $M_TB  = new Base_Model_DbTable_TransaccionesBancarias(array(), false);
         $M_TCC = new Facturacion_Model_DbTable_TarjetasDeCreditoCupones;
 
         $R_CD = $M_CD->fetchAll("Comprobante = $idComprobante");
 
         if ($R_CD) {
             foreach ($R_CD as $row) {
-                // Marcamos los cheques
-                if ($row->Cheque) {
+				// Marcamos los cheques
+                if($row->Cheque){
                     //die("lala".$row->Cheque);
                     $R_C = $M_C->find($row->Cheque)->current();
                     $R_C->ChequeEstado = 6;
@@ -333,8 +345,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
                     $R_C->save();
                 }
 
-                // Marcamos las transacciones Bancarias
-                if ($row->TransaccionBancaria) {
+				// Marcamos las transacciones Bancarias
+                if($row->TransaccionBancaria){
                     //die("lala".$row->Cheque);
                     $R_TB = $M_TB->find($row->TransaccionBancaria)->current();
                     $R_TB->Utilizado = 0;
@@ -343,7 +355,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
                 }
 
                 // Marcamos las transacciones Bancarias
-                if ($row->TarjetaDeCreditoCupon) {
+                if($row->TarjetaDeCreditoCupon){
                     //die("lala".$row->Cheque);
                     $R_TCC = $M_TCC->find($row->TarjetaDeCreditoCupon)->current();
                     $R_TCC->Utilizado = 0;
@@ -364,7 +376,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function eliminarComprobantesHijos($idComprobante) {
+    public function eliminarComprobantesHijos ($idComprobante)
+    {
 //        $this->salirSi_estaCerrado($idComprobante);
 
         $M_C = new Facturacion_Model_DbTable_Comprobantes();
@@ -385,17 +398,18 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return decimal
      */
-    public function recuperarNetoGravado($idComprobante, $idConcepto = null) {
+    public function recuperarNetoGravado ($idComprobante, $idConcepto = null)
+    {
         if ($idConcepto) {
             $txtSQL = "SELECT fComprobante_NetoGravado_xCI($idComprobante,$idConcepto)";
         } else {
             $txtSQL = "SELECT fComprobante_NetoGravado($idComprobante)";
         }
 
-        return $this->_db->fetchOne($txtSQL);
+        return  $this->_db->fetchOne($txtSQL);
     }
 
-    public function recuperarNetoGravado_old($idComprobante, $idConcepto = null) {
+    public function recuperarNetoGravado_old ($idComprobante, $idConcepto = null) {
         $tieneDescuentoGeneral = 0;
         $dGral_Monto = 0;
         $dGral_Porcentaje = 0;
@@ -404,7 +418,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
         $M_C = $this;
 
         // Recupero los descuentos Generales en la cabecera si es que hay
-        $R_C = $M_C->find($idComprobante)->current();
+        $R_C  = $M_C->find($idComprobante)->current();
         $R_TC = $R_C->findParentRow('Facturacion_Model_DbTable_TiposDeComprobantes');
 
 
@@ -481,12 +495,14 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return decimal
      */
-    public function recuperarConceptosImpositivos($idComprobante) {
+    public function recuperarConceptosImpositivos ($idComprobante)
+    {
         $R_C = $this->find($idComprobante)->current();
 
         if (!$R_C) {
 
             return 0;
+
         } else {
 
             $R_TC = $R_C->findParentRow('Facturacion_Model_DbTable_TiposDeComprobantes');
@@ -495,6 +511,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
             if ($R_TC->TipoDeLetra == 3) {
 
                 return 0;
+
             } else {
 
                 if ($R_TC->DiscriminaImpuesto) {
@@ -530,7 +547,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
                         $R_CI = $row->findParentRow('Base_Model_DbTable_ConceptosImpositivos');
 
                         if ($row->DescuentoEnPorcentaje) {
-                            $total = $row->Cantidad * $row->PrecioUnitario * (1 - ($row->DescuentoEnPorcentaje / 100) );
+                            $total = $row->Cantidad * $row->PrecioUnitario * (1 - ($row->DescuentoEnPorcentaje/100) );
                         } else {
                             $total = $row->Cantidad * $row->PrecioUnitario;
                         }
@@ -540,8 +557,13 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
 
                     return $conceptos;
                 }
+
             }
+
+
         }
+
+
     }
 
     /**
@@ -551,13 +573,15 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return decimal
      */
-    public function recuperarMontoTotal($idComprobante) {
-        $NetoGravado = $this->recuperarNetoGravado($idComprobante);
-        Rad_Log::debug('NG:' . $NetoGravado);
-        $Impuestos = $this->recuperarConceptosImpositivos($idComprobante);
-        Rad_Log::debug('I:' . $Impuestos);
+
+    public function recuperarMontoTotal ($idComprobante) {
+        $NetoGravado    = $this->recuperarNetoGravado($idComprobante);
+        Rad_Log::debug('NG:'.$NetoGravado);
+        $Impuestos      = $this->recuperarConceptosImpositivos($idComprobante);
+        Rad_Log::debug('I:'.$Impuestos);
         return $NetoGravado + $Impuestos;
     }
+
 
     /**
      * Recupera el Monto sin utilizar de un comprobante
@@ -566,8 +590,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return decimal
      */
-    public function recuperarMontoDisponible($idComprobante) {
-        $MontoTotal = $this->recuperarMontoTotal($idComprobante);
+    public function recuperarMontoDisponible ($idComprobante) {
+        $MontoTotal     = $this->recuperarMontoTotal($idComprobante);
 
         $sql = "select 	ifnull(sum(CR.MontoAsignado)) as Usado
 				from	ComprobantesRelacionados CR
@@ -580,9 +604,11 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
         if ($R_D) {
             $Utilizado = $R_D;
         }
+
         if ($MontoTotal - $Utilizado > 0) {
             return $MontoTotal - $Utilizado;
-        } else {
+        }
+        else {
             return 0.00;
         }
     }
@@ -594,7 +620,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return decimal
      */
-    public function recuperarMultiplicadorComprobante($idComprobante) {
+    public function recuperarMultiplicadorComprobante ($idComprobante)
+    {
         $M_C = new Facturacion_Model_DbTable_Comprobantes();
         $R_C = $M_C->find($idComprobante)->current();
         if (!$R_C) {
@@ -606,7 +633,9 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
         if (!$R_TC) {
             throw new Rad_Db_Table_Exception("No se localiza el tipo del comprobante.");
         }
+
         $Multiplicador = $R_TC->Multiplicador;
+
         return $Multiplicador;
     }
 
@@ -618,12 +647,15 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return decimal
      */
-    public function recuperarProximoNumero($Punto, $TipoDeComprobante = null) {
+    public function recuperarProximoNumero ($Punto, $TipoDeComprobante = null)
+    {
         if (!$TipoDeComprobante && !$Punto) {
             throw new Rad_Db_Table_Exception("Faltan datos para poder generar el proximo numero.");
         }
+
         $where = "";
         $and = "";
+
         if ($TipoDeComprobante) {
             $where = "TipoDeComprobante = $TipoDeComprobante";
             $and = " and ";
@@ -650,7 +682,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return decimal
      */
-    public function recuperarPUdeListaDePrecio($idComprobante, $idArticulo) {
+    public function recuperarPUdeListaDePrecio ($idComprobante, $idArticulo)
+    {
         $PrecioUnitario = '0.00';
         if (!$idComprobante) {
             throw new Rad_Db_Table_Exception("No se encuentra el registro.");
@@ -682,7 +715,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return decimal
      */
-    public function recuperarPUdeListaDePrecioPropia($idComprobante, $idArticulo) {
+    public function recuperarPUdeListaDePrecioPropia ($idComprobante, $idArticulo)
+    {
         $PrecioUnitario = '0.00';
         if (!$idComprobante) {
             throw new Rad_Db_Table_Exception("No se encuentra el registro.");
@@ -719,7 +753,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return decimal
      */
-    public function recuperarPorcentajeConcepto($persona, $concepto) {
+    public function recuperarPorcentajeConcepto ($persona, $concepto)
+    {
         $porcentaje = null;
 
         // Veo si esta definido en forma particular para la persona
@@ -727,10 +762,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
             $M_PCI = new Base_Model_DbTable_PersonasConceptosImpositivos(array(), false);
             $R_PCI = $M_PCI->fetchRow("ConceptoImpositivo = $concepto and Persona = $persona");
             if ($R_PCI) {
-                // No considerar porcentaje = 0 para asi tomar el porcentaje general del concepto.
-                if ($R_PCI->Porcentaje != 0) {
-                    $porcentaje = $R_PCI->Porcentaje;
-                }
+                $porcentaje = $R_PCI->Porcentaje;
             }
         }
 
@@ -756,7 +788,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return Zend_Db_Table_Row
      */
-    public function recuperarConceptoAsignado($idComprobante, $idConcepto) {
+    public function recuperarConceptoAsignado ($idComprobante, $idConcepto)
+    {
 
         if (!$idComprobante || !$idConcepto) {
             throw new Rad_Db_Table_Exception("Faltan parametros necesarios.");
@@ -773,7 +806,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return varchar
      */
-    public function recuperarImputacionFiscalDelComprobante($idComprobante) {
+    public function recuperarImputacionFiscalDelComprobante ($idComprobante)
+    {
 
         $sql = " select TC.Grupo as Grupo
                  from   TiposDeComprobantes TC
@@ -802,7 +836,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return none
      */
-    public function recalcularConceptosFacturacion($idFactura, $idPersona, $fechaEmision, $filtro) {
+    public function recalcularConceptosFacturacion ($idFactura, $idPersona, $fechaEmision, $filtro)
+    {
 
         switch ($filtro) {
             case "ParaVenta":
@@ -887,268 +922,6 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
     }
 
     /**
-     * Rearma como Agente de Percepcion IB las percepciones al momento de emitir una Factura
-     *
-     * @param int 		$idComprobante	identificador de la Factura
-     *
-     * @return boolean
-     */
-    public function recalcularComoAgentePercepcionesIB($idComprobante) {
-        // Recupero el registro de la Factura
-        $R_C = $this->find($idComprobante)->current();
-        if (!$R_C) {
-            throw new Rad_Db_Table_Exception('El Comprobante Padre no existe.');
-        }
-
-        $idPersona = $R_C->Persona;
-        $fechaEmision = $R_C->FechaEmision;
-
-        $M_C = new Facturacion_Model_DbTable_Comprobantes(array(), false);
-
-        $sql = "SELECT  PIB.ConceptoImpositivo,
-                        CI.Descripcion,
-                        PIB.TipoInscripcionIB,
-                        CASE 
-                          WHEN ( PIB.Porcentaje IS NULL ) THEN
-                            CASE
-                              -- Sin Datos --
-                              WHEN PIB.TipoInscripcionIB = 1 THEN (CI.PorcentajeActual*2)
-                               -- Exento --
-                              WHEN PIB.TipoInscripcionIB = 2 THEN 0
-                              -- Convenio Multilateral --
-                              WHEN PIB.TipoInscripcionIB = 3 THEN
-                                -- Si el coeficiente es menos a 0.1 = No Retener.
-                                CASE WHEN ( PIB.CoeficienteCM05 < 0.1 ) THEN 0 ELSE CI.PorcentajeActual END
-                              -- Contribuyente Directo --
-                              WHEN PIB.TipoInscripcionIB = 4 THEN
-                                -- Si tiene una actividad en la jurisdicción se retiene el porcentaje asociado.
-                                CASE WHEN ( CAA.Id IS NOT NULL ) THEN CAA.Porcentaje ELSE CI.PorcentajeActual END
-                              -- No Inscripto --
-                              WHEN PIB.TipoInscripcionIB = 5 THEN (CI.PorcentajeActual*2)
-                            END
-                          ELSE 
-                            PIB.Porcentaje 
-                        END AS Porcentaje,
-                        CASE 
-                          WHEN ( PIB.MontoMinimo IS NULL ) THEN 
-                            CI.MontoMinimo 
-                          ELSE 
-                            PIB.MontoMinimo 
-                        END AS MontoMinimo,
-                        100 AS PorcentajeBaseMonto
-                FROM personasingresosbrutos PIB
-                INNER JOIN ConceptosImpositivos   CI  ON CI.Id  = PIB.ConceptoImpositivo
-                LEFT  JOIN CodigosActividadesAfip CAA ON CAA.Id = PIB.ActividadIB
-                WHERE PIB.Persona = $idPersona
-                  AND CI.ParaCobro = 1
-                  AND CI.EsPercepcion = 1
-                  AND CI.EsIVA = 0
-                  -- AND PIB.FechaAlta <= '" . $fechaEmision . "'
-                  AND IFNULL(PIB.FechaBaja,'2999-12-31') >= '" . $fechaEmision . "'
-                ORDER BY CI.Descripcion";
-
-        $R_PIB = $this->_db->fetchAll($sql);
-
-        if (count($R_PIB)) {
-
-            $M_C = new Facturacion_Model_DbTable_Comprobantes(array(), false);
-
-            foreach ($R_PIB as $row) {
-
-                $idConcepto = $row["ConceptoImpositivo"];
-
-                // No se realizan percepciones si el porcentaje estipulado es igual a 0.
-                if ($row['Porcentaje'] == 0) {
-                    continue;
-                }
-                //Rad_Log::debug("Porcentaje : ".$row['Porcentaje']);
-                $MontoPorFacturar = $this->recuperarNetoGravado($idComprobante);
-                //Rad_Log::debug("MontoPorFacturar : ".$MontoPorFacturar);
-                $MontoFacturado = $this->recuperarMontoTotalNGFacturadoSobrePeriodo($idConcepto, $idComprobante);
-                //Rad_Log::debug("MontoFacturado : ".$MontoFacturado);
-                if (( $MontoFacturado + $MontoPorFacturar ) <= $row['MontoMinimo']) {
-                    $MontoImponible = 0;
-                } else {
-                    $MontoImponible = round(( $MontoFacturado + $MontoPorFacturar ) * ( $row['PorcentajeBaseMonto'] / 100 ), 2);
-                }
-                //Rad_Log::debug("MontoImponible : ".$MontoImponible);
-                if ($MontoImponible > 0) {
-
-                    $MontoPorPercibir = round($MontoImponible * ( $row['Porcentaje'] / 100 ), 2);
-                    //Rad_Log::debug("MontoPorPercibir : ".$MontoPorPercibir);
-                    $MontoPercibido = $this->recuperarMontoPercepcionesRealizadasSobrePeriodo($idConcepto, $idComprobante);
-                    //Rad_Log::debug("MontoPercibido : ".$MontoPercibido);
-                    $MontoPorPercibir = $MontoPorPercibir - $MontoPercibido;
-                    //Rad_Log::debug("MontoPorPercibir : ".$MontoPorPercibir);
-                    $Renglon = array(
-                        'Persona' => $idPersona,
-                        'ComprobantePadre' => $idComprobante,
-                        'TipoDeComprobante' => '13',
-                        'Punto' => 1,
-                        'Numero' => $M_C->recuperarProximoNumero(1, 13),
-                        'FechaEmision' => $fechaEmision,
-                        'Divisa' => 1,
-                        'ValorDivisa' => 1,
-                        'ConceptoImpositivo' => $row['ConceptoImpositivo'],
-                        'ConceptoImpositivoPorcentaje' => $row['Porcentaje'],
-                        'Observaciones' => $row['Descripcion'],
-                        'MontoImponible' => $MontoImponible,
-                        'Monto' => $MontoPorPercibir
-                    );
-
-                    $R_H = $M_C->recuperarConceptoAsignado($idComprobante, $idConcepto);
-                    // Si ya existe el registro UPDATE.
-                    if ($R_H) {
-                        $idCI = $R_H->Id;
-                        // Si se modifico manualmente no lo updateo
-                        if (!$R_H->Modificado) {
-                            $M_C->update($Renglon, "Id = $idCI");
-                        }
-                    } else {
-                        // Si no existe el registro INSERT.
-                        $idCI = $M_C->insert($Renglon);
-                    }
-                } else {
-
-                    $R_H = $M_C->recuperarConceptoAsignado($idComprobante, $idConcepto);
-                    // Si ya existe el registro DELETE.
-                    if ($R_H) {
-                        $idCI = $R_H->Id;
-                        $M_C->delete("Id = $idCI");
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * Retorna el Total NG de los comprobantes que se facturaron durante el periodo
-     * del concepto impositivo para un Cliente/Proveedor determinado.
-     *
-     * @param int $idConcepto 	    identificador del Concepto Impositivo
-     * @param int $idComprobante    identificador del Comprobante
-     *
-     * @return decimal
-     */
-    public function recuperarMontoTotalNGFacturadoSobrePeriodo($idConcepto, $idComprobante) {
-
-        $M_C = Service_TableManager::get('Facturacion_Model_DbTable_Comprobantes');
-
-        // Recupero información del Comprobante.
-        $R_C = $M_C->find($idComprobante)->current();
-        if (!$R_C) {
-            throw new Rad_Db_Table_Exception("No se encuentra el comprobante.");
-        }
-
-        $M_CI = Service_TableManager::get('Base_Model_DbTable_ConceptosImpositivos');
-
-        // Recupero información del Concepto Impositivo.
-        $R_CI = $M_CI->find($idConcepto)->current();
-        if (!$R_CI) {
-            throw new Rad_Db_Table_Exception("No se encuentra el concepto impositivo.");
-        }
-
-        // Se predetermina el Tipo de Monto Minimo como Mensual
-        $InicioPeriodo = Rad_CustomFunctions::firstOfMonth($R_C->FechaEmision);
-        $FinPeriodo = Rad_CustomFunctions::lastOfMonth($R_C->FechaEmision);
-
-        If ($R_CI->TipoDeMontoMinimo == 3) { // Tipo de Monto Minimo Anual
-            $InicioPeriodo = Rad_CustomFunctions::firstOfYear($R_C->FechaEmision);
-        }
-
-        $idGrupoComprobante = $M_C->recuperarGrupoComprobante($R_C);
-
-        $sql = "SELECT C.Id
-                FROM   Comprobantes C
-                INNER JOIN TiposDeComprobantes TC ON TC.Id = C.TipoDeComprobante
-                WHERE  C.FechaEmision >= '$InicioPeriodo'
-                  AND  C.FechaEmision <= '$FinPeriodo'
-                  AND  C.Persona = $R_C->Persona
-                  AND  C.Id <> $idComprobante
-                  AND  C.Cerrado = 1
-                  AND  C.Anulado = 0
-                  AND  TC.Grupo  = $idGrupoComprobante
-                  AND  TC.DiscriminaImpuesto = 1";
-
-        $R_M = $this->_db->fetchAll($sql);
-
-        $Monto = 0;
-
-        if (count($R_M)) {
-            foreach ($R_M as $row) {
-                $Monto = $Monto + $this->recuperarNetoGravado($row['Id']);
-            }
-        }
-
-        return $Monto;
-    }
-
-    /**
-     * Retorna el Total de Percepciones Realizadas durante el periodo
-     * del concepto impositivo para un Cliente/Proveedor determinado.
-     *
-     * @param int $idConcepto 	    identificador del Concepto Impositivo
-     * @param int $idComprobante    identificador del Comprobante
-     *
-     * @return decimal
-     */
-    public function recuperarMontoPercepcionesRealizadasSobrePeriodo($idConcepto, $idComprobante) {
-
-        $M_C = Service_TableManager::get('Facturacion_Model_DbTable_Comprobantes');
-
-        // Recupero información del Comprobante.
-        $R_C = $M_C->find($idComprobante)->current();
-        if (!$R_C) {
-            throw new Rad_Db_Table_Exception("No se encuentra el comprobante.");
-        }
-
-        $M_CI = Service_TableManager::get('Base_Model_DbTable_ConceptosImpositivos');
-
-        // Recupero información del Concepto Impositivo.
-        $R_CI = $M_CI->find($idConcepto)->current();
-        if (!$R_CI) {
-            throw new Rad_Db_Table_Exception("No se encuentra el concepto impositivo.");
-        }
-
-        // Se predetermina el Tipo de Monto Minimo como Mensual
-        $InicioPeriodo = Rad_CustomFunctions::firstOfMonth($R_C->FechaEmision);
-        $FinPeriodo = Rad_CustomFunctions::lastOfMonth($R_C->FechaEmision);
-
-        If ($R_CI->TipoDeMontoMinimo == 3) { // Tipo de Monto Minimo Anual
-            $InicioPeriodo = Rad_CustomFunctions::firstOfYear($R_C->FechaEmision);
-        }
-
-        $idGrupoComprobante = $M_C->recuperarGrupoComprobante($R_C);
-
-        $sql = "SELECT IFNULL(SUM(C.Monto),0) AS Monto
-                FROM   Comprobantes C
-                INNER JOIN Comprobantes CP ON CP.Id = C.ComprobantePadre
-                INNER JOIN TiposDeComprobantes TC ON TC.Id = CP.TipoDeComprobante
-                WHERE  CP.FechaEmision >= '$InicioPeriodo'
-                  AND  CP.FechaEmision <= '$FinPeriodo'
-                  AND  CP.Persona = $R_C->Persona
-                  AND  CP.Id <> $idComprobante
-                  AND  CP.Cerrado = 1
-                  AND  CP.Anulado = 0
-                  AND  TC.Grupo   = $idGrupoComprobante
-                  AND  TC.DiscriminaImpuesto = 1
-                  AND  C.TipoDeComprobante  = 13
-                  AND  C.ConceptoImpositivo = $idConcepto";
-
-        $R_M = $this->_db->fetchAll($sql);
-
-        $Monto = 0;
-
-        if (count($R_M)) {
-            foreach ($R_M as $row) {
-                $Monto = $Monto + $row['Monto'];
-            }
-        }
-
-        return $Monto;
-    }
-
-    /**
      * Retorna el Row de un comprobante
      * puede recibir un row de comprobante o un id de comprobante
      *
@@ -1184,7 +957,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return int
      */
-    public function recuperarGrupoComprobante($idComprobante) {
+    public function recuperarGrupoComprobante($idComprobante)
+    {
         $RowComprobante = Facturacion_Model_DbTable_Comprobantes::recuperarRow($idComprobante);
 
         $M_TC = new Facturacion_Model_DbTable_TiposDeComprobantes(array(), false);
@@ -1204,7 +978,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return varchar
      */
-    public function recuperarDescripcionComprobante($idComprobante) {
+    public function recuperarDescripcionComprobante($idComprobante)
+    {
         $R = $this->find($idComprobante)->current();
         if (!$R) {
             throw new Rad_Db_Table_Exception("No se encuentra el comprobante Padre.");
@@ -1230,7 +1005,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return decimal
      */
-    public function recuperarMMIdelConcepto($idConcepto, $idPersona) {
+    public function recuperarMMIdelConcepto ($idConcepto, $idPersona)
+    {
         $MMi = 0;
 
         $M_PCI = new Base_Model_DbTable_PersonasConceptosImpositivos(array(), false);
@@ -1259,9 +1035,10 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return decimal
      */
-    public function recuperarMontoImponibleFacturacion($idConcepto, $idComprobante) {
+    public function recuperarMontoImponibleFacturacion ($idConcepto, $idComprobante)
+    {
 
-        $M_C = new Facturacion_Model_DbTable_Comprobantes(array(), false);
+        $M_C  = new Facturacion_Model_DbTable_Comprobantes(array(), false);
         $M_CI = new Base_Model_DbTable_ConceptosImpositivos(array(), false);
 
         // Recupero el NG del comprobante
@@ -1282,77 +1059,87 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
         return $MontoImponible;
     }
 
-    public function afip_RecuperarTotalesIVA($idComprobante) {
+    public function afip_RecuperarTotalesIVA($idComprobante)
+    {
         $M_CI = new Base_Model_DbTable_ConceptosImpositivos;
 
         $Imp_NG_1050 = $this->recuperarMontoImponibleFacturacion($M_CI->iva105, $idComprobante);
         $row = $M_CI->find($M_CI->iva105)->current();
 
-        $ivas['1050']['Monto'] = $Imp_NG_1050 * 0.105;
+        $ivas['1050']['Monto']          = $Imp_NG_1050 * 0.105;
         $ivas['1050']['MontoImponible'] = $Imp_NG_1050;
-        $ivas['1050']['codAfip'] = $row->Afip;
+        $ivas['1050']['codAfip']        = $row->Afip;
 
         $Imp_NG_2100 = $this->recuperarMontoImponibleFacturacion($M_CI->iva21, $idComprobante);
         $row = $M_CI->find($M_CI->iva21)->current();
 
-        $ivas['2100']['Monto'] = $Imp_NG_2100 * 0.21;
+        $ivas['2100']['Monto']          = $Imp_NG_2100 * 0.21;
         $ivas['2100']['MontoImponible'] = $Imp_NG_2100;
-        $ivas['2100']['codAfip'] = $row->Afip;
+        $ivas['2100']['codAfip']        = $row->Afip;
 
         $Imp_NG_2700 = $this->recuperarMontoImponibleFacturacion($M_CI->iva27, $idComprobante);
         $row = $M_CI->find($M_CI->iva27)->current();
 
-        $ivas['2700']['Monto'] = $Imp_NG_2700 * 0.27;
+        $ivas['2700']['Monto']          = $Imp_NG_2700 * 0.27;
         $ivas['2700']['MontoImponible'] = $Imp_NG_2700;
-        $ivas['2700']['codAfip'] = $row->Afip;
+        $ivas['2700']['codAfip']        = $row->Afip;
 
         $Imp_NG_0500 = $this->recuperarMontoImponibleFacturacion($M_CI->iva05, $idComprobante);
         $row = $M_CI->find($M_CI->iva05)->current();
 
-        $ivas['0500']['Monto'] = $Imp_NG_0500 * 0.05;
+        $ivas['0500']['Monto']          = $Imp_NG_0500 * 0.05;
         $ivas['0500']['MontoImponible'] = $Imp_NG_0500;
-        $ivas['0500']['codAfip'] = $row->Afip;
+        $ivas['0500']['codAfip']        = $row->Afip;
 
         $Imp_NG_0250 = $this->recuperarMontoImponibleFacturacion($M_CI->iva025, $idComprobante);
         $row = $M_CI->find($M_CI->iva025)->current();
 
-        $ivas['0250']['Monto'] = $Imp_NG_0250 * 0.025;
+        $ivas['0250']['Monto']          = $Imp_NG_0250 * 0.025;
         $ivas['0250']['MontoImponible'] = $Imp_NG_0250;
-        $ivas['0250']['codAfip'] = $row->Afip;
+        $ivas['0250']['codAfip']        = $row->Afip;
 
         $Imp_NG_0000 = $this->recuperarMontoImponibleFacturacion($M_CI->iva0, $idComprobante);
         $row = $M_CI->find($M_CI->iva0)->current();
 
-        $ivas['0000']['Monto'] = 0;
+        $ivas['0000']['Monto']          = 0;
         $ivas['0000']['MontoImponible'] = $Imp_NG_0000;
-        $ivas['0000']['codAfip'] = $row->Afip;
+        $ivas['0000']['codAfip']        = $row->Afip;
 
         return $ivas;
     }
 
-    public function afip_ImporteNetoNoGravado($idComprobante) {
-        $M_C = new Facturacion_Model_DbTable_Comprobantes;
-        $M_CI = new Base_Model_DbTable_ConceptosImpositivos;
+   
+
+    public function afip_ImporteNetoNoGravado ($idComprobante)
+    {
+        $M_C    = new Facturacion_Model_DbTable_Comprobantes;
+        $M_CI   = new Base_Model_DbTable_ConceptosImpositivos;
         return $M_C->recuperarMontoImponibleFacturacion($M_CI->ivaNoGravado, $idComprobante);
     }
 
-    public function afip_ImporteNetoExento($idComprobante) {
-        $M_C = new Facturacion_Model_DbTable_Comprobantes;
-        $M_CI = new Base_Model_DbTable_ConceptosImpositivos;
+    public function afip_ImporteNetoExento ($idComprobante)
+    {
+        $M_C    = new Facturacion_Model_DbTable_Comprobantes;
+        $M_CI   = new Base_Model_DbTable_ConceptosImpositivos;
         return $M_C->recuperarMontoImponibleFacturacion($M_CI->ivaExcento, $idComprobante);
     }
 
-    public function afip_ImporteNetoGravado($idComprobante) {
-        $M_C = new Facturacion_Model_DbTable_Comprobantes;
-        $M_CI = new Base_Model_DbTable_ConceptosImpositivos;
+    public function afip_ImporteNetoGravado ($idComprobante)
+    {
+        $M_C    = new Facturacion_Model_DbTable_Comprobantes;
+        $M_CI   = new Base_Model_DbTable_ConceptosImpositivos;
 
         $NetoGravadoGeneral = $M_C->recuperarNetoGravado($idComprobante);
-        $NetoIvaNoGravado = $M_C->recuperarMontoImponibleFacturacion($M_CI->ivaNoGravado, $idComprobante);
-        $NetoIvaExento = $M_C->recuperarMontoImponibleFacturacion($M_CI->ivaExcento, $idComprobante);
-        return $NetoGravadoGeneral - $NetoIvaNoGravado - $NetoIvaExento; // - $NetoIva0;
-    }
+        $NetoIvaNoGravado   = $M_C->recuperarMontoImponibleFacturacion($M_CI->ivaNoGravado, $idComprobante);
+        $NetoIvaExento      = $M_C->recuperarMontoImponibleFacturacion($M_CI->ivaExcento, $idComprobante);
+        //$NetoIva0           = $M_C->recuperarMontoImponibleFacturacion($M_CI->iva0, $idComprobante);
 
-    public function afip_MontoConceptosNoIVA($idComprobante) {
+        return $NetoGravadoGeneral - $NetoIvaNoGravado - $NetoIvaExento;// - $NetoIva0;
+    }
+    
+
+    public function afip_MontoConceptosNoIVA ($idComprobante)
+    {
         $Monto = 0;
         $sql = "select  ifnull(sum(C.Monto),0) as Monto
                 from    Comprobantes C,
@@ -1368,13 +1155,13 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
         return $Monto;
     }
 
-    public function afip_ArrayConceptosIVA($idComprobante) {
+    public function afip_ArrayConceptosIVA ($idComprobante)
+    {
         $comprobante = $this->find($idComprobante)->current();
-        if (!$comprobante)
-            throw new Rad_Db_Table_Exception('No se encontro el comprobante');
+        if (!$comprobante) throw new Rad_Db_Table_Exception('No se encontro el comprobante');
 
         // Si es factura o Nota A o M
-        if (in_array($comprobante->TipoDeComprobante, array(24, 28, 29, 32, 37, 40))) {
+        if (in_array($comprobante->TipoDeComprobante,array(24,28,29,32,37,40))) {
 
             $sql = "select  CI.afip as codAfip,
                             ifnull(C.MontoImponible,0) as MontoImponible,
@@ -1388,14 +1175,15 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
                     order by afip desc";
             $R = $this->_db->fetchAll($sql);
             // Si es factura o Nota  B,C,E
-        } else if (in_array($comprobante->TipoDeComprobante, array(25, 26, 27, 30, 31, 38, 39))) {
+        } else if (in_array($comprobante->TipoDeComprobante,array(25,26,27,30,31,38,39))) {
             $R = $this->afip_RecuperarTotalesIVA($idComprobante);
         }
 
         return $R;
     }
 
-    public function afip_ArrayConceptosNoIVA($idComprobante) {
+    public function afip_ArrayConceptosNoIVA ($idComprobante)
+    {
         $sql = "select  CI.afip as codAfip,
                         ifnull(C.MontoImponible,0) as MontoImponible,
                         ifnull(C.Monto,0) as Monto,
@@ -1409,6 +1197,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
                 order by afip desc";
 
         $R = $this->_db->fetchAll($sql);
+
         return $R;
     }
 
@@ -1422,13 +1211,17 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return decimal
      */
-    public function recuperarMMIdisponibleFacturacion($idConcepto, $idComprobantePadre) {
+    public function recuperarMMIdisponibleFacturacion ($idConcepto, $idComprobantePadre)
+    {
+
         $M_C = new Facturacion_Model_DbTable_Comprobantes(array(), false);
+
         // Recupero los valores del Comprobante Padre
         $R_P = $M_C->find($idComprobantePadre)->current();
         if (!$R_P) {
             throw new Rad_Db_Table_Exception("No se encuentra el comprobante Padre.");
         }
+
         $disponible = 0;
         $idPersona = $R_P->Persona;
         $MMI = $M_C->recuperarMMIdelConcepto($idConcepto, $idPersona);
@@ -1472,30 +1265,31 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @param int $idComprobante 	identificador del comprobante a cerrar
      */
-    public function cerrar($idComprobante) {
-        $rowComprobante = $this->find($idComprobante)->current();
-        $persona = $rowComprobante->Persona;
-        $tipoComprobante = $rowComprobante->findParentRow("Facturacion_Model_DbTable_TiposDeComprobantes");
-        $grupoComprobante = $tipoComprobante->Grupo;
+    public function cerrar ($idComprobante)
+    {
+        $rowComprobante     = $this->find($idComprobante)->current();
+        $persona            = $rowComprobante->Persona;
+        $tipoComprobante    = $rowComprobante->findParentRow("Facturacion_Model_DbTable_TiposDeComprobantes");
+        $grupoComprobante   = $tipoComprobante->Grupo;
 
         // Cierro el comprobante
-        $data = array('Cerrado' => 1,
-            'FechaCierre' => date('Y-m-d H:i:s')
-        );
+        $data = array(  'Cerrado' => 1,
+                        'FechaCierre' => date('Y-m-d H:i:s')
+                    );
         parent::update($data, 'Id =' . $idComprobante);
 
         // Marco el proveedor o cliente dependiendo el tipo de tramite
-        if (in_array($grupoComprobante, array(1, 4, 5, 9)) && !Base_Model_DbTable_Personas::esProveedor($persona)) {
+        if (in_array($grupoComprobante, array(1,4,5,9)) && !Base_Model_DbTable_Personas::esProveedor($persona)) {
             Base_Model_DbTable_Personas::setProveedor($persona);
             Rad_Log::user("Marco en forma automatica a la Persona $rowComprobante->Persona como Proveedor.");
         }
-        if ($rowComprobante->TipoDeComprobante != 15 && in_array($grupoComprobante, array(6, 10, 11)) && !Base_Model_DbTable_Personas::esCliente($persona)) {
+        if ($rowComprobante->TipoDeComprobante != 15 && in_array($grupoComprobante, array(6,10,11)) && !Base_Model_DbTable_Personas::esCliente($persona)) {
             Base_Model_DbTable_Personas::setCliente($persona);
             Rad_Log::user("Marco en forma automatica a la Persona $rowComprobante->Persona como Cliente.");
         }
 
         // Log Usuarios
-        If ($rowComprobante->Numero == 0) {
+  if ( $rowComprobante->Numero == 0 ) {
             Rad_Log::user("Cerró comprobante ($tipoComprobante->Descripcion ID $rowComprobante->Id)");
         } else {
             Rad_Log::user("Cerró comprobante ($tipoComprobante->Descripcion N° $rowComprobante->Numero)");
@@ -1510,7 +1304,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      * @param int $idComprobante 	identificador del comprobante a anular
      *
      */
-    public function anular($idComprobante) {
+    public function anular ($idComprobante)
+    {
         // Controles
         $this->salirSi_EstaAnulado($idComprobante);
         $this->salirSi_TieneComprobantesPadres($idComprobante);
@@ -1519,9 +1314,10 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
         $data = array('Anulado' => 1);
         parent::update($data, 'Id = ' . $idComprobante);
         $comprobante = $this->find($idComprobante)->current();
+
         $tipoComprobante = $comprobante->findParentRow("Facturacion_Model_DbTable_TiposDeComprobantes");
-        // Log Usuarios
-        if ($comprobante->Numero == 0) {
+  // Log Usuarios
+        if ( $comprobante->Numero == 0 ) {
             Rad_Log::user("Anuló comprobante ($tipoComprobante->Descripcion ID $comprobante->Id)");
         } else {
             Rad_Log::user("Anuló comprobante ($tipoComprobante->Descripcion N° $comprobante->Numero)");
@@ -1531,9 +1327,9 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
         Rad_PubSub::publish('Comprobante_Anular', $comprobante);
     }
 
-    /*     * *********************************************************************
+    /***********************************************************************
       Funciones de Verificacion
-     * ********************************************************************* */
+     ********************************************************************** */
 
     /**
      * Verifica si el comprobante es de tipo A o M (discriminan IVA)
@@ -1543,7 +1339,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function esComprobanteAoM($idComprobante) {
+    public function esComprobanteAoM ($idComprobante)
+    {
         $discrimina = true;
 
         $R_C = $this->find($idComprobante)->current();
@@ -1556,7 +1353,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
         // Recupero el Grupo del Comprobante
         $Grupo = $this->recuperarGrupoComprobante($idComprobante);
 
-        if ($Grupo == 9 || $Grupo == 11) {
+        if ($Grupo == 9 || $Grupo == 11 ) {
             // Se trata de un pago o de un Cobro debo revisar los comprobantes que los componen, para eso
             // debo recuperar todos los comprobantes relacionados.
 
@@ -1575,6 +1372,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
                     if (!$M_C->esComprobanteAoM($row['Id'])) {
                         // Si alguno no es A o M salgo
                         // $discrimina = true;
+
                         // VER: se cambio porq hay exepciones como en el caso de que la persona sea excento (como el estado q es agente de retencion)
                         $discrimina = true;
                         break;
@@ -1603,7 +1401,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function esComprobanteEntrada($idComprobante) {
+    public function esComprobanteEntrada ($idComprobante)
+    {
         $R_C = Facturacion_Model_DbTable_Comprobantes::recuperarRow($idComprobante);
         if (!$R_C) {
             throw new Rad_Db_Table_Exception("No se encontro el comprobante.");
@@ -1626,7 +1425,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function esComprobanteImpositivo($idComprobante) {
+    public function esComprobanteImpositivo ($idComprobante)
+    {
         $R = $this->find($idComprobante)->current();
         if (!$R) {
             throw new Rad_Db_Table_Exception('No se encuentra el comprobante requerido.');
@@ -1646,7 +1446,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    protected function _esConceptoImpositivo($tipoComprobante) {
+    protected function _esConceptoImpositivo ($tipoComprobante)
+    {
 
         // TODO : Hacer funcion _esConceptoImpositivo
         //$M_TC= new Model_DbTable_TiposDeComprobantes(array(),false);
@@ -1660,7 +1461,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function elComprobanteDiscriminaIVA($idTipoComprobante) {
+    public function elComprobanteDiscriminaIVA ($idTipoComprobante)
+    {
         // Verifico que la cantidad y el precio unitario sean mayores que cero
         $M_TC = new Facturacion_Model_DbTable_TiposDeComprobantes(array(), false);
 
@@ -1683,7 +1485,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function estaEnMonedaExtranjera($idComprobante) {
+    public function estaEnMonedaExtranjera ($idComprobante)
+    {
         $R_C = $this->find($idComprobante)->current();
 
         if (!$R_C)
@@ -1703,7 +1506,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function existe($idComprobante) {
+    public function existe ($idComprobante)
+    {
         $R_C = $this->find($idComprobante)->current();
 
         if ($R_C) {
@@ -1720,7 +1524,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function estaCerrado($Comprobante) {
+    public function estaCerrado ($Comprobante)
+    {
         $RowComprobante = Facturacion_Model_DbTable_Comprobantes::recuperarRow($Comprobante);
 
         if ($RowComprobante->Cerrado == 1) {
@@ -1737,7 +1542,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function esContado($Comprobante) {
+    public function esContado ($Comprobante)
+    {
         $RowComprobante = Facturacion_Model_DbTable_Comprobantes::recuperarRow($Comprobante);
 
         // 2 contado - 1 Cta Cte
@@ -1748,6 +1554,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
         }
     }
 
+
     /**
      * Comprueba si el comprobante esta anulado
      *
@@ -1755,7 +1562,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function estaAnulado($Comprobante) {
+    public function estaAnulado ($Comprobante)
+    {
         $RowComprobante = Facturacion_Model_DbTable_Comprobantes::recuperarRow($Comprobante);
         return ($RowComprobante->Anulado) ? true : false;
     }
@@ -1768,17 +1576,18 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function elComprobanteRelacionadoYaEstaRelacionado($Comprobante) {
+    public function elComprobanteRelacionadoYaEstaRelacionado ($Comprobante)
+    {
         $RowComprobante = Facturacion_Model_DbTable_Comprobantes::recuperarRow($Comprobante);
 
         if ($RowComprobante->ComprobanteRelacionado) {
             $txtSQL = " ComprobanteRelacionado = $RowComprobante->ComprobanteRelacionado and Id <> $RowComprobante->Id and Cerrado = 1";
             $M_C = new Facturacion_Model_DbTable_Comprobantes(array(), false);
             $R_C = $M_C->fetchRow($txtSQL);
-            if ($R_C) {
+            if($R_C) {
                 return true;
             } else {
-                return false;
+               return false;
             }
         } else {
             return false;
@@ -1793,7 +1602,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function tieneDetalle($idComprobante) {
+    public function tieneDetalle ($idComprobante)
+    {
         $M_CD = new Facturacion_Model_DbTable_ComprobantesDetalles(array(), false);
         $txtSQL = " Comprobante = $idComprobante ";
 
@@ -1813,7 +1623,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function tieneChequesAsociados($idComprobante) {
+    public function tieneChequesAsociados ($idComprobante)
+    {
         $M_CC = new Facturacion_Model_DbTable_ComprobantesCheques(array(), false);
         $txtSQL = " Comprobante = $idComprobante ";
 
@@ -1834,7 +1645,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function existeOtroComprobanteSinCerrar($persona, $tipoComprobante, $idComprobante = null) {
+    public function existeOtroComprobanteSinCerrar ($persona, $tipoComprobante, $idComprobante = null)
+    {
 
         // Recupero el grupo de un tipo de comprobante
         $M_TC = new Facturacion_Model_DbTable_TiposDeComprobantes(array(), false);
@@ -1871,7 +1683,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function tieneDetalleConValorCero($idComprobante) {
+    public function tieneDetalleConValorCero ($idComprobante)
+    {
         $M_CD = new Facturacion_Model_DbTable_ComprobantesDetalles(array(), false);
 
         $txtSQL = "Comprobante = $idComprobante and ifnull(PrecioUnitario,0) = 0";
@@ -1892,7 +1705,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function estaElConceptoAsignado($ComprobantePadre, $Concepto) {
+    public function estaElConceptoAsignado ($ComprobantePadre, $Concepto)
+    {
 
         if (!$ComprobantePadre || !$Concepto) {
             throw new Rad_Db_Table_Exception("Faltan parametros necesarios.");
@@ -1914,7 +1728,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function tieneComprobantesHijos($idComprobante) {
+    public function tieneComprobantesHijos ($idComprobante)
+    {
         if (!$idComprobante) {
             throw new Rad_Db_Table_Exception("Faltan parametros necesarios.");
         }
@@ -1937,7 +1752,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function tieneComprobantesPadres($idComprobante) {
+    public function tieneComprobantesPadres ($idComprobante)
+    {
         if (!$idComprobante) {
             throw new Rad_Db_Table_Exception("Faltan parametros necesarios.");
         }
@@ -1953,7 +1769,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
         }
     }
 
-    /*     * *********************************************************************
+    /* **********************************************************************
       Funciones para salir
      * ********************************************************************* */
 
@@ -1963,7 +1779,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      * @param int $ComprobantePadre 	identificador del comprobante a Padre a verificar
      *
      */
-    public function salirSi_noTieneComprobantesHijos($idComprobante) {
+    public function salirSi_noTieneComprobantesHijos ($idComprobante)
+    {
         if (!$this->tieneComprobantesHijos($idComprobante)) {
             throw new Rad_Db_Table_Exception("El comprobante padre no tiene comprobantes asociados.");
         }
@@ -1976,7 +1793,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      * @param int $ComprobantePadre     identificador del comprobante a Padre a verificar
      *
      */
-    public function salirSi_esContado($idComprobante) {
+    public function salirSi_esContado ($idComprobante)
+    {
         if ($this->esContado($idComprobante)) {
             throw new Rad_Db_Table_Exception("El comprobante que intenta asociar es Contado y no en Cta. Cte.");
         }
@@ -1989,7 +1807,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      * @param int $ComprobanteHijo 	identificador del comprobante hijo a verificar
      *
      */
-    public function salirSi_TieneComprobantesPadres($idComprobante) {
+    public function salirSi_TieneComprobantesPadres ($idComprobante)
+    {
         if ($this->tieneComprobantesPadres($idComprobante)) {
             throw new Rad_Db_Table_Exception("El comprobante hijo tiene comprobantes asociados.");
         }
@@ -2003,12 +1822,14 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function salirSi_esComprobanteImpositivo($idComprobante) {
+    public function salirSi_esComprobanteImpositivo ($idComprobante)
+    {
         if (!$this->esComprobanteImpositivo($idComprobante)) {
             throw new Rad_Db_Table_Exception("El comprobante padre no tiene comprobantes asociados.");
         }
         return $this;
     }
+
 
     /**
      * Verifica si el comprobante tiene el comprobante relacionado en el caso que lo necesite
@@ -2017,21 +1838,24 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function salirSi_NoTieneComprobanteRelacionado($Comprobante) {
-        $RowComprobante = Facturacion_Model_DbTable_Comprobantes::recuperarRow($Comprobante);
+    public function salirSi_NoTieneComprobanteRelacionado ($Comprobante)
+    {
+       $RowComprobante = Facturacion_Model_DbTable_Comprobantes::recuperarRow($Comprobante);
 
-        // Por ahora solo los adelantos pero las NC y ND deberian tener
-        // Se podria poner en un campo de la base de datos
-        if ($RowComprobante->TipoDeComprobante == 51) {
+       // Por ahora solo los adelantos pero las NC y ND deberian tener
+       // Se podria poner en un campo de la base de datos
+       if ($RowComprobante->TipoDeComprobante == 51) {
             if ($RowComprobante->ComprobanteRelacionado) {
                 return true;
             } else {
                 return false;
             }
-        }
-        // si no requiere el campo comprobante relacionado devuelvo TRUE
-        return true;
+       }
+       // si no requiere el campo comprobante relacionado devuelvo TRUE
+       return true;
     }
+
+
 
     /**
      * sale si el comprobante padre tiene asignado ya el concepto
@@ -2040,7 +1864,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      * @param int $Concepto 			identificador del concepto impositivo
      *
      */
-    public function salirSi_estaElConceptoAsignado($ComprobantePadre, $Concepto) {
+    public function salirSi_estaElConceptoAsignado($ComprobantePadre, $Concepto)
+    {
         if ($this->estaElConceptoAsignado($ComprobantePadre, $Concepto)) {
             throw new Rad_Db_Table_Exception("El concepto que intenta ingresar ya se encuentra asignado a este comprobante.");
         }
@@ -2053,7 +1878,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      * @param int $idComprobante 	identificador del comprobante a verificar
      *
      */
-    public function salirSi_noExiste($idComprobante) {
+    public function salirSi_noExiste ($idComprobante)
+    {
         if (!$this->existe($idComprobante)) {
             throw new Rad_Db_Table_Exception("No se localiza el comprobante.");
         }
@@ -2067,7 +1893,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function salirSi_NoEsComprobanteAoM($idComprobante) {
+    public function salirSi_NoEsComprobanteAoM ($idComprobante)
+    {
         if (!$this->esComprobanteAoM($idComprobante)) {
             throw new Rad_Db_Table_Exception("La operacion solicitada no es posible para un Comprobante que no discrimine impuestos.");
         }
@@ -2081,7 +1908,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return boolean
      */
-    public function salirSi_estaCerrado($Comprobante) {
+    public function salirSi_estaCerrado ($Comprobante)
+    {
         if ($this->estaCerrado($Comprobante)) {
             throw new Rad_Db_Table_Exception("El comprobante se encuentra cerrado y no puede modificarse.");
         }
@@ -2094,7 +1922,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      * @param int $idComprobante 	identificador del comprobante a verificar
      *
      */
-    public function salirSi_noEstaCerrado($idComprobante) {
+    public function salirSi_noEstaCerrado ($idComprobante)
+    {
         if (!$this->estaCerrado($idComprobante)) {
             throw new Rad_Db_Table_Exception("El comprobante NO se encuentra cerrado.");
         }
@@ -2107,7 +1936,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      * @param int $idComprobante    identificador del comprobante a verificar
      *
      */
-    public function salirSi_EstaAnulado($idComprobante) {
+    public function salirSi_EstaAnulado ($idComprobante)
+    {
         if ($this->estaAnulado($idComprobante)) {
             throw new Rad_Db_Table_Exception("El comprobante se encuentra anulado.");
         }
@@ -2120,7 +1950,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      * @param int $idComprobante 	identificador del comprobante a verificar
      *
      */
-    public function salirSi_noTieneDetalle($idComprobante) {
+    public function salirSi_noTieneDetalle ($idComprobante)
+    {
         if (!$this->tieneDetalle($idComprobante)) {
             // Recupero la descripcion del tipo de detalle
             throw new Rad_Db_Table_Exception("El comprobante no tiene registros de detalle asociados del tipo solicitado.");
@@ -2134,7 +1965,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      * @param int $idComprobante    identificador del comprobante a verificar
      *
      */
-    public function salirSi_noTieneChequesAsociados($idComprobante) {
+    public function salirSi_noTieneChequesAsociados ($idComprobante)
+    {
         if (!$this->tieneChequesAsociados($idComprobante)) {
             // Recupero la descripcion del tipo de detalle
             throw new Rad_Db_Table_Exception("El comprobante no tiene cheques asociados del tipo solicitado.");
@@ -2148,7 +1980,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      * @param int|Rad_Db_Table_Row $Comprobante     identificador del comprobante a verificar
      *
      */
-    public function salirSi_elComprobanteRelacionadoYaEstaRelacionado($Comprobante) {
+    public function salirSi_elComprobanteRelacionadoYaEstaRelacionado ($Comprobante)
+    {
         if ($this->elComprobanteRelacionadoYaEstaRelacionado($Comprobante)) {
             // Recupero la descripcion del tipo de detalle
             throw new Rad_Db_Table_Exception("El comprobante que intenta relacionar se encuentra relacionado a otro Comprobante.");
@@ -2162,7 +1995,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      * @param int $idComprobante 	identificador del comprobante a verificar
      *
      */
-    public function salirSi_tieneDetalleConValorCero($idComprobante) {
+    public function salirSi_tieneDetalleConValorCero ($idComprobante)
+    {
         if ($this->tieneDetalleConValorCero($idComprobante)) {
             throw new Rad_Db_Table_Exception("El comprobante tiene al menos un detalle con Monto cero.");
         }
@@ -2177,7 +2011,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      * @param int $idComprobante 	    identificador del comprobante a verificar (opcional)
      *
      */
-    public function salirSi_existeOtroComprobanteSinCerrar($persona, $tipoComprobante, $idComprobante = null) {
+    public function salirSi_existeOtroComprobanteSinCerrar ($persona, $tipoComprobante, $idComprobante = null)
+    {
         if ($this->existeOtroComprobanteSinCerrar($persona, $tipoComprobante, $idComprobante = null)) {
             throw new Rad_Db_Table_Exception("Existe otro comprobante del mismo tipo para esta persona que aun no se ha cerrado. Para poder ingresar otro debe cerrar el anterior o eliminarlo.");
         }
@@ -2191,7 +2026,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      *
      * @return int
      */
-    public function compensaPorNota($idTipoDeComprobante) {
+    public function compensaPorNota($idTipoDeComprobante)
+    {
         $M_TC = new Facturacion_Model_DbTable_TiposDeComprobantes(array(), false);
 
         $R_TC = $M_TC->fetchRow("Id = $idTipoDeComprobante");
@@ -2205,7 +2041,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      * @param int|Rad_Db_Table_row $idTipoDeComprobante    identificador del tipo comprobante
      *
      */
-    public function salirSi_noPermiteCompensarPorNota($idTipoDeComprobante) {
+    public function salirSi_noPermiteCompensarPorNota ($idTipoDeComprobante)
+    {
         if (!$this->compensaPorNota($idTipoDeComprobante)) {
             throw new Rad_Db_Table_Exception("No se permite compensar el comprobante por Nota.");
         }
@@ -2218,7 +2055,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
      * @param int $idComprobante    identificador del comprobante
      *
      */
-    public function salirSi_EstaCompensado($idComprobante) {
+    public function salirSi_EstaCompensado($idComprobante)
+    {
 
         $R_C = $this->fetchRow("ComprobanteRelacionado = $idComprobante and Cerrado = 1");
 
@@ -2227,14 +2065,15 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
         }
         return $this;
     }
-
-    /**
+    
+      /**
      *  Insert
      *
-     * @param array $data   Valores que se insertarán
+     * @param array $data   Valores que se insertarÃ¡n
      *
      */
-    public function insert($data) {
+    public function insert($data)
+    {
 
         $idComprobante = Rad_Db_Table::insert($data);
 
@@ -2243,19 +2082,23 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table {
         // Obtiene el tipo de comprobante.
         $tipoComprobante = $comprobante->findParentRow("Facturacion_Model_DbTable_TiposDeComprobantes");
         // Log Usuarios
-        if ($comprobante->Numero == 0) {
+        if ( $comprobante->Numero == 0 ) {
             Rad_Log::user("Nuevo Comprobante ($tipoComprobante->Descripcion ID $idComprobante)");
         } else {
             Rad_Log::user("Nuevo Comprobante ($tipoComprobante->Descripcion N° $comprobante->Numero)");
         }
         return $idComprobante;
+
     }
+
+
 
     /*     * *********************************************************************
       Fetch's
      * ********************************************************************* */
 
-    public function fetchCerrado($where = null, $order = null, $count = null, $offset = null) {
+    public function fetchCerrado ($where = null, $order = null, $count = null, $offset = null)
+    {
         $condicion = "Cerrado = 1 and Anulado = 0";
         $where = $this->_addCondition($where, $condicion);
         return self::fetchAll($where, $order, $count, $offset);

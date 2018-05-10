@@ -4,8 +4,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
     title: '<?=$this->title?>',
     appChannel: '/desktop/modules<?=$this->url()?>',
     requires: [
-        '/direct/Facturacion/OrdenesDePagos?javascript',
-        '/direct/Base/Proveedores?javascript'
+        '/direct/Facturacion/OrdenesDePagos?javascript'
     ],
 
     eventfind: function (ev) {
@@ -66,7 +65,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
         },
         this
     );
-        this.addExtraListeners(); 
+
         this.createWizard();
         this.grid.abmWindow = app.desktop.createWindow({
             autoHideOnSubmit: false,
@@ -105,39 +104,6 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
             }, this
         );
         this.grid.abmWindow.on('show', function(){this.setDropTargets();},this);
-    },
-
-    /**
-     * Agrega la logica adicional para los campos del formulario
-     */
-    addExtraListeners: function() {
-        var form = this.form.getForm();
-        var grid = this.grid;
-        // Campo Persona (Proveedor)
-        form.findField('Persona').on('select', function (combo, record, index) {
-            Models.Base_Model_ProveedoresMapper.getIBItems(record.data.Id, function(result, e) {
-                if (e.status) {
-                    if ( result == 0 ) {
-                        Ext.Msg.show({
-                            title : 'Atencion',
-                            msg : 'El Proveedor no tiene situación impositiva cargada. Continuar ?',
-                            width : 400,
-                            closable : false,
-                            buttons : Ext.Msg.YESNO,
-                            multiline : false,
-                            fn : function(btn) { 
-                              if (btn == 'no') {
-                                form.findField('Persona').reset(); 
-                                grid.abmWindow.closeAbm(); 
-                              }
-                            },
-                            icon : Ext.Msg.WARNING
-                        });
-                        return;
-                    }
-                }
-            }, this);
-        }, this);
     },
 
     /**
@@ -531,59 +497,28 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     bodyStyle	: 'background-color:white;'
                 }],
             buttons : [{
-                text:       'Imprimir y cerrar Orden de Pago',
-                scope: this,
-                handler: function() {
-                    var IdOrdenDePago = this.form.getForm().findField('Id');
-                    var PersonaOrdenDePago = this.form.getForm().findField('Persona');
-                    Models.Base_Model_ProveedoresMapper.getIBProximosVencimientosCM05(PersonaOrdenDePago.getValue(), function(result, e) {
-                        if (e.status) {
-                            if ( result > 0 ) {
-                                Ext.Msg.confirm('Atencion','El formulario CM05 de Ingresos Brutos del Proveedor se encuentra vencido. Continuar ?',function(btn) {
-                                        if (btn == 'yes') {
-                                            Rad.callRemoteJsonAction({
-                                                url: '/Facturacion/ordenesdepagos/pagarordendepago',
-                                                method: 'POST',
-                                                scope:  this,
-                                                params: {idOrdenDePago: IdOrdenDePago.getValue() },
-                                                success: function (response) {
-                                                    this.publish('/desktop/modules/Window/birtreporter', {
-                                                    action: 'launch',
-                                                    template: 'Comp_OrdenDePago_Ver',
-                                                    id: IdOrdenDePago.getValue(),
-                                                    width:  645,
-                                                    height: 400
-                                                    });
-                                                    this.grid.abmWindow.closeAbm();
-                                                }
-                                            });
-                                        }
-                                 }, this);
-                            } else {
-                                Rad.callRemoteJsonAction({
-                                    url: '/Facturacion/ordenesdepagos/pagarordendepago',
-                                    method: 'POST',
-                                    scope:  this,
-                                    params: {idOrdenDePago: IdOrdenDePago.getValue() },
-                                    success: function (response) {
-                                        this.publish('/desktop/modules/Window/birtreporter', {
-                                        action: 'launch',
-                                        template: 'Comp_OrdenDePago_Ver',
-                                        id: IdOrdenDePago.getValue(),
-                                        width:  645,
-                                        height: 400
-                                        });
-                                        this.grid.abmWindow.closeAbm();
-                                    }
+                    text: 	'Imprimir y cerrar Orden de Pago',
+                    scope: this,
+                    handler: function() {
+                        var IdOrdenDePago 	= this.form.getForm().findField('Id');
+                        Rad.callRemoteJsonAction({
+                            url: '/Facturacion/ordenesdepagos/pagarordendepago',
+                            method: 'POST',
+                            scope:  this,
+                            params: {idOrdenDePago: IdOrdenDePago.getValue() },
+                            success: function (response) {
+                                this.publish('/desktop/modules/Window/birtreporter', {
+                                    action: 'launch',
+                                    template: 'Comp_OrdenDePago_Ver',
+                                    id: IdOrdenDePago.getValue(),
+                                    width:  645,
+                                    height: 400
                                 });
+                                this.grid.abmWindow.closeAbm();
                             }
-                        }
-
-                    }, this);
-                    
-                }
-            }]
-
+                        });
+                    }
+                }]
         };
     },
 

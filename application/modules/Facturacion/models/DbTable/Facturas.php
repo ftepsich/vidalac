@@ -205,7 +205,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
         }
     }
 
-
+ 
 
     /**
      * Rearma los conceptos de IVA de una Factura
@@ -474,8 +474,6 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
         }
 
         $this->_where($select, "Comprobantes.Cerrado = 1 AND Comprobantes.Anulado = 0");
-
-        // Busco todos los Id de GB por venta de facturas que tengan algo disponible junto con los comprobantes de los
         $sql = "
                 SELECT  DISTINCT(Comprobantes.Id) AS Id
                 FROM    Comprobantes
@@ -486,9 +484,6 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
                 INNER   JOIN TiposDeComprobantes TC ON TC.Id = Comprobantes.TipoDeComprobante  AND TC.Grupo = 15
                 WHERE   Comprobantes.Cerrado = 1 AND Comprobantes.Anulado = 0 AND fComprobante_Monto_Disponible(Comprobantes.Id) >= 0.001
                 ";
-
-        //Rad_Log::debug($sql);
-
         $select2 = $this->select();
         $select2->having("EstadoPagado in (('Nada') COLLATE utf8_general_ci, ('Parcialmente') COLLATE utf8_general_ci) OR checked = 1");
 
@@ -497,7 +492,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
         $sep='';
 
         if (count($R)) {
-           
+            //Rad_Log::debug($R);
             foreach ($R as $row) {
                 $Ids_GBxVentaDeFacturas .= $sep . $row['Id'];
                 $sep = ', ';
