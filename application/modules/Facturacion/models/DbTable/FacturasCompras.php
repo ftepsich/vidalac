@@ -101,14 +101,6 @@ class Facturacion_Model_DbTable_FacturasCompras extends Facturacion_Model_DbTabl
         )
     );
 
-/*  En el init del Padre
-    protected $_calculatedFields = array(
-        'EstadoPagado' => "fEstadoRelHijoPago(Comprobantes.Id) COLLATE utf8_general_ci ",
-        'EstadoRecibido' => "fEstadoRelPadre(Comprobantes.Id) COLLATE utf8_general_ci",
-        'MontoTotal' => "fComprobante_Monto_Total(Comprobantes.Id)"
-    );
-*/
-
     // Inicio  protected $_referenceMap --------------------------------------------------------------------------
     protected $_referenceMap = array(
         'TiposDeComprobantes' => array(
@@ -174,8 +166,6 @@ class Facturacion_Model_DbTable_FacturasCompras extends Facturacion_Model_DbTabl
 
 
     // Se hereda
-    // protected $_dependentTables      = array();
-
     public function init ()
     {
         $this->_defaultValues['CondicionDePago'] = 1;
@@ -447,9 +437,7 @@ class Facturacion_Model_DbTable_FacturasCompras extends Facturacion_Model_DbTabl
         }
     }
 
-    // ========================================================================================================================
-    // ========================================================================================================================
-    // ========================================================================================================================
+
     public function fetchFaltantesDeRecibir($where = null, $order = null, $count = null, $offset = null)
     {
         if ($where instanceof Zend_Db_Table_Select) {
@@ -472,9 +460,6 @@ class Facturacion_Model_DbTable_FacturasCompras extends Facturacion_Model_DbTabl
         return self::fetchAll($select);
     }
 
-    // ========================================================================================================================
-    // ========================================================================================================================
-    // ========================================================================================================================
     public function fetchFacturasDeCompras($where = null, $order = null, $count = null, $offset = null)
     {
         $where = $this->_addCondition($where, "Comprobantes.Cerrado = 1 and Comprobantes.Anulado = 0 and Comprobantes.TipoDeComprobante in (19,20,21,22,23)");

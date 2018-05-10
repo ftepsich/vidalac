@@ -338,25 +338,20 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
             foreach ($R_CD as $row) {
 				// Marcamos los cheques
                 if($row->Cheque){
-                    //die("lala".$row->Cheque);
                     $R_C = $M_C->find($row->Cheque)->current();
                     $R_C->ChequeEstado = 6;
                     $R_C->setReadOnly(false);
                     $R_C->save();
                 }
-
 				// Marcamos las transacciones Bancarias
                 if($row->TransaccionBancaria){
-                    //die("lala".$row->Cheque);
                     $R_TB = $M_TB->find($row->TransaccionBancaria)->current();
                     $R_TB->Utilizado = 0;
                     $R_TB->setReadOnly(false);
                     $R_TB->save();
                 }
-
                 // Marcamos las transacciones Bancarias
                 if($row->TarjetaDeCreditoCupon){
-                    //die("lala".$row->Cheque);
                     $R_TCC = $M_TCC->find($row->TarjetaDeCreditoCupon)->current();
                     $R_TCC->Utilizado = 0;
                     $R_TCC->setReadOnly(false);
@@ -557,13 +552,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
 
                     return $conceptos;
                 }
-
             }
-
-
         }
-
-
     }
 
     /**
@@ -1132,8 +1122,6 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         $NetoGravadoGeneral = $M_C->recuperarNetoGravado($idComprobante);
         $NetoIvaNoGravado   = $M_C->recuperarMontoImponibleFacturacion($M_CI->ivaNoGravado, $idComprobante);
         $NetoIvaExento      = $M_C->recuperarMontoImponibleFacturacion($M_CI->ivaExcento, $idComprobante);
-        //$NetoIva0           = $M_C->recuperarMontoImponibleFacturacion($M_CI->iva0, $idComprobante);
-
         return $NetoGravadoGeneral - $NetoIvaNoGravado - $NetoIvaExento;// - $NetoIva0;
     }
     
@@ -2090,13 +2078,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         return $idComprobante;
 
     }
-
-
-
-    /*     * *********************************************************************
-      Fetch's
-     * ********************************************************************* */
-
+    
     public function fetchCerrado ($where = null, $order = null, $count = null, $offset = null)
     {
         $condicion = "Cerrado = 1 and Anulado = 0";
