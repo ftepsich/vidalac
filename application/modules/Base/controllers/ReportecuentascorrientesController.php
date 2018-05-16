@@ -21,20 +21,10 @@ class Base_ReporteCuentasCorrientesController extends Rad_Window_Controller_Acti
     
     protected function buildWhere($param)
     {
-        $where = array();
-        //if ($param['fecha'])   $where[] = "CC.FechaComprobante <= {$param['fecha']}";
-        
+        $where = array();        
         if ($param['persona']) {
             $where[] = "P.Id = {$param['persona']}";  
-        } /*else {
-            // Si viene la persona dejo de tener en cuenta si es cliente o proveedor
-            if ($param['tipo']) {
-                switch ($param['tipo']) {
-                    case 1: $where[] = "P.EsCliente = 1"; break;
-                    case 2: $where[] = "P.EsProveedor = 1"; break;
-                } 
-            }
-        }*/
+        }
 
         // filtra siempre si es por cliente o provedor, elijan o no una persona
         if ($param['tipo']) {
@@ -47,9 +37,9 @@ class Base_ReporteCuentasCorrientesController extends Rad_Window_Controller_Acti
         if ($param['ocultarCeros'] == 1) {
 
               if ( $param['modelo'] != 3 ) {
-                   $where[] = "fPersona_CuentaCorriente_A_Fecha(P.Id,".$param['fecha'].",".$param['modelo'].",".$param['tipo'].") <> 0";
+                   $where[] = "fPersona_CuentaCorriente_A_Fecha(P.Id,".$param['fecha'].",".$param['modelo'].",".$param['tipo'].")  NOT BETWEEN -1 AND 1";
               } else {
-                   $where[] = "IFNULL(fComprobante_Monto_Disponible(C.Id),0) <> 0";
+                   $where[] = "IFNULL(fComprobante_Monto_Disponible(C.Id),0) NOT BETWEEN -1 AND 1";
               }
         }
         
@@ -118,7 +108,6 @@ class Base_ReporteCuentasCorrientesController extends Rad_Window_Controller_Acti
         else {                  $texto .= " a fecha ".date('d/m/Y',strtotime(date('Y-m-d')));      }
         
         $formato = ($rq->formato) ? $rq->formato : 'pdf';
-        //$formato = 'html';
 
         switch ($param['modelo']) {
             case 1: 
@@ -151,7 +140,7 @@ class Base_ReporteCuentasCorrientesController extends Rad_Window_Controller_Acti
         ));
 
         $nombreRep      = str_replace(  array(" ","/"), array("_","-") , $texto);
-        $NombreReporte  = "Reporte_".$nombreRep."___".date('YmdHis');        
+        $NombreReporte  = "Reporte_".$nombreRep."_".date('YmdHis');        
         
         $report->sendStream($NombreReporte);
     }

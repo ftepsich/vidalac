@@ -118,7 +118,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
                     $comprobante = Facturacion_Model_DbTable_OrdenesDePagosFacturas::retornarComprobantePago($R->Id);
 
                     if (!empty($comprobante)) {
-                        throw new Rad_Db_Table_Exception("La factura que intenta borrar se encuentra relacionada con la orden de pago Número: {$comprobante['Numero']}.");
+                        throw new Rad_Db_Table_Exception("La factura que intenta borrar se encuentra relacionada con la orden de pago Numero: {$comprobante['Numero']}.");
                     }
 
                     // Verificar si tiene LibroIVAcerrado
@@ -144,12 +144,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
 
                 parent::delete('Comprobantes.Id =' . $R->Id);
                 $tipoComprobante = $R->findParentRow("Facturacion_Model_DbTable_TiposDeComprobantes");
-                // Log Usuarios
-                if ( $R->Numero == 0 ) {
-                    Rad_Log::user("Borró comprobante ($tipoComprobante->Descripcion ID $R->Id)");
-                } else {
-                    Rad_Log::user("Borró comprobante ($tipoComprobante->Descripcion N° $R->Numero)");
-                }
+                Rad_Log::user("Borrado comprobante $idComprobante ($tipoComprobante->Descripcion $R->Numero)");
             }
             $this->_db->commit();
             return true;
@@ -158,6 +153,9 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
             throw $e;
         }
     }
+
+
+
 
     /**
      *  Insert
@@ -207,70 +205,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
         }
     }
 
-//    //TODO: Este codigo se puede mejorar y hay mucho repetido. Arreglado a los apurones para arreglar falla en comprobantes B
-//    /**
-//     * Retorna el total del iva de la factura
-//     *
-//     * @param int         $idFactura      identificador de la factura
-//     *
-//     * @return float
-//     */
-//    public function getTotalesIva($idFactura)
-//    {
-//        // Recupero el registro Padre
-//        $R_FV = $this->find($idFactura)->current();
-//
-//        // Recupero el NG
-//        $NetoGravado = $this->recuperarNetoGravado($idFactura);
-//
-//        $sql = "SELECT
-//                    sum(CD.Cantidad*CD.PrecioUnitario) as NetoGravadoArticulo,
-//                    CI.afip as codAfip,
-//                    CD.DescuentoEnMonto,
-//                    CD.DescuentoEnPorcentaje,
-//                    CD.ConceptoImpositivo as ConceptoIVA,
-//                    CI.PorcentajeActual as Porcentaje,
-//                    ifnull(CD.DescuentoEnMonto,0) as DescuentoGeneral
-//            FROM  ComprobantesDetalles CD
-//                            INNER JOIN ConceptosImpositivos CI ON CD.ConceptoImpositivo = CI.Id   and CI.esIVA = 1
-//                            INNER JOIN Comprobantes C ON CD.Comprobante = C.Id
-//            WHERE CD.Comprobante = $idFactura
-//            GROUP BY CD.ConceptoImpositivo";
-//
-//        $R_IVA = $this->_db->fetchAll($sql);
-//
-//        $ivas = array();
-//        if (count($R_IVA)) {
-//
-//            $M_C = new Facturacion_Model_DbTable_Comprobantes(array(), false);
-//            foreach ($R_IVA as $row) {
-//                $tmp = array();
-//                // Cargo los datos que voy a necesitar despues
-//
-//                $NGArticulo = 0;
-//
-//                if ($row['DescuentoGeneral'] > 0) {
-//                    $NGArticulo = $row['NetoGravadoArticulo'] - ($row['NetoGravadoArticulo'] * $row['DescuentoGeneral'] / $NetoGravado);
-//                } else {
-//                    $NGArticulo = $row['NetoGravadoArticulo'];
-//                    // Le hago el descuento si el mismo esta cargado en el articulo
-//                    if ($row['DescuentoEnMonto'] > 0) {
-//                        $NGArticulo = $NGArticulo - $row['DescuentoEnMonto'];
-//                    }
-//                    if ($row['DescuentoEnPorcentaje'] > 0) {
-//                        $NGArticulo = $NGArticulo - ($NGArticulo * $row['DescuentoEnPorcentaje'] / 100);
-//                    }
-//                }
-//
-//                $totalIva += $NGArticulo * $row['Porcentaje'] / 100;
-//                $tmp['MontoImponible'] = $NGArticulo;
-//                $tmp['Monto'] = $NGArticulo * $row['Porcentaje'] / 100;
-//                $tmp['codAfip'] = $row['codAfip'];
-//                $ivas[] = $tmp;
-//            }
-//        }
-//        return $ivas;
-//    }
+ 
 
     /**
      * Rearma los conceptos de IVA de una Factura
@@ -431,7 +366,6 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
         $filtro = "ParaCompra";
 
         $this->recalcularConceptosFacturacion($idFactura, $idPersona, $fechaEmision, $filtro);
-
         return true;
     }
 
@@ -458,9 +392,6 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
 
             // Calculo los conceptos que no son IVA
             $this->recalcularConceptosNoIVA($idFactura);
-
-            // Calculo como Agente las Percepciones IB
-            $this->recalcularComoAgentePercepcionesIB($idFactura);
         }
     }
 
@@ -543,25 +474,6 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
         }
 
         $this->_where($select, "Comprobantes.Cerrado = 1 AND Comprobantes.Anulado = 0");
-
-        // Busco todos los Id de GB por venta de facturas que tengan algo disponible junto con los comprobantes de los
-/*
-        $sql = "
-                select  distinct(Comprobantes.Id) as Id
-                from    Comprobantes
-                inner   join TiposDeComprobantes TC on TC.Id = Comprobantes.TipoDeComprobante
-                where   Comprobantes.Cerrado = 1
-                AND     Comprobantes.Anulado = 0
-                and     ((
-                        TC.Grupo = 15
-                        and fComprobante_Monto_Disponible(Comprobantes.Id) >= 0.001
-                        )
-                        or
-                        (
-                        ".implode(" ",$select->getPart('where'))."
-                        ))
-                ";
-*/
         $sql = "
                 SELECT  DISTINCT(Comprobantes.Id) AS Id
                 FROM    Comprobantes
@@ -572,9 +484,6 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
                 INNER   JOIN TiposDeComprobantes TC ON TC.Id = Comprobantes.TipoDeComprobante  AND TC.Grupo = 15
                 WHERE   Comprobantes.Cerrado = 1 AND Comprobantes.Anulado = 0 AND fComprobante_Monto_Disponible(Comprobantes.Id) >= 0.001
                 ";
-
-        //Rad_Log::debug($sql);
-
         $select2 = $this->select();
         $select2->having("EstadoPagado in (('Nada') COLLATE utf8_general_ci, ('Parcialmente') COLLATE utf8_general_ci) OR checked = 1");
 
@@ -642,9 +551,6 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
         return self::fetchAll($select);
     }
 
-    // ========================================================================================================================
-    // ========================================================================================================================
-    // ========================================================================================================================
     public function fetchFacturas($where = null, $order = null, $count = null, $offset = null)
     {
         $condicion = "Comprobantes.Cerrado = 1 and Comprobantes.Anulado = 0 and Comprobantes.TipoDeComprobante in (19, 20, 21, 22, 23, 33, 34, 35, 36, 41, 42, 43, 44, 24, 25, 26, 27, 28, 29, 30, 31, 32, 37, 38, 39, 40)";

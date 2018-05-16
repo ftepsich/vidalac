@@ -420,12 +420,10 @@ class Facturacion_Model_DbTable_ComprobantesPagos extends Facturacion_Model_DbTa
         $LibroIVA       = $R_C->LibroIVA;
 
         $M_C = Service_TableManager::get('Facturacion_Model_DbTable_Comprobantes');
-        //$M_CI = new Facturacion_Model_DbTable_ComprobantesImpositivos(array(), false);
         $M_CR = Service_TableManager::get('Facturacion_Model_DbTable_ComprobantesRelacionados');
         $M_CI = Service_TableManager::get('Facturacion_Model_DbTable_ComprobantesImpositivos');
 
         // Recupero el Monto Total de los comprobantes que se estan pagando
-        //die("a".$idComprobante);
         $MontoPorPagar = $this->recuperarMontoAPagar($idComprobante);
 
         $sql = "
@@ -573,7 +571,7 @@ class Facturacion_Model_DbTable_ComprobantesPagos extends Facturacion_Model_DbTa
                         CASE
                           WHEN PIB.TipoInscripcionIB = 3 THEN
                             -- Si el coeficiente es mayor a 0.1 y no tienen actividad cargada se asume Base de Retencion 50%
-                            CASE WHEN PIB.CoeficienteCM05 > 0.1 THEN CASE WHEN ( CAA.Id IS NOT NULL ) THEN 50 ELSE 100 END ELSE 100 END
+                            CASE WHEN PIB.CoeficienteCM05 > 0.1 THEN CASE WHEN ( CAA.Id IS NULL ) THEN 50 ELSE 100 END ELSE 100 END
                           ELSE 
                             100
                         END AS PorcentajeBaseMonto
@@ -740,8 +738,6 @@ class Facturacion_Model_DbTable_ComprobantesPagos extends Facturacion_Model_DbTa
             $MontoImponible = $MontoTotal - $MMIsinUsar;
         }
         
-        //Rad_Log::debug(" recuperarMontoImponiblePagosyCobros -> Comprobante ID :  $idComprobante - Concepto ID : $idConcepto - Monto Imponible : $MontoImponible");
-
         return $MontoImponible;
     }
 

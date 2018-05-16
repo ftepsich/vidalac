@@ -78,13 +78,13 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     store: new Ext.data.ArrayStore({
                         fields: ['desc', 'id'],
                         data : [
-                                ['Clasico', '1'],
-                                ['Con Jurisdiccion', '2'],
-                                ['Con Provincia de la Direccion', '14'],
+                                ['Clásico', '1'],
+                                ['Con Jurisdicción', '2'],
+                                ['Con Provincia de la Dirección', '14'],
                                 ['Con Percepciones y Retenciones', '5'],
-                                ['Ret. y Percep. Ingresos Brutos sufridas', '11'],                                
+                                ['Ret. y Percep. Ingresos Brutos Sufridas', '11'],                                
                                 ['Exportador solo Percepciones y Retenciones', '12'],
-                                ['Exportador Libro IVA detallado', '13'],                                
+                                ['Exportador Libro IVA Detallado', '13'],                                
                                 ['Con Plan de Cuenta', '10'],
                                 ['Exportador AFIP (pre 3685)', '3'],
                                 ['Exportador AFIP res 3685 Cabecera', '6'],

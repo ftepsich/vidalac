@@ -4,10 +4,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
     title: '<?=$this->title?>',
     appChannel: '/desktop/modules<?=$this->url()?>',
     requires: [
-      '/direct/Contable/LibrosIVA?javascript',
-        '/direct/Facturacion/FacturasVentas?javascript',
-        '/direct/Base/Personas?javascript',
-        '/direct/Base/Clientes?javascript'
+        '/direct/Facturacion/FacturasVentas?javascript'
     ],
 
     eventfind: function (ev) {
@@ -143,26 +140,9 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
      */
     addExtraListeners: function() {
         var form = this.form.getForm();
-        var grid = this.grid;
+
         // Campo Persona (Cliente)
         form.findField('Persona').on('select', function (combo, record, index) {
-            Models.Base_Model_PersonasMapper.getBloqueado(record.data.Id, function(result, e) {
-                if (e.status) {
-                    if ( result == 1 ) {
-                        Ext.Msg.show({
-                            title : 'Atencion',
-                            msg : 'El Cliente seleccionado se encuentra BLOQUEADO.<br><br> No puede utilizarse para la operación que intenta realizar.',
-                            width : 400,
-                            closable : false,
-                            buttons : Ext.Msg.OK,
-                            multiline : false,
-                            fn : function() { form.findField('Persona').reset(); grid.abmWindow.closeAbm(); },
-                            icon : Ext.Msg.WARNING
-                        });
-                        return;
-                    }
-                }
-            }, this);
             this.updateEstadoDeCuentaPorCliente(record.data.Id);
             // Setea el tipo de comprobante segun la modalidad de iva y el tipo de comprobante
             var form = this.form.getForm();
@@ -448,31 +428,12 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     text: 'Cerrar Comprobante',
                     scope: this,
                     handler: function() {
-                        var IdComprobante = this.form.getForm().findField('Id').getValue();
-                        var IdPersonaComprobante = this.form.getForm().findField('Persona');
-                        Models.Base_Model_ClientesMapper.getIBProximosVencimientosCM05(IdPersonaComprobante.getValue(), function(result, e) {
+                        var id = this.form.getForm().findField('Id').getValue();
+                        app.publish('/desktop/wait', 'Cerrando el comprobante');
+                        Models.Facturacion_Model_FacturasVentasMapper.cerrar(id, function (result, e) {
                             if (e.status) {
-                                if ( result > 0 ) {
-                                    Ext.Msg.confirm('Atencion','El formulario CM05 de Ingresos Brutos del Cliente se encuentra vencido. Continuar ?',function(btn) {
-                                           if (btn == 'yes') {
-                                                app.publish('/desktop/wait', 'Cerrando el comprobante');
-                                                Models.Facturacion_Model_FacturasVentasMapper.cerrar(IdComprobante, function (result, e) {
-                                                    if (e.status) {
-                                                        Ext.MessageBox.hide();
-                                                        this.grid.abmWindow.closeAbm();
-                                                    }
-                                                }, this);
-                                           }
-                                    }, this);
-                                } else {
-                                    app.publish('/desktop/wait', 'Cerrando el comprobante');
-                                    Models.Facturacion_Model_FacturasVentasMapper.cerrar(IdComprobante, function (result, e) {
-                                        if (e.status) {
-                                            Ext.MessageBox.hide();
-                                            this.grid.abmWindow.closeAbm();
-                                        }
-                                    }, this);
-                                }
+                                Ext.MessageBox.hide();
+                                this.grid.abmWindow.closeAbm();
                             }
                         }, this);
                     }

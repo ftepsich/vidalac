@@ -46,14 +46,6 @@ class Facturacion_Model_DbTable_ComprobantesCheques extends Rad_Db_Table
     {
         $this->delete('Comprobante = '.$row->Id);
 
-        /*
-        $R_CR = $this->fetchAll('Comprobante = '.$row->Id);
-
-        foreach ($R_CR as $row) {
-            parent::delete('Id = '.$row->Id);
-        }
-        */
-
     }
 
 }

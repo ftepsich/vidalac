@@ -59,22 +59,6 @@ class Base_Model_DbTable_ChequesDarDestinos extends Base_Model_DbTable_Cheques
                         }
                     }
                 }
-                /*
-
-                if (!$data['ChequeEstado'] && !$row['ChequeEstado']) {
-                    throw new Rad_Db_Table_Exception('Debe ingresar el Estado del Cheque.');
-                } else {
-                    if (($data['ChequeEstado'] == 4 || $data['ChequeEstado'] == 10) || (!$data['ChequeEstado'] && ($row['ChequeEstado'] == 4 || $row['ChequeEstado'] == 10))) {
-                        if (!$data['CuentaDeMovimiento']) {
-                            throw new Rad_Db_Table_Exception('Debe ingresar la Cuenta del Banco donde se depositara el cheque.');
-                        }
-                    } else {
-                        if ($data['CuentaDeMovimiento']) {
-                            throw new Rad_Db_Table_Exception('No se Debe ingresar la Cuenta para este estado del cheque.');
-                        }
-                    }
-                }
-                */
 
             }
 

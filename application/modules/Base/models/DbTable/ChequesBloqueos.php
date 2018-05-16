@@ -29,7 +29,7 @@ class Base_Model_DbTable_ChequesBloqueos extends Rad_Db_Table {
             'columns' => 'ChequeBloqueoTipo',
             'refTableClass' => 'Base_Model_DbTable_ChequesBloqueosTipos',
             'refJoinColumns' => array("Descripcion"), // De esta relacion queremos traer estos campos por JOIN
-            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'comboBox' => true, 
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'ChequesBloqueosTipos',
             'refColumns' => 'Id')

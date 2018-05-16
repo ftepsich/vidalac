@@ -15,7 +15,7 @@ class Facturacion_Model_DbTable_VFCACantidades extends Rad_Db_Table
             'refTableClass'     => 'Base_Model_DbTable_Articulos',
      		'refColumns'        => 'Id',
      		'refJoinColumns'    => array("Descripcion"),                     // De esta relacion queremos traer estos campos por JOIN
-     		'comboBox'			=> true,                                     // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+     		'comboBox'			=> true,                                    
      		'comboSource'		=> 'datagateway/combolist/fetch/EsArticuloParaCompra',
             'refTable'			=> 'Articulos',
     		'comboPageSize'		=>	10
@@ -25,7 +25,7 @@ class Facturacion_Model_DbTable_VFCACantidades extends Rad_Db_Table
             'refTableClass'     => 'Facturacion_Model_DbTable_FacturasCompras',
      		'refColumns'        => 'Id',
      		'refJoinColumns'    => array("Numero"),                     // De esta relacion queremos traer estos campos por JOIN
-     		'comboBox'			=> true,                                     // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+     		'comboBox'			=> true,                                    
      		'comboSource'		=> 'datagateway/combolist',
             'refTable'			=> 'Comprobantes',
     		'comboPageSize'		=>	10

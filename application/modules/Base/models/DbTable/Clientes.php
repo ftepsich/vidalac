@@ -29,6 +29,16 @@ class Base_Model_DbTable_Clientes extends Base_Model_DbTable_Personas
             'refTable'          => 'ModalidadesIVA',
             'refColumns'        => 'Id'
         ),
+        'TransportePorDefecto' => array(
+            'columns'           => 'TransportePorDefecto',
+            'refTableClass'     => 'Base_Model_DbTable_Transportistas',
+            'refJoinColumns'    => array('RazonSocial'),
+            'comboBox'          => true,
+            'comboSource'       => 'datagateway/combolist',
+            'refTable'          => 'Personas',
+            'refColumns'        => 'Id',
+            'comboPageSize'     => 10
+        ),
         'TiposDeInscripcionesIB' => array(
             'columns'           => 'TipoInscripcionIB',
             'refTableClass'     => 'Base_Model_DbTable_TiposDeInscripcionesIB',
