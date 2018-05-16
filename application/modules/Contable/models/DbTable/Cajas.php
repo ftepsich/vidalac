@@ -30,7 +30,6 @@ class Contable_Model_DbTable_Cajas extends Rad_Db_Table_SemiReferencial {
 
     protected $_dependentTables = array('Contable_Model_DbTable_CajasMovimientos');
 
-    // Inicio Public Init ----------------------------------------------------------------------------------------
     public function init() {
         $this->_validators = array(
             'Descripcion' => array(
@@ -50,7 +49,6 @@ class Contable_Model_DbTable_Cajas extends Rad_Db_Table_SemiReferencial {
         parent::init();
     }
 
-    // fin Public Init -------------------------------------------------------------------------------------------
 
     /**
      * Recupera el monto de una caja determinada
