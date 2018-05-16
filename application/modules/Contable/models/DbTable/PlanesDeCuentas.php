@@ -21,8 +21,6 @@ class Contable_Model_DbTable_PlanesDeCuentas extends Rad_Db_Table
             'columns' => 'Padre',
             'refTableClass' => 'Contable_Model_DbTable_PlanesDeCuentas',
             'refJoinColumns' => array('Descripcion'),
-            //'comboBox'          => false,
-            //'comboSource'       => 'datagateway/combolist',
             'refTable' => 'PlanesDeCuentas',
             'refColumns' => 'Id'
         )

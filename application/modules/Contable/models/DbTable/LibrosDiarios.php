@@ -483,35 +483,7 @@ class Contable_Model_DbTable_LibrosDiarios extends Rad_Db_Table {
         $R = $this->_db->fetchOne($sql);
         return $R;
     }
-
-    /**
-     * Recuperar de un comprobante de pago la parte que se pago con cheques de terceros
-     *
-     * @param int 	Identificador del Comprobante
-     *
-     * @return array
-     */
-    /*
-      public function ctas_PagoConChequesDeTerceros($idComprobante,$esDebe) {
-      // Recupero los registos
-      $sql = "select  $idComprobante as Comprobante,
-      CB.Cuenta as Cuenta,
-      SUM(CD.PrecioUnitario) as Monto,
-      $esDebe as EsDebe
-      from    ComprobantesDetalles CD
-      inner join Cheques CH on CH.Id = CD.Cheque
-      inner join Chequeras CHS on CHS.Id = CH.Chequera
-      inner join CuentasBancarias CB on CB.Id = CD.CtaDestino
-      where 	CD.Comprobante = $idComprobante
-      and     CH.TipoDeEmisorDeCheque = 1
-      group by CB.Cuenta
-      ";
-
-      $R = $this->_db->fetchAll($sql);
-
-      return $R;
-      }
-     */
+    
 
     /**
      * Arma el detalle del asiento contable segun el tipo de comprobante
@@ -926,33 +898,6 @@ class Contable_Model_DbTable_LibrosDiarios extends Rad_Db_Table {
                     $Asiento = $this->mi_array_merge($Asiento,$R);
                     $monto = 0;
                 }
-
-                // Si es una liquidacion de cheques tengo que hacer un asiento para registrar
-                // que los cheques se cobraron, por ahora no ya que no se estan cargando los
-                // asientos de las transacciones bancarias
-                /*
-                if ($Grupo == 16) {
-
-                    // Inserto la cabecera del segundo asiento
-                    $Cabecera = array(
-                        'Comprobante' => $row->Id,
-                        'NroAsiento' => 2,
-                        'FechaAsiento' => date('Y-m-d H:i:s')
-                    );
-                    $idAsiento = $this->insert($Cabecera);
-
-                    // Recupero los datos de los cheques
-                    // todo: debo recuperar el total por cuenta bancaria
-
-                    //-----------------------------
-                    //Comisiones y Gastos Bancarios (+Per)
-                    //IVA CF (+A)
-                    //a Bancos (-A)
-                    //-----------------------------
-
-
-                }
-                */
 
 
                 break;

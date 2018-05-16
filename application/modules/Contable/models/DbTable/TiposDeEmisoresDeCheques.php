@@ -6,7 +6,6 @@ class Contable_Model_DbTable_TiposDeEmisoresDeCheques extends Rad_Db_Table
 
     protected $_name = "TiposDeEmisoresDeCheques";
 
-    // Inicio Public Init ----------------------------------------------------------------------------------------
     public function init()
     {
         $this->_validators = array(
@@ -24,8 +23,6 @@ class Contable_Model_DbTable_TiposDeEmisoresDeCheques extends Rad_Db_Table
 
         parent::init();
     }
-
-    // fin Public Init -------------------------------------------------------------------------------------------	
 
     public function fetchNoPropios($where = null, $order = null, $count = null, $offset = null)
     {

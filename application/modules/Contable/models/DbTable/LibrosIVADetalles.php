@@ -51,11 +51,6 @@ class Contable_Model_DbTable_LibrosIVADetalles extends Rad_Db_Table
         'NumeroCompleto' => "fNumeroCompleto(Comprobantes.Id,'C') COLLATE utf8_general_ci"
     );
 
-    /*
-    protected $_calculatedFields = array(
-        'NroCompletoTercero' => "CASE WHEN ifnull(Comprobantes.numero,0)>0 THEN concat(LPAD(Comprobantes.punto , 4, '0'),'-',LPAD(Comprobantes.numero, 8, '0')) ELSE 's/n' END"
-    );
-    */
     protected $_dependentTables = array();
 
     /**
@@ -103,7 +98,7 @@ class Contable_Model_DbTable_LibrosIVADetalles extends Rad_Db_Table
 
         $Multiplicador = 0;
 
-        // Credito en Cuenta Corriente / Debito en Cuenta Corriente / Retencion IB Entre Rios (R) / PercepciÃ³n IB Entre RÃ­os (R)
+        // Credito en Cuenta Corriente / Debito en Cuenta Corriente / Retencion IB Entre Rios (R) / Percepción IB Entre Rí­os (R)
         if ($row->TipoDeComprobante == 65 || $row->TipoDeComprobante == 66 || $row->ConceptoImpositivo == 41 || $row->ConceptoImpositivo == 42) {
             // Comprobante que no se inserta en el libro de IVA, debe mejorarse y crear una columna para estos casos y su correspondiente filtro
             return true;
@@ -377,12 +372,7 @@ class Contable_Model_DbTable_LibrosIVADetalles extends Rad_Db_Table
                         $Imp_MT_Internos = $R15['Monto'];
                     }
 
-                    /*
-                      $Imp_NG_1050 = $M_C->recuperarMontoImponibleFacturacion($idConcepto_1050, $idComprobante);
-                      $Imp_NG_2100 = $M_C->recuperarMontoImponibleFacturacion($idConcepto_2100, $idComprobante);
-                      $Imp_NG_2700 = $M_C->recuperarMontoImponibleFacturacion($idConcepto_2700, $idComprobante);
-                      $Imp_NG_ExentosyNoGravados = $M_C->afip_ImporteNetoExento($idComprobante) + $M_C->afip_ImporteNetoNoGravado($idComprobante);
-                     */
+
 
                     /*
                     Para IVA si son Comprobantes 'B' debemos calcular en funcion de los valores de comprobnates detalles
@@ -488,11 +478,6 @@ class Contable_Model_DbTable_LibrosIVADetalles extends Rad_Db_Table
                         $Imp_MT_Comprobante = $row->Monto;
                     }
 
-                    /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Mejorar esto par que no calcule al pedo
-                    /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Mejorar esto par que no calcule al pedo
-                    /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Mejorar esto par que no calcule al pedo
-                    /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Mejorar esto par que no calcule al pedo
-                    /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Mejorar esto par que no calcule al pedo
 
                     // Para las facturas y notas C solo tienen el valor excento
                     // 1:FC, 6:FV, 7:NCE, 8:NCR, 12:NDE, 13:NDR --- 9:OP, 11:RC,
@@ -623,7 +608,6 @@ class Contable_Model_DbTable_LibrosIVADetalles extends Rad_Db_Table
     public function quitarComprobante ($row)
     {
 
-//        if ($row->Anulado == 1 && $row->LibroIVA) {
         if ($row->LibroIVA) {
             $this->salirSi_estaCerrado($row->LibroIVA);
 

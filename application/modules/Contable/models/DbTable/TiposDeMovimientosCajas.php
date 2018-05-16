@@ -5,7 +5,6 @@ class Contable_Model_DbTable_TiposDeMovimientosCajas extends Rad_Db_Table
 {
 	protected $_name = "TiposDeMovimientosCajas";
 	
-	// Inicio Public Init ----------------------------------------------------------------------------------------
 	public function init()     {
         $this -> _validators = array(
             'Descripcion'=> array(	
@@ -21,10 +20,7 @@ class Contable_Model_DbTable_TiposDeMovimientosCajas extends Rad_Db_Table
         );
 
 		parent::init();
-	}
-	// fin Public Init -------------------------------------------------------------------------------------------	
-
-	
+	}	
 }
 
 ?>

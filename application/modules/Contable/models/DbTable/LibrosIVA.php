@@ -51,7 +51,7 @@ class Contable_Model_DbTable_LibrosIVA extends Rad_Db_Table
     /**
      *  Insert
      *
-     * @param array $data   Valores que se insertaran
+     * @param array $data 
      */
     public function insert($data)
     {
