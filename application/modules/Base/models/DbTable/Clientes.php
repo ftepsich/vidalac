@@ -29,16 +29,6 @@ class Base_Model_DbTable_Clientes extends Base_Model_DbTable_Personas
             'refTable'          => 'ModalidadesIVA',
             'refColumns'        => 'Id'
         ),
-        'TransportePorDefecto' => array(
-            'columns'           => 'TransportePorDefecto',
-            'refTableClass'     => 'Base_Model_DbTable_Transportistas',
-            'refJoinColumns'    => array('RazonSocial'),
-            'comboBox'          => true,
-            'comboSource'       => 'datagateway/combolist',
-            'refTable'          => 'Personas',
-            'refColumns'        => 'Id',
-            'comboPageSize'     => 10
-        ),
         'TiposDeInscripcionesIB' => array(
             'columns'           => 'TipoInscripcionIB',
             'refTableClass'     => 'Base_Model_DbTable_TiposDeInscripcionesIB',
@@ -48,16 +38,6 @@ class Base_Model_DbTable_Clientes extends Base_Model_DbTable_Personas
             'refTable'          => 'TiposDeInscripcionesIB',
             'refColumns'        => 'Id'	
         ),
-
-        'TiposDeDocumentos' => array(
-            'columns'           => 'TipoDeDocumento',
-            'refTableClass'     => 'Base_Model_DbTable_TiposDeDocumentos',
-            'refJoinColumns'    => array('Descripcion'),
-            'comboBox'          => true,
-            'comboSource'       => 'datagateway/combolist',
-            'refTable'          => 'TiposDeDocumentos',
-            'refColumns'        => 'Id'
-        ),
         'TiposDeInscripcionesGanancias' => array(
             'columns'           => 'ModalidadGanancia',
             'refTableClass'     => 'Base_Model_DbTable_TiposDeInscripcionesGanancias',
@@ -66,12 +46,32 @@ class Base_Model_DbTable_Clientes extends Base_Model_DbTable_Personas
             'comboSource'       => 'datagateway/combolist',
             'refTable'          => 'TiposDeInscripcionesGanancias',
             'refColumns'        => 'Id'
+        ),
+        'TiposFormasDePagos' => array(
+            'columns'            => 'TipoFormaDePago',
+            'refTableClass'      => 'Base_Model_DbTable_TiposFormasDePagos',
+            'refJoinColumns'     => array('Descripcion'),
+            'comboBox'           => true,
+            'comboSource'        => 'datagateway/combolist',
+            'refTable'           => 'TiposFormasDePagos',
+            'refColumns'         => 'Id'
+        ),
+        'TiposFletesACargo' => array(
+            'columns'            => 'TipoFleteACargo',
+            'refTableClass'      => 'Base_Model_DbTable_TiposFletesACargo',
+            'refJoinColumns'     => array('Descripcion'),
+            'comboBox'           => true,
+            'comboSource'        => 'datagateway/combolist',
+            'refTable'           => 'TiposFletesACargo',
+            'refColumns'         => 'Id'
         )
+
     );
 
     /**
      * Validadores
      *
+     * CUIT         -> valor unico y no vacio
      * Razon Social -> valor unico y no vacio
      *
      */    
@@ -85,8 +85,9 @@ class Base_Model_DbTable_Clientes extends Base_Model_DbTable_Personas
                 'Falta ingresar la Razon Social.'
             )
         );        
-        parent::init();
+        parent::init();     
         $this->_calculatedFields['IBProximosVencimientosCM05'] = "(SELECT COUNT(Id) FROM personasingresosbrutos WHERE Persona = Personas.Id AND FechaVencimientoCM05 IS NOT NULL AND FechaVencimientoCM05 < DATE_ADD(CURDATE(), INTERVAL 10 DAY) )";
+   
     }    
 
     public function fetchTieneComprobantes($where = null, $order = null, $count = null, $offset = null)
@@ -103,6 +104,5 @@ class Base_Model_DbTable_Clientes extends Base_Model_DbTable_Personas
         $where = $this->_addCondition($where, $condicion);        
 
         return parent::fetchAll($where, $order, $count, $offset);
-    }  
-    
+    }    
 }

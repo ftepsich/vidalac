@@ -38,16 +38,6 @@ class Base_Model_DbTable_Proveedores extends Base_Model_DbTable_Personas
             'refTable'          => 'TiposDeInscripcionesGanancias',
             'refColumns'        => 'Id'
         ),
-        'TransportePorDefecto' => array(
-            'columns'           => 'TransportePorDefecto',
-            'refTableClass'     => 'Base_Model_DbTable_Transportistas',
-            'refJoinColumns'    => array('RazonSocial','Denominacion'),
-            'comboBox'          => true,
-            'comboSource'       => 'datagateway/combolist',
-            'refTable'          => 'Personas',
-            'refColumns'        => 'Id',
-            'comboPageSize'     => 10
-		),
         'TiposDeInscripcionesIB' => array(
             'columns'           => 'TipoInscripcionIB',
             'refTableClass'     => 'Base_Model_DbTable_TiposDeInscripcionesIB',
@@ -56,16 +46,8 @@ class Base_Model_DbTable_Proveedores extends Base_Model_DbTable_Personas
             'comboSource'       => 'datagateway/combolist',
             'refTable'          => 'TiposDeInscripcionesIB',
             'refColumns'        => 'Id'	
-        ),
-        'TiposDeDocumentos' => array(
-            'columns'           => 'TipoDeDocumento',
-            'refTableClass'     => 'Base_Model_DbTable_TiposDeDocumentos',
-            'refJoinColumns'    => array('Descripcion'),
-            'comboBox'          => true,
-            'comboSource'       => 'datagateway/combolist',
-            'refTable'          => 'TiposDeDocumentos',
-            'refColumns'        => 'Id'
         )
+ 
     );
 
     public function init ()
@@ -76,8 +58,10 @@ class Base_Model_DbTable_Proveedores extends Base_Model_DbTable_Personas
 
     public function fetchTransporte($where = null, $order = null, $count = null, $offset = null)
     {
-        $condicion = 'EsTransporte = 1';      
-        $where = $this->_addCondition($where, $condicion);     
+        $condicion = 'EsTransporte = 1';
+        
+        $where = $this->_addCondition($where, $condicion);
+        
         return parent::fetchAll($where, $order, $count, $offset);
     }
 
