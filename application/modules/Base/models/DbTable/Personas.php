@@ -66,33 +66,6 @@ class Base_Model_DbTable_Personas extends Rad_Db_Table_SemiReferencial
            'refTable'           => 'TiposDeInscripcionesIB',
            'refColumns'         => 'Id'
        ),
-       'TiposFormasDePagos' => array(
-        'columns'            => 'TipoFormaDePago',
-        'refTableClass'      => 'Base_Model_DbTable_TiposFormasDePagos',
-        'refJoinColumns'     => array('Descripcion'),
-        'comboBox'           => true,
-        'comboSource'        => 'datagateway/combolist',
-        'refTable'           => 'TiposFormasDePagos',
-        'refColumns'         => 'Id'
-    ),
-        'TiposFletesACargo' => array(
-            'columns'            => 'TipoFleteACargo',
-            'refTableClass'      => 'Base_Model_DbTable_TiposFletesACargo',
-            'refJoinColumns'     => array('Descripcion'),
-            'comboBox'           => true,
-            'comboSource'        => 'datagateway/combolist',
-            'refTable'           => 'TiposFletesACargo',
-            'refColumns'         => 'Id'
-        ),
-        'TiposDeDocumentos' => array(
-            'columns'           => 'TipoDeDocumento',
-            'refTableClass'     => 'Base_Model_DbTable_TiposDeDocumentos',
-            'refJoinColumns'    => array('Descripcion'),
-            'comboBox'          => true,
-            'comboSource'       => 'datagateway/combolist',
-            'refTable'          => 'TiposDeDocumentos',
-            'refColumns'        => 'Id'
-        ),
         'Sexos' => array(
             'columns'           => 'Sexo',
             'refTableClass'     => 'Base_Model_DbTable_Sexos',
@@ -170,16 +143,11 @@ class Base_Model_DbTable_Personas extends Rad_Db_Table_SemiReferencial
              if($data['Cuit']){
                $condicion = "Cuit = '".$data['Cuit']."' AND Personas.Id <> ".$row->Id;
                $Cuit = $this->fetchRow($condicion);
-
                if($Cuit) throw new Rad_Db_Table_Exception("Ya existe ese Cuit.");
              }
-
              parent::update($data,'Personas.Id ='.$row->Id);
-
            }
-
             $this->_db->commit();
-
             return true;
         } catch (Exception $e) {
             $this->_db->rollBack();

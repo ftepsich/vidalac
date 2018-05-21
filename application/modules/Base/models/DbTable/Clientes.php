@@ -20,33 +20,6 @@ class Base_Model_DbTable_Clientes extends Base_Model_DbTable_Personas
 
 
     protected $_referenceMap = array(	
-        'ModalidadesIVA' => array(
-            'columns'           => 'ModalidadIva',
-            'refTableClass'     => 'Base_Model_DbTable_ModalidadesIVA',
-            'refJoinColumns'    => array('Descripcion'),
-            'comboBox'          => true,
-            'comboSource'       => 'datagateway/combolist',
-            'refTable'          => 'ModalidadesIVA',
-            'refColumns'        => 'Id'
-        ),
-        'TiposDeInscripcionesIB' => array(
-            'columns'           => 'TipoInscripcionIB',
-            'refTableClass'     => 'Base_Model_DbTable_TiposDeInscripcionesIB',
-            'refJoinColumns'    => array('Descripcion'),
-            'comboBox'          => true,
-            'comboSource'       => 'datagateway/combolist',
-            'refTable'          => 'TiposDeInscripcionesIB',
-            'refColumns'        => 'Id'	
-        ),
-        'TiposDeInscripcionesGanancias' => array(
-            'columns'           => 'ModalidadGanancia',
-            'refTableClass'     => 'Base_Model_DbTable_TiposDeInscripcionesGanancias',
-            'refJoinColumns'    => array('Descripcion'),
-            'comboBox'          => true,
-            'comboSource'       => 'datagateway/combolist',
-            'refTable'          => 'TiposDeInscripcionesGanancias',
-            'refColumns'        => 'Id'
-        ),
         'TiposFormasDePagos' => array(
             'columns'            => 'TipoFormaDePago',
             'refTableClass'      => 'Base_Model_DbTable_TiposFormasDePagos',
@@ -65,7 +38,6 @@ class Base_Model_DbTable_Clientes extends Base_Model_DbTable_Personas
             'refTable'           => 'TiposFletesACargo',
             'refColumns'         => 'Id'
         )
-
     );
 
     /**
@@ -87,7 +59,6 @@ class Base_Model_DbTable_Clientes extends Base_Model_DbTable_Personas
         );        
         parent::init();     
         $this->_calculatedFields['IBProximosVencimientosCM05'] = "(SELECT COUNT(Id) FROM personasingresosbrutos WHERE Persona = Personas.Id AND FechaVencimientoCM05 IS NOT NULL AND FechaVencimientoCM05 < DATE_ADD(CURDATE(), INTERVAL 10 DAY) )";
-   
     }    
 
     public function fetchTieneComprobantes($where = null, $order = null, $count = null, $offset = null)
@@ -102,7 +73,6 @@ class Base_Model_DbTable_Clientes extends Base_Model_DbTable_Personas
         }
         $condicion = 'ClientesComprobantes.Id is not null';
         $where = $this->_addCondition($where, $condicion);        
-
         return parent::fetchAll($where, $order, $count, $offset);
     }    
 }

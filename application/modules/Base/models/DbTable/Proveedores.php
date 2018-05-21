@@ -19,36 +19,6 @@ class Base_Model_DbTable_Proveedores extends Base_Model_DbTable_Personas
     protected $_sort = array('RazonSocial ASC');
     protected $_permanentValues = array('EsProveedor' => 1);
 
-    protected $_referenceMap = array(
-        'ModalidadesIVA' => array(
-            'columns'           => 'ModalidadIva',
-            'refTableClass'     => 'Base_Model_DbTable_ModalidadesIVA',
-            'refJoinColumns'    => array('Descripcion'),
-            'comboBox'          => true,
-            'comboSource'       => 'datagateway/combolist',
-            'refTable'          => 'ModalidadesIVA',
-            'refColumns'        => 'Id'
-        ),
-        'TiposDeInscripcionesGanancias' => array(
-            'columns'           => 'ModalidadGanancia',
-            'refTableClass'     => 'Base_Model_DbTable_TiposDeInscripcionesGanancias',
-            'refJoinColumns'    => array('Descripcion'),
-            'comboBox'          => true,
-            'comboSource'       => 'datagateway/combolist',
-            'refTable'          => 'TiposDeInscripcionesGanancias',
-            'refColumns'        => 'Id'
-        ),
-        'TiposDeInscripcionesIB' => array(
-            'columns'           => 'TipoInscripcionIB',
-            'refTableClass'     => 'Base_Model_DbTable_TiposDeInscripcionesIB',
-            'refJoinColumns'    => array('Descripcion'),
-            'comboBox'          => true,
-            'comboSource'       => 'datagateway/combolist',
-            'refTable'          => 'TiposDeInscripcionesIB',
-            'refColumns'        => 'Id'	
-        )
- 
-    );
 
     public function init ()
     {
@@ -58,10 +28,8 @@ class Base_Model_DbTable_Proveedores extends Base_Model_DbTable_Personas
 
     public function fetchTransporte($where = null, $order = null, $count = null, $offset = null)
     {
-        $condicion = 'EsTransporte = 1';
-        
-        $where = $this->_addCondition($where, $condicion);
-        
+        $condicion = 'EsTransporte = 1';     
+        $where = $this->_addCondition($where, $condicion);    
         return parent::fetchAll($where, $order, $count, $offset);
     }
 
