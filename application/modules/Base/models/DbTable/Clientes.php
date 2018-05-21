@@ -20,6 +20,24 @@ class Base_Model_DbTable_Clientes extends Base_Model_DbTable_Personas
 
 
     protected $_referenceMap = array(	
+        'TiposDeInscripcionesGanancias' => array(
+            'columns'            => 'ModalidadGanancia',
+            'refTableClass'      => 'Base_Model_DbTable_TiposDeInscripcionesGanancias',
+            'refJoinColumns'     => array('Descripcion'),
+            'comboBox'           => true,
+            'comboSource'        => 'datagateway/combolist',
+            'refTable'           => 'TiposDeInscripcionesGanancias',
+            'refColumns'         => 'Id'
+        ),
+        'TiposDeInscripcionesIB' => array(
+            'columns'            => 'TipoInscripcionIB',
+            'refTableClass'      => 'Base_Model_DbTable_TiposDeInscripcionesIB',
+            'refJoinColumns'     => array('Descripcion'),
+            'comboBox'           => true,
+            'comboSource'        => 'datagateway/combolist',
+            'refTable'           => 'TiposDeInscripcionesIB',
+            'refColumns'         => 'Id'
+        ),
         'TiposFormasDePagos' => array(
             'columns'            => 'TipoFormaDePago',
             'refTableClass'      => 'Base_Model_DbTable_TiposFormasDePagos',
