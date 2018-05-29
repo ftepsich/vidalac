@@ -1,0 +1,121 @@
+#!/usr/bin/php
+<?php
+
+function getTasks()
+{
+    $dir = opendir('Task');
+    $a   = array();
+
+    while (false !== ($t = readdir($dir))) {
+        if ($t == '.' || $t == '..' || $t == 'Abstract.php') continue;
+        $a[] = str_replace('.php', '', $t);
+    }
+
+    return $a;
+}
+
+function phrases_that_begin_with($t)
+{
+    $beginWith = function($f) use ($t) {
+        return !strncmp($f, $t, strlen($t));
+    };
+
+    return array_filter(getTasks(), $beginWith);
+}
+
+function completion($input, $index)
+{
+    // Get info about the current buffer
+    $rl_info = readline_info();
+
+    // Figure out what the entire input is
+    $full_input = substr($rl_info['line_buffer'], 0, $rl_info['end']);
+
+    $matches = array();
+
+    // Get all matches based on the entire input buffer
+    foreach (phrases_that_begin_with($full_input) as $phrase) {
+        // Only add the end of the input (where this word begins)
+        // to the matches array
+        $matches[] = substr($phrase, $index);
+    }
+
+    return $matches;
+}
+
+
+require 'ProcessAbstract.php';
+
+class CmProcess extends ProcessAbstract
+{
+    public function run()
+    {
+        $argv = $_SERVER["argv"];
+
+        $c = new Rad_Util_Colors;
+
+        // veo si viene la tarea
+        if (!@$argv[1]) {
+
+            echo $c("\nRad Command Line\n",'light_blue',null);
+            echo "----------------\n\n";
+            echo "Uso:             ".$c('cm tarea [parametros]','light_green',null)."\n";
+            echo "Lista de Tareas: ".$c('cm -l','light_green',null)."\n";
+            echo "Ayuda de Tareas: ".$c('cm tarea -h','light_green',null)."\n\n";
+
+            readline_completion_function('completion');
+
+            $tareac = trim(readline("Tarea a ejecutar: "));
+
+            if ($tareac) {
+                $argv = explode(' ','cm '.$tareac);
+            }
+        }
+        if (@$argv[1] == "-l" || !@$argv[1]) { // listamos
+
+            echo "Tareas Disponibles:\n\n";
+
+            foreach (getTasks() as $key => $value) {
+                echo '  '.$c($value,'light_green',null)."\n";
+            }
+
+        } else {
+
+            $name  = $argv[1];
+            $tarea = "Task_".$name;
+
+            if (!file_exists('Task/'.$name.'.php')) {
+                die("Error: La tarea $name no existe.\n");
+            }
+
+            include('Task/'.$name.'.php');
+
+            $task = new $tarea();
+
+            // si se envia -h mostramos la ayuda
+            if (@$argv[2] == "-h") {
+                die($task->printHelp()."\n\n");
+            }
+
+            array_shift($argv);
+            array_shift($argv);
+
+            //Target our class
+            $reflector = new ReflectionClass($tarea);
+
+            //Get the parameters of a method
+            $rParameters = $reflector->getMethod('run')->getNumberOfRequiredParameters();
+
+            if ($rParameters > count($argv)) {
+                die($task->printHelp());
+            }
+
+            call_user_func_array(array($task, "run"), $argv );
+        }
+
+        echo "\n";
+    }
+}
+
+$cm = new CmProcess;
+$cm->run();

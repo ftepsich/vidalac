@@ -1,0 +1,2087 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.21" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 2.5.2.v20100208 Build &lt;2.5.2.v20100210-0630></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">120</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">librerias/ConectorDB.rptlibrary</property>
+            <property name="namespace">ConectorDB</property>
+        </structure>
+        <structure>
+            <property name="fileName">librerias/CabeceraInterna.rptlibrary</property>
+            <property name="namespace">CabeceraInterna</property>
+        </structure>
+    </list-property>
+    <list-property name="cssStyleSheets">
+        <structure>
+            <property name="fileName">css/EstiloBase.css</property>
+        </structure>
+    </list-property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Base" id="186"
+ extends="ConectorDB.DataSource">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+            </list-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="LibroDetalle" id="8">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Cid</property>
+                    <text-property name="displayName">Cid</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">LibroIVA</property>
+                    <text-property name="displayName">LibroIVA</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">RazonSocial</property>
+                    <text-property name="displayName">RazonSocial</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Cuit</property>
+                    <text-property name="displayName">Cuit</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ImpNeto</property>
+                    <text-property name="displayName">ImpNeto</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">IVA21</property>
+                    <text-property name="displayName">IVA21</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">IVA10</property>
+                    <text-property name="displayName">IVA10</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">IVA27</property>
+                    <text-property name="displayName">IVA27</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">IVA5</property>
+                    <text-property name="displayName">IVA5</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">IVA25</property>
+                    <text-property name="displayName">IVA25</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ImpuestosInternos</property>
+                    <text-property name="displayName">ImpuestosInternos</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">OPercRet</property>
+                    <text-property name="displayName">OPercRet</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PerRetIVA</property>
+                    <text-property name="displayName">PerRetIVA</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PerRetGan</property>
+                    <text-property name="displayName">PerRetGan</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PerRetSuss</property>
+                    <text-property name="displayName">PerRetSuss</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PerRetIB</property>
+                    <text-property name="displayName">PerRetIB</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ImporteTotalComprobante</property>
+                    <text-property name="displayName">ImporteTotalComprobante</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ImporteConceptosExentosONoGravados</property>
+                    <text-property name="displayName">ImporteConceptosExentosONoGravados</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">NumeroC</property>
+                    <text-property name="displayName">NumeroC</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">FechaEmision</property>
+                    <text-property name="displayName">FechaEmision</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TipoDeLibro</property>
+                    <text-property name="displayName">TipoDeLibro</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Periodo</property>
+                    <text-property name="displayName">Periodo</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TipoLibroDetalle</property>
+                    <text-property name="displayName">TipoLibroDetalle</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Cid</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">LibroIVA</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">RazonSocial</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">Cuit</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">ImpNeto</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">IVA21</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">IVA10</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">IVA27</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">IVA5</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">IVA25</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">ImpuestosInternos</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">OPercRet</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">PerRetIVA</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">PerRetGan</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">PerRetSuss</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">PerRetIB</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">ImporteTotalComprobante</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">ImporteConceptosExentosONoGravados</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">19</property>
+                        <property name="name">NumeroC</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">20</property>
+                        <property name="name">FechaEmision</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">21</property>
+                        <property name="name">TipoDeLibro</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">22</property>
+                        <property name="name">Periodo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">23</property>
+                        <property name="name">TipoLibroDetalle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Cid</property>
+                    <property name="nativeName">Cid</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">LibroIVA</property>
+                    <property name="nativeName">LibroIVA</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">RazonSocial</property>
+                    <property name="nativeName">RazonSocial</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">Cuit</property>
+                    <property name="nativeName">Cuit</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">ImpNeto</property>
+                    <property name="nativeName">ImpNeto</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">IVA21</property>
+                    <property name="nativeName">IVA21</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">IVA10</property>
+                    <property name="nativeName">IVA10</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">IVA27</property>
+                    <property name="nativeName">IVA27</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">IVA5</property>
+                    <property name="nativeName">IVA5</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">IVA25</property>
+                    <property name="nativeName">IVA25</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">ImpuestosInternos</property>
+                    <property name="nativeName">ImpuestosInternos</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">OPercRet</property>
+                    <property name="nativeName">OPercRet</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">PerRetIVA</property>
+                    <property name="nativeName">PerRetIVA</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">PerRetGan</property>
+                    <property name="nativeName">PerRetGan</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">PerRetSuss</property>
+                    <property name="nativeName">PerRetSuss</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">PerRetIB</property>
+                    <property name="nativeName">PerRetIB</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">ImporteTotalComprobante</property>
+                    <property name="nativeName">ImporteTotalComprobante</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">18</property>
+                    <property name="name">ImporteConceptosExentosONoGravados</property>
+                    <property name="nativeName">ImporteConceptosExentosONoGravados</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">19</property>
+                    <property name="name">NumeroC</property>
+                    <property name="nativeName">NumeroC</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">20</property>
+                    <property name="name">FechaEmision</property>
+                    <property name="nativeName">FechaEmision</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">21</property>
+                    <property name="name">TipoDeLibro</property>
+                    <property name="nativeName">TipoDeLibro</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">22</property>
+                    <property name="name">Periodo</property>
+                    <property name="nativeName">Periodo</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">23</property>
+                    <property name="name">TipoLibroDetalle</property>
+                    <property name="nativeName">TipoLibroDetalle</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[	SELECT * FROM (
+	SELECT
+		C.Id as Cid,
+		L.LibroIVA,
+		IF (C.Anulado = 0,P.RazonSocial,"ANULADA") AS RazonSocial,
+		IF (C.Anulado = 0,P.Cuit,"") AS Cuit,
+        (L.ImporteNetoGravado105 + L.ImporteNetoGravado210 + L.ImporteNetoGravado270 + L.ImporteNetoGravado5 + L.ImporteNetoGravado25) AS ImpNeto,
+        L.ImporteIVA210 AS IVA21,
+        L.ImporteIVA105 AS IVA10,
+        L.ImporteIVA270 AS IVA27,
+        L.ImporteIVA5   AS IVA5,
+        L.ImporteIVA25  AS IVA25,
+		L.ImporteImpuestosInternos AS ImpuestosInternos,
+		(L.ImporteOtrasPercepcionesImpuestosNacionales + L.ImporteOtrasRetencionesImpuestosNacionales + L.ImporteOtrasPercepcionesImpuestosProvinciales + L.ImporteOtrasRetencionesImpuestosProvinciales + L.ImportePercepcionesTasaMunicipales + L.ImporteRetencionesTasaMunicipales) AS OPercRet,
+		(L.ImportePercepcionesIVA + L.ImporteRetencionesIVA) AS PerRetIVA,
+		(L.ImportePercepcionesGanancias + L.ImporteRetencionesGanancias) AS PerRetGan,
+		(L.ImportePercepcionesSuss + L.ImporteRetencionesSuss) AS PerRetSuss,
+		(L.ImportePercepcionesIB + L.ImporteRetencionesIB) AS PerRetIB,
+		L.ImporteTotalComprobante,
+		L.ImporteConceptosExentosONoGravados,
+		fNumeroCompleto(C.Id,'R') AS NumeroC,
+		C.FechaEmision,
+		L.TipoDeLibro,
+		LI.Descripcion AS Periodo,
+		CASE L.TipoDeLibro WHEN 1 THEN "Compra" WHEN 2 THEN "Venta" END AS TipoLibroDetalle 
+	FROM LibrosIVADetalles L
+		INNER JOIN 	Comprobantes C 				ON C.Id = L.Comprobante
+		INNER JOIN 	TiposDeComprobantes TC 		ON TC.Id = C.TipoDeComprobante
+		INNER JOIN 	Personas P 					ON P.Id = L.Persona
+		INNER JOIN 	LibrosIVA LI 				ON LI.Id = L.LibroIVA
+		LEFT JOIN 	ConceptosImpositivos CI 	ON C.ConceptoImpositivo = CI.Id
+		LEFT JOIN 	PuntosDeVentas PV 			ON PV.Id = C.Punto
+	WHERE L.Comprobante IS NOT NULL
+	UNION
+	SELECT
+		L.Comprobante as Cid,
+		L.LibroIVA,
+		"ANULADA (SIN EMITIR)" AS RazonSocial,
+		"" AS Cuit,
+		0 AS ImpNeto,
+		0 AS IVA21,
+		0 AS IVA10,
+		0 AS IVA27,
+        0 AS IVA5,
+        0 AS IVA25,
+		0 AS ImpuestosInternos,
+		0 AS OPercRet,
+		0 AS PerRetIVA,
+		0 AS PerRetGan,
+		0 AS PerRetSuss,
+		0 AS PerRetIB,
+		0 AS ImporteTotalComprobante,
+		0 AS ImporteConceptosExentosONoGravados,
+		L.Numero AS NumeroC,
+		FechaVencimiento AS FechaEmision,
+		L.TipoDeLibro,
+		LI.Descripcion AS Periodo,
+		TLI.Descripcion AS TipoLibroDetalle 
+	FROM LibrosIVADetalles L
+		INNER JOIN LibrosIVA LI 		ON LI.Id = L.LibroIVA
+		INNER JOIN TiposDeLibrosIVA TLI ON TLI.Id = L.TipoDeLibro
+	WHERE L.Comprobante IS NULL 
+) AS UnionLibroIVA
+-- where UnionLibroIVA.LibroIVA = 75
+{WHERE}
+ORDER BY FechaEmision, NumeroC
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>1.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>LibroIVA</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>LibroIVA</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>LibroIVA</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>RazonSocial</design:name>
+            <design:position>2</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>RazonSocial</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>RazonSocial</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Cuit</design:name>
+            <design:position>3</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>13</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Cuit</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Cuit</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>NroInscripcionIB</design:name>
+            <design:position>4</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>NroInscripcionIB</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>NroInscripcionIB</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>ImporteNetoGravado105</design:name>
+            <design:position>5</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>12</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ImpNG105</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ImpNG105</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>ImporteNetoGravado210</design:name>
+            <design:position>6</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>12</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ImpNG210</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ImpNG210</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>ImporteNetoGravado270</design:name>
+            <design:position>7</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>12</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ImpNG270</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ImpNG270</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>IVA21</design:name>
+            <design:position>8</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>12</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>IVA21</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>IVA21</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>IVA10</design:name>
+            <design:position>9</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>12</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>IVA10</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>IVA10</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>IVA27</design:name>
+            <design:position>10</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>12</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>IVA27</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>IVA27</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>ImpuestosInternos</design:name>
+            <design:position>11</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>12</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ImpuestosInternos</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ImpuestosInternos</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>ImportePercepcionesIVA</design:name>
+            <design:position>12</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>12</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PercepcionIVA</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PercepcionIVA</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>ImporteOtrasPercepcionesImpuestosNacionales</design:name>
+            <design:position>13</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>12</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>OtrasPercepciones</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>OtrasPercepciones</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>ImportePercepcionesImpuestosProvinciales</design:name>
+            <design:position>14</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>12</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PercepcioneIB</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PercepcioneIB</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>ImportePercepcionesTasaMunicipales</design:name>
+            <design:position>15</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>12</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PercepcionMun</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PercepcionMun</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>ImporteTotalComprobante</design:name>
+            <design:position>16</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>12</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ImporteTotalComprobante</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ImporteTotalComprobante</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Punto</design:name>
+            <design:position>17</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Punto</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Punto</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Numero</design:name>
+            <design:position>18</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Numero</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Numero</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>FechaEmision</design:name>
+            <design:position>19</design:position>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>FechaEmision</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>FechaEmision</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>TipoLibro</design:name>
+            <design:position>20</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>6</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TipoLibro</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TipoLibro</design:label>
+            <design:formattingHints>
+              <design:displaySize>6</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ProvinciaDestino" id="2487">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Provincia</property>
+                    <property name="alias">Provincia</property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">Comprobante</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Provincia</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Provincia</property>
+                    <property name="nativeName">Provincia</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT 	DISTINCT 
+		UPPER (P.Descripcion) AS Provincia
+from 	ComprobantesRelacionados CR
+inner join Comprobantes Remito 	on Remito.Id 	= CR.ComprobanteHijo
+inner join Direcciones Dir 		on Dir.Id 		= Remito.DepositoEntrega
+inner join Localidades L		on L.Id			= Dir.Localidad
+inner join Provincias P			on P.Id			= L.Provincia
+where	CR.ComprobantePadre = ?]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="PerRet" id="2526">
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">Comprobante</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">1</property>
+                    <expression name="defaultValue" type="javascript">0</expression>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Descripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Monto</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Descripcion</property>
+                    <property name="nativeName">Descripcion</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">Monto</property>
+                    <property name="nativeName">Monto</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[call Birt_LibroIVA_columna_PerRet(?);]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie">
+            <property name="type">us-legal</property>
+            <property name="orientation">landscape</property>
+            <property name="leftMargin">0.15in</property>
+            <property name="rightMargin">0.15in</property>
+            <overridden-values>
+                <ref-entry baseId="2434" name="Cabecera" id="2434"/>
+                <ref-entry baseId="2435" id="2435"/>
+                <ref-entry baseId="2436" id="2436"/>
+                <ref-entry baseId="2437" id="2437"/>
+                <ref-entry baseId="2438" name="NewLabel1" id="2438"/>
+                <ref-entry baseId="2404" name="NewGrid" id="2404"/>
+                <ref-entry baseId="2405" id="2405"/>
+                <ref-entry baseId="2406" id="2406"/>
+                <ref-entry baseId="2419" id="2419"/>
+                <ref-entry baseId="2417" id="2417"/>
+                <ref-entry baseId="2407" id="2407"/>
+                <ref-entry baseId="2408" id="2408"/>
+                <ref-entry baseId="2409" id="2409"/>
+                <ref-entry baseId="2433" name="NewLabel" id="2433"/>
+                <ref-entry baseId="2410" id="2410"/>
+                <ref-entry baseId="2432" name="NewText" id="2432"/>
+                <ref-entry baseId="2418" id="2418"/>
+                <ref-entry baseId="2416" id="2416"/>
+                <ref-entry baseId="2411" id="2411"/>
+                <ref-entry baseId="2421" name="NewGrid1" id="2421"/>
+                <ref-entry baseId="2422" id="2422"/>
+                <ref-entry baseId="2423" id="2423"/>
+                <ref-entry baseId="2424" id="2424"/>
+                <ref-entry baseId="2425" id="2425"/>
+                <ref-entry baseId="2426" id="2426"/>
+                <ref-entry baseId="2427" name="NewAutoText" id="2427"/>
+                <ref-entry baseId="2428" id="2428"/>
+                <ref-entry baseId="2429" name="NewText1" id="2429"/>
+                <ref-entry baseId="2430" id="2430"/>
+                <ref-entry baseId="2431" name="NewAutoText1" id="2431"/>
+            </overridden-values>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid name="Separador 1" id="2478">
+            <property name="height">5pt</property>
+            <column id="2479"/>
+            <row id="2480">
+                <cell id="2481"/>
+            </row>
+        </grid>
+        <grid name="TextoEncabezado" id="2519">
+            <column id="2520"/>
+            <row id="2521">
+                <cell id="2522">
+                    <label id="2523">
+                        <property name="style">encabezado-Estilo-1</property>
+                        <text-property name="text">{TEXTO}</text-property>
+                    </label>
+                </cell>
+            </row>
+        </grid>
+        <grid name="Separador 2" id="2474">
+            <property name="height">5pt</property>
+            <column id="2475"/>
+            <row id="2476">
+                <cell id="2477"/>
+            </row>
+        </grid>
+        <table id="10">
+            <property name="width">13.666666666666666in</property>
+            <property name="dataSet">LibroDetalle</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Cid</property>
+                    <expression name="expression" type="javascript">dataSetRow["Cid"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">LibroIVA</property>
+                    <expression name="expression" type="javascript">dataSetRow["LibroIVA"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">RazonSocial</property>
+                    <expression name="expression" type="javascript">dataSetRow["RazonSocial"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Cuit</property>
+                    <expression name="expression" type="javascript">dataSetRow["Cuit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">ImpNeto</property>
+                    <expression name="expression" type="javascript">dataSetRow["ImpNeto"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">IVA21</property>
+                    <expression name="expression" type="javascript">dataSetRow["IVA21"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">IVA10</property>
+                    <expression name="expression" type="javascript">dataSetRow["IVA10"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">IVA27</property>
+                    <expression name="expression" type="javascript">dataSetRow["IVA27"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">ImpuestosInternos</property>
+                    <expression name="expression" type="javascript">dataSetRow["ImpuestosInternos"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">OPercRet</property>
+                    <expression name="expression" type="javascript">dataSetRow["OPercRet"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">PerRetIVA</property>
+                    <expression name="expression" type="javascript">dataSetRow["PerRetIVA"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">PerRetGan</property>
+                    <expression name="expression" type="javascript">dataSetRow["PerRetGan"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">PerRetSuss</property>
+                    <expression name="expression" type="javascript">dataSetRow["PerRetSuss"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">PerRetIB</property>
+                    <expression name="expression" type="javascript">dataSetRow["PerRetIB"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">ImporteTotalComprobante</property>
+                    <expression name="expression" type="javascript">dataSetRow["ImporteTotalComprobante"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">ImporteConceptosExentosONoGravados</property>
+                    <expression name="expression" type="javascript">dataSetRow["ImporteConceptosExentosONoGravados"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">NumeroC</property>
+                    <expression name="expression" type="javascript">dataSetRow["NumeroC"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaEmision</property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaEmision"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">TipoDeLibro</property>
+                    <expression name="expression" type="javascript">dataSetRow["TipoDeLibro"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">Periodo</property>
+                    <expression name="expression" type="javascript">dataSetRow["Periodo"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TipoLibroDetalle</property>
+                    <expression name="expression" type="javascript">dataSetRow["TipoLibroDetalle"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["ImpNeto"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation_1</property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["ImpNeto"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">SumNeto</property>
+                    <text-property name="displayName">SumNeto</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["ImpNeto"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">Sum21</property>
+                    <text-property name="displayName">Sum21</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["IVA21"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">Sum27</property>
+                    <text-property name="displayName">Sum27</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["IVA27"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">Sum105</property>
+                    <text-property name="displayName">Sum105</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["IVA10"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">SumImpInt</property>
+                    <text-property name="displayName">SumImpInt</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["ImpuestosInternos"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">SumPRIVA</property>
+                    <text-property name="displayName">SumPRIVA</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["PerRetIVA"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">SumPRIB</property>
+                    <text-property name="displayName">SumPRIB</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["PerRetIB"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">SumPRGan</property>
+                    <text-property name="displayName">SumPRGan</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["PerRetGan"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">SumPRSuss</property>
+                    <text-property name="displayName">SumPRSuss</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["PerRetSuss"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">SumPRO</property>
+                    <text-property name="displayName">SumPRO</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["OPercRet"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">SumTotal</property>
+                    <text-property name="displayName">SumTotal</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["ImporteTotalComprobante"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">SumNoGrvado</property>
+                    <text-property name="displayName">SumNoGrvado</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["ImporteConceptosExentosONoGravados"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">IVA5</property>
+                    <text-property name="displayName">IVA5</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["IVA5"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">IVA25</property>
+                    <text-property name="displayName">IVA25</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["IVA25"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Sum5</property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["IVA5"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">Sum25</property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["IVA25"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+            </list-property>
+            <property name="pageBreakInterval">0</property>
+            <column id="105">
+                <property name="width">1.71875in</property>
+            </column>
+            <column id="171">
+                <property name="width">1.0625in</property>
+            </column>
+            <column id="167">
+                <property name="width">0.625in</property>
+            </column>
+            <column id="108">
+                <property name="width">0.68in</property>
+            </column>
+            <column id="109">
+                <property name="width">0.68in</property>
+            </column>
+            <column id="110">
+                <property name="width">0.68in</property>
+            </column>
+            <column id="111">
+                <property name="width">0.68in</property>
+            </column>
+            <column id="112">
+                <property name="width">0.68in</property>
+            </column>
+            <column id="2533">
+                <property name="width">0.68in</property>
+            </column>
+            <column id="2537">
+                <property name="width">0.68in</property>
+            </column>
+            <column id="352">
+                <property name="width">0.68in</property>
+            </column>
+            <column id="113">
+                <property name="width">0.68in</property>
+            </column>
+            <column id="114">
+                <property name="width">0.68in</property>
+            </column>
+            <column id="207">
+                <property name="width">0.68in</property>
+            </column>
+            <column id="213">
+                <property name="width">0.68in</property>
+            </column>
+            <column id="219">
+                <property name="width">0.68in</property>
+            </column>
+            <column id="118">
+                <property name="width">0.7916666666666666in</property>
+            </column>
+            <column id="2499">
+                <property name="width">0.06666666666666667in</property>
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
+            <column id="2485">
+                <property name="width">1.3020833333333333in</property>
+            </column>
+            <header>
+                <row id="11">
+                    <property name="height">0.2604166666666667in</property>
+                    <property name="fontSize">6pt</property>
+                    <property name="borderBottomColor">#000000</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <cell id="13">
+                        <label id="2462">
+                            <property name="fontSize">7pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">CUIT / Razon Social</text-property>
+                        </label>
+                    </cell>
+                    <cell id="168">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">1</property>
+                        <label id="2465">
+                            <property name="fontSize">7pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Comprobante</text-property>
+                        </label>
+                    </cell>
+                    <cell id="164">
+                        <label id="2466">
+                            <property name="fontSize">7pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Fecha</text-property>
+                        </label>
+                    </cell>
+                    <cell id="16">
+                        <property name="paddingLeft">2pt</property>
+                        <property name="paddingRight">1pt</property>
+                        <property name="textAlign">right</property>
+                        <label id="2467">
+                            <property name="fontSize">7pt</property>
+                            <text-property name="text">Neto</text-property>
+                        </label>
+                    </cell>
+                    <cell id="17">
+                        <property name="paddingLeft">2pt</property>
+                        <property name="paddingRight">1pt</property>
+                        <property name="textAlign">right</property>
+                        <label id="2472">
+                            <property name="fontSize">7pt</property>
+                            <text-property name="text">No Grav</text-property>
+                        </label>
+                    </cell>
+                    <cell id="18">
+                        <property name="paddingLeft">2pt</property>
+                        <property name="paddingRight">1pt</property>
+                        <property name="textAlign">right</property>
+                        <label id="2468">
+                            <property name="fontSize">7pt</property>
+                            <text-property name="text">iva 21</text-property>
+                        </label>
+                    </cell>
+                    <cell id="19">
+                        <property name="paddingLeft">2pt</property>
+                        <property name="paddingRight">1pt</property>
+                        <property name="textAlign">right</property>
+                        <label id="2469">
+                            <property name="fontSize">7pt</property>
+                            <text-property name="text">iva 27</text-property>
+                        </label>
+                    </cell>
+                    <cell id="20">
+                        <property name="paddingLeft">2pt</property>
+                        <property name="paddingRight">1pt</property>
+                        <property name="textAlign">right</property>
+                        <label id="2470">
+                            <property name="fontSize">7pt</property>
+                            <text-property name="text">iva 10.5</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2530">
+                        <property name="paddingLeft">2pt</property>
+                        <property name="paddingRight">1pt</property>
+                        <property name="textAlign">right</property>
+                        <label id="2538">
+                            <property name="fontSize">7pt</property>
+                            <text-property name="text"> iva 5</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2534">
+                        <property name="paddingLeft">2pt</property>
+                        <property name="paddingRight">1pt</property>
+                        <property name="textAlign">right</property>
+                        <label id="2540">
+                            <property name="fontSize">7pt</property>
+                            <text-property name="text">iva 2.5</text-property>
+                        </label>
+                    </cell>
+                    <cell id="349">
+                        <property name="paddingLeft">2pt</property>
+                        <property name="paddingRight">1pt</property>
+                        <property name="textAlign">right</property>
+                        <label id="2471">
+                            <property name="fontSize">7pt</property>
+                            <text-property name="text">Imp Int</text-property>
+                        </label>
+                    </cell>
+                    <cell id="21">
+                        <property name="paddingLeft">2pt</property>
+                        <property name="paddingRight">1pt</property>
+                        <property name="textAlign">right</property>
+                        <label id="208">
+                            <property name="fontSize">7pt</property>
+                            <text-property name="text">P/R IVA</text-property>
+                        </label>
+                    </cell>
+                    <cell id="22">
+                        <property name="paddingLeft">2pt</property>
+                        <property name="paddingRight">1pt</property>
+                        <property name="textAlign">right</property>
+                        <label id="220">
+                            <property name="fontSize">7pt</property>
+                            <text-property name="text">P/R IB</text-property>
+                        </label>
+                    </cell>
+                    <cell id="204">
+                        <property name="paddingLeft">2pt</property>
+                        <property name="paddingRight">1pt</property>
+                        <property name="textAlign">right</property>
+                        <label id="2208">
+                            <property name="fontSize">7pt</property>
+                            <text-property name="text">P/R Gan</text-property>
+                        </label>
+                    </cell>
+                    <cell id="210">
+                        <property name="fontSize">6pt</property>
+                        <property name="paddingLeft">2pt</property>
+                        <property name="paddingRight">1pt</property>
+                        <property name="textAlign">right</property>
+                        <label id="2473">
+                            <property name="fontSize">7pt</property>
+                            <text-property name="text">P/R Suss</text-property>
+                        </label>
+                    </cell>
+                    <cell id="216">
+                        <property name="paddingLeft">2pt</property>
+                        <property name="paddingRight">1pt</property>
+                        <property name="textAlign">right</property>
+                        <label id="214">
+                            <property name="fontSize">7pt</property>
+                            <text-property name="text">P/R Otros</text-property>
+                        </label>
+                    </cell>
+                    <cell id="26">
+                        <property name="paddingLeft">2pt</property>
+                        <property name="paddingRight">1pt</property>
+                        <property name="textAlign">right</property>
+                        <label id="2210">
+                            <property name="fontSize">7pt</property>
+                            <text-property name="text">Total</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2496">
+                        <property name="paddingLeft">2pt</property>
+                        <property name="paddingRight">1pt</property>
+                        <property name="textAlign">right</property>
+                        <label id="2500">
+                            <text-property name="text">Cid</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2482">
+                        <property name="paddingLeft">2pt</property>
+                        <property name="paddingRight">1pt</property>
+                        <property name="textAlign">right</property>
+                        <label id="2486">
+                            <property name="fontSize">7pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Pers / Ret</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="42">
+                    <property name="overflow">hidden</property>
+                    <list-property name="highlightRules">
+                        <structure>
+                            <property name="operator">eq</property>
+                            <expression name="testExpr" type="javascript">row['__rownum'] % 2</expression>
+                            <simple-property-list name="value1">
+                                <value type="javascript">0</value>
+                            </simple-property-list>
+                            <property name="style">table-detail-2</property>
+                        </structure>
+                    </list-property>
+                    <cell id="44">
+                        <data id="2529">
+                            <property name="fontWeight">bold</property>
+                            <property name="resultSetColumn">Cuit</property>
+                        </data>
+                        <data id="361">
+                            <property name="fontSize">7pt</property>
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">RazonSocial</property>
+                        </data>
+                    </cell>
+                    <cell id="169">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">1</property>
+                        <property name="textAlign">right</property>
+                        <property name="orphans">2</property>
+                        <data id="363">
+                            <property name="fontSize">7pt</property>
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">NumeroC</property>
+                        </data>
+                    </cell>
+                    <cell id="165">
+                        <data id="364">
+                            <property name="fontSize">7pt</property>
+                            <structure name="dateTimeFormat">
+                                <property name="category">Medium Date</property>
+                                <property name="pattern">Medium Date</property>
+                                <property name="locale">es_AR</property>
+                            </structure>
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">FechaEmision</property>
+                        </data>
+                    </cell>
+                    <cell id="47">
+                        <data id="365">
+                            <property name="fontSize">7pt</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="numberAlign">right</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">ImpNeto</property>
+                        </data>
+                    </cell>
+                    <cell id="48">
+                        <data id="370">
+                            <property name="fontSize">7pt</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="numberAlign">right</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">ImporteConceptosExentosONoGravados</property>
+                        </data>
+                    </cell>
+                    <cell id="49">
+                        <data id="366">
+                            <property name="fontSize">7pt</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="numberAlign">right</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">IVA21</property>
+                        </data>
+                    </cell>
+                    <cell id="50">
+                        <data id="377">
+                            <property name="fontSize">7pt</property>
+                            <property name="numberAlign">right</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">IVA27</property>
+                        </data>
+                    </cell>
+                    <cell id="51">
+                        <data id="368">
+                            <property name="fontSize">7pt</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="numberAlign">right</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">IVA10</property>
+                        </data>
+                    </cell>
+                    <cell id="2531">
+                        <data id="2539">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">IVA5</property>
+                        </data>
+                    </cell>
+                    <cell id="2535">
+                        <data id="2541">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">IVA25</property>
+                        </data>
+                    </cell>
+                    <cell id="350">
+                        <data id="369">
+                            <property name="fontSize">7pt</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="numberAlign">right</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">ImpuestosInternos</property>
+                        </data>
+                    </cell>
+                    <cell id="52">
+                        <data id="371">
+                            <property name="fontSize">7pt</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="numberAlign">right</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">PerRetIVA</property>
+                        </data>
+                    </cell>
+                    <cell id="53">
+                        <data id="372">
+                            <property name="fontSize">7pt</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="numberAlign">right</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">PerRetIB</property>
+                        </data>
+                    </cell>
+                    <cell id="205">
+                        <data id="373">
+                            <property name="fontSize">7pt</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="numberAlign">right</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">PerRetGan</property>
+                        </data>
+                    </cell>
+                    <cell id="211">
+                        <data id="374">
+                            <property name="fontSize">7pt</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="numberAlign">right</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">PerRetSuss</property>
+                        </data>
+                    </cell>
+                    <cell id="217">
+                        <data id="375">
+                            <property name="fontSize">7pt</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="numberAlign">right</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">OPercRet</property>
+                        </data>
+                    </cell>
+                    <cell id="57">
+                        <data id="376">
+                            <property name="fontSize">7pt</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="numberAlign">right</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">ImporteTotalComprobante</property>
+                        </data>
+                    </cell>
+                    <cell id="2497">
+                        <data id="2502">
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">Cid</property>
+                        </data>
+                    </cell>
+                    <cell id="2483">
+                        <property name="paddingTop">1pt</property>
+                        <property name="paddingLeft">1pt</property>
+                        <property name="paddingBottom">1pt</property>
+                        <property name="paddingRight">1pt</property>
+                        <property name="verticalAlign">top</property>
+                        <table id="2488">
+                            <property name="dataSet">PerRet</property>
+                            <list-property name="paramBindings">
+                                <structure>
+                                    <property name="paramName">Comprobante</property>
+                                    <expression name="expression" type="javascript">row["Cid"]</expression>
+                                </structure>
+                            </list-property>
+                            <list-property name="boundDataColumns">
+                                <structure>
+                                    <property name="name">Descripcion</property>
+                                    <expression name="expression" type="javascript">dataSetRow["Descripcion"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">Monto</property>
+                                    <expression name="expression" type="javascript">dataSetRow["Monto"]</expression>
+                                    <property name="dataType">decimal</property>
+                                </structure>
+                            </list-property>
+                            <column id="2525"/>
+                            <column id="2495"/>
+                            <detail>
+                                <row id="2491">
+                                    <cell id="2524">
+                                        <property name="paddingTop">1pt</property>
+                                        <property name="paddingLeft">1pt</property>
+                                        <property name="paddingBottom">1pt</property>
+                                        <property name="paddingRight">1pt</property>
+                                        <data id="2527">
+                                            <property name="textAlign">left</property>
+                                            <property name="resultSetColumn">Descripcion</property>
+                                        </data>
+                                    </cell>
+                                    <cell id="2492">
+                                        <property name="paddingTop">1pt</property>
+                                        <property name="paddingLeft">1pt</property>
+                                        <property name="paddingBottom">1pt</property>
+                                        <property name="paddingRight">1pt</property>
+                                        <data id="2528">
+                                            <structure name="numberFormat">
+                                                <property name="category">Currency</property>
+                                                <property name="pattern">$ #,##0.00</property>
+                                            </structure>
+                                            <property name="textAlign">right</property>
+                                            <property name="resultSetColumn">Monto</property>
+                                        </data>
+                                    </cell>
+                                </row>
+                            </detail>
+                        </table>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="73">
+                    <cell id="75"/>
+                    <cell id="170"/>
+                    <cell id="166"/>
+                    <cell id="78">
+                        <property name="style">table-Totales</property>
+                        <property name="fontSize">8pt</property>
+                        <property name="textAlign">right</property>
+                        <data id="2507">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="resultSetColumn">SumNeto</property>
+                        </data>
+                    </cell>
+                    <cell id="79">
+                        <property name="style">table-Totales</property>
+                        <property name="fontSize">8pt</property>
+                        <property name="textAlign">right</property>
+                        <data id="2518">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="resultSetColumn">SumNoGrvado</property>
+                        </data>
+                    </cell>
+                    <cell id="80">
+                        <property name="style">table-Totales</property>
+                        <property name="fontSize">8pt</property>
+                        <property name="paddingLeft">1pt</property>
+                        <property name="paddingRight">2pt</property>
+                        <property name="textAlign">right</property>
+                        <data id="2508">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="resultSetColumn">Sum21</property>
+                        </data>
+                    </cell>
+                    <cell id="81">
+                        <property name="style">table-Totales</property>
+                        <property name="fontSize">8pt</property>
+                        <property name="textAlign">right</property>
+                        <data id="2509">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="resultSetColumn">Sum27</property>
+                        </data>
+                    </cell>
+                    <cell id="82">
+                        <property name="style">table-Totales</property>
+                        <property name="fontSize">8pt</property>
+                        <property name="textAlign">right</property>
+                        <data id="2510">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="resultSetColumn">Sum105</property>
+                        </data>
+                    </cell>
+                    <cell id="2532">
+                        <property name="style">table-Totales</property>
+                        <property name="fontSize">8pt</property>
+                        <property name="textAlign">right</property>
+                        <data id="2542">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="resultSetColumn">Sum5</property>
+                        </data>
+                    </cell>
+                    <cell id="2536">
+                        <property name="style">table-Totales</property>
+                        <property name="fontSize">8pt</property>
+                        <property name="textAlign">right</property>
+                        <data id="2543">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="resultSetColumn">Sum25</property>
+                        </data>
+                    </cell>
+                    <cell id="351">
+                        <property name="style">table-Totales</property>
+                        <property name="fontSize">8pt</property>
+                        <property name="textAlign">right</property>
+                        <data id="2511">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="resultSetColumn">SumImpInt</property>
+                        </data>
+                    </cell>
+                    <cell id="83">
+                        <property name="style">table-Totales</property>
+                        <property name="fontSize">8pt</property>
+                        <property name="textAlign">right</property>
+                        <data id="2512">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="resultSetColumn">SumPRIVA</property>
+                        </data>
+                    </cell>
+                    <cell id="84">
+                        <property name="style">table-Totales</property>
+                        <property name="fontSize">8pt</property>
+                        <property name="textAlign">right</property>
+                        <data id="2513">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="resultSetColumn">SumPRIB</property>
+                        </data>
+                    </cell>
+                    <cell id="206">
+                        <property name="style">table-Totales</property>
+                        <property name="fontSize">8pt</property>
+                        <property name="textAlign">right</property>
+                        <data id="2514">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="resultSetColumn">SumPRGan</property>
+                        </data>
+                    </cell>
+                    <cell id="212">
+                        <property name="style">table-Totales</property>
+                        <property name="fontSize">8pt</property>
+                        <property name="textAlign">right</property>
+                        <data id="2515">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="resultSetColumn">SumPRSuss</property>
+                        </data>
+                    </cell>
+                    <cell id="218">
+                        <property name="style">table-Totales</property>
+                        <property name="fontSize">8pt</property>
+                        <property name="textAlign">right</property>
+                        <data id="2516">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="resultSetColumn">SumPRO</property>
+                        </data>
+                    </cell>
+                    <cell id="88">
+                        <property name="style">table-Totales</property>
+                        <property name="fontSize">8pt</property>
+                        <property name="textAlign">right</property>
+                        <data id="2517">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00</property>
+                            </structure>
+                            <property name="resultSetColumn">SumTotal</property>
+                        </data>
+                    </cell>
+                    <cell id="2498">
+                        <property name="fontSize">8pt</property>
+                        <property name="textAlign">right</property>
+                    </cell>
+                    <cell id="2484">
+                        <property name="fontSize">8pt</property>
+                        <property name="textAlign">right</property>
+                    </cell>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

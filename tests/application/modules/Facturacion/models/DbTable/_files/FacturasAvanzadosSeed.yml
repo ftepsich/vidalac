@@ -1,0 +1,236 @@
+# PlanesDeCuentas:
+#    -
+#     Id : 54
+#     Padre : 53
+#     Descripcion : MERCADERIAS
+#     Jerarquia : 1.01.03.01.00.00
+#     SaldoHabitualDeudor : 0
+#     Imputable : 1
+#     SeOcupa : 1
+
+
+ProductosCategorias:
+  -
+    Id : 1
+    Descripcion:  Packaging
+    DescripcionR: PAK
+  -
+    Id : 2
+    Descripcion:  Productos De Prueba
+    DescripcionR: PDP
+
+Productos:
+  -
+    Id : 10
+    Descripcion : Producto 1
+    UnidadDeMedida : 6
+    ProductoCategoria : 2
+    DescripcionReducida : ""
+    TieneFormula : 1
+    EsInsumo : 1
+    RequiereAnalisis : 1
+  -
+    Id : 20
+    Descripcion : Packaging 1
+    UnidadDeMedida : 3
+    ProductoCategoria : 1
+    DescripcionReducida : ""
+    TieneFormula : 0
+    EsInsumo : 1
+    RequiereAnalisis : 0
+
+Articulos:
+  -
+    Id : 10
+    Tipo : 1
+    Codigo : 1000
+    Descripcion : Articulo 1
+    Producto : 10
+    EsProducido : 1
+    Cantidad : 50.00
+    UnidadDeMedida : 5
+    Packaging : 20
+    CodigoDeBarras : ""
+    RequiereProtocolo : 0
+    Cuenta : 2
+    Leyenda : ""
+    EsInsumo : 1
+    EsParaVenta : 1
+    EsParaCompra : 1
+    SeUtilizaParaFason : 0
+    RequiereLote : 0
+    IVA : 1
+    RNPA : ""
+    DescripcionLarga : Articulo 1 x 50kg
+    TipoDeControlDeStock : 1
+
+Personas:
+  - 
+    Id: 1
+    RazonSocial :  "Persona 1"
+    Denominacion : "Persona 1"
+    Cuit : "30-69801114-5"
+    ModalidadIva : 3
+    ModalidadGanancia : 1
+    NroInscripcionIB : "901-024694"
+    FechaDeAlta : 2011-01-01
+    EsProveedor : 1
+    EsCliente : 1
+  - 
+    Id: 2
+    RazonSocial :  "Persona 2"
+    Denominacion : "Persona 2"
+    Cuit : "30-69801114-6"
+    ModalidadIva : 3
+    ModalidadGanancia : 1
+    NroInscripcionIB : "901-024694"
+    FechaDeAlta : 2011-01-01
+    EsProveedor : 1
+    EsCliente : 1
+
+PuntosDeVentas:
+  - 
+    Id: 1
+    Numero: 1
+    Adaptador: 1
+  - 
+    Id: 2
+    Numero: 2
+    Adaptador: 2
+  - 
+    Id: 3
+    Numero: 3
+    Adaptador: 3
+
+LibrosIVA:
+  - 
+    Id: 1
+    Descripcion: "2009-11"
+    Mes: 11
+    Anio: 2009
+    Cerrado: 1
+  - 
+    Id: 2
+    Descripcion: "2009-12"
+    Mes: 12
+    Anio: 2009
+    Cerrado: 0
+
+
+
+
+
+Comprobantes:
+  - # Factura B
+    Id: 1
+    Persona: 2
+    Punto: 1
+    Numero: 1
+    Cerrado: 0
+    TipoDeComprobante: 25
+    FechaEmision: "2012-09-01"
+    LibroIVA: 1
+    Divisa: 1
+    ValorDivisa: 1
+    Despachado: 0
+    Modificado : 0
+    Anulado: 0
+    CondicionDePago : 1
+    
+  - # Factura A
+    Id: 2
+    Persona: 2
+    Punto: 1
+    Numero: 1
+    Cerrado: 0
+    TipoDeComprobante: 24
+    FechaEmision: "2012-09-01"
+    LibroIVA: 1
+    Divisa: 1
+    ValorDivisa: 1
+    Despachado: 0
+    Modificado : 0
+    Anulado: 0
+    CondicionDePago : 1
+  
+
+ComprobantesDetalles:
+# Articulos Factura B
+  -
+    Id : 10
+    Comprobante : 1
+    Articulo : 10
+    CuentaCasual : 2
+    Cantidad : 3.00
+    PrecioUnitario : 100.0000
+    ConceptoImpositivo : 1
+  -
+    Id : 20
+    Comprobante : 1
+    Articulo : 10
+    CuentaCasual : 2
+    Cantidad : 2.00
+    PrecioUnitario : 100.0000
+    ConceptoImpositivo : 6
+  -
+    Id : 30
+    Comprobante : 1
+    Articulo : 10
+    CuentaCasual : 2
+    Cantidad : 3.00
+    PrecioUnitario : 100.0000
+    ConceptoImpositivo : 21
+  -  
+    Id : 40
+    Comprobante : 1
+    Articulo : 10
+    CuentaCasual : 2
+    Cantidad : 2.00
+    PrecioUnitario : 100.0000
+    ConceptoImpositivo : 22
+
+# Articulos Factura A
+  -
+    Id : 50
+    Comprobante : 2
+    Articulo : 10
+    CuentaCasual : 2
+    Cantidad : 3.00
+    PrecioUnitario : 100.0000
+    ConceptoImpositivo : 1
+  -
+    Id : 60
+    Comprobante : 2
+    Articulo : 10
+    CuentaCasual : 2
+    Cantidad : 2.00
+    PrecioUnitario : 100.0000
+    ConceptoImpositivo : 6
+  -
+    Id : 70
+    Comprobante : 2
+    Articulo : 10
+    CuentaCasual : 2
+    Cantidad : 3.00
+    PrecioUnitario : 100.0000
+    ConceptoImpositivo : 21
+  -  
+    Id : 80
+    Comprobante : 2
+    Articulo : 10
+    CuentaCasual : 2
+    Cantidad : 2.00
+    PrecioUnitario : 100.0000
+    ConceptoImpositivo : 22
+
+LibrosIVADetalles:
+    #sin datos
+
+LibrosDiarios:
+    #sin datos
+
+LibrosDiariosDetalle:
+    #sin datos
+
+CuentasCorrientes:
+    #sin datos

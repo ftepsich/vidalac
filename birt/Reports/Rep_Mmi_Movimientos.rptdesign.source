@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.21" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 2.5.2.v20100208 Build &lt;2.5.2.v20100210-0630></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">120</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">librerias/ConectorDB.rptlibrary</property>
+            <property name="namespace">ConectorDB</property>
+        </structure>
+        <structure>
+            <property name="fileName">librerias/CabeceraInterna.rptlibrary</property>
+            <property name="namespace">CabeceraInterna</property>
+        </structure>
+    </list-property>
+    <list-property name="cssStyleSheets">
+        <structure>
+            <property name="fileName">css/EstiloBase.css</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="Id" id="2520">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Base" id="186"
+ extends="ConectorDB.DataSource">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+            </list-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Movimientos" id="2519">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Id</property>
+                    <text-property name="displayName">Id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Movimiento</property>
+                    <text-property name="displayName">Movimiento</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AlmacenOrigen</property>
+                    <text-property name="displayName">AlmacenOrigen</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">UbicacionOrigen</property>
+                    <text-property name="displayName">UbicacionOrigen</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AlmacenDestino</property>
+                    <text-property name="displayName">AlmacenDestino</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">UbicacionDestino</property>
+                    <text-property name="displayName">UbicacionDestino</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">MmiNumero</property>
+                    <text-property name="displayName">MmiNumero</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Palet</property>
+                    <text-property name="displayName">Palet</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">Fecha</property>
+                    <property name="paramName">Id</property>
+                    <property name="dataType">string</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Movimiento</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">AlmacenOrigen</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">UbicacionOrigen</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">AlmacenDestino</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">UbicacionDestino</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">MmiNumero</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">Palet</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Id</property>
+                    <property name="nativeName">Id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">Movimiento</property>
+                    <property name="nativeName">Movimiento</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">AlmacenOrigen</property>
+                    <property name="nativeName">AlmacenOrigen</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">UbicacionOrigen</property>
+                    <property name="nativeName">UbicacionOrigen</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">AlmacenDestino</property>
+                    <property name="nativeName">AlmacenDestino</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">UbicacionDestino</property>
+                    <property name="nativeName">UbicacionDestino</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">MmiNumero</property>
+                    <property name="nativeName">MmiNumero</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">Palet</property>
+                    <property name="nativeName">Palet</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select 	MM.Id				as Id,
+		MM.Descripcion		as Movimiento,
+		AO.Descripcion		as AlmacenOrigen,
+        UO.Descripcion		as UbicacionOrigen,
+		AD.Descripcion		as AlmacenDestino,
+        UD.Descripcion		as UbicacionDestino,
+		M.Identificador		as MmiNumero,
+        TP.Descripcion 		as Palet
+from 	MmisMovimientos MM
+		inner join Mmis M 			on M.Id = MM.Mmi
+		left join TiposDePalets TP 	on TP.Id = M.TipoDePalet
+        left join Almacenes AO 		on AO.Id = MM.AlmacenOrigen
+        left join Ubicaciones UO 	on UO.Id = MM.UbicacionOrigen
+        left join Almacenes AD 		on AD.Id = MM.AlmacenDestino
+        left join Ubicaciones UD 	on UD.Id = MM.UbicacionDestino
+where	MM.MmiAccion = 6
+and		MM.Fecha >= ?]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie">
+            <overridden-values>
+                <ref-entry baseId="2434" name="Cabecera" id="2434"/>
+                <ref-entry baseId="2435" id="2435"/>
+                <ref-entry baseId="2436" id="2436"/>
+                <ref-entry baseId="2437" id="2437"/>
+                <ref-entry baseId="2438" name="NewLabel1" id="2438"/>
+                <ref-entry baseId="2404" name="NewGrid" id="2404"/>
+                <ref-entry baseId="2405" id="2405"/>
+                <ref-entry baseId="2406" id="2406"/>
+                <ref-entry baseId="2419" id="2419"/>
+                <ref-entry baseId="2417" id="2417"/>
+                <ref-entry baseId="2407" id="2407"/>
+                <ref-entry baseId="2408" id="2408"/>
+                <ref-entry baseId="2409" id="2409"/>
+                <ref-entry baseId="2433" name="NewLabel" id="2433"/>
+                <ref-entry baseId="2410" id="2410"/>
+                <ref-entry baseId="2432" name="NewText" id="2432"/>
+                <ref-entry baseId="2418" id="2418"/>
+                <ref-entry baseId="2416" id="2416"/>
+                <ref-entry baseId="2411" id="2411"/>
+                <ref-entry baseId="2421" name="NewGrid1" id="2421"/>
+                <ref-entry baseId="2422" id="2422"/>
+                <ref-entry baseId="2423" id="2423"/>
+                <ref-entry baseId="2424" id="2424"/>
+                <ref-entry baseId="2425" id="2425"/>
+                <ref-entry baseId="2426" id="2426"/>
+                <ref-entry baseId="2427" name="NewAutoText" id="2427"/>
+                <ref-entry baseId="2428" id="2428"/>
+                <ref-entry baseId="2429" name="NewText1" id="2429"/>
+                <ref-entry baseId="2430" id="2430"/>
+                <ref-entry baseId="2431" name="NewAutoText1" id="2431"/>
+            </overridden-values>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid name="Separador 1" id="2478">
+            <property name="height">5pt</property>
+            <column id="2479"/>
+            <row id="2480">
+                <cell id="2481"/>
+            </row>
+        </grid>
+        <grid name="Titulos" id="2482">
+            <property name="width">19.706166666666668cm</property>
+            <column id="2483">
+                <property name="width">19.706166666666668cm</property>
+            </column>
+            <row id="2484">
+                <cell id="2485">
+                    <label id="2486">
+                        <property name="style">encabezado-Estilo-1</property>
+                        <text-property name="text">Detalle de movimientos a realiazar en Deposito</text-property>
+                    </label>
+                </cell>
+            </row>
+        </grid>
+        <grid name="Separador 2" id="2487">
+            <property name="height">5pt</property>
+            <column id="2475"/>
+            <row id="2476">
+                <cell id="2477"/>
+            </row>
+        </grid>
+        <table id="2488">
+            <property name="width">7.739583333333333in</property>
+            <property name="dataSet">Movimientos</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Id</property>
+                    <expression name="expression" type="javascript">dataSetRow["Id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">Movimiento</property>
+                    <expression name="expression" type="javascript">dataSetRow["Movimiento"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">AlmacenOrigen</property>
+                    <expression name="expression" type="javascript">dataSetRow["AlmacenOrigen"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">UbicacionOrigen</property>
+                    <expression name="expression" type="javascript">dataSetRow["UbicacionOrigen"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">AlmacenDestino</property>
+                    <expression name="expression" type="javascript">dataSetRow["AlmacenDestino"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">UbicacionDestino</property>
+                    <expression name="expression" type="javascript">dataSetRow["UbicacionDestino"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">MmiNumero</property>
+                    <expression name="expression" type="javascript">dataSetRow["MmiNumero"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Palet</property>
+                    <expression name="expression" type="javascript">dataSetRow["Palet"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="2501">
+                <property name="width">1.71875in</property>
+            </column>
+            <column id="2502">
+                <property name="width">4.833333333333333in</property>
+            </column>
+            <column id="2503">
+                <property name="width">1.1875in</property>
+            </column>
+            <header>
+                <row id="2489">
+                    <cell id="2490"/>
+                    <cell id="2491"/>
+                    <cell id="2492"/>
+                </row>
+            </header>
+            <detail>
+                <row id="2493">
+                    <property name="borderBottomColor">#000000</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">medium</property>
+                    <list-property name="highlightRules">
+                        <structure>
+                            <property name="operator">eq</property>
+                            <property name="backgroundColor">#E2E3DF</property>
+                            <expression name="testExpr" type="javascript">row['__rownum'] % 2</expression>
+                            <simple-property-list name="value1">
+                                <value type="javascript">0</value>
+                            </simple-property-list>
+                        </structure>
+                    </list-property>
+                    <cell id="2494">
+                        <grid id="2504">
+                            <column id="2505"/>
+                            <row id="2506">
+                                <cell id="2507">
+                                    <data id="2522">
+                                        <property name="style">nombre-comprobante-grande</property>
+                                        <property name="resultSetColumn">MmiNumero</property>
+                                    </data>
+                                </cell>
+                            </row>
+                            <row id="2508">
+                                <cell id="2509">
+                                    <data id="2523">
+                                        <property name="style">codigo-Barra-Grande</property>
+                                        <property name="resultSetColumn">MmiNumero</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </grid>
+                    </cell>
+                    <cell id="2495">
+                        <grid id="2524">
+                            <property name="width">4.739583333333333in</property>
+                            <column id="2525">
+                                <property name="width">2.2395833333333335in</property>
+                            </column>
+                            <column id="2526">
+                                <property name="width">0.3125in</property>
+                            </column>
+                            <column id="2527">
+                                <property name="width">2.1875in</property>
+                            </column>
+                            <row id="2528">
+                                <cell id="2529">
+                                    <label id="2541">
+                                        <text-property name="text">de:</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2530"/>
+                                <cell id="2531">
+                                    <label id="2542">
+                                        <text-property name="text">a:</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                            <row id="2532">
+                                <cell id="2533">
+                                    <data id="2543">
+                                        <property name="style">encabezado-Estilo-1</property>
+                                        <property name="resultSetColumn">AlmacenOrigen</property>
+                                    </data>
+                                </cell>
+                                <cell id="2534">
+                                    <label id="2540">
+                                        <text-property name="text">-----></text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2535">
+                                    <data id="2545">
+                                        <property name="style">encabezado-Estilo-1</property>
+                                        <property name="resultSetColumn">AlmacenDestino</property>
+                                    </data>
+                                </cell>
+                            </row>
+                            <row id="2536">
+                                <cell id="2537">
+                                    <data id="2544">
+                                        <property name="style">encabezado-Estilo-1</property>
+                                        <property name="resultSetColumn">UbicacionOrigen</property>
+                                    </data>
+                                </cell>
+                                <cell id="2538"/>
+                                <cell id="2539">
+                                    <data id="2547">
+                                        <property name="style">encabezado-Estilo-1</property>
+                                        <property name="resultSetColumn">UbicacionDestino</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </grid>
+                    </cell>
+                    <cell id="2496">
+                        <property name="verticalAlign">top</property>
+                        <grid id="2548">
+                            <property name="height">0.8229166666666666in</property>
+                            <column id="2549"/>
+                            <row id="2550">
+                                <cell id="2551">
+                                    <grid id="2510">
+                                        <property name="height">0.28125in</property>
+                                        <property name="width">1.0729166666666667in</property>
+                                        <column id="2511">
+                                            <property name="width">0.7604166666666666in</property>
+                                        </column>
+                                        <column id="2512">
+                                            <property name="width">0.07291666666666667in</property>
+                                        </column>
+                                        <column id="2513">
+                                            <property name="width">0.23958333333333334in</property>
+                                        </column>
+                                        <row id="2514">
+                                            <property name="height">0.28125in</property>
+                                            <cell id="2515">
+                                                <property name="textAlign">right</property>
+                                                <property name="verticalAlign">middle</property>
+                                                <label id="2518">
+                                                    <property name="textAlign">left</property>
+                                                    <text-property name="text">Realizado ?</text-property>
+                                                </label>
+                                            </cell>
+                                            <cell id="2516"/>
+                                            <cell id="2517">
+                                                <property name="borderBottomColor">#000000</property>
+                                                <property name="borderBottomStyle">solid</property>
+                                                <property name="borderBottomWidth">thin</property>
+                                                <property name="borderLeftColor">#000000</property>
+                                                <property name="borderLeftStyle">solid</property>
+                                                <property name="borderLeftWidth">thin</property>
+                                                <property name="borderRightColor">#000000</property>
+                                                <property name="borderRightStyle">solid</property>
+                                                <property name="borderRightWidth">thin</property>
+                                                <property name="borderTopColor">#000000</property>
+                                                <property name="borderTopStyle">solid</property>
+                                                <property name="borderTopWidth">thin</property>
+                                            </cell>
+                                        </row>
+                                    </grid>
+                                </cell>
+                            </row>
+                            <row id="2552">
+                                <property name="height">0.46875in</property>
+                                <property name="verticalAlign">bottom</property>
+                                <cell id="2553">
+                                    <property name="verticalAlign">bottom</property>
+                                    <label id="2556">
+                                        <property name="textAlign">left</property>
+                                        <text-property name="text">Palet:</text-property>
+                                    </label>
+                                    <data id="2555">
+                                        <property name="textAlign">left</property>
+                                        <property name="resultSetColumn">Palet</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </grid>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="2497">
+                    <cell id="2498"/>
+                    <cell id="2499"/>
+                    <cell id="2500"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

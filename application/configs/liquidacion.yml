@@ -1,0 +1,5 @@
+liquidacionPostProcess:
+    - Liquidacion_Model_Liquidador_PostProcess_Ganancias
+    - Liquidacion_Model_Liquidador_PostProcess_GananciasFinalesAnuales
+    - Liquidacion_Model_Liquidador_PostProcess_GananciasFinalesEnMes
+    - Liquidacion_Model_Liquidador_PostProcess_AjustePorRedondeo

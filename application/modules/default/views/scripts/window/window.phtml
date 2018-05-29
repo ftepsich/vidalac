@@ -1,0 +1,40 @@
+Ext.ns( 'Apps' );
+
+Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
+	autoStart: true,
+	title: '<?=$this->title?>',
+	appChannel: '/desktop/modules<?=$this->url()?>',
+    init: function() {
+        
+    },
+
+	// Esta funcion se ejecuta cuando el modulo termina de cargar correctamente, incluyendo sus dependencias
+    startup: function() {
+       
+    },
+	
+	<?=$this->customJsFunctions?>
+	 
+	eventfind: function(ev) {
+		this.createWindow();
+    },
+    eventlaunch: function(ev) {
+		this.createWindow();
+    },
+
+    createWindow: function() {
+        var win = app.desktop.getWindow('<?=$this->name?>-win');
+        if ( !win )
+			<?=$this->customJsConstructors?>
+            win = this.create();
+			<?=$this->postConstructorsJs?>
+        win.show();
+    },
+	
+	
+    create: function() {
+        return app.desktop.createWindow(<?=$this->windowsProperties?>);
+    }
+});
+
+new Apps.<?=$this->name?>();

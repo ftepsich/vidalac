@@ -1,0 +1,85 @@
+﻿{
+	xtype: 'panel',
+	layout: 'border',
+	buttonAlign:	'center',
+	buttons: [
+            {
+                text: 'Guardar',
+                formBind: true,
+                handler: function () {Ext.getCmp('ABM_abmRemitosDeSalidasdefault_Gridformulario').submit()}
+        	}
+        ],	 
+	items: [
+		{
+			region: 'north',
+			layout: 'column',
+			height: 150,
+			items: [
+				{
+					layout: 'form',
+					columnWidth: .5,
+					items: [
+						<<Id>>,
+						<<Cliente>>,
+						<<RemitoTipo>>,
+						{
+							layout: 'column',
+							items: [ 
+								{ 
+									layout: 'form',
+									columnWidth: .5,
+									items: [ <<Punto>> ]							
+								},
+								{ 
+									layout: 'form',
+									labelSeparator: '-',
+									labelWidth: 10,
+									columnWidth: .5,
+									items: [ <<Numero>> ]							
+								},
+							]
+						},				
+						<<Letra>>,
+						<<FechaEmision>>,
+						<<FechaRecepcion>>,
+					]
+				},
+				{
+					layout: 'form',
+					columnWidth: .5,
+					items: [
+						<<TransportistaRetiroDeOrigen>>,
+						<<TransportistaEntregoEnDestino>>,
+						<<LugarDeEntrega>>,
+						<<LugarDeEntrega2>>
+					]
+				}
+			]
+		},
+		{
+			region: 'center',
+			height: 40,
+			items: [
+				{
+					layout: 'form',
+					items: [
+						<<Observaciones>>
+					]
+				}
+			]
+		},
+		{
+			region: 'south',
+			height: 230,
+			items: [
+				{
+					xtype: 'panel',
+					title: 'Articulos',
+					layout: 'fit',
+					height: 230,
+					items: <<Model_DbTable_RemitosArticulosDeSalidas>>
+				}
+			]
+		}
+	]
+}

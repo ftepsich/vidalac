@@ -1,0 +1,23 @@
+.consolaliq .title {
+    border-bottom: 1px solid #888;
+    margin-bottom: 5px;
+    font-size:14px;
+}
+
+.consolaliq .lasttitle {
+    border-top: 1px solid #888;
+    margin-top: 5px;
+    font-size:14px;
+}
+
+.consolaliq .formula {
+    color: #95C785;
+}
+
+.consolaliq .resultado {
+    color: #A3A3A3;
+}
+
+.consolaliq idt{
+    color:#858080;
+}

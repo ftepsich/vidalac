@@ -1,0 +1,75 @@
+{
+    xtype: 'panel',
+    layout: 'fit',
+    items: [
+        {
+            layout : 'border',
+            border : false,
+            items : [
+                {
+                    region : 'north',
+                    layout: 'fit',
+                    border: false,
+                    autoHeight : true,
+                    items :  { 
+                        layout: 'column',
+                        items: [
+                            {
+                                layout: 'form',
+                                columnWidth: .5,
+                                labelWidth: 130,
+                                items: [
+                                    <<Id>>,
+                                    <<TipoDeComprobante>>,
+                                    <<Persona>>,
+                                    {
+                                        layout: 'column',
+                                        items: [
+                                            {
+                                                layout: 'form',
+                                                columnWidth: .5,
+                                                items: [ <<Punto>> ]
+                                            },
+                                            {
+                                                layout: 'form',
+                                                labelSeparator: '-',
+                                                labelWidth: 10,
+                                                columnWidth: .5,
+                                                items: [ <<Numero>> ]
+                                            },
+                                        ]
+                                    },
+                                    <<FechaEmision>>,
+                                    <<LibroIVA>>,
+                                    <<CuentaBancaria>>
+                                ]
+                            },
+                            {
+                                layout: 'form',
+                                columnWidth: .5,
+                                items: [
+                                    <<FechaVencimiento>>,
+                                    <<Divisa>>,
+                                    <<ValorDivisa>>,
+                                    <<DescuentoEnMonto>>,
+                                    <<ComprobanteRelacionado>>
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    region: 'center',
+                    layout: 'fit',
+                    border: false,
+                    items : {
+                        layout: 'form',
+                        columnWidth: .5,
+                        labelWidth: 130,
+                        items: <<Observaciones>>
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,440 @@
+.col3 {
+    width: 33%;
+    padding:; 5px;
+    float: left;
+    display: table-cell;
+}
+.listrow {
+    display: table;
+    width: 100%;
+    padding-top:10px;
+}
+
+.bborder {
+    border-bottom: 1px solid #888;
+}
+
+/* links de grillas */
+.model-link {
+    cursor: pointer;
+}
+.model-link .ux-cell-action {
+    opacity: 0.4;
+}
+.model-link:hover {
+    color:blue;
+}
+.model-link:hover .ux-cell-action {
+    opacity: 1;
+}
+
+/* FIX BUG extjs 3.4.1.1 en chrome */
+.ext-webkit input, .ext-webkit textarea, .ext-webkit select{
+    -webkit-user-select:auto;
+}
+
+/* Ventanas y tips personalizados */
+.x-panel-header-rotated{
+    padding-top:5px;
+}
+
+.x-window {
+    -moz-box-shadow: rgba(0, 0, 0, 0.50) 3px 3px 3px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.50) 3px 3px 3px;
+    box-shadow: rgba(0, 0, 0, 0.50) 3px 3px 5px;
+}
+
+.x-tip {
+    border: 1px solid #007dc4;
+    background: #FFFFFF;
+    -moz-box-shadow: rgba(0, 0, 0, 0.50) 3px 3px 3px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.50) 3px 3px 3px;
+    box-shadow: rgba(0, 0, 0, 0.50) 3px 3px 5px;
+}
+
+
+/* grid multisort */
+.sort-desc {
+    background-image: url("../js/ext/resources/images/default/grid/sort_desc.gif") !important;
+    background-position: 4px 7px !important;
+}
+
+.sort-asc {
+    background-image: url("../js/ext/resources/images/default/grid/sort_asc.gif") !important;
+    background-position: 4px 7px !important;
+}
+
+/* menu */
+
+.menu-title {
+    background: #D6E3F2;
+    border-style: solid;
+    border-color:#DAE6F4 #99bbe8 #99bbe8 #DAE6F4;
+    border-width: 1px;
+    margin:-2px -2px 0;
+    color:#15428b;
+    font:bold 10px tahoma,arial,verdana,sans-serif;
+    display:block;
+    padding:3px;
+}
+
+
+.ux-cell-actions-left .ux-cell-action {
+	margin:0 4px 0 0;
+}
+.ux-cell-action {
+	cursor:pointer;
+	float:left;
+	height:16px;
+	margin:0 4px 0 4px;
+	width:16px;
+}
+
+/* Sombra a las letras del escritorio Martin*/
+.ux-shortcut-btn-text
+{
+	text-shadow:1px 1px 0.5px #333333;
+}
+.noshadow {
+	text-shadow: none;
+}
+/* [OPTIONAL] -- may be used for either Ext.grid.GroupSummary / Ext.ux.grid.GridSummary plugins */
+.x-grid3-summary-row{border-left:1px solid #fff;border-right:1px solid #fff;color:#333;background:#f1f2f4;}
+.x-grid3-summary-row .x-grid3-cell-inner{font-weight:bold;padding-bottom:4px;}
+.x-grid3-cell-first .x-grid3-cell-inner{padding-left:16px;}
+.x-grid-hide-summary .x-grid3-summary-row{display:none;}
+.x-grid3-summary-msg{padding:4px 16px;font-weight:bold;}
+
+
+/* [REQUIRED] (by Ext.ux.grid.GridSummary plugin) */
+.x-grid3-gridsummary-row-inner{overflow:hidden;width:100%;}/* IE6 requires width:100% for hori. scroll to work */
+.x-grid3-gridsummary-row-offset{width:10000px;}
+.x-grid-hide-gridsummary .x-grid3-gridsummary-row-inner{display:none;}
+
+.thumb-wrap-menu-panel {
+    height: 68px !important;
+    margin-bottom: 27px !important;
+}
+
+/* Almacenes */
+
+#x-desktop .thumb-cell {
+    font:normal 9px tahoma,arial,verdana,sans-serif;
+    float: left;
+    border: 1px solid transparent;
+    width: 50px;
+    height: 57px;
+    margin: 4px;
+
+    /*margin-bottom:10px;*/
+}
+#x-desktop .thumb-cell .ubicMmis {
+	width: 100%;
+	height: 100%;
+    background-position:center center;
+}
+
+.ubicDesc{
+	/*width: 40px;*/
+	height: 10px;
+	/*position: relative;*/
+	text-align: center;
+    /*overflow: hidden;*/
+    margin: 0 auto;
+    margin-top:38px;
+/*	left: 0px;
+	top:36px;*/
+}
+
+.ubicMmiDesc {
+    color: #017dc5;
+    margin: 0 auto;
+   /* margin-top:30px;*/
+    /*overflow: hidden;*/
+}
+
+#x-desktop .thumb-cell-selected {
+/*	background: #eff5fb url(../../lib/Ext/examples/view/images/selected.gif) no-repeat right bottom; */
+	border: 1px solid #99bbe8;
+	background-color: rgb(195, 217, 246);
+}
+
+.x-gauge-cell {
+	width: 200px;
+	height: 200px;
+}
+
+.printer {
+	background-image: url(../images/printer.png) !important;
+}
+
+.icon-table {
+	background-image:url(../images/table_go.png) ! important;
+}
+
+.thumb-cell:hover {
+    background-color: rgb(228, 236, 247);
+    border: 1px solid #99bbe8 ! important;
+}
+
+.ubicacion-full .ubicMmis {
+	background-image:url(../images/palets/palet.png) ! important;
+	background-repeat: no-repeat;
+}
+
+.ubicacion-empty .ubicMmis{
+	background-image:url(../images/palets/paletVacio.png) ! important;
+	background-repeat: no-repeat;
+	/*background-color: yellow;*/
+}
+
+.ubicacion-anulada .ubicMmis{
+    background-image:url(../images/palets/paletAnulado.png) ! important;
+    background-repeat: no-repeat;
+    /*background-color: yellow;*/
+}
+
+.ubicacion-moved {
+	background-image:url(../images/table_go.png) ! important;
+}
+
+.ubicacion-resaltada {
+	opacity: 1;
+}
+
+.ubicacion-no-resaltada {
+	opacity: .2;
+}
+
+.mmi-resaltado {
+	/*outline-offset: -4px;
+	outline: 1px dotted blue;*/
+	background-image:url(../images/shading.png) ! important;
+}
+.mmi-filtrorojo {
+	outline-offset: -4px;
+	outline: 1px dotted red;
+	background-color: #DD7A7A ! important;
+}
+.mmi-filtroazul {
+	outline-offset: -4px;
+	outline: 1px dotted blue;
+	background-color: #ccf ! important;
+}
+.mmi-filtroazul.mmi-filtrorojo {
+	background-color: #ff3 ! important;
+}
+
+.mmi-asignado .ubicMmis{
+	background-image:url(../images/palets/paletAsignado.png) ! important;
+	background-repeat: no-repeat;
+}
+
+.mmi-asignado-prod .ubicMmis{
+    background-image:url(../images/palets/handle-4-icon40.png) ! important;
+    background-repeat: no-repeat;
+}
+.mmi-asignado-prodadd .ubicMmis{
+    background-image:url(../images/palets/handle-4-icon40add.png) ! important;
+    background-repeat: no-repeat;
+}
+
+.productosCaracteristicas {
+	font-size:12px;
+	padding:5px;
+	background: #cdd;
+}
+
+.productosCaracteristicas caption{
+	font-weight:bold;
+	text-align: center;
+}
+
+.x-grid3-row-red {
+    background-color: #dcc;
+}
+
+.x-grid3-row-blue {
+    background-color: #ccd;
+}
+
+
+/* Producion Empleados*/
+
+.empleados-source {
+    cursor: pointer;
+    background: #fff;
+    border-bottom: #DDD solid 1px;
+    color: #666;
+}
+
+.empleados-view td {
+    font-family: verdana,arial,sans-serif;
+    font-size: 12px;
+}
+
+td.empleados-name {
+    color: #000;
+    font-size: 18px;
+    text-align: center;
+    border-bottom: solid 1px #eee;
+}
+
+td.empleados-label {
+  /*  background-color: #ddd;
+    border: 1px solid #bbb;*/
+    font-weight: bold;
+    text-align: right;
+    width: 80px;
+    padding: 0px 3px 0px 0px;
+}
+
+.empleados-over {
+    background-color:#EFEFEF;
+    cursor: pointer;
+}
+.empleados-selected {
+    background-color: #ffffcc !important;
+    cursor: pointer;
+}
+
+.actividades-target {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border: 1px solid #99BBE8;
+    width: 400px;
+    margin: 5px;
+    display: block;
+    min-height:20px;
+    padding: 5px;
+}
+
+.actividades-target.actividades-target-hover {
+    background-color: #B5EAAA;
+}
+
+
+/* Produccion */
+.panelDeDetalles{
+    padding: 10px;
+    min-width: 180px;
+    text-align: center;
+}
+.panelDeDetalles hr{
+    height: 1px;
+    color: #cccccc;
+    background-color: #cccccc;
+    border: 0;
+}
+.panelDeDetalles .detalle{
+    border-top: 1px solid #cccccc;
+    font: 11px Arial, Helvetica, sans-serif;
+    margin-top: 5px;
+    padding-top: 5px;
+    text-align: left;
+}
+.panelDeDetalles .detalle b{
+    color: #555555;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.panelDeDetalles .detalle span{
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    font-size:   1.3em;
+}
+
+.detalle span.sub{
+    font-size:   1.1em;
+}
+
+
+
+/* Almacenes */
+.panelDetalleAzul {
+    /*text-shadow: 0px 0px 1px #7f7f9d;*/
+    color: #017dc5;
+    font-size: 1.8em;
+    font-weight: normal;
+}
+
+/* Trazabilidad */
+
+#trazabilidad-titulo {
+    position: absolute;
+    background: #fff;
+    z-index: 10;
+    width: 300px;
+    margin:10px;
+    border: 1px solid #ccc;
+    background: rgba(255, 255, 255, 0.6);
+    /*text-shadow: 0px 0px 1px #7f7f9d;*/
+    color: #017dc5;
+    font-size: 1.8em;
+    font-weight: normal;
+}
+
+.tpl-monto-red {
+    color: red;
+}
+
+.tpl-monto-green {
+    color: green;
+}
+
+/*
+ * FileUploadField component styles
+ */
+.x-form-file-wrap {
+    position: relative;
+    height: 22px;
+}
+.x-form-file-wrap .x-form-file {
+    position: absolute;
+    right: 0;
+    -moz-opacity: 0;
+    filter:alpha(opacity: 0);
+    opacity: 0;
+    z-index: 2;
+    height: 22px;
+}
+.x-form-file-wrap .x-form-file-btn {
+    position: absolute;
+    right: 0;
+    z-index: 1;
+}
+.x-form-file-wrap .x-form-file-text {
+    position: absolute;
+    left: 0;
+    z-index: 3;
+    color: #777;
+}
+
+.x-unselectable {
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+         -o-user-select: none;
+            user-select: none;
+}
+
+/* combos con detalle */
+
+.x-combo-detalle {
+    white-space:normal;
+    color:#555;
+}
+.x-combo-detalle h4 {
+    font-weight: bold;
+}
+.x-combo-span-right  {
+    float: right;
+    font-weight:normal;
+    margin:0 0 5px 5px;
+    width:70px;
+    display:block;
+    clear:none;
+}

@@ -1,0 +1,89 @@
+<Gauge2 coordWidth="1000" coordHeight="1000" left="0" top="0" bottom="0" right="0">
+
+    <!-- Fondo -->
+    <Gauge2ArcBorder width="960" height="960" startAngle="-95" endAngle="95" centerX="500" centerY="500" strokeWidth="1" stroke="#222222">
+        <Gauge2ArcBorder.Filler>
+            <Gauge2LinearGradientFiller color1="#999999" color2="#FFFFFF" angle="45"/>
+        </Gauge2ArcBorder.Filler>
+    </Gauge2ArcBorder>
+
+    <Gauge2ArcBorder width="920" height="920" startAngle="-93" endAngle="93" centerX="500" centerY="500" strokeWidth="2" stroke="#444444">
+        <Gauge2ArcBorder.Filler>
+            <Gauge2LinearGradientFiller color1="#BBBBBB" color2="#999999" angle="0"/>
+        </Gauge2ArcBorder.Filler>
+    </Gauge2ArcBorder>
+
+    <!-- Fondo del numero de la flechita -->
+    <Gauge2RectangularBorder centerX="500" centerY="320" width="200" height="70" stroke="#4A4A4A" strokeWidth="5" arcSize="40">
+        <Gauge2RectangularBorder.Filler>
+            <Gauge2LinearGradientFiller color1="#646453" color2="#3C3C2D" angle="0"/>
+        </Gauge2RectangularBorder.Filler>
+    </Gauge2RectangularBorder>
+
+    <!-- Numero de la flechita -->
+    <Gauge2Label id="label" text="<<ValorReal>>" font="bold 50 Verdana" foreColor="#CCD1B6" x="500" y="318" anchorHorizontal="center" anchorVertical="center"/>
+
+    <!-- Rango del dibujo interno -->
+    <Gauge2RadialRange centerX="500" centerY="460" width="1000" height="1000" startAngle="-90" endAngle="90">
+		<!-- Minimo y maximo -->
+        <Gauge2RadialScale startValue="<<ValorMinimo>>" endValue="<<ValorMaximo>>">
+			<!-- Secciones de colores -->
+            <Gauge2RadialScaleSection sectionWidth="60" color="#EF1D39" radius="240" startValue="<<ValorMinimo>>" endValue="<<RegularMinimo>>"/>
+            <Gauge2RadialScaleSection sectionWidth="60" color="#FFEF3F" radius="240" startValue="<<RegularMinimo>>" endValue="<<OptimoMinimo>>"/>
+			<Gauge2RadialScaleSection sectionWidth="60" color="#88DF29" radius="240" startValue="<<OptimoMinimo>>" endValue="<<OptimoMaximo>>"/>
+            <Gauge2RadialScaleSection sectionWidth="60" color="#FFEF3F" radius="240" startValue="<<OptimoMaximo>>" endValue="<<RegularMaximo>>"/>
+			<Gauge2RadialScaleSection sectionWidth="60" color="#EF1D39" radius="240" startValue="<<RegularMaximo>>" endValue="<<ValorMaximo>>"/>
+        </Gauge2RadialScale>
+
+		<!-- Etiquetas de numeros -->
+        <Gauge2RadialScale font="50 Verdana" foreColor="#333333" radius="370" startValue="<<ValorMinimo>>" endValue="<<ValorMaximo>>" labelCount="<<Etiquetas>>">
+            <Gauge2RadialScaleSection sectionWidth="30" color="#DDDDEE" stroke="#8888AA" strokeWidth="3" radius="300" startValue="<<ValorMinimo>>" endValue="<<ValorMaximo>>"/>
+
+            <!-- Flechita -->
+            <Gauge2RadialNeedle id="needle" value="<<ValorReal>>" stroke="#000000" strokeWidth="0"
+                                innerRadius="0" innerWidth="30"
+                                outerRadius="310" outerWidth="5">
+
+				<!-- Relleno de la flechita -->
+                <Gauge2RadialNeedle.Filler>
+					<Gauge2RadialGradientFiller color1="#FFFFFF" color2="#CCCCCC"/>
+                </Gauge2RadialNeedle.Filler>
+            </Gauge2RadialNeedle>
+        </Gauge2RadialScale>
+
+		<!-- Lineas separadoras en el arco -->
+        <Gauge2RadialTicks tickWidth="1" tickLength="28" color="#AAAACC" tickCount="21" radius="300"/>
+        <Gauge2RadialTicks tickWidth="7" tickLength="28" color="#8888AA" tickCount="11" radius="300"/>
+
+        <!-- Eje externo de la flechita -->
+        <Gauge2BasicCap width="100" height="100">
+            <Gauge2BasicCap.Filler>
+                   <Gauge2RingGradientFiller color1="#464646" color2="#A8A8A8" thickness="20" highlightCenter="10"/>
+            </Gauge2BasicCap.Filler>
+        </Gauge2BasicCap>
+		
+		<!-- Eje interno de la flechita -->
+        <Gauge2BasicCap width="70" height="70">
+            <Gauge2BasicCap.Filler>
+                   <Gauge2LinearGradientFiller color1="#666666" color2="#A8A8A8" angle="45"/>
+            </Gauge2BasicCap.Filler>
+        </Gauge2BasicCap>
+    </Gauge2RadialRange>
+
+	<!-- Fondo de la descripcion -->
+    <Gauge2RectangularBorder centerX="500" centerY="620" width="950" height="90" stroke="#4A4A4A" strokeWidth="5" arcSize="40">
+	</Gauge2RectangularBorder>
+	
+	<!-- Descripcion-->
+	<Gauge2Label id="description" text="<<Descripcion>>" font="bold 50 Verdana" foreColor="#FFFFFF" x="500" y="620" anchorHorizontal="center" anchorVertical="middle"/>
+
+	<Gauge2Label text="Valor Minimo:" font="50 Verdana" foreColor="#000000" x="20" y="720" anchorHorizontal="left" anchorVertical="middle"/>
+	<Gauge2Label text="Valor Maximo:" font="50 Verdana" foreColor="#000000" x="20" y="780" anchorHorizontal="left" anchorVertical="middle"/>
+	<!-- Valores mostrados en texto -->
+	<Gauge2Label id="vminimo" text="<<VMinimo>>" font="bold 50 Verdana" foreColor="#000000" x="450" y="720" anchorHorizontal="left" anchorVertical="middle"/>
+	<Gauge2Label id="vmaximo" text="<<VMaximo>>" font="bold 50 Verdana" foreColor="#000000" x="450" y="780" anchorHorizontal="left" anchorVertical="middle"/>
+	
+	<!-- Unidad de medida-->
+	<Gauge2Label id="unidad" text="(en <<Unidad>>)" font="bold 50 Verdana" foreColor="#000000" x="450" y="840" anchorHorizontal="left" anchorVertical="middle"/>
+	
+</Gauge2>

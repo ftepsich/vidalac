@@ -1,0 +1,1212 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.21" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 2.5.2.v20100208 Build &lt;2.5.2.v20100210-0630></property>
+    <property name="units">cm</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">Encabezado.rptlibrary</property>
+            <property name="namespace">Encabezado</property>
+        </structure>
+    </list-property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Base" id="186">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://127.0.0.1/vidalac</property>
+            <property name="odaUser">root</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">dmlkYWxhYzExNjA1OQ==</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Cheques" id="1055">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Comprobante</property>
+                    <text-property name="displayName">Id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Descripcion</property>
+                    <text-property name="displayName">BancoSucursal</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">RazonSocial</property>
+                    <text-property name="displayName">Beneficiario</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Serie</property>
+                    <text-property name="displayName">CSerie</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CNumero</property>
+                    <text-property name="displayName">CNumero</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">FechaDeEmision</property>
+                    <text-property name="displayName">FechaDeEmision</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">FechaDeCobro</property>
+                    <text-property name="displayName">FechaDeCobro</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">FechaDeVencimiento</property>
+                    <text-property name="displayName">FechaDeVencimiento</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Monto</property>
+                    <text-property name="displayName">Monto</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">NumeroComprobante</property>
+                    <text-property name="displayName">NumeroComprobante</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Mes</property>
+                    <text-property name="displayName">Mes</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Comprobante</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Descripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">RazonSocial</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">Serie</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">CNumero</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">FechaDeEmision</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">FechaDeCobro</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">FechaDeVencimiento</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">Monto</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">NumeroComprobante</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">Mes</property>
+                        <property name="dataType">blob</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Comprobante</property>
+                    <property name="nativeName">Comprobante</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">Descripcion</property>
+                    <property name="nativeName">Descripcion</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">RazonSocial</property>
+                    <property name="nativeName">RazonSocial</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">Serie</property>
+                    <property name="nativeName">Serie</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">CNumero</property>
+                    <property name="nativeName">CNumero</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">FechaDeEmision</property>
+                    <property name="nativeName">FechaDeEmision</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">FechaDeCobro</property>
+                    <property name="nativeName">FechaDeCobro</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">FechaDeVencimiento</property>
+                    <property name="nativeName">FechaDeVencimiento</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">Monto</property>
+                    <property name="nativeName">Monto</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">NumeroComprobante</property>
+                    <property name="nativeName">NumeroComprobante</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">Mes</property>
+                    <property name="nativeName">Mes</property>
+                    <property name="dataType">blob</property>
+                    <property name="nativeDataType">-3</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT 	CD.Comprobante as Id,
+		SB.Descripcion AS BancoSucursal,
+		P.RazonSocial AS Beneficiario,
+		C.Serie AS CSerie,
+		LPAD(CONVERT(C.Numero, CHAR(8)), 8, '0') AS CNumero,
+		C.FechaDeEmision,
+		C.FechaDeCobro,
+		C.FechaDeVencimiento,
+		C.Monto AS Monto,
+		fNumeroCompleto(CD.Comprobante,'G') AS NumeroComprobante,
+		CONCAT(MONTH(C.FechaDeVencimiento),'-',YEAR(C.FechaDeVencimiento)) AS Mes
+FROM Cheques C
+LEFT JOIN BancosSucursales SB ON SB.Id = C.BancoSucursal
+LEFT JOIN Personas P ON P.Id = C.Persona
+LEFT JOIN ComprobantesDetalles CD ON CD.Cheque = C.Id
+{WHERE}]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>1.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Id</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Id</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>ChequeEstado</design:name>
+            <design:position>2</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ChequeEstado</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ChequeEstado</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>BancoSucursal</design:name>
+            <design:position>3</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>BancoSucursal</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>BancoSucursal</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>TipoDeEmisorDeCheque</design:name>
+            <design:position>4</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TipoDeEmisorDeCheque</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TipoDeEmisorDeCheque</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>TipoDeCheque</design:name>
+            <design:position>5</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TipoDeCheque</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TipoDeCheque</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Persona</design:name>
+            <design:position>6</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Persona</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Persona</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>TerceroEmisor</design:name>
+            <design:position>7</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TerceroEmisor</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TerceroEmisor</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>PagueseA</design:name>
+            <design:position>8</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>400</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PagueseA</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PagueseA</design:label>
+            <design:formattingHints>
+              <design:displaySize>400</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Serie</design:name>
+            <design:position>9</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Serie</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Serie</design:label>
+            <design:formattingHints>
+              <design:displaySize>2</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Numero</design:name>
+            <design:position>10</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Numero</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Numero</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>FechaDeEmision</design:name>
+            <design:position>11</design:position>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>FechaDeEmision</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>FechaDeEmision</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>FechaDeRecepcion</design:name>
+            <design:position>12</design:position>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>FechaDeRecepcion</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>FechaDeRecepcion</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>FechaDeVencimiento</design:name>
+            <design:position>13</design:position>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>FechaDeVencimiento</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>FechaDeVencimiento</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>FechaDeCobro</design:name>
+            <design:position>14</design:position>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>FechaDeCobro</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>FechaDeCobro</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Monto</design:name>
+            <design:position>15</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>12</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Monto</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Monto</design:label>
+            <design:formattingHints>
+              <design:displaySize>14</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>MontoEnLetras</design:name>
+            <design:position>16</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>500</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>MontoEnLetras</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>MontoEnLetras</design:label>
+            <design:formattingHints>
+              <design:displaySize>500</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>FechaDeMovimiento</design:name>
+            <design:position>17</design:position>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>FechaDeMovimiento</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>FechaDeMovimiento</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>NoALaOrden</design:name>
+            <design:position>18</design:position>
+            <design:nativeDataTypeCode>-6</design:nativeDataTypeCode>
+            <design:precision>4</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>NoALaOrden</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>NoALaOrden</design:label>
+            <design:formattingHints>
+              <design:displaySize>4</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>ChequeManual</design:name>
+            <design:position>19</design:position>
+            <design:nativeDataTypeCode>-7</design:nativeDataTypeCode>
+            <design:precision>1</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ChequeManual</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ChequeManual</design:label>
+            <design:formattingHints>
+              <design:displaySize>1</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Chequera</design:name>
+            <design:position>20</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Chequera</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Chequera</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Cruzado</design:name>
+            <design:position>21</design:position>
+            <design:nativeDataTypeCode>-6</design:nativeDataTypeCode>
+            <design:precision>4</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Cruzado</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Cruzado</design:label>
+            <design:formattingHints>
+              <design:displaySize>4</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Impreso</design:name>
+            <design:position>22</design:position>
+            <design:nativeDataTypeCode>-6</design:nativeDataTypeCode>
+            <design:precision>4</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Impreso</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Impreso</design:label>
+            <design:formattingHints>
+              <design:displaySize>4</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>Generador</design:name>
+            <design:position>23</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Generador</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Generador</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="SimpleMasterPage" id="2" extends="Encabezado.NewSimpleMasterPage">
+            <property name="type">a4</property>
+            <property name="orientation">landscape</property>
+            <property name="leftMargin">0.25in</property>
+            <property name="overflow">auto</property>
+            <overridden-values>
+                <ref-entry baseId="28" name="NewGrid" id="28"/>
+                <ref-entry baseId="29" id="29"/>
+                <ref-entry baseId="79" id="79"/>
+                <ref-entry baseId="30" id="30"/>
+                <ref-entry baseId="31" id="31"/>
+                <ref-entry baseId="32" id="32"/>
+                <ref-entry baseId="33" id="33"/>
+                <ref-entry baseId="34" id="34"/>
+                <ref-entry baseId="35" id="35"/>
+                <ref-entry baseId="36" id="36"/>
+                <ref-entry baseId="2211" name="NewImage1" id="2211"/>
+                <ref-entry baseId="38" id="38"/>
+                <ref-entry baseId="44" name="NewText" id="44"/>
+                <ref-entry baseId="42" id="42"/>
+                <ref-entry baseId="45" id="45"/>
+                <ref-entry baseId="64" name="NewText1" id="64"/>
+                <ref-entry baseId="47" id="47"/>
+                <ref-entry baseId="73" name="NewText3" id="73"/>
+                <ref-entry baseId="65" id="65"/>
+                <ref-entry baseId="68" id="68"/>
+                <ref-entry baseId="72" name="NewText2" id="72"/>
+                <ref-entry baseId="2207" id="2207"/>
+                <ref-entry baseId="50" name="NewText4" id="50"/>
+                <ref-entry baseId="49" id="49"/>
+                <ref-entry baseId="52" id="52"/>
+                <ref-entry baseId="51" name="NewText5" id="51"/>
+                <ref-entry baseId="7" id="7"/>
+                <ref-entry baseId="8" id="8"/>
+                <ref-entry baseId="9" id="9"/>
+                <ref-entry baseId="13" id="13"/>
+                <ref-entry baseId="14" id="14"/>
+                <ref-entry baseId="2264" name="logo" id="2264"/>
+                <ref-entry baseId="15" id="15"/>
+                <ref-entry baseId="2265" id="2265"/>
+                <ref-entry baseId="2266" id="2266"/>
+                <ref-entry baseId="2267" id="2267"/>
+                <ref-entry baseId="2268" id="2268"/>
+                <ref-entry baseId="2269" id="2269"/>
+                <ref-entry baseId="2270" id="2270"/>
+                <ref-entry baseId="2284" id="2284"/>
+                <ref-entry baseId="2271" id="2271"/>
+                <ref-entry baseId="2286" id="2286"/>
+                <ref-entry baseId="2272" id="2272"/>
+                <ref-entry baseId="2287" name="NewGrid1" id="2287"/>
+                <ref-entry baseId="2288" id="2288"/>
+                <ref-entry baseId="2289" id="2289"/>
+                <ref-entry baseId="2290" id="2290"/>
+                <ref-entry baseId="2291" id="2291"/>
+                <ref-entry baseId="2292" id="2292"/>
+                <ref-entry baseId="2293" name="NewAutoText" id="2293"/>
+                <ref-entry baseId="2294" id="2294"/>
+                <ref-entry baseId="2295" name="NewText6" id="2295"/>
+                <ref-entry baseId="2296" id="2296"/>
+                <ref-entry baseId="2297" name="NewAutoText1" id="2297"/>
+                <ref-entry baseId="2273" id="2273"/>
+                <ref-entry baseId="2274" id="2274"/>
+                <ref-entry baseId="2285" id="2285"/>
+                <ref-entry baseId="2275" id="2275"/>
+                <ref-entry baseId="2276" id="2276"/>
+            </overridden-values>
+            <property name="headerHeight">3cm</property>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <table id="1293">
+            <property name="overflow">hidden</property>
+            <property name="width">28.067000000000004cm</property>
+            <property name="dataSet">Cheques</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Id</property>
+                    <expression name="expression" type="javascript">dataSetRow["Id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">Descripcion</property>
+                    <expression name="expression" type="javascript">dataSetRow["Descripcion"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">RazonSocial</property>
+                    <expression name="expression" type="javascript">dataSetRow["RazonSocial"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Serie</property>
+                    <expression name="expression" type="javascript">dataSetRow["Serie"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">CNumero</property>
+                    <expression name="expression" type="javascript">dataSetRow["CNumero"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaDeEmision</property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaDeEmision"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaDeCobro</property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaDeCobro"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaDeVencimiento</property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaDeVencimiento"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">Monto</property>
+                    <expression name="expression" type="javascript">dataSetRow["Monto"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Mes</property>
+                    <expression name="expression" type="javascript">dataSetRow["Mes"]</expression>
+                    <property name="dataType">blob</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <text-property name="displayName">MontoDia</text-property>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>AgrupacionXDia</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["Monto"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">MontoMes</property>
+                    <text-property name="displayName">MontoMes</text-property>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>TotalMes</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["Monto"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">MontoTotal</property>
+                    <text-property name="displayName">MontoTotal</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["Monto"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">NumeroComprobante</property>
+                    <text-property name="displayName">NumeroComprobante</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["NumeroComprobante"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <property name="pageBreakInterval">0</property>
+            <column id="1319">
+                <property name="width">7.239000000000001cm</property>
+            </column>
+            <column id="1320">
+                <property name="width">6.434666666666667cm</property>
+            </column>
+            <column id="1322">
+                <property name="width">3.259666666666667cm</property>
+            </column>
+            <column id="1365">
+                <property name="width">2.942166666666667cm</property>
+            </column>
+            <column id="1323">
+                <property name="width">2.9845cm</property>
+            </column>
+            <column id="1324">
+                <property name="width">0.021166666666666667cm</property>
+            </column>
+            <column id="1338">
+                <property name="width">2.328333333333333cm</property>
+            </column>
+            <column id="1342">
+                <property name="width">2.169583333333333cm</property>
+            </column>
+            <header>
+                <row id="1294">
+                    <property name="backgroundColor">#C0C0C0</property>
+                    <cell id="1296">
+                        <label id="1352">
+                            <property name="fontSize">8pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Proveedor</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1297">
+                        <label id="1327">
+                            <property name="fontSize">8pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Banco / Sucursal</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1299">
+                        <label id="1325">
+                            <property name="fontSize">8pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">F. Emision</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1362">
+                        <label id="1329">
+                            <property name="fontSize">8pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">F. Vencimiento</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1300">
+                        <label id="1331">
+                            <property name="fontSize">8pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Nro. de Comprobante</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1301">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
+                        <label id="2298">
+                            <property name="fontSize">8pt</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Monto</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1430">
+                        <label id="1333">
+                            <property name="fontSize">8pt</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Nro. de Cheque</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <group id="1456">
+                <property name="groupName">TotalMes</property>
+                <property name="interval">month</property>
+                <property name="sortDirection">asc</property>
+                <expression name="keyExpr" type="javascript">row["FechaDeVencimiento"]</expression>
+                <structure name="toc">
+                    <expression name="expressionValue" type="javascript">row["FechaDeVencimiento"]</expression>
+                </structure>
+                <property name="repeatHeader">false</property>
+                <property name="hideDetail">false</property>
+                <property name="pageBreakAfter">auto</property>
+                <property name="pageBreakBefore">auto</property>
+                <property name="pageBreakInside">auto</property>
+                <footer>
+                    <row id="1468">
+                        <property name="height">0.555625cm</property>
+                        <property name="backgroundColor">#C0C0C0</property>
+                        <property name="borderBottomColor">#000000</property>
+                        <property name="borderBottomStyle">dashed</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <cell id="1470"/>
+                        <cell id="1471"/>
+                        <cell id="1473">
+                            <property name="colSpan">2</property>
+                            <property name="rowSpan">1</property>
+                            <text id="1482">
+                                <property name="fontSize">8pt</property>
+                                <property name="fontWeight">bold</property>
+                                <property name="fontStyle">italic</property>
+                                <property name="textAlign">right</property>
+                                <property name="contentType">auto</property>
+                                <text-property name="content"><![CDATA[Total Acumulado Mes:]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="1475">
+                            <property name="colSpan">1</property>
+                            <property name="rowSpan">1</property>
+                        </cell>
+                        <cell id="2301"/>
+                        <cell id="2302">
+                            <data id="1494">
+                                <property name="fontSize">8pt</property>
+                                <property name="fontWeight">bold</property>
+                                <property name="fontStyle">italic</property>
+                                <structure name="numberFormat">
+                                    <property name="category">Currency</property>
+                                    <property name="pattern">$ #,##0.00</property>
+                                    <property name="locale">es_AR</property>
+                                </structure>
+                                <property name="textAlign">right</property>
+                                <property name="resultSetColumn">MontoMes</property>
+                            </data>
+                        </cell>
+                        <cell id="2303"/>
+                    </row>
+                </footer>
+            </group>
+            <group id="1400">
+                <property name="groupName">AgrupacionXDia</property>
+                <property name="interval">none</property>
+                <property name="sortDirection">asc</property>
+                <expression name="keyExpr" type="javascript">row["FechaDeVencimiento"]</expression>
+                <structure name="toc">
+                    <expression name="expressionValue" type="javascript">row["FechaDeVencimiento"]</expression>
+                </structure>
+                <property name="repeatHeader">true</property>
+                <property name="hideDetail">false</property>
+                <property name="pageBreakAfter">auto</property>
+                <property name="pageBreakBefore">auto</property>
+                <property name="pageBreakInside">auto</property>
+                <footer>
+                    <row id="1412">
+                        <property name="borderBottomColor">#000000</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <cell id="1414"/>
+                        <cell id="1415"/>
+                        <cell id="1417"/>
+                        <cell id="1418">
+                            <property name="colSpan">1</property>
+                            <property name="rowSpan">1</property>
+                            <text id="1426">
+                                <property name="fontSize">8pt</property>
+                                <property name="fontWeight">bold</property>
+                                <property name="fontStyle">italic</property>
+                                <property name="textAlign">right</property>
+                                <property name="contentType">auto</property>
+                                <text-property name="content"><![CDATA[Total Acumulado Dia ]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="2299">
+                            <data id="1423">
+                                <property name="fontSize">8pt</property>
+                                <property name="fontWeight">bold</property>
+                                <property name="fontStyle">italic</property>
+                                <structure name="dateTimeFormat">
+                                    <property name="category">Medium Date</property>
+                                    <property name="pattern">Medium Date</property>
+                                    <property name="locale">es_AR</property>
+                                </structure>
+                                <property name="textAlign">left</property>
+                                <property name="resultSetColumn">FechaDeVencimiento</property>
+                            </data>
+                        </cell>
+                        <cell id="2300"/>
+                        <cell id="1489">
+                            <property name="colSpan">1</property>
+                            <property name="rowSpan">1</property>
+                            <data id="1493">
+                                <property name="fontSize">8pt</property>
+                                <property name="fontWeight">bold</property>
+                                <property name="fontStyle">italic</property>
+                                <structure name="numberFormat">
+                                    <property name="category">Currency</property>
+                                    <property name="pattern">$ #,##0.00</property>
+                                    <property name="locale">es_AR</property>
+                                </structure>
+                                <property name="textAlign">right</property>
+                                <property name="resultSetColumn">Aggregation</property>
+                            </data>
+                        </cell>
+                        <cell id="1490"/>
+                    </row>
+                </footer>
+            </group>
+            <detail>
+                <row id="1302">
+                    <property name="height">0.5291666666666667cm</property>
+                    <cell id="1304">
+                        <data id="1427">
+                            <property name="fontSize">7pt</property>
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">RazonSocial</property>
+                        </data>
+                    </cell>
+                    <cell id="1305">
+                        <data id="1349">
+                            <property name="fontSize">7pt</property>
+                            <property name="resultSetColumn">Descripcion</property>
+                        </data>
+                    </cell>
+                    <cell id="1307">
+                        <data id="1348">
+                            <property name="fontSize">7pt</property>
+                            <property name="resultSetColumn">FechaDeEmision</property>
+                        </data>
+                    </cell>
+                    <cell id="1363">
+                        <data id="1354">
+                            <property name="fontSize">7pt</property>
+                            <structure name="dateTimeFormat">
+                                <property name="category">Medium Date</property>
+                                <property name="pattern">Medium Date</property>
+                                <property name="locale">es_AR</property>
+                            </structure>
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">FechaDeVencimiento</property>
+                        </data>
+                    </cell>
+                    <cell id="1308">
+                        <data id="1355">
+                            <property name="fontSize">7pt</property>
+                            <structure name="dateTimeFormat">
+                                <property name="category">Medium Date</property>
+                                <property name="pattern">Medium Date</property>
+                                <property name="locale">es_AR</property>
+                            </structure>
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">NumeroComprobante</property>
+                        </data>
+                    </cell>
+                    <cell id="1309">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
+                        <data id="1496">
+                            <property name="fontSize">7pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">Monto</property>
+                        </data>
+                    </cell>
+                    <cell id="1340">
+                        <data id="1356">
+                            <property name="fontSize">7pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Unformatted</property>
+                                <property name="locale">es_AR</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">CNumero</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="1310">
+                    <property name="height">0.555625cm</property>
+                    <cell id="1312"/>
+                    <cell id="1313"/>
+                    <cell id="1315"/>
+                    <cell id="1364">
+                        <text id="1359">
+                            <property name="fontSize">8pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="fontStyle">italic</property>
+                            <property name="textAlign">right</property>
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[Total Reporte:]]></text-property>
+                        </text>
+                    </cell>
+                    <cell id="1316"/>
+                    <cell id="1317">
+                        <property name="fontSize">8pt</property>
+                        <property name="textAlign">right</property>
+                    </cell>
+                    <cell id="1337">
+                        <data id="1495">
+                            <property name="fontSize">8pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="fontStyle">italic</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00</property>
+                                <property name="locale">es_AR</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">MontoTotal</property>
+                        </data>
+                    </cell>
+                    <cell id="1341"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

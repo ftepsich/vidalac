@@ -1,0 +1,37 @@
+﻿{
+	xtype: 'panel',
+	layout: 'border',
+	buttonAlign:	'center',
+	items: [
+		{
+			region: 'north',
+			layout: 'column',
+			height: 140,
+			items: [
+				{
+					layout: 'form',
+					columnWidth: .7,
+					items: [
+						<<Id>>,
+						<<Persona>>,
+						<<DepositoEntrega>>,
+						<<FechaEmision>>,
+						<<FechaEntrega>>
+					]
+				},
+			]
+		},
+		{
+			region: 'center',
+			height: 40,
+			items: [
+				{
+					layout: 'form',
+					items: [
+						<<Observaciones>>
+					]
+				}
+			]
+		}
+	]
+}
