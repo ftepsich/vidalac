@@ -1,4 +1,5 @@
 <?php
+require_once 'Rad/Db/Table.php';
 
 /**
  * Base_Model_DbTable_Clientes
@@ -18,6 +19,33 @@ class Base_Model_DbTable_Clientes extends Base_Model_DbTable_Personas
     protected $_permanentValues = array('EsCliente' => 1);
 
     protected $_referenceMap = array(
+       'ModalidadesIVA' => array(
+           'columns'            => 'ModalidadIva',
+           'refTableClass'      => 'Base_Model_DbTable_ModalidadesIVA',
+           'refJoinColumns'     => array('Descripcion'),
+           'comboBox'           => true,
+           'comboSource'        => 'datagateway/combolist',
+           'refTable'           => 'ModalidadesIVA',
+           'refColumns'         => 'Id'
+       ),	
+        'TiposDeInscripcionesGanancias' => array(
+            'columns'            => 'ModalidadGanancia',
+            'refTableClass'      => 'Base_Model_DbTable_TiposDeInscripcionesGanancias',
+            'refJoinColumns'     => array('Descripcion'),
+            'comboBox'           => true,
+            'comboSource'        => 'datagateway/combolist',
+            'refTable'           => 'TiposDeInscripcionesGanancias',
+            'refColumns'         => 'Id'
+        ),
+        'TiposDeInscripcionesIB' => array(
+            'columns'            => 'TipoInscripcionIB',
+            'refTableClass'      => 'Base_Model_DbTable_TiposDeInscripcionesIB',
+            'refJoinColumns'     => array('Descripcion'),
+            'comboBox'           => true,
+            'comboSource'        => 'datagateway/combolist',
+            'refTable'           => 'TiposDeInscripcionesIB',
+            'refColumns'         => 'Id'
+        ),
         'TiposFormasDePagos' => array(
             'columns'            => 'TipoFormaDePago',
             'refTableClass'      => 'Base_Model_DbTable_TiposFormasDePagos',

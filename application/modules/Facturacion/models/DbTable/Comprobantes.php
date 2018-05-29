@@ -2057,7 +2057,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
       /**
      *  Insert
      *
-     * @param array $data   Valores que se insertarÃ¡n
+     * @param array $data   Valores que se insertarán
      *
      */
     public function insert($data)
