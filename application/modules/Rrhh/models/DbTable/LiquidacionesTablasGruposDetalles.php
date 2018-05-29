@@ -1,5 +1,0 @@
-<?php
-class Rrhh_Model_DbTable_LiquidacionesTablasGruposDetalles extends Rrhh_Model_DbTable_LiquidacionesTablasEscalaresDetalles
-{
-
-}
