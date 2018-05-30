@@ -25,7 +25,7 @@ class Base_Model_DbTable_ClientesConceptosImpositivos extends Base_Model_DbTable
         'ConceptosImpositivos' => array(
             'columns'           => 'ConceptoImpositivo',
             'refTableClass'     => 'Base_Model_DbTable_ConceptosImpositivos',
-            'refJoinColumns'    => array('Descripcion', 'ParaCompra', 'ParaVenta', 'ParaPago', 'ParaCobro'),
+            'refJoinColumns'    => array('Descripcion'),
             'comboBox'          => true,
             'comboSource'       => 'datagateway/combolist',
             'refTable'          => 'ConceptosImpositivos',

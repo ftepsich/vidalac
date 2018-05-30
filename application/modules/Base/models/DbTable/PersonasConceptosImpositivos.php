@@ -31,7 +31,7 @@ class Base_Model_DbTable_PersonasConceptosImpositivos extends Rad_Db_Table
         'ConceptosImpositivos' => array(
             'columns'           => 'ConceptoImpositivo',
             'refTableClass'     => 'Base_Model_DbTable_ConceptosImpositivos',
-            'refJoinColumns'    => array('Descripcion', 'ParaCompra', 'ParaVenta', 'ParaPago', 'ParaCobro'),
+            'refJoinColumns'    => array('Descripcion'),
             'comboBox'          => true,
             'comboSource'       => 'datagateway/combolist',
             'refTable'          => 'ConceptosImpositivos',

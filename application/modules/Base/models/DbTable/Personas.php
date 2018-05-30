@@ -18,11 +18,6 @@ class Base_Model_DbTable_Personas extends Rad_Db_Table_SemiReferencial
     protected $_defaultSource = self::DEFAULT_CLASS;
     protected $_sort = array ('RazonSocial ASC');
 
-
-//    protected $_defaultValues = array(
-//            'FechaAlta' => date('Y-m-d')
-//    );
-
     protected $_validators = array(
         'NroInscripcionIB' => array('Digits'),
         'Cuit' => array(
@@ -71,33 +66,6 @@ class Base_Model_DbTable_Personas extends Rad_Db_Table_SemiReferencial
            'refTable'           => 'TiposDeInscripcionesIB',
            'refColumns'         => 'Id'
        ),
-//        'ZonasDeVentas' => array(
-//            'columns' => 'ZonaDeVenta',
-//            'refTableClass' => 'Model_DbTable_ZonasDeVentas',
-//            'refJoinColumns' => array('Descripcion'),
-//            'comboBox' => true,
-//            'comboSource' => 'datagateway/combolist',
-//            'refTable' => 'ZonasDeVentas',
-//            'refColumns' => 'Id'
-//        ),
-//        'EstadosCiviles' => array(
-//            'columns' => 'EstadoCivil',
-//            'refTableClass' => 'Model_DbTable_EstadosCiviles',
-//            'refJoinColumns' => array('Descripcion'),
-//            'comboBox' => true,
-//            'comboSource' => 'datagateway/combolist',
-//            'refTable' => 'EstadosCiviles',
-//            'refColumns' => 'Id'
-//        ),
-        'TiposDeDocumentos' => array(
-            'columns'           => 'TipoDeDocumento',
-            'refTableClass'     => 'Base_Model_DbTable_TiposDeDocumentos',
-            'refJoinColumns'    => array('Descripcion'),
-            'comboBox'          => true,
-            'comboSource'       => 'datagateway/combolist',
-            'refTable'          => 'TiposDeDocumentos',
-            'refColumns'        => 'Id'
-        ),
         'Sexos' => array(
             'columns'           => 'Sexo',
             'refTableClass'     => 'Base_Model_DbTable_Sexos',
@@ -146,7 +114,9 @@ class Base_Model_DbTable_Personas extends Rad_Db_Table_SemiReferencial
         $this->_db->beginTransaction();
         try {
             $id = parent::insert($data);
-
+         if ($data['Bloqueado']) {
+                Rad_Log::user("Persona : ".$id." -> Bloqueado = ".$data['Bloqueado']);
+            }
             $this->_db->commit();
             return $id;
         } catch (Exception $e) {
@@ -166,14 +136,8 @@ class Base_Model_DbTable_Personas extends Rad_Db_Table_SemiReferencial
     {
         try {
             $this->_db->beginTransaction();
-
-
-
             // no saquen el parent por que sino no anda (sarcasmo! 2014-04-01 18:39)
             parent::update($data,$where);
-
-
-
             //  Ya esta en los validators
            $reg = $this->fetchAll($where);
 
@@ -181,16 +145,14 @@ class Base_Model_DbTable_Personas extends Rad_Db_Table_SemiReferencial
              if($data['Cuit']){
                $condicion = "Cuit = '".$data['Cuit']."' AND Personas.Id <> ".$row->Id;
                $Cuit = $this->fetchRow($condicion);
-
                if($Cuit) throw new Rad_Db_Table_Exception("Ya existe ese Cuit.");
              }
-
              parent::update($data,'Personas.Id ='.$row->Id);
-
            }
-
+		   if ($data['Bloqueado']) {
+                Rad_Log::user("Persona : ".$data['Id']." -> Bloqueado = ".$data['Bloqueado']);
+            }
             $this->_db->commit();
-
             return true;
         } catch (Exception $e) {
             $this->_db->rollBack();
@@ -198,14 +160,11 @@ class Base_Model_DbTable_Personas extends Rad_Db_Table_SemiReferencial
         }
     }
 
-
-
     public function delete($where)
     {
         try {
             $this->_db->beginTransaction();
             $reg = $this->fetchAll($where);
-
             foreach ($reg as $R) {
                 // Debo ver las tablas que usan personas y dar un mensaje amigable
                 if (count($R->findDependentRowset('Base_Model_DbTable_Cheques'))) {
@@ -288,7 +247,6 @@ class Base_Model_DbTable_Personas extends Rad_Db_Table_SemiReferencial
     {
         $condicion = 'Personas.Id in (Select B.Persona from Bancos B)';
         $where = $this->_addCondition($where, $condicion);
-
         return parent::fetchAll($where, $order, $count, $offset);
     }
 
@@ -296,8 +254,6 @@ class Base_Model_DbTable_Personas extends Rad_Db_Table_SemiReferencial
     {
         $condicion = 'EsCliente = 1 OR EsProveedor = 1';
         $where = $this->_addCondition($where, $condicion);
-
         return parent::fetchAll($where, $order, $count, $offset);
     }
-
 }

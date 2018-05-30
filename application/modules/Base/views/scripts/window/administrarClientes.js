@@ -101,59 +101,93 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
 
     createSecGrids: function ()
     {
-        this.gridTelefonos              = Ext.ComponentMgr.create(<?=$this->gridTelefonos?>);
-        this.gridDirecciones            = Ext.ComponentMgr.create(<?=$this->gridDirecciones?>);
-        this.gridEmails                 = Ext.ComponentMgr.create(<?=$this->gridEmails?>);
-        this.gridActividades            = Ext.ComponentMgr.create(<?=$this->gridActividades?>);
-        this.gridCuentasBancarias       = Ext.ComponentMgr.create(<?=$this->gridCuentasBancarias?>);
-        this.gridZonasDeVentas          = Ext.ComponentMgr.create(<?=$this->gridZonasDeVentas?>);
-        this.gridConceptosImpositivos   = Ext.ComponentMgr.create(<?=$this->gridConceptosImpositivos?>);
-        this.gridConceptosImpositivosE  = Ext.ComponentMgr.create(<?=$this->gridConceptosImpositivosE?>);
-        this.gridCtaCte                 = Ext.ComponentMgr.create(<?=$this->gridCtaCte?>);
-        this.gridCtaCte.store.on(
+         // Clientes -> Generales -> Direcciones
+        this.gridClientesDirecciones            = Ext.ComponentMgr.create(<?=$this->gridClientesDirecciones?>);
+        this.gridClientesDirecciones.getTopToolbar().addButton([{xtype:'tbseparator'}, this.renderMenuMaps()]);
+
+        // Clientes -> Generales -> Telefonos
+        this.gridClientesTelefonos              = Ext.ComponentMgr.create(<?=$this->gridClientesTelefonos?>);
+
+       // Clientes -> Generales -> Emails
+        this.gridClientesEmails                 = Ext.ComponentMgr.create(<?=$this->gridClientesEmails?>);
+
+        // Clientes -> Impositivo -> Ingresos Brutos
+        this.gridClientesIngresosBrutos = Ext.ComponentMgr.create(<?=$this->gridClientesIngresosBrutos?>);
+
+        // Clientes -> Impositivo -> Conceptos Impositivos
+        this.gridClientesConceptosImpositivos   = Ext.ComponentMgr.create(<?=$this->gridClientesConceptosImpositivos?>);
+        this.gridClientesIngresosBrutos.store.on(
             'load',
             function() {
-                this.gridCtaCte_Saldo.store.reload();
-            },
-            this
-        );
-        this.gridCtaCte_Saldo           = Ext.ComponentMgr.create(<?=$this->gridCtaCte_Saldo?>);
-
-        //CC solo cliente
-        this.gridCtaCteC                 = Ext.ComponentMgr.create(<?=$this->gridCtaCteC?>);
-        this.gridCtaCteC.store.on(
-            'load',
-            function() {
-                this.gridCtaCte_SaldoC.store.reload();
-            },
-            this
-        );
-        this.gridCtaCte_SaldoC           = Ext.ComponentMgr.create(<?=$this->gridCtaCte_SaldoC?>);
-
-        //CC solo proveedor
-        this.gridCtaCteP                 = Ext.ComponentMgr.create(<?=$this->gridCtaCteP?>);
-        this.gridCtaCteP.store.on(
-            'load',
-            function() {
-                this.gridCtaCte_SaldoP.store.reload();
-            },
-            this
-        );
-        this.gridCtaCte_SaldoP           = Ext.ComponentMgr.create(<?=$this->gridCtaCte_SaldoP?>);
-
-
-        this.gridModalidadesDePago      = Ext.ComponentMgr.create(<?=$this->gridModalidadesDePago?>);
-        this.gridConceptosImpositivos.on(
-            'saverelation',
-            function(status) {
-                if(status) {
-                    this.gridConceptosImpositivosE.store.reload();
+                var cliente = this.grid.getSelectionModel().getSelected();
+                if ( cliente.data.IBProximosVencimientosCM05 > 0 ) {
+                     this.publish('/desktop/showMsg/',{
+                                  title: 'Atencion',
+                                  msg: 'El formulario CM05 de Ingresos Brutos del Cliente <br> se encuentra vencido o próximo a vencer.',
+                                  buttons: Ext.Msg.OK,
+                                  icon:    Ext.Msg.WARNING                                                                
+                                  });
                 }
             },
             this
         );
 
-        this.gridDirecciones.getTopToolbar().addButton([{xtype:'tbseparator'}, this.renderMenuMaps()]);
+         // Clientes -> Impositivo -> Valores Conceptos Impositivos
+        this.gridClientesValoresConceptosImpositivos  = Ext.ComponentMgr.create(<?=$this->gridClientesValoresConceptosImpositivos?>);
+
+        // Clientes -> Cuentas Bancarias
+        this.gridClientesCuentasBancarias       = Ext.ComponentMgr.create(<?=$this->gridClientesCuentasBancarias?>);
+
+        // Clientes -> Cuenta Corriente
+        this.gridClientesCuentasCorrientes                 = Ext.ComponentMgr.create(<?=$this->gridClientesCuentasCorrientes?>);
+        this.gridClientesCuentasCorrientes.store.on(
+            'load',
+            function() {
+                this.gridClientesCuentasCorrientesSaldo.store.reload();
+            },
+            this
+        );
+        this.gridClientesCuentasCorrientesSaldo           = Ext.ComponentMgr.create(<?=$this->gridClientesCuentasCorrientesSaldo?>);
+        
+        // Clientes -> Cuenta Corriente Como Cliente
+        this.gridClientesCuentasCorrientesComoCliente                 = Ext.ComponentMgr.create(<?=$this->gridClientesCuentasCorrientesComoCliente?>);
+        this.gridClientesCuentasCorrientesComoCliente.store.on(
+            'load',
+            function() {
+                this.gridClientesCuentasCorrientesComoClienteSaldo.store.reload();
+            },
+            this
+        );
+        this.gridClientesCuentasCorrientesComoClienteSaldo           = Ext.ComponentMgr.create(<?=$this->gridClientesCuentasCorrientesComoClienteSaldo?>);
+
+
+        // Clientes -> Cuenta Corriente Como Proveedor
+        this.gridClientesCuentasCorrientesComoProveedor                 = Ext.ComponentMgr.create(<?=$this->gridClientesCuentasCorrientesComoProveedor?>);
+        this.gridClientesCuentasCorrientesComoProveedor.store.on(
+            'load',
+            function() {
+                this.gridClientesCuentasCorrientesComoProveedorSaldo.store.reload();
+            },
+            this
+        );
+        this.gridClientesCuentasCorrientesComoProveedorSaldo           = Ext.ComponentMgr.create(<?=$this->gridClientesCuentasCorrientesComoProveedorSaldo?>);
+
+        // Clientes -> Zonas de Ventas
+        this.gridZonasDeVentasClientes          = Ext.ComponentMgr.create(<?=$this->gridZonasDeVentasClientes?>);
+        
+        // Clientes -> Modalidad de Pago Clientes
+        this.gridModalidadesDePagoClientes      = Ext.ComponentMgr.create(<?=$this->gridModalidadesDePagoClientes?>);
+
+        this.gridClientesConceptosImpositivos.on(
+            'saverelation',
+            function(status) {
+                if(status) {
+                    this.gridClientesValoresConceptosImpositivos.store.reload();
+                }
+            },
+            this
+        );
+
     },
 
     renderTabs: function ()
@@ -170,7 +204,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     title: 'Generales',
                     enableTabScroll: true,
                     activeTab: 0,
-                    items: [ this.gridDirecciones, this.gridTelefonos, this.gridEmails ]
+                    items: [ this.gridClientesDirecciones, this.gridClientesTelefonos, this.gridClientesEmails ]
                 },
                 {
                     xtype : 'tabpanel',
@@ -178,9 +212,9 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     title: 'Impositivo',
                     enableTabScroll: true,
                     activeTab: 0,
-                    items: [ this.gridConceptosImpositivos, this.gridConceptosImpositivosE, this.gridActividades ]
+                    items: [ this.gridClientesIngresosBrutos,this.gridClientesConceptosImpositivos, this.gridClientesValoresConceptosImpositivos ]
                 },
-                this.gridCuentasBancarias,
+                this.gridClientesCuentasBancarias,
                 {
                     layout: 'border',
                     title: 'Cuenta Corriente',
@@ -189,11 +223,11 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                         {
                             region: 'north',
                             height: 380,
-                            items: this.gridCtaCte
+                            items: this.gridClientesCuentasCorrientes
                         },
                         {
                             region: 'center',
-                            items: this.gridCtaCte_Saldo
+                            items: this.gridClientesCuentasCorrientesSaldo
                         }
                     ]
                 },
@@ -205,11 +239,11 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                         {
                             region: 'north',
                             height: 380,
-                            items: this.gridCtaCteC
+                            items: this.gridClientesCuentasCorrientesComoCliente
                         },
                         {
                             region: 'center',
-                            items: this.gridCtaCte_SaldoC
+                            items: this.gridClientesCuentasCorrientesComoClienteSaldo
                         }
                     ]
                 },
@@ -221,16 +255,17 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                         {
                             region: 'north',
                             height: 380,
-                            items: this.gridCtaCteP
+                            items: this.gridClientesCuentasCorrientesComoProveedor
                         },
                         {
                             region: 'center',
-                            items: this.gridCtaCte_SaldoP
+                            items: this.gridClientesCuentasCorrientesComoProveedorSaldo
                         }
                     ]
                 },                                
-                this.gridZonasDeVentas,
-                this.gridModalidadesDePago
+                this.gridZonasDeVentasClientes,
+
+                this.gridModalidadesDePagoClientes
 
             ]
         }

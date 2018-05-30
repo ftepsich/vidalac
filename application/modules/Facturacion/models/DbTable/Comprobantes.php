@@ -145,7 +145,6 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
             if (Rad_Confirm::confirm( "No Existe el Libro de IVA del mes ".date("m", strtotime($fechaEmision)).". Desea crearlo?", _FILE_._LINE_, array('includeCancel' => false)) == 'yes') {
                 $R_Libro->Id = $M_LIVA->crearLibroIVA(date("m", strtotime($fechaEmision)),date("Y", strtotime($fechaEmision)));
             }
-            //throw new Rad_Db_Table_Exception("No existe un libro de IVA al que asignar la factura. Revise si no debe crear el libro de este mes desde el menu Contable.");
         }
 
         // Reviso si el libro correspondiente esta cerrado
@@ -339,25 +338,20 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
             foreach ($R_CD as $row) {
 				// Marcamos los cheques
                 if($row->Cheque){
-                    //die("lala".$row->Cheque);
                     $R_C = $M_C->find($row->Cheque)->current();
                     $R_C->ChequeEstado = 6;
                     $R_C->setReadOnly(false);
                     $R_C->save();
                 }
-
 				// Marcamos las transacciones Bancarias
                 if($row->TransaccionBancaria){
-                    //die("lala".$row->Cheque);
                     $R_TB = $M_TB->find($row->TransaccionBancaria)->current();
                     $R_TB->Utilizado = 0;
                     $R_TB->setReadOnly(false);
                     $R_TB->save();
                 }
-
                 // Marcamos las transacciones Bancarias
                 if($row->TarjetaDeCreditoCupon){
-                    //die("lala".$row->Cheque);
                     $R_TCC = $M_TCC->find($row->TarjetaDeCreditoCupon)->current();
                     $R_TCC->Utilizado = 0;
                     $R_TCC->setReadOnly(false);
@@ -558,13 +552,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
 
                     return $conceptos;
                 }
-
             }
-
-
         }
-
-
     }
 
     /**
@@ -583,13 +572,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         return $NetoGravado + $Impuestos;
     }
 
-    /*
-    public function recuperarMontoTotal ($idComprobante) {
-        $NetoGravado    = $this->recuperarNetoGravado($idComprobante);
-        $Impuestos      = $this->recuperarConceptosImpositivos($idComprobante);
-        return $NetoGravado + $Impuestos;
-    }
-    */
+
     /**
      * Recupera el Monto sin utilizar de un comprobante
      *
@@ -641,13 +624,6 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
             throw new Rad_Db_Table_Exception("No se localiza el tipo del comprobante.");
         }
 
-        /*
-          switch ($R_C->TipoDeComprobante) {
-          case 1: case 6: case 13: case 12    : $Multiplicador = 1;  break;     // FC, NCE, OP, NDR
-          case 7: case 8     					: $Multiplicador = -1; break;     // FV, NCR, RC, NDE
-          }
-          $Multiplicador = $Multiplicador * $R_TC->Multiplicador;
-         */
         $Multiplicador = $R_TC->Multiplicador;
 
         return $Multiplicador;
@@ -776,12 +752,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
             $M_PCI = new Base_Model_DbTable_PersonasConceptosImpositivos(array(), false);
             $R_PCI = $M_PCI->fetchRow("ConceptoImpositivo = $concepto and Persona = $persona");
             if ($R_PCI) {
-	       // No considerar porcentaje = 0 para asi tomar el porcentaje general del concepto.
-               if ($R_PCI->Porcentaje != 0) { 
-                  $porcentaje = $R_PCI->Porcentaje;
-               }
+                $porcentaje = $R_PCI->Porcentaje;
             }
-
         }
 
         // Si no tiene uno particular lo tomo del general
@@ -1126,6 +1098,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         return $ivas;
     }
 
+   
+
     public function afip_ImporteNetoNoGravado ($idComprobante)
     {
         $M_C    = new Facturacion_Model_DbTable_Comprobantes;
@@ -1148,27 +1122,9 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         $NetoGravadoGeneral = $M_C->recuperarNetoGravado($idComprobante);
         $NetoIvaNoGravado   = $M_C->recuperarMontoImponibleFacturacion($M_CI->ivaNoGravado, $idComprobante);
         $NetoIvaExento      = $M_C->recuperarMontoImponibleFacturacion($M_CI->ivaExcento, $idComprobante);
-        //$NetoIva0           = $M_C->recuperarMontoImponibleFacturacion($M_CI->iva0, $idComprobante);
-
         return $NetoGravadoGeneral - $NetoIvaNoGravado - $NetoIvaExento;// - $NetoIva0;
     }
-
-//    public function afip_MontoConceptosIVA ($idComprobante)
-//    {
-//        $Monto = 0;
-//        $sql = "select  ifnull(sum(C.Monto),0) as Monto
-//                from    Comprobantes C,
-//                        ConceptosImpositivos CI
-//                where   C.ConceptoImpositivo = CI.Id
-//                and     C.ComprobantePadre = $idComprobante
-//                and     CI.esIVA = 1";
-//
-//        $R = $this->_db->fetchRow($sql);
-//        if ($R) {
-//            $Monto = $R['Monto'];
-//        }
-//        return $Monto;
-//    }
+    
 
     public function afip_MontoConceptosNoIVA ($idComprobante)
     {
@@ -1257,7 +1213,6 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         $disponible = 0;
         $idPersona = $R_P->Persona;
         $MMI = $M_C->recuperarMMIdelConcepto($idConcepto, $idPersona);
-        //Rad_Log::debug("MMI:$MMI");
         // Si tienen MMi proceso, sino retorno 0
         if ($MMI > 0.0001) {
 
@@ -1322,8 +1277,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         }
 
         // Log Usuarios
-        If ( $rowComprobante->Numero == 0 ) {
-            Rad_Log::user("Cerró comprobante ($tipoComprobante->Descripcion ID $rowComprobante->ID)");
+  if ( $rowComprobante->Numero == 0 ) {
+            Rad_Log::user("Cerró comprobante ($tipoComprobante->Descripcion ID $rowComprobante->Id)");
         } else {
             Rad_Log::user("Cerró comprobante ($tipoComprobante->Descripcion N° $rowComprobante->Numero)");
         }
@@ -1347,8 +1302,9 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         $data = array('Anulado' => 1);
         parent::update($data, 'Id = ' . $idComprobante);
         $comprobante = $this->find($idComprobante)->current();
+
         $tipoComprobante = $comprobante->findParentRow("Facturacion_Model_DbTable_TiposDeComprobantes");
-        // Log Usuarios
+  // Log Usuarios
         if ( $comprobante->Numero == 0 ) {
             Rad_Log::user("Anuló comprobante ($tipoComprobante->Descripcion ID $comprobante->Id)");
         } else {
@@ -2097,8 +2053,8 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         }
         return $this;
     }
-
-    /**
+    
+      /**
      *  Insert
      *
      * @param array $data   Valores que se insertarán
@@ -2122,11 +2078,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         return $idComprobante;
 
     }
-
-    /***********************************************************************
-      Fetch's
-     ***********************************************************************/
-
+    
     public function fetchCerrado ($where = null, $order = null, $count = null, $offset = null)
     {
         $condicion = "Cerrado = 1 and Anulado = 0";

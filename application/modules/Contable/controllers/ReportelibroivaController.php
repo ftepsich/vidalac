@@ -1,5 +1,4 @@
 <?php
-
 use Rad\Util\FileExport;
 
 /**
@@ -76,17 +75,14 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action {
             $e->setLineEnd("\r\n");
             $e->addAll($datos);
             $contenido = str_replace("\r\n\r\n", "\r\n", $e->getContent());
-
             $R = $M->find($param['libro'])->current();
             $Nombre = $R->Anio . "-" . str_pad($R->Mes, 2, '0', STR_PAD_LEFT) . "_" . $test . $Nombre . $alicuota . "_" . date('YmdHis') . ".txt";
-
             header("Content-disposition: attachment; filename=$Nombre");
             header("Content-type: text/csv");
             echo $contenido;
         }
 
         if ($param['modelo'] == 3 || $param['modelo'] == 4) {
-
             // Exporto en formato CSV para la Afip
             $M = new Contable_Model_DbTable_LibrosIVA();
             $datos = $M->exportadorAFIP($param['libro'], $param['tipo']);
@@ -138,8 +134,6 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action {
                 $param['modelo'] == 10 || $param['modelo'] == 11 || $param['modelo'] == 12 ||
                 $param['modelo'] == 13 || $param['modelo'] == 14
         ) {
-
-            // Va para el Bird
             // Busco el nombre y tipo del Reporte para mostrarlo
             $M_L = new Contable_Model_DbTable_LibrosIVA();
             $R_L = $M_L->find($param['libro'])->current();
@@ -151,8 +145,7 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action {
             $texto = "Libro de IVA $tTipo periodo $tPeriodo";
             $idLibro = $param['libro'];
             $formato = ($rq->formato) ? $rq->formato : 'pdf';
-            // $formato = 'html';
-
+            
             switch ($param['modelo']) {
                 case 1:
                     $file = APPLICATION_PATH . "/../birt/Reports/Rep_LibrosIVA_clasico.rptdesign";
@@ -175,10 +168,8 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action {
                     $file = APPLICATION_PATH . "/../birt/Reports/Exportador_Rep_LibrosIVA_Retenciones_Percepciones.rptdesign";
                     break;
                 case 13:
-                    // $idLibro = $param['libro'];
                     $texto = "Detalle Libro de IVA $tTipo periodo $tPeriodo";
                     $formato = 'xls';
-                    // $report = new Rad_BirtEngine();
                     $report->setParameter('Libro', $param['libro'], 'Int');
                     $report->setParameter('TipoDeLibro', $param['tipo'], 'Int');
                     $file = APPLICATION_PATH . "/../birt/Reports/Exportador_Rep_LibrosIVA_Detalles.rptdesign";
@@ -191,15 +182,6 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action {
             }
 
             $where = " WHERE " . $this->buildWhere($param);
-
-            /*
-              Rad_Log::debug($where);
-              Rad_Log::debug($idLibro);
-              Rad_Log::debug($param['libro']);
-              Rad_Log::debug($param['modelo']);
-              Rad_Log::debug($param['tipo']);
-             */
-
             $report->renderFromFile($file, $formato, array(
                 'TEXTO' => $texto,
                 'WHERE' => $where,

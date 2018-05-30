@@ -62,7 +62,7 @@ class Contable_Model_DbTable_Cajas extends Rad_Db_Table_SemiReferencial {
      */
 
     public function recuperarSaldoCaja($idCaja) {
-        $M_CM = new Contable_Model_DbTable_CajasMovimientos();
+        $cajasMovimientos = new Contable_Model_DbTable_CajasMovimientos();
         
         $sql = 'Select Sum(Monto) from CajasMovimientos where Caja = '.$idCaja;
         

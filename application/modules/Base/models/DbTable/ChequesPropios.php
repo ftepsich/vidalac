@@ -22,33 +22,18 @@ class Base_Model_DbTable_ChequesPropios extends Base_Model_DbTable_Cheques
         unset($this->_referenceMap['Clientes']);
         parent::init();
 
-        // Y esto para que?
-        // $config = Rad_Cfg::get();
         if ($this->_fetchWithAutoJoins) {
             $j = $this->getJoiner();
             $j->joinDep('Facturacion_Model_DbTable_ComprobantesDetalles', array(
                 'OrdenDePago' => "fNumeroCompleto(ChequesComprobantesDetalles.Comprobante,'G')"
             ), 'Cheques');
                   
-        }
-
-        // $this->addAutoJoin(
-        //         'ComprobantesDetalles',
-        //         'Cheques.Id = ComprobantesDetalles.Cheque',
-        //         array(
-        //             'OrdenDePago' => "fNumeroCompleto(ComprobantesDetalles.Comprobante,'G')"
-        //         ),
-        //         'Cheques.Id'
-        // );
-
-        
+        }      
     }
 
     public function update ($data, $where)
     {
         // Si es automatico ver si ya esta impreso
-        //unset($data['Persona']);
-
         $reg = $this->fetchAll($where);
 
         foreach ($reg as $row) {
@@ -63,8 +48,6 @@ class Base_Model_DbTable_ChequesPropios extends Base_Model_DbTable_Cheques
                 $data['Monto']     = number_format($data['Monto'],2, '.', '');
             	// armo un array con las diferencias entre el data y el row
                 $dif               = array_diff_assoc($data, $row->toArray());
-                // throw new Rad_Db_Table_Exception(print_r($data,1));
-            	// throw new Rad_Db_Table_Exception(print_r($dif,1));
                 // Quito los dos campos del array ya que puede venir alguno de los dos o los dos
                 // si hay otro campo que se pueda modificar despues de impreso se debe agregar aqui
                 if (array_key_exists('Cobrado',$dif)) unset($dif['Cobrado']);
@@ -78,7 +61,6 @@ class Base_Model_DbTable_ChequesPropios extends Base_Model_DbTable_Cheques
             if (!$data['Monto'] || !$data['FechaDeEmision'] || !$data['PagueseA']) {
                 throw new Rad_Db_Table_Exception("Deben completarse 'Monto', 'Fecha de Emision' y 'Paguese A'");
             }
-            //$data['ChequeEstado'] = 6;
             $data['MontoEnLetras'] = Rad_CustomFunctions::num2letras(round($data['Monto'], 2, PHP_ROUND_HALF_UP));
             
             $this->verificaFechaEmisionMenorFechaCobro($data["FechaDeEmision"],$data["FechaDeCobro"],$data["FechaDeVencimiento"]);            
@@ -202,39 +184,10 @@ class Base_Model_DbTable_ChequesPropios extends Base_Model_DbTable_Cheques
             /*------------ modificacion para que no imprima con cups ---------------*/
             $NombreReporte  = "Cheques___".date('YmdHis');
             $report->sendStream($NombreReporte);
-            /*----------------------------------------------------------------------*/
-            
-            /*------------ impresion por cups ---------------*/
-            /* 
-            $ipp = new CupsPrintIPP();
-            $ipp->with_exceptions = true;
-
-            $ipp->handle_http_exceptions = true;
-            //$ipp->setAuthentication('root','vidalac116059');
-            $ipp->setHost($cfg->Cheques->Cups);
-            $ipp->setPrinterURI($cfg->Cheques->Printer);
-            $ipp->setCopies(1);
-//            $ipp->setAttribute("page-border",'double');
-//            $ipp->getJobAttributes();
-           
-//            $ipp->setAttribute("fit-on-page",false);
-            
-            $ipp->setData($report->getStream()); // le mandamos el pdf
-            
-//            $ipp->setAttribute("scaling",105);
-            $ipp->setAttribute("position",'top');
-            $ipp->setAttribute("page-top", '-1');
-            $ipp->validateJob();
-          
-//            file_put_contents('/var/www/t.txt', print_r($ipp->debug,true));
-            $ipp->printStreamJob();
-            */
-            /*------------ fin impresion por cups ---------------*/
-            
+         
             parent::update(array('Impreso' => 1), "Id IN ($ids)");
         
         } catch (Exception $e) {
-            //Rad_Log::err($e->getMessage());
             throw new Rad_Exception('Error al imprimir Cheque/s:<br>'.$e->getMessage());
         }
     }
@@ -261,8 +214,6 @@ class Base_Model_DbTable_ChequesPropios extends Base_Model_DbTable_Cheques
         } catch (Exception $e) {
             $this->_db->rollBack();
             throw $e;
-        }
-        // return $cheques = $this->find($ids)->toArray();
-    }    
+        }    }    
 
 }

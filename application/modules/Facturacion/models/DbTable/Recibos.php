@@ -45,9 +45,8 @@ class Facturacion_Model_DbTable_Recibos extends Facturacion_Model_DbTable_Compro
     );
 
     /*
-      protected $_calculatedFields = array(
-      'EstadoRecibido'=>"fEstadoRelHijo(Comprobantes.Id)"
-      );
+      
+
      */
     /**
      * Validadores
@@ -267,7 +266,6 @@ class Facturacion_Model_DbTable_Recibos extends Facturacion_Model_DbTable_Compro
                 $NumeroRecibo = $M->recuperarDescripcionComprobante($idComprobante);
 
                 //controlo q el comprobante no este cerrado
-                //$this->salirSi_noEstaCerrado($idComprobante);
 
                 // Armo un array de la nota
                 $RenglonComprobante = array(
