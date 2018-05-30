@@ -114,7 +114,9 @@ class Base_Model_DbTable_Personas extends Rad_Db_Table_SemiReferencial
         $this->_db->beginTransaction();
         try {
             $id = parent::insert($data);
-
+         if ($data['Bloqueado']) {
+                Rad_Log::user("Persona : ".$id." -> Bloqueado = ".$data['Bloqueado']);
+            }
             $this->_db->commit();
             return $id;
         } catch (Exception $e) {
@@ -147,6 +149,9 @@ class Base_Model_DbTable_Personas extends Rad_Db_Table_SemiReferencial
              }
              parent::update($data,'Personas.Id ='.$row->Id);
            }
+		   if ($data['Bloqueado']) {
+                Rad_Log::user("Persona : ".$data['Id']." -> Bloqueado = ".$data['Bloqueado']);
+            }
             $this->_db->commit();
             return true;
         } catch (Exception $e) {
