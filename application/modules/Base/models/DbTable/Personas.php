@@ -75,7 +75,6 @@ class Base_Model_DbTable_Personas extends Rad_Db_Table_SemiReferencial
             'refTable'          => 'Sexos',
             'refColumns'        => 'Id'
         )
-
     );
 
     protected $_dependentTables = array(
@@ -101,7 +100,6 @@ class Base_Model_DbTable_Personas extends Rad_Db_Table_SemiReferencial
         'Produccion_Model_DbTable_LineasDeProduccionesPersonas'
     );
 
-
     /**
      * Inserta un registro y lleva la persona del servicio
      *
@@ -109,7 +107,6 @@ class Base_Model_DbTable_Personas extends Rad_Db_Table_SemiReferencial
      * @return mixed
      */
     public function insert($data) {
-
         //throw new Rad_Db_Table_Exception(print_r($data,true));
         $this->_db->beginTransaction();
         try {
