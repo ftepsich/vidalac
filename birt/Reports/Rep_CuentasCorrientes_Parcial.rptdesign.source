@@ -110,13 +110,9 @@
 SELECT P.RazonSocial AS RazonSocial,
 fNumeroCompleto(C.Id,'S') AS Numero,
 C.FechaEmision AS FechaEmision,
-CASE WHEN C.CondicionDePago = 2 THEN 'TOTAL'
-ELSE CASE WHEN IFNULL(fComprobante_Monto_Disponible(C.Id),0) = 0 THEN 'TOTAL' ELSE 'PARCIAL' END
-END AS TotalParcial,
-CASE WHEN C.CondicionDePago = 2 THEN 0
-ELSE CASE WHEN ( (TC.Grupo IN (8,13,15) AND C.EsCliente = 1) OR (TC.Grupo IN (7,12) AND C.EsProveedor = 1) ) THEN TC.Multiplicador*IFNULL(fComprobante_Monto_Disponible(C.Id),0)
-     ELSE (-1)*TC.Multiplicador*IFNULL(fComprobante_Monto_Disponible(C.Id),0) END
-END AS Importe
+CASE WHEN IFNULL(fComprobante_Monto_Disponible(C.Id),0) = 0 THEN 'TOTAL' ELSE 'PARCIAL' END AS TotalParcial,
+CASE WHEN ( (TC.Grupo IN (8,13,15) AND C.EsCliente = 1) OR (TC.Grupo IN (7,12) AND C.EsProveedor = 1) ) THEN TC.Multiplicador*IFNULL(fComprobante_Monto_Disponible(C.Id),0)
+     ELSE (-1)*TC.Multiplicador*IFNULL(fComprobante_Monto_Disponible(C.Id),0) END AS Importe
 FROM  Comprobantes C
 INNER JOIN TiposDeComprobantes TC ON TC.Id = C.TipoDeComprobante
 INNER JOIN Personas P ON C.Persona = P.Id
