@@ -15,6 +15,3 @@ class Base_Model_PersonasMapper extends Rad_Mapper
 
 
 }
-
-}
-
