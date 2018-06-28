@@ -9,14 +9,13 @@ class Base_Model_ClientesMapper extends Rad_Mapper
         $db = Zend_Registry::get('db');
         return $db->fetchOne("SELECT COUNT(Id) FROM personasingresosbrutos WHERE Persona = $persona AND FechaVencimientoCM05 IS NOT NULL AND FechaVencimientoCM05 < CURDATE()");
     }
-}
 
-        return $db->fetchOne("SELECT COUNT(Id) FROM personasingresosbrutos WHERE Persona = $persona AND FechaVencimientoCM05 IS NOT NULL AND FechaVencimientoCM05 < CURDATE() AND FechaBaja IS NULL");
-    }
 
+ 
     public function getIBItems($persona)
     {
         $db = Zend_Registry::get('db');
         return $db->fetchOne("SELECT COUNT(Id) FROM personasingresosbrutos WHERE Persona = $persona AND FechaBaja IS NULL");
     }
 }
+
