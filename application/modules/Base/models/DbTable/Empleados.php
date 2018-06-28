@@ -29,16 +29,6 @@ class Base_Model_DbTable_Empleados extends Base_Model_DbTable_Personas
             'refColumns'        => 'Id',
             'comboPageSize'     => 20
         ),
-        'TiposDeDocumentos' => array(
-            'columns'           => 'TipoDeDocumento',
-            'refTableClass'     => 'Base_Model_DbTable_TiposDeDocumentos',
-            'refJoinColumns'    => array('Descripcion'),
-            'comboBox'          => true,
-            'comboSource'       => 'datagateway/combolist',
-            'refTable'          => 'TiposDeDocumentos',
-            'refColumns'        => 'Id',
-            'comboPageSize'     => 20
-        ),
         'EstadosCiviles' => array(
             'columns'           => 'EstadoCivil',
             'refTableClass'     => 'Base_Model_DbTable_EstadosCiviles',

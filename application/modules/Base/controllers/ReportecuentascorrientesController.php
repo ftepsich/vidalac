@@ -29,8 +29,12 @@ class Base_ReporteCuentasCorrientesController extends Rad_Window_Controller_Acti
         // filtra siempre si es por cliente o provedor, elijan o no una persona
         if ($param['tipo']) {
             switch ($param['tipo']) {
-                case 1: $where[] = "P.EsCliente = 1"; break;
-                case 2: $where[] = "P.EsProveedor = 1"; break;
+                case 1:
+                 $where[] = "P.EsCliente = 1"; 
+                break;
+                case 2: 
+                $where[] = "P.EsProveedor = 1"; 
+                break;
             } 
         } 
  

@@ -56,7 +56,7 @@ class Facturacion_Model_DbTable_FacturasVentasArticulos extends Facturacion_Mode
             'columns' => 'Articulo',
             'refTableClass' => 'Base_Model_DbTable_Articulos',
             'refJoinColumns' => array('Descripcion', 'DescArreglada' => 'IF(ComprobantesDetalles.Articulo is null,ComprobantesDetalles.Observaciones,Articulos.Descripcion)', 'Tipo', "Codigo"), // De esta relacion queremos traer estos campos por JOIN
-            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'comboBox' => true, 
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Articulos',
             'refColumns' => 'Id',
@@ -120,22 +120,7 @@ class Facturacion_Model_DbTable_FacturasVentasArticulos extends Facturacion_Mode
                 $data['ConceptoImpositivo'] = 21;
             }
 
-            /*
-            // Verifico si ya existe el articulo en el comprobante
-            if ($data['Articulo'] && $this->estaElArticuloEnComprobante($data['Comprobante'], $data['Articulo'])) {
-                // el articulo se encuentra en el comprobante => updatear cantidad
-                $Rx = $this->fetchRow('ComprobantesDetalles.Comprobante = ' . $data['Comprobante'] . ' and ComprobantesDetalles.Articulo = ' . $data['Articulo']);
-                if ($Rx) {
-                    $data['Cantidad'] = $Rx->Cantidad + $data['Cantidad'];
-                }
-                $this->update($data, 'ComprobantesDetalles.Id = ' . $Rx->Id);
-                $id = $Rx->Id;
-                // Publico
-                Rad_PubSub::publish('Facturacion_FVA_Updateado', $Rx);
-                // Como se updateo arreglo los comporobantes impositivos
-                $M_FV->recalcularConceptosImpostivos($data['Comprobante']);
-            } else {
-             */
+ 
 
             // Reviso si viene el articulo, de no venir revisar los otros campos requeridos
             if (isset($data['Articulo']) && !$data['Articulo']) {
