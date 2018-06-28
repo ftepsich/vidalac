@@ -237,11 +237,15 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                     </structure>
                 </list-property>
             </structure>
+<<<<<<< HEAD
+            <method name="onFetch"><![CDATA[if (row["ObservacionesImpresas"]){ reportContext.setGlobalVariable("Observaciones_Visible",true); }]]></method>
+=======
             <method name="onFetch"><![CDATA[
                 reportContext.setGlobalVariable("Persona",dataSetRow["Persona"]);
                 if (row["ObservacionesImpresas"]){
 	               reportContext.setGlobalVariable("Observaciones_Visible",true);
                 }]]></method>
+>>>>>>> master
             <property name="dataSource">Base</property>
             <list-property name="resultSet">
                 <structure>
