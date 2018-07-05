@@ -158,6 +158,8 @@ order by A.Descripcion]]></xml-property>
         <simple-master-page name="Simple MasterPage" id="2">
             <property name="type">a4</property>
             <property name="leftMargin">0.25in</property>
+            <property name="headerHeight">3.5cm</property>
+            <property name="footerHeight">1.5cm</property>
             <page-header>
                 <grid id="630">
                     <property name="masterPage">Simple MasterPage</property>
@@ -346,7 +348,7 @@ Productos Alimenticios]]></text-property>
                 <structure>
                     <property name="name">Anio</property>
                     <text-property name="displayName">Anio</text-property>
-                    <expression name="expression" type="javascript">params["anio"].value</expression>
+                    <expression name="expression" type="javascript">(params["anio"].value).toString()</expression>
                     <property name="dataType">string</property>
                 </structure>
             </list-property>
@@ -361,29 +363,40 @@ Productos Alimenticios]]></text-property>
             </column>
             <header>
                 <row id="1057">
+                    <property name="backgroundColor">#FFFFFF</property>
                     <property name="height">1.031875cm</property>
-                    <property name="backgroundColor">#C0C0C0</property>
                     <cell id="1058"/>
                     <cell id="1059">
                         <grid id="1061">
                             <property name="height">0.6614583333333334cm</property>
-                            <property name="width">14.843125cm</property>
+                            <property name="width">13.843cm</property>
+                            <column id="1088">
+                                <property name="width">2.6458333333333335cm</property>
+                            </column>
+                            <column id="1082">
+                                <property name="width">3.1538333333333335cm</property>
+                            </column>
                             <column id="1062">
                                 <property name="width">3.2014583333333335cm</property>
                             </column>
                             <column id="1063">
-                                <property name="width">1.5875cm</property>
+                                <property name="width">1.5028333333333335cm</property>
                             </column>
                             <column id="1072">
                                 <property name="width">1.74625cm</property>
                             </column>
                             <column id="1070">
-                                <property name="width">8.307916666666667cm</property>
+                                <property name="width">1.3758333333333332cm</property>
                             </column>
                             <row id="1064">
                                 <property name="height">0.6614583333333334cm</property>
+                                <cell id="1087">
+                                    <property name="colSpan">2</property>
+                                    <property name="rowSpan">1</property>
+                                </cell>
                                 <cell id="1065">
                                     <text id="1067">
+                                        <property name="fontWeight">bold</property>
                                         <property name="textAlign">right</property>
                                         <property name="contentType">auto</property>
                                         <text-property name="content"><![CDATA[Mes Consultado:]]></text-property>
@@ -398,6 +411,7 @@ Productos Alimenticios]]></text-property>
                                 </cell>
                                 <cell id="1071">
                                     <text id="1079">
+                                        <property name="fontWeight">bold</property>
                                         <property name="textAlign">right</property>
                                         <property name="contentType">auto</property>
                                         <text-property name="content"><![CDATA[Año:]]></text-property>
@@ -405,9 +419,9 @@ Productos Alimenticios]]></text-property>
                                 </cell>
                                 <cell id="1069">
                                     <data id="1078">
-                                        <structure name="numberFormat">
+                                        <structure name="stringFormat">
                                             <property name="category">Custom</property>
-                                            <property name="pattern">0000</property>
+                                            <property name="pattern">&lt;</property>
                                         </structure>
                                         <property name="textAlign">left</property>
                                         <property name="resultSetColumn">Anio</property>
