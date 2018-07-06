@@ -76,7 +76,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
         return {
             tbar: new Ext.Toolbar({
                 layout: 'border',
-                height: 60,
+                height: 85,
                 frame: true,
                 defaults: { border: false },
                 items: [
@@ -156,7 +156,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                                 icon: 'images/printer.png',
                                 handler: function() {
                                     
-									var mes = Ext.getCmp('resumenVentasMensualMes-Id').getValue();
+	                            var mes = Ext.getCmp('resumenVentasMensualMes-Id').getValue();
                                     var anio = Ext.getCmp('resumenVentasMensualAnio-Id').getValue();
                                     
                                     if (!mes || !anio) {
@@ -180,6 +180,25 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                                             defaultSrc: '/Window/birtreporter/reportventas?template=ListadoCantidadArticulosVendidos&output=pdf&mes='+mes+'&anio='+anio
                                         }]
                                     }).show();
+                                },
+                                scope: this
+                            }, 
+                            {
+                                xtype: 'button',
+                                text: 'Descargar Excel',
+                                icon: 'images/page_excel.png',
+                                handler: function() {
+                                    
+	                            var mes = Ext.getCmp('resumenVentasMensualMes-Id').getValue();
+                                    var anio = Ext.getCmp('resumenVentasMensualAnio-Id').getValue();
+                                    
+                                    if (!mes || !anio) {
+                                        Ext.Msg.alert('Advertencia', 'Debe completar el mes y año');
+                                        return;
+                                    }
+
+                                    document.location.href = '/Window/birtreporter/reportventas?template=ListadoCantidadArticulosVendidos&output=xls&mes='+mes+'&anio='+anio;         
+                                    
                                 },
                                 scope: this
                             }
