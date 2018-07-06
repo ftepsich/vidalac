@@ -342,7 +342,9 @@ Productos Alimenticios]]></text-property>
                 <structure>
                     <property name="name">Mes</property>
                     <text-property name="displayName">Mes</text-property>
-                    <expression name="expression" type="javascript">params["Mes"].value</expression>
+                    <expression name="expression" type="javascript">
+switch (params["Mes"].value){case 1: "Enero"; break; case 2: "Febrero"; break; case 3: "Marzo"; break; case 4: "Abril"; break; case 5: "Mayo"; break; case 6: "Junio"; break; case 7: "Julio"; break; case 8: "Agosto"; break; case 9: "Septiembre"; break; case 10: "Octubre"; break; case 11: "Noviembre"; break; case 12: "Diciembre"; break; default : ""; }
+</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -369,24 +371,24 @@ Productos Alimenticios]]></text-property>
                     <cell id="1059">
                         <grid id="1061">
                             <property name="height">0.6614583333333334cm</property>
-                            <property name="width">13.843cm</property>
+                            <property name="width">14.986cm</property>
                             <column id="1088">
-                                <property name="width">2.6458333333333335cm</property>
+                                <property name="width">2.65cm</property>
                             </column>
                             <column id="1082">
-                                <property name="width">3.1538333333333335cm</property>
+                                <property name="width">3.3cm</property>
                             </column>
                             <column id="1062">
-                                <property name="width">3.2014583333333335cm</property>
+                                <property name="width">3.2cm</property>
                             </column>
                             <column id="1063">
-                                <property name="width">1.5028333333333335cm</property>
+                                <property name="width">2.7cm</property>
                             </column>
                             <column id="1072">
-                                <property name="width">1.74625cm</property>
+                                <property name="width">1.5cm</property>
                             </column>
                             <column id="1070">
-                                <property name="width">1.3758333333333332cm</property>
+                                <property name="width">1.4cm</property>
                             </column>
                             <row id="1064">
                                 <property name="height">0.6614583333333334cm</property>
@@ -405,6 +407,11 @@ Productos Alimenticios]]></text-property>
                                 <cell id="1066">
                                     <data id="1068">
                                         <property name="paddingLeft">3pt</property>
+                          <structure name="dateTimeFormat">
+                                            <property name="category">Custom</property>
+                                            <property name="pattern">MMMM</property>
+                                        </structure>
+
                                         <property name="textAlign">left</property>
                                         <property name="resultSetColumn">Mes</property>
                                     </data>
