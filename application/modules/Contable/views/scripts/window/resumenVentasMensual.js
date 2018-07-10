@@ -152,8 +152,8 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                             },
                             {
                                 xtype: 'button',
-                                text: 'Ver Reporte',
-                                icon: 'images/printer.png',
+                                text: 'Ver Reporte (PDF)',
+                                icon: 'images/page_pdf.png',
                                 handler: function() {
                                     
 	                            var mes = Ext.getCmp('resumenVentasMensualMes-Id').getValue();
@@ -185,7 +185,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                             }, 
                             {
                                 xtype: 'button',
-                                text: 'Descargar Excel',
+                                text: 'Ver Reporte (EXCEL)',
                                 icon: 'images/page_excel.png',
                                 handler: function() {
                                     
