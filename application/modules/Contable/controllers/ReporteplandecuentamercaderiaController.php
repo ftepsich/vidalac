@@ -27,6 +27,8 @@ class Contable_ReportePlanDeCuentaMercaderiaController extends Rad_Window_Contro
 
         $report = new Rad_BirtEngine();
         $idLibro = $param['libro'];
+        $formato = ($rq->formato) ? $rq->formato : 'pdf';
+
         $texto = "Reporte Plan de Cuenta Mercadería".$texto;
         $path = '/../birt/Reports/Reporte_PlanDeCuentaMercaderia.rptdesign';
         $where = " WHERE " . $this->buildWhere($param);

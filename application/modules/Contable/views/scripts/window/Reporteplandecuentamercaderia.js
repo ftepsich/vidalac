@@ -72,7 +72,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     triggerAction: 'all',
                     store: new Ext.data.JsonStore({
                         id: 0,
-                        url: "datagateway/combolist/model/LibrosIVA/m/Contable",
+                        url:"datagateway\/combolist\/model\/LibrosIVA/m\/Contable\/search\/Descripcion\/sort\/Id\/dir\/desc",
                         storeId: "LibroIVAStore"
                     })
                 },
@@ -92,7 +92,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     triggerAction: 'all',
                     store: new Ext.data.JsonStore({
                         id: 0,
-                        url: "datagateway/combolist/model/LibrosIVA/m/Contable",
+                        url:"datagateway\/combolist\/model\/LibrosIVA/m\/Contable\/search\/Descripcion\/sort\/Id\/dir\/desc",
                         storeId: "LibroIVAStore"
                     })
                 },
