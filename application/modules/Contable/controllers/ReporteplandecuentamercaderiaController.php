@@ -31,8 +31,6 @@ class Contable_ReportePlanDeCuentaMercaderiaController extends Rad_Window_Contro
             $R_L = $M_L->find($param['libro'])->current();
             if ($R_L) {
                 $tPeriodo = $R_L->Descripcion;
-            } else {
-                $tPeriodo = 'Desconocido';
             }
 
 
