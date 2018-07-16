@@ -173,7 +173,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                             url: '/Contable/ReportePlanDeCuentaMercaderia/verreporte'+params,
                             width: 900,
                             height: 500,
-                            title: 'Reporte Plan de Cuenta Mercaderí­a'
+                            title: 'Reporte Plan de Cuenta Mercadería'
                         });
                     }
                 }
