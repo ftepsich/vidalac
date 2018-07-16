@@ -61,12 +61,12 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     fieldLabel: 'Libro IVA Desde',                 
                     anchor: '96%',
                     displayField: 'Descripcion',
-                    name: 'libroiva',
+                    name: 'libroivadesde',
                     valueField: 'Id',
                     selectOnFocus: true,
                     forceSelection: true,
                     forceReload: true,
-                    hiddenName: "libroIva",
+                    hiddenName: "libroIvaDesde",
                     loadingText: "Cargando...",
                     msgTarget: 'under',
                     triggerAction: 'all',
@@ -81,12 +81,12 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     fieldLabel: 'Libro IVA Hasta',
                     anchor: '96%',
                     displayField: 'Descripcion',
-                    name: 'libroiva',
+                    name: 'libroivahasta',
                     valueField: 'Id',
                     selectOnFocus: true,
                     forceSelection: true,
                     forceReload: true,
-                    hiddenName: "libroIva",
+                    hiddenName: "libroIvaHasta",
                     loadingText: "Cargando...",
                     msgTarget: 'under',
                     triggerAction: 'all',
@@ -102,7 +102,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     xtype:"xcombo",
                     anchor: '96%',
                     displayField: 'RazonSocial',
-                    name: 'Proveedor',
+                    name: 'proveedor',
                     typeAhead:true,
                     valueField: 'Id',
                     allowBlank: true,
@@ -112,14 +112,14 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     selectOnFocus:true,
                     forceSelection:true,
                     forceReload:true,
-                    hiddenName:"Persona",
+                    hiddenName:"idProveedor",
                     loadingText:"Cargando...",
                     lazyRender:true,
                     store:new Ext.data.JsonStore({
-                    id:0,
-                    url:"datagateway/combolist/model/Personas/m/Base/esProveedor",
-                    storeId:"ProveedoresStore"
-                }),
+                       id:0,
+                       url:"datagateway\/combolist\/model\/Proveedores\/m\/Base\/search\/RazonSocial",
+                       storeId:"ProveedoresStore"
+                    }),
                 pageSize:20,
                 editable:true,
                 autocomplete:true
@@ -141,17 +141,30 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                         values = this.ownerCt.ownerCt.getForm().getValues();
                         var  params = '';
 
-                        if (values.libroIva) {
-                            params += '/libro/'+values.libroIva;
+                        if (values.libroIvaDesde != "undefined" && values.libroIvaDesde) {
+                            params += '/libroivadesde/'+values.libroIvaDesde;
                         } else {
-                            Ext.Msg.alert('Atencion', 'Debe seleccionar un Periodo');
+                            Ext.Msg.alert('Atencion', 'Debe seleccionar un periodo Libro IVA Desde');
                             return;
+                        }
+ 
+                        if (values.libroIvaHasta != "undefined" && values.libroIvaHasta) {
+                            params += '/libroivahasta/'+values.libroIvaHasta;
+                        } else {
+                            Ext.Msg.alert('Atencion', 'Debe seleccionar un periodo Libro IVA Hasta');
+                            return;
+                        }
+
+                        if (values.idProveedor !== "undefined" && values.idProveedor) {
+                           params += '/proveedor/'+values.idProveedor;
+                        } else {
+                           params += '/proveedor/0';
                         }
  
                         if (values.formato) {
                             params += '/formato/'+values.formato;
                         } else {
-                            Ext.Msg.alert('Atencion', 'Debe seleccionar un formato de salida');
+                            Ext.Msg.alert('Atencion', 'Debe seleccionar un Formato de Salida');
                             return;
                         }
 
@@ -160,7 +173,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                             url: '/Contable/ReportePlanDeCuentaMercaderia/verreporte'+params,
                             width: 900,
                             height: 500,
-                            title: 'Reporte Plan de Cuenta Mercadería'
+                            title: 'Reporte Plan de Cuenta Mercaderí­a'
                         });
                     }
                 }
