@@ -758,6 +758,26 @@ where id = ?]]></xml-property>
             </row>
         </grid>
         <grid name="TextoEncabezado" id="2519">
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Column Binding</property>
+                    <expression name="expression" type="javascript">params["fechaDesde"].value</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaDesde</property>
+                    <expression name="expression" type="javascript">params["fechaDesde"].value</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaHasta</property>
+                    <expression name="expression" type="javascript">params["fechaHasta"].value</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
             <column id="2520"/>
             <row id="2521">
                 <cell id="2522">
@@ -800,23 +820,35 @@ where id = ?]]></xml-property>
                             <cell id="2664">
                                 <data id="2677">
                                     <property name="fontFamily">"Verdana"</property>
+                                    <property name="display">inline</property>
                                     <property name="dataSet">FiltroLibroDesde</property>
+                                    <list-property name="visibility">
+                                        <structure>
+                                            <property name="format">all</property>
+                                            <expression name="valueExpr" type="javascript">params["idLibroIVADesde"].value == null</expression>
+                                        </structure>
+                                    </list-property>
                                     <list-property name="boundDataColumns">
                                         <structure>
                                             <property name="name">Descripcion</property>
                                             <text-property name="displayName">Descripcion</text-property>
-                                            <expression name="expression" type="javascript">if ( params["fechaDesde"].value != null ) {&#13;
-params["fechaDesde"].value;&#13;
-} else {&#13;
-	if ( params["idLibroIVADesde"].value != null ) {&#13;
-		dataSetRow["Descripcion"];&#13;
-	}&#13;
-}</expression>
+                                            <expression name="expression" type="javascript">dataSetRow["Descripcion"]</expression>
                                             <property name="dataType">string</property>
                                             <property name="allowExport">true</property>
                                         </structure>
                                     </list-property>
                                     <property name="resultSetColumn">Descripcion</property>
+                                </data>
+                                <data id="2683">
+                                    <property name="fontFamily">"Verdana"</property>
+                                    <property name="display">inline</property>
+                                    <list-property name="visibility">
+                                        <structure>
+                                            <property name="format">all</property>
+                                            <expression name="valueExpr" type="javascript">params["fechaDesde"].value = null</expression>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">FechaDesde</property>
                                 </data>
                             </cell>
                             <cell id="2665">
@@ -829,23 +861,35 @@ params["fechaDesde"].value;&#13;
                             <cell id="2666">
                                 <data id="2678">
                                     <property name="fontFamily">"Verdana"</property>
+                                    <property name="display">inline</property>
                                     <property name="dataSet">FiltroLibroHasta</property>
+                                    <list-property name="visibility">
+                                        <structure>
+                                            <property name="format">all</property>
+                                            <expression name="valueExpr" type="javascript">params["idLibroIVAHasta"].value == null</expression>
+                                        </structure>
+                                    </list-property>
                                     <list-property name="boundDataColumns">
                                         <structure>
                                             <property name="name">Descripcion</property>
                                             <text-property name="displayName">Descripcion</text-property>
-                                            <expression name="expression" type="javascript">if ( params["fechaHasta"].value != null ) {&#13;
-params["fechaHasta"].value;&#13;
-} else {&#13;
-	if ( params["idLibroIVAHasta"].value != null ) {&#13;
-		dataSetRow["Descripcion"];&#13;
-	}&#13;
-}</expression>
+                                            <expression name="expression" type="javascript">dataSetRow["Descripcion"]</expression>
                                             <property name="dataType">string</property>
                                             <property name="allowExport">true</property>
                                         </structure>
                                     </list-property>
                                     <property name="resultSetColumn">Descripcion</property>
+                                </data>
+                                <data id="2684">
+                                    <property name="fontFamily">"Verdana"</property>
+                                    <property name="display">inline</property>
+                                    <list-property name="visibility">
+                                        <structure>
+                                            <property name="format">all</property>
+                                            <expression name="valueExpr" type="javascript">params["fechaHasta"].value = null</expression>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">FechaHasta</property>
                                 </data>
                             </cell>
                             <cell id="2667">
