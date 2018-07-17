@@ -22,6 +22,36 @@
         </structure>
     </list-property>
     <parameters>
+        <scalar-parameter name="fechaDesde" id="2680">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="fechaHasta" id="2681">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
         <scalar-parameter name="idLibroIVADesde" id="2544">
             <text-property name="promptText">122</text-property>
             <property name="valueType">static</property>
@@ -82,45 +112,57 @@
     <data-sets>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="PlanDeCuentasMercaderiaResumen" id="2548">
             <property name="nullsOrdering">nulls lowest</property>
-            <list-property name="columnHints"/>
-            <list-property name="parameters">
+            <list-property name="columnHints">
                 <structure>
-                    <property name="name">idLibroIVADesde</property>
-                    <property name="paramName">idLibroIVADesde</property>
-                    <property name="nativeName"></property>
-                    <property name="dataType">integer</property>
-                    <property name="nativeDataType">12</property>
-                    <property name="position">1</property>
-                    <property name="isOptional">true</property>
-                    <property name="allowNull">true</property>
-                    <property name="isInput">true</property>
-                    <property name="isOutput">false</property>
+                    <property name="columnName">Persona_Id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Persona_Id</text-property>
+                    <text-property name="heading">Persona_Id</text-property>
                 </structure>
                 <structure>
-                    <property name="name">idLibroIVAHasta</property>
-                    <property name="paramName">idLibroIVAHasta</property>
-                    <property name="nativeName"></property>
-                    <property name="dataType">integer</property>
-                    <property name="nativeDataType">12</property>
-                    <property name="position">2</property>
-                    <property name="isOptional">true</property>
-                    <property name="allowNull">true</property>
-                    <property name="isInput">true</property>
-                    <property name="isOutput">false</property>
+                    <property name="columnName">Persona_Cuit</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Persona_Cuit</text-property>
+                    <text-property name="heading">Persona_Cuit</text-property>
                 </structure>
                 <structure>
-                    <property name="name">idProveedor</property>
-                    <property name="paramName">idProveedor</property>
-                    <property name="nativeName"></property>
-                    <property name="dataType">integer</property>
-                    <property name="nativeDataType">12</property>
-                    <property name="position">3</property>
-                    <property name="isOptional">true</property>
-                    <property name="allowNull">true</property>
-                    <property name="isInput">true</property>
-                    <property name="isOutput">false</property>
+                    <property name="columnName">Persona_RazonSocial</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Persona_RazonSocial</text-property>
+                    <text-property name="heading">Persona_RazonSocial</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Articulo_Id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Articulo_Id</text-property>
+                    <text-property name="heading">Articulo_Id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Articulo_Descripcion</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Articulo_Descripcion</text-property>
+                    <text-property name="heading">Articulo_Descripcion</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Articulo_PrecioUnitario</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Articulo_PrecioUnitario</text-property>
+                    <text-property name="heading">Articulo_PrecioUnitario</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Articulo_Cantidad</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Articulo_Cantidad</text-property>
+                    <text-property name="heading">Articulo_Cantidad</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Articulo_SubTotal</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Articulo_SubTotal</text-property>
+                    <text-property name="heading">Articulo_SubTotal</text-property>
                 </structure>
             </list-property>
+            <list-property name="parameters"/>
             <structure name="cachedMetaData">
                 <list-property name="resultSet">
                     <structure>
@@ -172,53 +214,78 @@
                     <property name="name">Persona_Id</property>
                     <property name="nativeName">Persona_Id</property>
                     <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">Persona_Cuit</property>
                     <property name="nativeName">Persona_Cuit</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">Persona_RazonSocial</property>
                     <property name="nativeName">Persona_RazonSocial</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">Articulo_Id</property>
                     <property name="nativeName">Articulo_Id</property>
                     <property name="dataType">decimal</property>
+                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
                     <property name="name">Articulo_Descripcion</property>
                     <property name="nativeName">Articulo_Descripcion</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">6</property>
                     <property name="name">Articulo_PrecioUnitario</property>
                     <property name="nativeName">Articulo_PrecioUnitario</property>
                     <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">7</property>
                     <property name="name">Articulo_Cantidad</property>
                     <property name="nativeName">Articulo_Cantidad</property>
                     <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">8</property>
                     <property name="name">Articulo_SubTotal</property>
                     <property name="nativeName">Articulo_SubTotal</property>
                     <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[Call Birt_PlanDeCuentaMercaderia_Resumen(?,?,?);]]></xml-property>
+            <xml-property name="queryText"><![CDATA[SELECT Persona_Id,
+       Persona_Cuit,
+       Persona_RazonSocial,
+       Articulo_Id,
+       Articulo_Descripcion,
+       Articulo_PrecioUnitario,
+       SUM(Articulo_Cantidad) AS Articulo_Cantidad,
+       SUM(Articulo_SubTotal) AS Articulo_SubTotal
+FROM vplandecuentamercaderia
+{WHERE}
+GROUP BY  Persona_Id,
+		  Persona_Cuit,
+		  Persona_RazonSocial,
+		  Articulo_Id,
+		  Articulo_Descripcion,
+		  Articulo_PrecioUnitario
+ORDER BY  Persona_RazonSocial,
+		  Articulo_Descripcion;]]></xml-property>
         </oda-data-set>
-        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="FiltroDesde" id="2650">
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="FiltroLibroDesde" id="2650">
             <list-property name="columnHints">
                 <structure>
                     <property name="columnName">Descripcion</property>
@@ -316,7 +383,7 @@
   </design:ResultSets>
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
-        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="FiltroHasta" id="2651">
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="FiltroLibroHasta" id="2651">
             <list-property name="columnHints">
                 <structure>
                     <property name="columnName">Descripcion</property>
@@ -720,7 +787,7 @@ where id = ?]]></xml-property>
                                     <property name="fontFamily">"Verdana"</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="fontStyle">normal</property>
-                                    <text-property name="text">Reporte Plan de Cuenta MercaderÃ­a</text-property>
+                                    <text-property name="text">Reporte Plan de Cuenta Mercadería</text-property>
                                 </label>
                             </cell>
                             <cell id="2663">
@@ -733,13 +800,20 @@ where id = ?]]></xml-property>
                             <cell id="2664">
                                 <data id="2677">
                                     <property name="fontFamily">"Verdana"</property>
-                                    <property name="dataSet">FiltroDesde</property>
+                                    <property name="dataSet">FiltroLibroDesde</property>
                                     <list-property name="boundDataColumns">
                                         <structure>
                                             <property name="name">Descripcion</property>
                                             <text-property name="displayName">Descripcion</text-property>
-                                            <expression name="expression" type="javascript">dataSetRow["Descripcion"]</expression>
+                                            <expression name="expression" type="javascript">if ( params["fechaDesde"].value != null ) {&#13;
+params["fechaDesde"].value;&#13;
+} else {&#13;
+	if ( params["idLibroIVADesde"].value != null ) {&#13;
+		dataSetRow["Descripcion"];&#13;
+	}&#13;
+}</expression>
                                             <property name="dataType">string</property>
+                                            <property name="allowExport">true</property>
                                         </structure>
                                     </list-property>
                                     <property name="resultSetColumn">Descripcion</property>
@@ -755,13 +829,20 @@ where id = ?]]></xml-property>
                             <cell id="2666">
                                 <data id="2678">
                                     <property name="fontFamily">"Verdana"</property>
-                                    <property name="dataSet">FiltroHasta</property>
+                                    <property name="dataSet">FiltroLibroHasta</property>
                                     <list-property name="boundDataColumns">
                                         <structure>
                                             <property name="name">Descripcion</property>
                                             <text-property name="displayName">Descripcion</text-property>
-                                            <expression name="expression" type="javascript">dataSetRow["Descripcion"]</expression>
+                                            <expression name="expression" type="javascript">if ( params["fechaHasta"].value != null ) {&#13;
+params["fechaHasta"].value;&#13;
+} else {&#13;
+	if ( params["idLibroIVAHasta"].value != null ) {&#13;
+		dataSetRow["Descripcion"];&#13;
+	}&#13;
+}</expression>
                                             <property name="dataType">string</property>
+                                            <property name="allowExport">true</property>
                                         </structure>
                                     </list-property>
                                     <property name="resultSetColumn">Descripcion</property>
@@ -784,6 +865,12 @@ where id = ?]]></xml-property>
                                 <data id="2679">
                                     <property name="fontFamily">"Verdana"</property>
                                     <property name="dataSet">FiltroProveedor</property>
+                                    <list-property name="visibility">
+                                        <structure>
+                                            <property name="format">all</property>
+                                            <expression name="valueExpr" type="javascript">params["idProveedor"].value==null</expression>
+                                        </structure>
+                                    </list-property>
                                     <list-property name="boundDataColumns">
                                         <structure>
                                             <property name="name">razonsocial</property>
@@ -880,7 +967,7 @@ where id = ?]]></xml-property>
                     <cell id="2604">
                         <label id="2605">
                             <property name="textAlign">left</property>
-                            <text-property name="text">ArtÃ­culo</text-property>
+                            <text-property name="text">Artículo</text-property>
                         </label>
                     </cell>
                     <cell id="2614">
@@ -994,4 +1081,3 @@ where id = ?]]></xml-property>
         </table>
     </body>
 </report>
-
