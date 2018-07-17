@@ -55,11 +55,28 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                 border: false
             },
             items: [
-
+                {
+                   xtype: 'xdatefield',
+                   fieldLabel: 'Fecha Desde',
+                   format: 'd/m/Y',
+                   dateFormat:'Y-m-d',
+                   name: 'fechaDesde',
+                   forceSelection: true,
+                   anchor: '45%'
+                },
+                {
+                   xtype: 'xdatefield',
+                   fieldLabel : 'Fecha Hasta',
+                   format: 'd/m/Y',
+                   dateFormat:'Y-m-d',
+                   name: 'fechaHasta',
+                   forceSelection: true,
+                   anchor: '45%'
+                },
                 {
                     xtype: 'xcombo',
                     fieldLabel: 'Libro IVA Desde',                 
-                    anchor: '96%',
+                    anchor: '45%',
                     displayField: 'Descripcion',
                     name: 'libroivadesde',
                     valueField: 'Id',
@@ -79,7 +96,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                 {
                     xtype: 'xcombo',
                     fieldLabel: 'Libro IVA Hasta',
-                    anchor: '96%',
+                    anchor: '45%',
                     displayField: 'Descripcion',
                     name: 'libroivahasta',
                     valueField: 'Id',
@@ -141,21 +158,44 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                         values = this.ownerCt.ownerCt.getForm().getValues();
                         var  params = '';
 
-                        if (values.libroIvaDesde != "undefined" && values.libroIvaDesde) {
-                            params += '/libroivadesde/'+values.libroIvaDesde;
-                        } else {
-                            Ext.Msg.alert('Atencion', 'Debe seleccionar un periodo Libro IVA Desde');
-                            return;
+                        values.fechaDesde    = values.fechaDesde.replace(/undefined/gi,"");
+                        values.fechaHasta    = values.fechaHasta.replace(/undefined/gi,"");
+                        values.libroIvaDesde = values.libroIvaDesde.replace(/undefined/gi,"");
+                        values.libroIvaHasta = values.libroIvaHasta.replace(/undefined/gi,"");
+                        values.idProveedor   = values.idProveedor.replace(/undefined/gi,"");
+
+                        if(values.fechaDesde == '' && values.fechaHasta == '' && values.libroIvaDesde == '' && values.libroIvaHasta == '') {
+                          Ext.Msg.alert('Atencion', 'Debe seleccionar un rango de fechas Desde/Hasta o un periodo Libro IVA Desde/Hasta');
+                          return;
+                        }
+                  
+                        if((values.fechaDesde == '' && values.fechaHasta != '') || (values.fechaDesde != '' && values.fechaHasta == '')){
+                          Ext.Msg.alert('Atencion', 'Debe seleccionar un rango de fechas Desde/Hasta');
+                          return;
+                        }
+                
+                        if((values.libroIvaDesde == '' && values.libroIvaHasta != '') || (values.libroIvaDesde != '' && values.libroIvaHasta == '')){
+                          Ext.Msg.alert('Atencion', 'Debe seleccionar un periodo Libro IVA Desde/Hasta');
+                          return;
                         }
  
-                        if (values.libroIvaHasta != "undefined" && values.libroIvaHasta) {
-                            params += '/libroivahasta/'+values.libroIvaHasta;
-                        } else {
-                            Ext.Msg.alert('Atencion', 'Debe seleccionar un periodo Libro IVA Hasta');
-                            return;
+                        if (values.fechaDesde != '' && values.fechaDesde) {
+                            params += '/fechadesde/'+values.fechaDesde;
+                        }
+ 
+                        if (values.fechaHasta != '' && values.fechaHasta) {
+                            params += '/fechahasta/'+values.fechaHasta;
                         }
 
-                        if (values.idProveedor !== "undefined" && values.idProveedor) {
+                        if (values.libroIvaDesde != '' && values.libroIvaDesde) {
+                            params += '/libroivadesde/'+values.libroIvaDesde;
+                        }
+ 
+                        if (values.libroIvaHasta != '' && values.libroIvaHasta) {
+                            params += '/libroivahasta/'+values.libroIvaHasta;
+                        }
+
+                        if (values.idProveedor !== '' && values.idProveedor) {
                            params += '/proveedor/'+values.idProveedor;
                         } else {
                            params += '/proveedor/0';
