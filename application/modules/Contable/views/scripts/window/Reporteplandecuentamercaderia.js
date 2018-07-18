@@ -93,6 +93,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                         storeId: "LibroIVAStore"
                     })
                 },
+                
                 {
                     xtype: 'xcombo',
                     fieldLabel: 'Libro IVA Hasta',
@@ -141,6 +142,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                 editable:true,
                 autocomplete:true
                 },
+   
                 {
                     xtype: 'radiogroup',
                     fieldLabel: 'Formato',
@@ -178,6 +180,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                           Ext.Msg.alert('Atencion', 'Debe seleccionar un periodo Libro IVA Desde/Hasta');
                           return;
                         }
+                    
  
                         if (values.fechaDesde != '' && values.fechaDesde) {
                             params += '/fechadesde/'+values.fechaDesde;
