@@ -1,27 +1,22 @@
 <?php
-
 /**
  * Contable_ReporteplandecuentamercaderiaController
  *
  *
- * @class Contable_ReporteplandecuentaController
+ * @class Contable_ReporteplandecuentamercaderiaController
  * @extends Rad_Window_Controller_Action
  */
-class Contable_ReportePlanDeCuentaController extends Rad_Window_Controller_Action
+class Contable_ReportePlanDeCuentaMercaderiaController extends Rad_Window_Controller_Action
 {
-    protected $title = 'Reporte Plan de Cuenta ';
-
+    protected $title = 'Reporte Plan de Cuenta Mercaderia';
     public function initWindow()
     {
         
     }
-
     public function verreporteAction ()
     {
         $this->_helper->viewRenderer->setNoRender(true);
-
         $report = new Rad_BirtEngine();
-
         $rq = $this->getRequest();
      
         $fechaDesde      = ($rq->fechadesde) ? $rq->fechadesde : '';
@@ -35,8 +30,8 @@ class Contable_ReportePlanDeCuentaController extends Rad_Window_Controller_Actio
                 $tPeriodo = $R_L->Descripcion;
             }
         $formato = ($rq->formato) ? $rq->formato : 'pdf';
-        $path = APPLICATION_PATH.'/../birt/Reports/Reporte_PlanDeCuentaGeneral.rptdesign';
-
+        $path = APPLICATION_PATH.'/../birt/Reports/Reporte_PlanDeCuentaMercaderia.rptdesign';
+        $where = "WHERE PlanDeCuenta_Id = 399";
         if ( $fechaDesde <> '' ) {
             $report->setParameter('fechaDesde', $fechaDesde, 'String');
             //$where .= " AND Comprobante_FechaEmision >= STR_TO_DATE('".$fechaDesde."','%Y-%m-%d')";
@@ -68,3 +63,4 @@ class Contable_ReportePlanDeCuentaController extends Rad_Window_Controller_Actio
         $report->sendStream($NombreReporte);
     }
 }
+
