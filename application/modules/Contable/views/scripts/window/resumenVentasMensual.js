@@ -111,14 +111,21 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                             },
                             {
                                 id: 'resumenVentasMensualAnio-Id',
-                                xtype: 'numberfield',
+                                xtype: 'combo',
                                 fieldLabel: 'Año',
-                                width: 60,
+                                width: 160,
                                 allowDecimals: false,
                                 allowNegative: false,
                                 minValue: 1900,
                                 maxLength: 4,
-                                value: "<?=date('Y')?>"
+                                value: "<?=date('Y')?>",
+                                store: new Ext.data.ArrayStore({
+                                    id: 0,
+                                    fields: [ 'Año'],
+                                    data: [
+                                        [1, '2018'], [2, '2017'], [3, '2016']
+                                    ]
+                                })
                             }
                         ]
                     },
