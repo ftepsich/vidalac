@@ -111,21 +111,14 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                             },
                             {
                                 id: 'resumenVentasMensualAnio-Id',
-                                xtype: 'combo',
+                                xtype: 'numberfield',
                                 fieldLabel: 'Año',
-                                width: 160,
+                                width: 60,
                                 allowDecimals: false,
                                 allowNegative: false,
                                 minValue: 1900,
                                 maxLength: 4,
-                                value: "<?=date('Y')?>",
-                                store: new Ext.data.ArrayStore({
-                                    id: 0,
-                                    fields: [ 'Año'],
-                                    data: [
-                                        [1, '2018'], [2, '2017'], [3, '2016']
-                                    ]
-                                })
+                                value: "<?=date('Y')?>"
                             }
                         ]
                     },
@@ -192,7 +185,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                             }, 
                             {
                                 xtype: 'button',
-                                text: 'Ver Reporte (EXCEL)',
+                                text: 'Ver Reporte (Excel)',
                                 icon: 'images/page_excel.png',
                                 handler: function() {
                                     
