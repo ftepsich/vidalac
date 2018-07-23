@@ -9,7 +9,7 @@
  */
 class Contable_ReportePlanDeCuentaMercaderiaController extends Rad_Window_Controller_Action
 {
-    protected $title = 'Reporte Plan de Cuenta Mercaderia';
+    protected $title = 'Reporte Plan de Cuenta Mercadería';
 
     public function initWindow()
     {
@@ -29,11 +29,7 @@ class Contable_ReportePlanDeCuentaMercaderiaController extends Rad_Window_Contro
 	    $idLibroIVADesde = ($rq->libroivadesde) ? $rq->libroivadesde : 0;
         $idLibroIVAHasta = ($rq->libroivahasta) ? $rq->libroivahasta : 0;
         $idProveedor     = ($rq->proveedor) ? $rq->proveedor : 0;
-        $M_L = new Contable_Model_DbTable_LibrosIVA();
-            $R_L = $M_L->find($param['libro'])->current();
-            if ($R_L) {
-                $tPeriodo = $R_L->Descripcion;
-            }
+ 
         $formato = ($rq->formato) ? $rq->formato : 'pdf';
         $path = APPLICATION_PATH.'/../birt/Reports/Reporte_PlanDeCuentaMercaderia.rptdesign';
 
