@@ -809,7 +809,7 @@ where id = ?]]></xml-property>
                                     <property name="fontFamily">"Verdana"</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="fontStyle">normal</property>
-                                    <text-property name="text">Reporte Plan de Cuenta MercaderÃ­a</text-property>
+                                    <text-property name="text">Reporte Plan de Cuenta Mercaderí­a</text-property>
                                 </label>
                             </cell>
                             <cell id="2663">
