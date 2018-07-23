@@ -26,7 +26,7 @@ class Contable_ReportePlanDeCuentaMercaderiaController extends Rad_Window_Contro
      
         $fechaDesde      = ($rq->fechadesde) ? $rq->fechadesde : '';
         $fechaHasta      = ($rq->fechahasta) ? $rq->fechahasta : '';
-	$idLibroIVADesde = ($rq->libroivadesde) ? $rq->libroivadesde : 0;
+	    $idLibroIVADesde = ($rq->libroivadesde) ? $rq->libroivadesde : 0;
         $idLibroIVAHasta = ($rq->libroivahasta) ? $rq->libroivahasta : 0;
         $idProveedor     = ($rq->proveedor) ? $rq->proveedor : 0;
         $M_L = new Contable_Model_DbTable_LibrosIVA();
@@ -64,7 +64,7 @@ class Contable_ReportePlanDeCuentaMercaderiaController extends Rad_Window_Contro
             'WHERE' => $where
         ));
         $nombreRep      = str_replace(  array(" ","/"), array("_","-") , $texto);
-        $NombreReporte  = "Reporte_".$nombreRep."_".date('YmdHis');        
+        $NombreReporte  = "Reporte Plan de Cuenta Mercadería".$nombreRep."_".date('YmdHis');        
         
         $report->sendStream($NombreReporte);
     }
