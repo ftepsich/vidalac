@@ -39,13 +39,11 @@ class Facturacion_ReporteIngresoDeComprobantesAlContadoController extends Rad_Wi
             $report->setParameter('fechaDesde', $fechaDesde, 'String');
             //$where .= " AND Comprobante_FechaEmision >= STR_TO_DATE('".$fechaDesde."','%Y-%m-%d')";
             $where .= " AND Comprobante_FechaEmision >= '".$fechaDesde."'";
-            $texto .= " Fecha Desde ".date('d/m/Y',strtotime($rq->fechaDesde));        
         }    
         if ( $fechaHasta <> '' ) {
             $report->setParameter('fechaHasta', $fechaHasta, 'String');
             //$where .= " AND Comprobante_FechaEmision <= STR_TO_DATE('".$fechaHasta."','%Y-%m-%d')";
             $where .= " AND Comprobante_FechaEmision <= '".$fechaHasta."'";
-            $texto .= " Fecha Hasta ".date('d/m/Y',strtotime($rq->fechaHasta));         
 
         }
         if ( $idLibroIVADesde <> 0 ) {
