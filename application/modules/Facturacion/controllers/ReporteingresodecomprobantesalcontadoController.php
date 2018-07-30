@@ -26,10 +26,11 @@ class Facturacion_ReporteIngresoDeComprobantesAlContadoController extends Rad_Wi
      
         $fechaDesde      = ($rq->fechadesde) ? $rq->fechadesde : '';
         $fechaHasta      = ($rq->fechahasta) ? $rq->fechahasta : '';
-	    $idLibroIVADesde = ($rq->libroivadesde) ? $rq->libroivadesde : 0;
+	$idLibroIVADesde = ($rq->libroivadesde) ? $rq->libroivadesde : 0;
         $idLibroIVAHasta = ($rq->libroivahasta) ? $rq->libroivahasta : 0;
         $idProveedor     = ($rq->proveedor) ? $rq->proveedor : 0;
 
+        $formato = ($rq->formato) ? $rq->formato : 'xls';
         $path = APPLICATION_PATH.'/../birt/Reports/Reporte_IngresodeComprobantesalContado.rptdesign';
 
         $where = "WHERE Comprobante_CondicionDePago = 2";
