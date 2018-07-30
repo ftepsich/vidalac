@@ -26,7 +26,7 @@ class Facturacion_ReporteIngresoDeComprobantesAlContadoController extends Rad_Wi
      
         $fechaDesde      = ($rq->fechadesde) ? $rq->fechadesde : '';
         $fechaHasta      = ($rq->fechahasta) ? $rq->fechahasta : '';
-	$idLibroIVADesde = ($rq->libroivadesde) ? $rq->libroivadesde : 0;
+	    $idLibroIVADesde = ($rq->libroivadesde) ? $rq->libroivadesde : 0;
         $idLibroIVAHasta = ($rq->libroivahasta) ? $rq->libroivahasta : 0;
         $idProveedor     = ($rq->proveedor) ? $rq->proveedor : 0;
 
@@ -34,19 +34,24 @@ class Facturacion_ReporteIngresoDeComprobantesAlContadoController extends Rad_Wi
         $path = APPLICATION_PATH.'/../birt/Reports/Reporte_IngresodeComprobantesalContado.rptdesign';
 
         $where = "WHERE Comprobante_CondicionDePago = 2";
+        $texto = "Reporte Ingreso de Comprobantes al Contado";
         if ( $fechaDesde <> '' ) {
             $report->setParameter('fechaDesde', $fechaDesde, 'String');
             //$where .= " AND Comprobante_FechaEmision >= STR_TO_DATE('".$fechaDesde."','%Y-%m-%d')";
             $where .= " AND Comprobante_FechaEmision >= '".$fechaDesde."'";
-        }
+            $texto .= " Fecha Desde ".date('d/m/Y',strtotime($rq->fechaDesde));        
+        }    
         if ( $fechaHasta <> '' ) {
             $report->setParameter('fechaHasta', $fechaHasta, 'String');
             //$where .= " AND Comprobante_FechaEmision <= STR_TO_DATE('".$fechaHasta."','%Y-%m-%d')";
             $where .= " AND Comprobante_FechaEmision <= '".$fechaHasta."'";
+            $texto .= " Fecha Hasta ".date('d/m/Y',strtotime($rq->fechaHasta));         
+
         }
         if ( $idLibroIVADesde <> 0 ) {
             $report->setParameter('idLibroIVADesde', $idLibroIVADesde, 'Int');
             $where .= " AND Comprobante_LibroIva >= ".$idLibroIVADesde;
+
         }
         if ( $idLibroIVAHasta <> 0 ) {
             $report->setParameter('idLibroIVAHasta', $idLibroIVAHasta, 'Int');
@@ -57,10 +62,11 @@ class Facturacion_ReporteIngresoDeComprobantesAlContadoController extends Rad_Wi
             $where .= " AND Persona_Id = ".$idProveedor;
         } 
         $report->renderFromFile($path, $formato, array(
+            'TEXTO' => $texto,
             'WHERE' => $where
         ));
         $nombreRep      = str_replace(  array(" ","/"), array("_","-") , $texto);
-        $NombreReporte  = "Reporte Ingreso de Comprobantes al Contado".$nombreRep."_".date('YmdHis');        
+        $NombreReporte  = "_".$nombreRep."_".date('YmdHis');        
         
         $report->sendStream($NombreReporte);
     }
