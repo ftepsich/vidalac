@@ -28,7 +28,6 @@ class Contable_ReportePlanDeCuentaController extends Rad_Window_Controller_Actio
         $fechaHasta      = ($rq->fechahasta) ? $rq->fechahasta : '';
 	     $idLibroIVADesde = ($rq->libroivadesde) ? $rq->libroivadesde : 0;
         $idLibroIVAHasta = ($rq->libroivahasta) ? $rq->libroivahasta : 0;
-        $idProveedor     = ($rq->proveedor) ? $rq->proveedor : 0;
         $M_L = new Contable_Model_DbTable_LibrosIVA();
             $R_L = $M_L->find($param['libro'])->current();
             if ($R_L) {
@@ -72,10 +71,6 @@ class Contable_ReportePlanDeCuentaController extends Rad_Window_Controller_Actio
             $report->setParameter('idLibroIVAHasta', $idLibroIVAHasta, 'Int');
             $where .= " AND Comprobante_LibroIva <= ".$idLibroIVAHasta;
         }
-        if ( $idProveedor <> 0 ) {
-            $report->setParameter('idProveedor', $idProveedor, 'Int');
-            $where .= " AND Persona_Id = ".$idProveedor;
-        } 
         $report->renderFromFile($texto,$path, $formato, array(
             'TEXTO' => $texto,
             'WHERE' => $where

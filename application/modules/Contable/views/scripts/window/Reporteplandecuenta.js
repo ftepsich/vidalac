@@ -82,92 +82,34 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     selectOnFocus:true
                 },
                 {
-                   xtype: 'xdatefield',
-                   fieldLabel: 'Fecha Desde',
-                   format: 'd/m/Y',
-                   dateFormat:'Y-m-d',
-                   name: 'fechaDesde',
-                   forceSelection: true,
-                   anchor: '45%'
-                },
+                    xtype:          'compositefield',
+                    fieldLabel:     'Fecha',
+                    items: [
+                        {xtype: 'displayfield', value: 'Desde:'},{name : 'fechaDesde', xtype: 'xdatefield',format: 'd/m/Y',  dateFormat:'Y-m-d'},
+                        {xtype: 'displayfield', value: 'Hasta:'},{name : 'fechaHasta', xtype: 'xdatefield',format: 'd/m/Y',  dateFormat:'Y-m-d'},
+                    ]
+                },    
                 {
-                   xtype: 'xdatefield',
-                   fieldLabel : 'Fecha Hasta',
-                   format: 'd/m/Y',
-                   dateFormat:'Y-m-d',
-                   name: 'fechaHasta',
-                   forceSelection: true,
-                   anchor: '45%'
-                },
-                {
-                    xtype: 'xcombo',
-                    fieldLabel: 'Libro IVA Desde',                 
-                    anchor: '45%',
-                    displayField: 'Descripcion',
-                    name: 'libroivadesde',
-                    valueField: 'Id',
-                    selectOnFocus: true,
-                    forceSelection: true,
-                    forceReload: true,
-                    hiddenName: "libroIvaDesde",
-                    loadingText: "Cargando...",
-                    msgTarget: 'under',
-                    triggerAction: 'all',
-                    store: new Ext.data.JsonStore({
-                        id: 0,
-                        url:"datagateway\/combolist\/model\/LibrosIVA/m\/Contable\/search\/Descripcion\/sort\/Id\/dir\/desc",
-                        storeId: "LibroIVAStore"
-                    })
-                },
-                
-                {
-                    xtype: 'xcombo',
-                    fieldLabel: 'Libro IVA Hasta',
-                    anchor: '45%',
-                    displayField: 'Descripcion',
-                    name: 'libroivahasta',
-                    valueField: 'Id',
-                    selectOnFocus: true,
-                    forceSelection: true,
-                    forceReload: true,
-                    hiddenName: "libroIvaHasta",
-                    loadingText: "Cargando...",
-                    msgTarget: 'under',
-                    triggerAction: 'all',
-                    store: new Ext.data.JsonStore({
-                        id: 0,
-                        url:"datagateway\/combolist\/model\/LibrosIVA/m\/Contable\/search\/Descripcion\/sort\/Id\/dir\/desc",
-                        storeId: "LibroIVAStore"
-                    })
-                },
-                {
-                    fieldLabel: 'Proveedor',
-                    ref: '../persona',
-                    xtype:"xcombo",
-                    anchor: '96%',
-                    displayField: 'RazonSocial',
-                    name: 'proveedor',
-                    typeAhead:true,
-                    valueField: 'Id',
-                    allowBlank: true,
-                    msgTarget: 'under',
-                    triggerAction: 'all',
-                    autoLoad:true,
-                    selectOnFocus:true,
-                    forceSelection:true,
-                    forceReload:true,
-                    hiddenName:"idProveedor",
-                    loadingText:"Cargando...",
-                    lazyRender:true,
-                    store:new Ext.data.JsonStore({
-                       id:0,
-                       url:"datagateway\/combolist\/model\/Proveedores\/m\/Base\/search\/RazonSocial",
-                       storeId:"ProveedoresStore"
-                    }),
-                pageSize:20,
-                editable:true,
-                autocomplete:true
-                },
+                    xtype:          'compositefield',
+                    fieldLabel:     'Libro Iva',
+                    items: [
+                        {xtype: 'displayfield', value: 'Desde:'},{displayField: 'Descripcion',name : 'libroivadesde',valueField: 'Id', xtype: 'xcombo', selectOnFocus: true, forceSelection: true, forceReload: true,
+                        hiddenName: "libroIvaDesde",loadingText: "Cargando...", msgTarget: 'under',width: 116,
+                        triggerAction: 'all', store: new Ext.data.JsonStore({
+                            id: 0,
+                            url:"datagateway\/combolist\/model\/LibrosIVA/m\/Contable\/search\/Descripcion\/sort\/Id\/dir\/desc",
+                            storeId: "LibroIVAStore"
+                        })},
+                        {xtype: 'displayfield', value: 'Hasta:'},{ displayField: 'Descripcion',name:'libroivahasta', valueField: 'Id',xtype: 'xcombo',selectOnFocus: true, forceSelection: true, forceReload: true,
+                        hiddenName: "libroIvaHasta",loadingText: "Cargando...", msgTarget: 'under',width: 116,
+
+                        triggerAction: 'all',store: new Ext.data.JsonStore({
+                            id: 0,
+                            url:"datagateway\/combolist\/model\/LibrosIVA/m\/Contable\/search\/Descripcion\/sort\/Id\/dir\/desc",
+                            storeId: "LibroIVAStore"
+                        })},
+                    ]
+                }, 
                 {
                     typeAhead: true,
                     xtype: 'xcombo',
@@ -249,11 +191,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                             params += '/libroivahasta/'+values.libroIvaHasta;
                         }
 
-                        if (values.idProveedor !== '' && values.idProveedor) {
-                           params += '/proveedor/'+values.idProveedor;
-                        } else {
-                           params += '/proveedor/0';
-                        }
+               
  
                         if (values.formato) {
                             params += '/formato/'+values.formato;
