@@ -274,6 +274,7 @@
        Articulo_Id,
        Articulo_Descripcion,
        Articulo_PrecioUnitario,
+       Comprobante_TipoDeComprobante,
        SUM(Articulo_Cantidad) AS Articulo_Cantidad,
        SUM(Articulo_SubTotal) AS Articulo_SubTotal
 FROM vplandecuentamercaderia
@@ -283,7 +284,8 @@ GROUP BY  Persona_Id,
 		  Persona_RazonSocial,
 		  Articulo_Id,
 		  Articulo_Descripcion,
-		  Articulo_PrecioUnitario
+		  Articulo_PrecioUnitario,
+		  Comprobante_TipoDeComprobante
 ORDER BY  Persona_RazonSocial,
 		  Articulo_Descripcion;]]></xml-property>
         </oda-data-set>
