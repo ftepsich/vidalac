@@ -43,7 +43,7 @@ class Base_ReporteCuentasCorrientesController extends Rad_Window_Controller_Acti
               if ( $param['modelo'] != 3 ) {
                    $where[] = "fPersona_CuentaCorriente_A_Fecha(P.Id,".$param['fecha'].",".$param['modelo'].",".$param['tipo'].")  NOT BETWEEN -1 AND 1";
               } else {
-                   $where[] = "IFNULL(fComprobante_Monto_Disponible(C.Id),0) NOT BETWEEN -1 AND 1";
+                   $where[] = "IFNULL(fComprobante_Monto_Disponible_A_Fecha(C.Id,".$param['fecha']."),0) NOT BETWEEN -1 AND 1";
               }
         }
         
