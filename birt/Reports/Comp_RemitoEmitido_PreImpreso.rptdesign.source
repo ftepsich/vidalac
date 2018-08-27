@@ -1673,7 +1673,6 @@ call Birt_Comprobante_Cabecera(?);]]></xml-property>
                     <property name="verticalAlign">bottom</property>
                     <text-data id="2681">
                         <property name="style">ids</property>
-                        <expression name="valueExpr">BirtStr.concat('Nº: ', row["CodigoDeComprobante"] ,' ', row["NumeroCompleto"],'  /  C: ', row["IdComprobante"],'  /  P: ',row["Persona"]);</expression>
                         <property name="contentType">html</property>
                     </text-data>
                 </cell>

@@ -7,8 +7,7 @@
  * @package     Aplicacion
  * @subpackage  Facturacion
  */
-class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Comprobantes
-{
+class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Comprobantes {
 
     /**
      * Valores Permanentes
@@ -17,16 +16,14 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
      *
      */
     protected $_permanentValues = array(
-        'TipoDeComprobante' => array(19, 20, 21, 22, 23, 33, 34, 35, 36, 41, 42, 43, 44, 24, 25, 26, 27, 28, 29, 30, 31, 32, 37, 38, 39, 40, 47, 49, 50, 51, 52, 53, 54, 55, 56, 57,65,66)
+        'TipoDeComprobante' => array(19, 20, 21, 22, 23, 33, 34, 35, 36, 41, 42, 43, 44, 24, 25, 26, 27, 28, 29, 30, 31, 32, 37, 38, 39, 40, 47, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66)
     );
-
     protected $_calculatedFields = array(
         'EstadoPagado' => "fEstadoRelHijoPago(Comprobantes.Id) COLLATE utf8_general_ci ",
         'EstadoRecibido' => "fEstadoRelPadre(Comprobantes.Id) COLLATE utf8_general_ci",
         'MontoTotal' => "fComprobante_Monto_Total(Comprobantes.Id)",
         'MontoDisponible' => "fComprobante_Monto_Disponible(Comprobantes.Id)"
     );
-
     protected $_referenceMap = array(
         'TiposDeComprobantes' => array(
             'columns' => 'TipoDeComprobante',
@@ -83,21 +80,20 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
     /**
      * Init
      */
-    public function init()
-    {
-        $this->_calculatedFields['EstadoPagado']    = "fEstadoRelHijoPago(Comprobantes.Id) COLLATE utf8_general_ci ";
-        $this->_calculatedFields['EstadoRecibido']  = "fEstadoRelPadre(Comprobantes.Id) COLLATE utf8_general_ci";
-        $this->_calculatedFields['MontoTotal']      = "fComprobante_Monto_Total(Comprobantes.Id)";
+    public function init() {
+        $this->_calculatedFields['EstadoPagado'] = "fEstadoRelHijoPago(Comprobantes.Id) COLLATE utf8_general_ci ";
+        $this->_calculatedFields['EstadoRecibido'] = "fEstadoRelPadre(Comprobantes.Id) COLLATE utf8_general_ci";
+        $this->_calculatedFields['MontoTotal'] = "fComprobante_Monto_Total(Comprobantes.Id)";
 
         // NroCompleto se pisa en los hijos FC y FV (Ingreso de Comprobantes y Emision de comprobantes)
-        $this->_calculatedFields['NumeroCompleto']  = "fNumeroCompleto(Comprobantes.Id,'CG') COLLATE utf8_general_ci";
+        $this->_calculatedFields['NumeroCompleto'] = "fNumeroCompleto(Comprobantes.Id,'CG') COLLATE utf8_general_ci";
 
         parent::init();
 
         if ($this->_fetchWithAutoJoins) {
             $j = $this->getJoiner();
             $j->with('TiposDeComprobantes')
-              ->joinRef('TiposDeGruposDeComprobantes',array('Grupo' => 'Codigo'));
+                    ->joinRef('TiposDeGruposDeComprobantes', array('Grupo' => 'Codigo'));
         }
     }
 
@@ -107,8 +103,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
      * @param array $where  Registros que se deben eliminar
      *
      */
-    public function delete($where)
-    {
+    public function delete($where) {
         try {
             $this->_db->beginTransaction();
             $reg = $this->fetchAll($where);
@@ -118,7 +113,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
                     $comprobante = Facturacion_Model_DbTable_OrdenesDePagosFacturas::retornarComprobantePago($R->Id);
 
                     if (!empty($comprobante)) {
-                        throw new Rad_Db_Table_Exception("La factura que intenta borrar se encuentra relacionada con la orden de pago Número: {$comprobante['Numero']}.");
+                        throw new Rad_Db_Table_Exception("La factura que intenta borrar se encuentra relacionada con la orden de pago Numero: {$comprobante['Numero']}.");
                     }
 
                     // Verificar si tiene LibroIVAcerrado
@@ -145,7 +140,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
                 parent::delete('Comprobantes.Id =' . $R->Id);
                 $tipoComprobante = $R->findParentRow("Facturacion_Model_DbTable_TiposDeComprobantes");
                 // Log Usuarios
-                if ( $R->Numero == 0 ) {
+                if ($R->Numero == 0) {
                     Rad_Log::user("Borró comprobante ($tipoComprobante->Descripcion ID $R->Id)");
                 } else {
                     Rad_Log::user("Borró comprobante ($tipoComprobante->Descripcion N° $R->Numero)");
@@ -165,8 +160,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
      * @param array $data   Valores que se insertaran
      * addAutoJoin
      */
-    public function insert($data)
-    {
+    public function insert($data) {
         // reviso que no exista otro abierto al momento de cargar este
         // solo si no es consumidor final generico (para permitir varios Puntos de ventas simultaneos facturar)
         if ($data['Persona'] != 1) {
@@ -188,14 +182,13 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
      * @param int $idFactura    identificador de la factura a cerrar
      *
      */
-    public function anular($idFactura)
-    {
+    public function anular($idFactura) {
         try {
             $this->_db->beginTransaction();
 
             // Controles
             $this->salirSi_noExiste($idFactura)
-                 ->salirSi_noEstaCerrado($idFactura);
+                    ->salirSi_noEstaCerrado($idFactura);
 
             // TODO: Falta ver que se hace si el Libro de IVA esta cerrado con los comprobantes hijos
             parent::anular($idFactura);
@@ -207,71 +200,6 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
         }
     }
 
-//    //TODO: Este codigo se puede mejorar y hay mucho repetido. Arreglado a los apurones para arreglar falla en comprobantes B
-//    /**
-//     * Retorna el total del iva de la factura
-//     *
-//     * @param int         $idFactura      identificador de la factura
-//     *
-//     * @return float
-//     */
-//    public function getTotalesIva($idFactura)
-//    {
-//        // Recupero el registro Padre
-//        $R_FV = $this->find($idFactura)->current();
-//
-//        // Recupero el NG
-//        $NetoGravado = $this->recuperarNetoGravado($idFactura);
-//
-//        $sql = "SELECT
-//                    sum(CD.Cantidad*CD.PrecioUnitario) as NetoGravadoArticulo,
-//                    CI.afip as codAfip,
-//                    CD.DescuentoEnMonto,
-//                    CD.DescuentoEnPorcentaje,
-//                    CD.ConceptoImpositivo as ConceptoIVA,
-//                    CI.PorcentajeActual as Porcentaje,
-//                    ifnull(CD.DescuentoEnMonto,0) as DescuentoGeneral
-//            FROM  ComprobantesDetalles CD
-//                            INNER JOIN ConceptosImpositivos CI ON CD.ConceptoImpositivo = CI.Id   and CI.esIVA = 1
-//                            INNER JOIN Comprobantes C ON CD.Comprobante = C.Id
-//            WHERE CD.Comprobante = $idFactura
-//            GROUP BY CD.ConceptoImpositivo";
-//
-//        $R_IVA = $this->_db->fetchAll($sql);
-//
-//        $ivas = array();
-//        if (count($R_IVA)) {
-//
-//            $M_C = new Facturacion_Model_DbTable_Comprobantes(array(), false);
-//            foreach ($R_IVA as $row) {
-//                $tmp = array();
-//                // Cargo los datos que voy a necesitar despues
-//
-//                $NGArticulo = 0;
-//
-//                if ($row['DescuentoGeneral'] > 0) {
-//                    $NGArticulo = $row['NetoGravadoArticulo'] - ($row['NetoGravadoArticulo'] * $row['DescuentoGeneral'] / $NetoGravado);
-//                } else {
-//                    $NGArticulo = $row['NetoGravadoArticulo'];
-//                    // Le hago el descuento si el mismo esta cargado en el articulo
-//                    if ($row['DescuentoEnMonto'] > 0) {
-//                        $NGArticulo = $NGArticulo - $row['DescuentoEnMonto'];
-//                    }
-//                    if ($row['DescuentoEnPorcentaje'] > 0) {
-//                        $NGArticulo = $NGArticulo - ($NGArticulo * $row['DescuentoEnPorcentaje'] / 100);
-//                    }
-//                }
-//
-//                $totalIva += $NGArticulo * $row['Porcentaje'] / 100;
-//                $tmp['MontoImponible'] = $NGArticulo;
-//                $tmp['Monto'] = $NGArticulo * $row['Porcentaje'] / 100;
-//                $tmp['codAfip'] = $row['codAfip'];
-//                $ivas[] = $tmp;
-//            }
-//        }
-//        return $ivas;
-//    }
-
     /**
      * Rearma los conceptos de IVA de una Factura
      *
@@ -279,8 +207,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
      *
      * @return boolean
      */
-    public function recalcularIVA($idFactura)
-    {
+    public function recalcularIVA($idFactura) {
 
         // Recupero el registro Padre
         $R_FV = $this->find($idFactura)->current();
@@ -328,7 +255,6 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
 
                 $monto = $NGArticulo * $row['Porcentaje'] / 100;
                 // conceptos con monto 0 (cero) no se generan...
-
                 // Comentado pq el IVA 0 va (Martin 01/03/2017)
                 // if($monto == 0){
                 //     continue;
@@ -344,10 +270,10 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
                     'ValorDivisa' => 1,
                     'ConceptoImpositivo' => $row['ConceptoIVA'],
                     'ConceptoImpositivoPorcentaje' => $row['Porcentaje'],
-              //      'MontoImponible' => $NGArticulo,
+                    //      'MontoImponible' => $NGArticulo,
                     'MontoImponible' => $row['NGporCI'],
-                    'Monto' =>  $row['NGporCI'] * $row['Porcentaje'] / 100
-              //      'Monto' => $monto
+                    'Monto' => $row['NGporCI'] * $row['Porcentaje'] / 100
+                        //      'Monto' => $monto
                 );
 
                 $R_H = $M_C->recuperarConceptoAsignado($idFactura, $row['ConceptoIVA']);
@@ -370,8 +296,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
      * @param int $idComprobante    identificador del comprobante a verificar
      *
      */
-    public function salirSi_tieneDobleDescuento($idFactura)
-    {
+    public function salirSi_tieneDobleDescuento($idFactura) {
         if ($this->tieneDobleDescuento($idFactura)) {
             throw new Rad_Db_Table_Exception("La factura tiene descuentos por articulos y se intenta ingresar uno general.");
         }
@@ -384,8 +309,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
      *
      * @return boolean
      */
-    public function tieneDobleDescuento ($idFactura)
-    {
+    public function tieneDobleDescuento($idFactura) {
         $sql = "select  sum(ifnull(DescuentoEnPorcentaje,0)) rta
                 from    ComprobantesDetalles
                 where   Comprobante = $idFactura";
@@ -402,8 +326,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
      *
      * @return boolean
      */
-    public function insertarConceptosDesdeControlador ($idFactura)
-    {
+    public function insertarConceptosDesdeControlador($idFactura) {
         $this->salirSi_NoExiste($idFactura);
         $this->salirSi_estaCerrado($idFactura);
         $this->salirSi_noTieneDetalle($idFactura);
@@ -418,8 +341,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
      *
      * @return boolean
      */
-    public function recalcularConceptosNoIVA ($idFactura)
-    {
+    public function recalcularConceptosNoIVA($idFactura) {
         // Recupero el registro Padre
         $R_C = $this->find($idFactura)->current();
         if (!$R_C) {
@@ -431,7 +353,6 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
         $filtro = "ParaCompra";
 
         $this->recalcularConceptosFacturacion($idFactura, $idPersona, $fechaEmision, $filtro);
-
         return true;
     }
 
@@ -442,8 +363,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
      *
      * @return boolean
      */
-    public function recalcularConceptosImpostivos ($idFactura)
-    {
+    public function recalcularConceptosImpostivos($idFactura) {
 
         if (!$this->esComprobanteAoM($idFactura)) {
             // Es una factura B o C, Borro todos los conceptos por las dudas
@@ -458,9 +378,6 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
 
             // Calculo los conceptos que no son IVA
             $this->recalcularConceptosNoIVA($idFactura);
-
-            // Calculo como Agente las Percepciones IB
-            $this->recalcularComoAgentePercepcionesIB($idFactura);
         }
     }
 
@@ -473,10 +390,9 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
      * @param <type> $offset
      * @return <type>
      */
-    public function fetchImpagas ($where = null, $order = null, $count = null, $offset = null)
-    {
-        $condicion  = "Estado in (1,2)";
-        $where      = $this->_addCondition($where, $condicion);
+    public function fetchImpagas($where = null, $order = null, $count = null, $offset = null) {
+        $condicion = "Estado in (1,2)";
+        $where = $this->_addCondition($where, $condicion);
 
         return self::fetchAll($where, $order, $count, $offset);
     }
@@ -490,8 +406,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
      * @param <type> $offset
      * @return <type>
      */
-    public function fetchAsociadosYFaltantesDePagar ($where = null, $order = null, $count = null, $offset = null)
-    {
+    public function fetchAsociadosYFaltantesDePagar($where = null, $order = null, $count = null, $offset = null) {
         if ($where instanceof Zend_Db_Table_Select) {
             $select = $where;
         } else {
@@ -501,12 +416,12 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
             }
         }
 
-        $condicion  = " Comprobantes.Cerrado = 1 AND Comprobantes.Anulado = 0 ";
+        $condicion = " Comprobantes.Cerrado = 1 AND Comprobantes.Anulado = 0 ";
         // Los gastos bancarios no deben poder asociarse a una Orden de Pago NUNCA ! --> Grupo 14, 15 y 16
         $condicion2 = " Comprobantes.TipoDeComprobante not in (select Id from TiposDeComprobantes where Grupo in (14,15,16))";
 
-        $where      = $this->_addCondition($where, $condicion);
-        $where      = $this->_addCondition($where, $condicion2);
+        $where = $this->_addCondition($where, $condicion);
+        $where = $this->_addCondition($where, $condicion2);
 
         //$this->_where($select, $where);
 
@@ -514,7 +429,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
             $this->_order($select, $order);
         }
 
-        if ( !is_null($count) || !is_null($offset) ) {
+        if (!is_null($count) || !is_null($offset)) {
             $select->limit($count, $offset);
         }
 
@@ -531,8 +446,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
      * @param <type> $offset
      * @return <type>
      */
-    public function fetchAsociadosYFaltantesDeCobrar ($where = null, $order = null, $count = null, $offset = null)
-    {
+    public function fetchAsociadosYFaltantesDeCobrar($where = null, $order = null, $count = null, $offset = null) {
         if ($where instanceof Zend_Db_Table_Select) {
             $select = $where;
         } else {
@@ -543,44 +457,22 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
         }
 
         $this->_where($select, "Comprobantes.Cerrado = 1 AND Comprobantes.Anulado = 0");
-
-        // Busco todos los Id de GB por venta de facturas que tengan algo disponible junto con los comprobantes de los
-/*
-        $sql = "
-                select  distinct(Comprobantes.Id) as Id
-                from    Comprobantes
-                inner   join TiposDeComprobantes TC on TC.Id = Comprobantes.TipoDeComprobante
-                where   Comprobantes.Cerrado = 1
-                AND     Comprobantes.Anulado = 0
-                and     ((
-                        TC.Grupo = 15
-                        and fComprobante_Monto_Disponible(Comprobantes.Id) >= 0.001
-                        )
-                        or
-                        (
-                        ".implode(" ",$select->getPart('where'))."
-                        ))
-                ";
-*/
         $sql = "
                 SELECT  DISTINCT(Comprobantes.Id) AS Id
                 FROM    Comprobantes
-                WHERE   ".implode(" ",$select->getPart('where'))."
+                WHERE   " . implode(" ", $select->getPart('where')) . "
                 UNION
                 SELECT  DISTINCT(Comprobantes.Id) AS Id
                 FROM    Comprobantes
                 INNER   JOIN TiposDeComprobantes TC ON TC.Id = Comprobantes.TipoDeComprobante  AND TC.Grupo = 15
                 WHERE   Comprobantes.Cerrado = 1 AND Comprobantes.Anulado = 0 AND fComprobante_Monto_Disponible(Comprobantes.Id) >= 0.001
                 ";
-
-        //Rad_Log::debug($sql);
-
         $select2 = $this->select();
         $select2->having("EstadoPagado in (('Nada') COLLATE utf8_general_ci, ('Parcialmente') COLLATE utf8_general_ci) OR checked = 1");
 
         $R = $this->_db->fetchAll($sql);
-        $Ids_GBxVentaDeFacturas ='';
-        $sep='';
+        $Ids_GBxVentaDeFacturas = '';
+        $sep = '';
 
         if (count($R)) {
             //Rad_Log::debug($R);
@@ -591,7 +483,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
             $Ids_GBxVentaDeFacturas = "Comprobantes.Id in ($Ids_GBxVentaDeFacturas)";
             $select2->where("$Ids_GBxVentaDeFacturas");
         } else {
-            $this->_where($select2, implode(" ",$select->getPart('where')));
+            $this->_where($select2, implode(" ", $select->getPart('where')));
         }
 
         if (!is_null($order)) {
@@ -600,13 +492,12 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
             $this->_order($select2, "Comprobantes.FechaEmision desc");
         }
 
-        if ( !is_null($count) || !is_null($offset) ) {
+        if (!is_null($count) || !is_null($offset)) {
             $select2->limit($count, $offset);
         }
 
         return self::fetchAll($select2);
     }
-
 
     /**
      * Devuelve las facturas nuestras que esten en condiciones de ser entregadas
@@ -618,8 +509,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
      * @param <type> $offset
      * @return <type>
      */
-    public function fetchParaAdelantoPorVtaDeFactura ($where = null, $order = null, $count = null, $offset = null)
-    {
+    public function fetchParaAdelantoPorVtaDeFactura($where = null, $order = null, $count = null, $offset = null) {
         if ($where instanceof Zend_Db_Table_Select) {
             $select = $where;
         } else {
@@ -633,7 +523,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
         $this->_order($select, 'FechaEmision desc');
 
 
-        if ( !is_null($count) || !is_null($offset) ) {
+        if (!is_null($count) || !is_null($offset)) {
             $select->limit($count, $offset);
         }
 
@@ -642,11 +532,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
         return self::fetchAll($select);
     }
 
-    // ========================================================================================================================
-    // ========================================================================================================================
-    // ========================================================================================================================
-    public function fetchFacturas($where = null, $order = null, $count = null, $offset = null)
-    {
+    public function fetchFacturas($where = null, $order = null, $count = null, $offset = null) {
         $condicion = "Comprobantes.Cerrado = 1 and Comprobantes.Anulado = 0 and Comprobantes.TipoDeComprobante in (19, 20, 21, 22, 23, 33, 34, 35, 36, 41, 42, 43, 44, 24, 25, 26, 27, 28, 29, 30, 31, 32, 37, 38, 39, 40)";
         $this->_addCondition($where, $condicion);
         return parent::fetchAll($where, $order, $count, $offset);

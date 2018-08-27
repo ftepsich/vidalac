@@ -36,26 +36,6 @@ class Base_Model_DbTable_ChequesConciliacionBancaria extends Base_Model_DbTable_
 
     public function update ($data, $where) {
        throw new Rad_Db_Table_Exception('Funcionalidad en desarrollo !');
-       /*
-        // Si es automatico ver si ya esta impreso
-        unset($data['Persona']);
-
-        $reg = $this->fetchAll($where);
-
-        foreach ($reg as $row) {
-            if ($row['ChequeEstado'] != 6 && $row['ChequeEstado'] != 1 && $row['Impreso']) {
-                throw new Rad_Db_Table_Exception('Solo puede modificar cheques vacios, disponibles y no impreso');
-            }
-
-            if (!$data['Monto'] || !$data['FechaDeEmision'] || !$data['PagueseA']) {
-                throw new Rad_Db_Table_Exception("Deben completarse 'Monto', 'Fecha de Emision' y 'Paguese A'");
-            }
-            //$data['ChequeEstado'] = 6;
-            $data['MontoEnLetras'] = Rad_CustomFunctions::num2letras(round($data['Monto'], 2, PHP_ROUND_HALF_UP));
-
-            return Rad_Db_Table::update($data, $where);
-        }
-        */
     }
 
     /**

@@ -21,24 +21,14 @@ class Base_Model_DbTable_TiposDeDivisas extends Rad_Db_Table
         'AfipMonedas' => array(
             'columns' => 'Afip',
             'refTableClass' => 'Afip_Model_DbTable_AfipMonedas',
-            'refJoinColumns' => array("Codigo"),
+            'refJoinColumns' => array("Descripcion"),
             'comboBox' => true,
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'AfipMonedas',
             'refColumns' => 'Id'
         ),
-        'AfipMonedas' => array(
-            'columns'           => 'Afip',
-            'refTableClass'     => 'Afip_Model_DbTable_AfipMonedas',
-            'refJoinColumns'    => array('Descripcion'),
-            'comboBox'          => true,
-            'comboSource'       => 'datagateway/combolist',
-            'refTable'          => 'AfipMonedas',
-            'refColumns'        => 'Id',
-            'comboPageSize'     => '10'
-        )
-
     );
+    
 
 	public function init()     {
 			$this -> _validators = array(
@@ -55,6 +45,7 @@ class Base_Model_DbTable_TiposDeDivisas extends Rad_Db_Table
 			);
 
 		parent::init();
-	}
+    }
+
 
 }

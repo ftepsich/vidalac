@@ -294,7 +294,6 @@ class Base_Model_DbTable_Articulos extends Rad_Db_Table
             unset($nodoRaiz['EsContenedor']);
 
             if (!$MostrarFormula && $raiz['TieneFormula'] == 1 ) {
-                // No hago nada si la raiz ya tiene una formula y no quiere mostrarla
             } else {
                 $this->_articulosRecorrerArbol($ArticuloVersion,$ArticuloVersion,1,$desglose,$nodoRaiz,$MostrarFormula);
             }
@@ -327,10 +326,6 @@ class Base_Model_DbTable_Articulos extends Rad_Db_Table
             'productoTipoUM'        => $productoTUM,
             'productoCantTotal'     => $productoCantTotal
         );
-
-        //Rad_Log::debug($desglose);
-        //Rad_Log::debug($arbol);
-
         return $return;
     }
 
@@ -348,8 +343,6 @@ class Base_Model_DbTable_Articulos extends Rad_Db_Table
     protected function _articulosRecorrerArbol($ArticuloVersionRaiz, $ArticuloVersion, $multiplicador,&$desglose,&$arbol,$MostrarFormula = null)
     {
         $cantidadAcumulada  = 1;
-
-        // get all records from database whose parent is $id
         $sql    = " select      distinct
 
                                 AH.Descripcion          as Articulo,

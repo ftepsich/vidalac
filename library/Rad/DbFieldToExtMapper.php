@@ -12,7 +12,7 @@ class Rad_DbFieldToExtMapper
          'tinyint'   => 'int',
          'bigint'    => 'string',
          'int'       => 'string', // va string pq sino me convierte los null a 0 en los stores
-         'decimal'   => 'float',
+         'decimal'   => 'string', // va string pq sino me convierte los null a 0 en los stores
          'timestamp' => 'date',
          'datetime'  => 'date',
          'date'      => 'date',

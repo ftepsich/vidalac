@@ -122,7 +122,7 @@ class Facturacion_Model_DbTable_Recibos extends Facturacion_Model_DbTable_Compro
             'refColumns' => 'Id'
         )
     );
-    // fin  protected $_referenceMap -----------------------------------------------------------------------------
+    
     protected $_dependentTables = array("Facturacion_Model_DbTable_RecibosDetalles");
 
     /**

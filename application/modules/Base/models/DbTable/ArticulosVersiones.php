@@ -44,61 +44,7 @@ class Base_Model_DbTable_ArticulosVersiones extends Rad_Db_Table
         return $vernum + 1;
     }
 
-    /**
-     * Agrega un articulo como componente
-     *
-     * @param mixed $articuloVersion     Id del ArticuloVersion al que se le agregara el detalle o row de ArticuloVersion
-     * @param int   $articuloVersionHijo Id del Articulo
-     * @param float $cantidad            cantidad del Articulo
-     * @param int   $proceso             Id del Articulo
-     */
-    // public function agregarDetalle($articuloVersion, $articuloVersionHijo, $cantidad, $proceso = null, $unidadDeMedida = null)
-    // {
-    //     if ($articuloVersion instanceof Rad_Db_Table_Row) {
-    //         if (! ($articuloVersion->getTable() instanceof Base_Model_DbTable_ArticulosVersiones) ) {
-    //             throw new Rad_Db_Table_Exception("El Row pasado como parametro debe ser del modelo ArticulosVersiones");
-    //         }
-
-    //         $idArtVer = $articuloVersion->Id;
-
-    //     } else {
-    //         if (!is_int($articuloVersion)) {
-    //             throw new Rad_Db_Table_Exception("El parametro articuloVersion debe ser un int o row de ArticulosVersiones");
-    //         }
-    //         $idArtVer = $articuloVersion;
-
-    //         $articuloVersion = $this->find($idArtVer)->current();
-
-    //         if (!$articuloVersion) {
-    //             throw new Exception(
-    //                 "No se encontro el articulo de la Version id: $idArtVer"
-    //             );
-    //         }
-    //     }
-
-    //     $ArticulosVersionesDetalles = new Base_Model_DbTable_ArticulosVersionesDetalles;
-
-    //     $detalle = $ArticulosVersionesDetalles->createRow();
-
-    //     $detalle->ArticuloVersionHijo  = $articuloVersionHijo;
-    //     $detalle->ArticuloVersionPadre = $idArtVer;
-    //     $detalle->Cantidad             = $cantidad;
-    //     $detalle->Proceso              = $proceso;
-    //     $detalle->UnidadDeMedida       = $unidadDeMedida;
-
-    //     if ($articuloVersion->ArticuloVersion) {
-    //         // Un hijo (rama) mas
-    //         $detalle->ArticuloVersion = $articuloVersion->ArticuloVersion;
-    //     } else {
-    //         // Raiz del arbol
-    //         $detalle->ArticuloVersion = $idArtVer;
-    //     }
-
-    //     $detalle->save();
-
-    //     return $detalle;
-    // }
-
+   
 
     /**
      * Agrega un articulo como componente

@@ -198,11 +198,9 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
                       AND C.Anulado           = 0";
 
             $TotalMontoCompensacion = $this->_db->fetchOne($sql);
-
             if ($TotalMontoCompensacion > 0) {
 
                 // Compensación Ventas en Orden de Pago
-
                 $asiento = $this->createRow();
                 $asiento->Persona = $row->Persona;
                 $asiento->Comprobante = $row->Id;
@@ -215,7 +213,6 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
                 $asiento->save();
 
                 // Compensación Compras en Orden de Pago
-
                 $asiento = $this->createRow();
                 $asiento->Persona = $row->Persona;
                 $asiento->Comprobante = $row->Id;
@@ -230,7 +227,6 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
         }
 
         if ($tipoDeComprobante->Id == 48) { // Recibo
-
             $sql = "SELECT ABS(IFNULL(SUM(TC.Multiplicador*CR.MontoAsociado),0))
                     FROM ComprobantesRelacionados CR
                     JOIN Comprobantes C ON CR.ComprobanteHijo = C.Id
@@ -246,7 +242,6 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
             if ($TotalMontoCompensacion <> 0) {
 
                 // Compensación Ventas en Recibo
-
                 $asiento = $this->createRow();
                 $asiento->Persona = $row->Persona;
                 $asiento->Comprobante = $row->Id;
@@ -259,7 +254,6 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
                 $asiento->save();
 
                 // Compensación Compras en Recibo
-
                 $asiento = $this->createRow();
                 $asiento->Persona = $row->Persona;
                 $asiento->Comprobante = $row->Id;
@@ -331,5 +325,4 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
         $where = $this->_addCondition($where, $condicion);
         return parent:: fetchAll($where, $order, $count, $offset);
         }
-
 }

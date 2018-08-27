@@ -11,10 +11,6 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
             <property name="fileName">librerias/ConectorDB.rptlibrary</property>
             <property name="namespace">ConectorDB</property>
         </structure>
-        <structure>
-            <property name="fileName">librerias/Cabecera.rptlibrary</property>
-            <property name="namespace">Cabecera</property>
-        </structure>
     </list-property>
     <list-property name="cssStyleSheets">
         <structure>
@@ -37,8 +33,7 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
         </scalar-parameter>
     </parameters>
     <data-sources>
-        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Base" id="186"
- extends="ConectorDB.DataSource">
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Base" id="186" extends="ConectorDB.DataSource">
             <list-property name="privateDriverProperties">
                 <ex-property>
                     <name>contentBidiFormatStr</name>
@@ -242,10 +237,15 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                     </structure>
                 </list-property>
             </structure>
-            <method name="onFetch"><![CDATA[if (row["ObservacionesImpresas"]){
-	reportContext.setGlobalVariable("Observaciones_Visible",true);
-}
-]]></method>
+<<<<<<< HEAD
+            <method name="onFetch"><![CDATA[if (row["ObservacionesImpresas"]){ reportContext.setGlobalVariable("Observaciones_Visible",true); }]]></method>
+=======
+            <method name="onFetch"><![CDATA[
+                reportContext.setGlobalVariable("Persona",dataSetRow["Persona"]);
+                if (row["ObservacionesImpresas"]){
+	               reportContext.setGlobalVariable("Observaciones_Visible",true);
+                }]]></method>
+>>>>>>> master
             <property name="dataSource">Base</property>
             <list-property name="resultSet">
                 <structure>
@@ -459,379 +459,380 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                     <property name="dataType">integer</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[
-call Birt_Comprobante_Cabecera(?);]]></xml-property>
-            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
-<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
-  <Version>1.0</Version>
-  <design:ResultSets derivedMetaData="true">
-    <design:resultSetDefinitions>
-      <design:resultSetColumns>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>Id</design:name>
-            <design:position>1</design:position>
-            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
-            <design:precision>11</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>NotNullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>IdComprobante</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>IdComprobante</design:label>
-            <design:formattingHints>
-              <design:displaySize>11</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>Descripcion</design:name>
-            <design:position>2</design:position>
-            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
-            <design:precision>50</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>Nullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>TipoDeComprobante</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>TipoDeComprobante</design:label>
-            <design:formattingHints>
-              <design:displaySize>50</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>Descripcion</design:name>
-            <design:position>3</design:position>
-            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
-            <design:precision>50</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>Nullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>TipoVentaOCompra</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>TipoVentaOCompra</design:label>
-            <design:formattingHints>
-              <design:displaySize>50</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>RazonSocial</design:name>
-            <design:position>4</design:position>
-            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
-            <design:precision>100</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>Nullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>RazonSocial</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>RazonSocial</design:label>
-            <design:formattingHints>
-              <design:displaySize>100</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>Punto</design:name>
-            <design:position>5</design:position>
-            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
-            <design:precision>11</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>NotNullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>Punto</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>Punto</design:label>
-            <design:formattingHints>
-              <design:displaySize>11</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>Numero</design:name>
-            <design:position>6</design:position>
-            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
-            <design:precision>11</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>NotNullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>Numero</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>Numero</design:label>
-            <design:formattingHints>
-              <design:displaySize>11</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>ValorDeclarado</design:name>
-            <design:position>7</design:position>
-            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
-            <design:precision>12</design:precision>
-            <design:scale>2</design:scale>
-            <design:nullability>Nullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>ValorDeclarado</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>ValorDeclarado</design:label>
-            <design:formattingHints>
-              <design:displaySize>13</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>Direccion</design:name>
-            <design:position>8</design:position>
-            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
-            <design:precision>250</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>Nullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>Direccion</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>Direccion</design:label>
-            <design:formattingHints>
-              <design:displaySize>250</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>PisoDepartamento</design:name>
-            <design:position>9</design:position>
-            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
-            <design:precision>30</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>Nullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>PisoDepartamento</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>PisoDepartamento</design:label>
-            <design:formattingHints>
-              <design:displaySize>30</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>FechaEmision</design:name>
-            <design:position>10</design:position>
-            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
-            <design:precision>10</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>NotNullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>FechaEmision</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>FechaEmision</design:label>
-            <design:formattingHints>
-              <design:displaySize>10</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>FechaEntrega</design:name>
-            <design:position>11</design:position>
-            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
-            <design:precision>19</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>Nullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>FechaEntrega</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>FechaEntrega</design:label>
-            <design:formattingHints>
-              <design:displaySize>19</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>Descripcion</design:name>
-            <design:position>12</design:position>
-            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
-            <design:precision>100</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>Nullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>Localidad</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>Localidad</design:label>
-            <design:formattingHints>
-              <design:displaySize>100</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>Descripcion</design:name>
-            <design:position>13</design:position>
-            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
-            <design:precision>45</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>Nullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>Provincia</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>Provincia</design:label>
-            <design:formattingHints>
-              <design:displaySize>45</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>CodigoPostal</design:name>
-            <design:position>14</design:position>
-            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
-            <design:precision>10</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>Nullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>CodigoPostal</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>CodigoPostal</design:label>
-            <design:formattingHints>
-              <design:displaySize>10</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>Cuit</design:name>
-            <design:position>15</design:position>
-            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
-            <design:precision>13</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>Nullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>Cuit</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>Cuit</design:label>
-            <design:formattingHints>
-              <design:displaySize>13</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>Descripcion</design:name>
-            <design:position>16</design:position>
-            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
-            <design:precision>100</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>Nullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>ModalidadIVA</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>ModalidadIVA</design:label>
-            <design:formattingHints>
-              <design:displaySize>100</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>ObservacionesImpresas</design:name>
-            <design:position>17</design:position>
-            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
-            <design:precision>21845</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>Nullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>ObservacionesImpresas</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>ObservacionesImpresas</design:label>
-            <design:formattingHints>
-              <design:displaySize>21845</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>EstadoComoPadre</design:name>
-            <design:position>18</design:position>
-            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
-            <design:precision>20</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>Nullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>EstadoComoPadre</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>EstadoComoPadre</design:label>
-            <design:formattingHints>
-              <design:displaySize>20</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>EstadoComoHijo</design:name>
-            <design:position>19</design:position>
-            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
-            <design:precision>20</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>Nullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>EstadoComoHijo</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>EstadoComoHijo</design:label>
-            <design:formattingHints>
-              <design:displaySize>20</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-      </design:resultSetColumns>
-    </design:resultSetDefinitions>
-  </design:ResultSets>
-</model:DesignValues>]]></xml-property>
+            <xml-property name="queryText"><![CDATA[call Birt_Comprobante_Cabecera(?);]]></xml-property>
+            <xml-property name="designerValues">
+            <![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+            <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+              <Version>1.0</Version>
+              <design:ResultSets derivedMetaData="true">
+                <design:resultSetDefinitions>
+                  <design:resultSetColumns>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>Id</design:name>
+                        <design:position>1</design:position>
+                        <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+                        <design:precision>11</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>NotNullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>IdComprobante</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>IdComprobante</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>11</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>Descripcion</design:name>
+                        <design:position>2</design:position>
+                        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+                        <design:precision>50</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>Nullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>TipoDeComprobante</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>TipoDeComprobante</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>50</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>Descripcion</design:name>
+                        <design:position>3</design:position>
+                        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+                        <design:precision>50</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>Nullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>TipoVentaOCompra</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>TipoVentaOCompra</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>50</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>RazonSocial</design:name>
+                        <design:position>4</design:position>
+                        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+                        <design:precision>100</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>Nullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>RazonSocial</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>RazonSocial</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>100</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>Punto</design:name>
+                        <design:position>5</design:position>
+                        <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+                        <design:precision>11</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>NotNullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>Punto</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>Punto</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>11</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>Numero</design:name>
+                        <design:position>6</design:position>
+                        <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+                        <design:precision>11</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>NotNullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>Numero</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>Numero</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>11</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>ValorDeclarado</design:name>
+                        <design:position>7</design:position>
+                        <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+                        <design:precision>12</design:precision>
+                        <design:scale>2</design:scale>
+                        <design:nullability>Nullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>ValorDeclarado</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>ValorDeclarado</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>13</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>Direccion</design:name>
+                        <design:position>8</design:position>
+                        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+                        <design:precision>250</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>Nullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>Direccion</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>Direccion</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>250</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>PisoDepartamento</design:name>
+                        <design:position>9</design:position>
+                        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+                        <design:precision>30</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>Nullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>PisoDepartamento</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>PisoDepartamento</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>30</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>FechaEmision</design:name>
+                        <design:position>10</design:position>
+                        <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+                        <design:precision>10</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>NotNullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>FechaEmision</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>FechaEmision</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>10</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>FechaEntrega</design:name>
+                        <design:position>11</design:position>
+                        <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+                        <design:precision>19</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>Nullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>FechaEntrega</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>FechaEntrega</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>19</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>Descripcion</design:name>
+                        <design:position>12</design:position>
+                        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+                        <design:precision>100</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>Nullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>Localidad</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>Localidad</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>100</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>Descripcion</design:name>
+                        <design:position>13</design:position>
+                        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+                        <design:precision>45</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>Nullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>Provincia</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>Provincia</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>45</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>CodigoPostal</design:name>
+                        <design:position>14</design:position>
+                        <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+                        <design:precision>10</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>Nullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>CodigoPostal</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>CodigoPostal</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>10</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>Cuit</design:name>
+                        <design:position>15</design:position>
+                        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+                        <design:precision>13</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>Nullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>Cuit</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>Cuit</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>13</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>Descripcion</design:name>
+                        <design:position>16</design:position>
+                        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+                        <design:precision>100</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>Nullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>ModalidadIVA</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>ModalidadIVA</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>100</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>ObservacionesImpresas</design:name>
+                        <design:position>17</design:position>
+                        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+                        <design:precision>21845</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>Nullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>ObservacionesImpresas</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>ObservacionesImpresas</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>21845</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>EstadoComoPadre</design:name>
+                        <design:position>18</design:position>
+                        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+                        <design:precision>20</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>Nullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>EstadoComoPadre</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>EstadoComoPadre</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>20</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>EstadoComoHijo</design:name>
+                        <design:position>19</design:position>
+                        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+                        <design:precision>20</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>Nullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>EstadoComoHijo</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>EstadoComoHijo</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>20</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                  </design:resultSetColumns>
+                </design:resultSetDefinitions>
+              </design:ResultSets>
+            </model:DesignValues>]]>
+            </xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="DetalleComprobante" id="700">
             <list-property name="parameters">
@@ -951,130 +952,132 @@ call Birt_Comprobante_Cabecera(?);]]></xml-property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[call Birt_Comprobante_Detalle(?);]]></xml-property>
-            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
-<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
-  <Version>1.0</Version>
-  <design:ResultSets derivedMetaData="true">
-    <design:resultSetDefinitions>
-      <design:resultSetColumns>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>Id</design:name>
-            <design:position>1</design:position>
-            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
-            <design:precision>11</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>NotNullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>IdComprobante</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>IdComprobante</design:label>
-            <design:formattingHints>
-              <design:displaySize>11</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>Descripcion</design:name>
-            <design:position>2</design:position>
-            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
-            <design:precision>255</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>NotNullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>Articulo</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>Articulo</design:label>
-            <design:formattingHints>
-              <design:displaySize>255</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>Cantidad</design:name>
-            <design:position>3</design:position>
-            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
-            <design:precision>11</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>Nullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>Cantidad</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>Cantidad</design:label>
-            <design:formattingHints>
-              <design:displaySize>11</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>PrecioUnitario</design:name>
-            <design:position>4</design:position>
-            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
-            <design:precision>12</design:precision>
-            <design:scale>2</design:scale>
-            <design:nullability>Nullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>PrecioUnitario</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>PrecioUnitario</design:label>
-            <design:formattingHints>
-              <design:displaySize>14</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>DescuentoEnPorcentaje</design:name>
-            <design:position>5</design:position>
-            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
-            <design:precision>11</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>Nullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>DescuentoEnPorcentaje</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>DescuentoEnPorcentaje</design:label>
-            <design:formattingHints>
-              <design:displaySize>11</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:name>Monto</design:name>
-            <design:position>6</design:position>
-            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
-            <design:precision>11</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>Nullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>STMonto</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>STMonto</design:label>
-            <design:formattingHints>
-              <design:displaySize>11</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-      </design:resultSetColumns>
-    </design:resultSetDefinitions>
-  </design:ResultSets>
-</model:DesignValues>]]></xml-property>
+            <xml-property name="designerValues">
+            <![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+            <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+              <Version>1.0</Version>
+              <design:ResultSets derivedMetaData="true">
+                <design:resultSetDefinitions>
+                  <design:resultSetColumns>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>Id</design:name>
+                        <design:position>1</design:position>
+                        <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+                        <design:precision>11</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>NotNullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>IdComprobante</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>IdComprobante</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>11</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>Descripcion</design:name>
+                        <design:position>2</design:position>
+                        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+                        <design:precision>255</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>NotNullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>Articulo</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>Articulo</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>255</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>Cantidad</design:name>
+                        <design:position>3</design:position>
+                        <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+                        <design:precision>11</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>Nullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>Cantidad</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>Cantidad</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>11</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>PrecioUnitario</design:name>
+                        <design:position>4</design:position>
+                        <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+                        <design:precision>12</design:precision>
+                        <design:scale>2</design:scale>
+                        <design:nullability>Nullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>PrecioUnitario</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>PrecioUnitario</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>14</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>DescuentoEnPorcentaje</design:name>
+                        <design:position>5</design:position>
+                        <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+                        <design:precision>11</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>Nullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>DescuentoEnPorcentaje</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>DescuentoEnPorcentaje</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>11</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                    <design:resultColumnDefinitions>
+                      <design:attributes>
+                        <design:name>Monto</design:name>
+                        <design:position>6</design:position>
+                        <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+                        <design:precision>11</design:precision>
+                        <design:scale>0</design:scale>
+                        <design:nullability>Nullable</design:nullability>
+                        <design:uiHints>
+                          <design:displayName>STMonto</design:displayName>
+                        </design:uiHints>
+                      </design:attributes>
+                      <design:usageHints>
+                        <design:label>STMonto</design:label>
+                        <design:formattingHints>
+                          <design:displaySize>11</design:displaySize>
+                        </design:formattingHints>
+                      </design:usageHints>
+                    </design:resultColumnDefinitions>
+                  </design:resultSetColumns>
+                </design:resultSetDefinitions>
+              </design:ResultSets>
+            </model:DesignValues>]]>
+            </xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="RemitosAsociados" id="1186">
             <list-property name="parameters">
@@ -1117,14 +1120,14 @@ call Birt_Comprobante_Cabecera(?);]]></xml-property>
                     <property name="dataType">date</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[SELECT    
-    fNumeroCompleto(CR.ComprobanteHijo,'CG') 	AS NumeroCompleto,
-    C.FechaEmision 							AS FechaEmision
-FROM    ComprobantesRelacionados CR    
-        INNER JOIN Comprobantes C 			ON C.Id = CR.ComprobanteHijo
-        INNER JOIN TiposDeComprobantes TC 	ON TC.Id = C.TipoDeComprobante
-where 	CR.ComprobantePadre = ?  
-AND  	TC.Grupo in (4,10)]]></xml-property>
+            <xml-property name="queryText">
+            <![CDATA[SELECT fNumeroCompleto(CR.ComprobanteHijo,'CG') AS NumeroCompleto,
+                            C.FechaEmision AS FechaEmision
+                     FROM    ComprobantesRelacionados CR    
+                     INNER JOIN Comprobantes C          ON C.Id = CR.ComprobanteHijo
+                     INNER JOIN TiposDeComprobantes TC  ON TC.Id = C.TipoDeComprobante
+                     WHERE  CR.ComprobantePadre = ? AND TC.Grupo in (4,10)]]>
+            </xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="NetosGravados" id="1279">
             <list-property name="parameters">
@@ -1218,16 +1221,15 @@ AND  	TC.Grupo in (4,10)]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select 
-    CI.Descripcion 	AS Impuesto,
-    C.Monto 		AS Monto
-  from 
-    Comprobantes C
-    inner join ConceptosImpositivos CI       on C.ConceptoImpositivo = CI.Id 
-    inner join Comprobantes         CPadre   on CPadre.Id = C.ComprobantePadre
-    inner join TiposDeComprobantes  TC       on CPadre.TipoDeComprobante = TC.Id 
-  where 
-    TC.DiscriminaImpuesto = 1 and C.ComprobantePadre=?]]></xml-property>
+            <xml-property name="queryText">
+                <![CDATA[SELECT CI.Descripcion  AS Impuesto,
+                                C.Monto         AS Monto
+                         FROM Comprobantes C
+                         INNER JOIN ConceptosImpositivos CI       on C.ConceptoImpositivo = CI.Id 
+                         INNER JOIN Comprobantes         CPadre   on CPadre.Id = C.ComprobantePadre
+                         INNER JOIN TiposDeComprobantes  TC       on CPadre.TipoDeComprobante = TC.Id 
+                         WHERE TC.DiscriminaImpuesto = 1 and C.ComprobantePadre=?]]>
+            </xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="CodigoBarraI2of5" id="2682">
             <list-property name="parameters">
@@ -1262,81 +1264,83 @@ AND  	TC.Grupo in (4,10)]]></xml-property>
                     </structure>
                 </list-property>
             </structure>
-            <method name="onFetch"><![CDATA[function barcode(serie){
-	var arrStr = serie.split(",");
-	var i = 0;
-	var texto = "";
-	while (i < arrStr.length) {
-		texto = texto + arrStr[i].fromCharCode();
-		i++;
-	}
-	return texto;
-}
+            <method name="onFetch">
+            <![CDATA[function barcode(serie){
+                        var arrStr = serie.split(",");
+                        var i = 0;
+                        var texto = "";
+                        while (i < arrStr.length) {
+                            texto = texto + arrStr[i].fromCharCode();
+                            i++;
+                        }
+                        return texto;
+                    }
 
-reportContext.setPersistentGlobalVariable("barcode", barcode);
+            reportContext.setPersistentGlobalVariable("barcode", barcode);
 
-//----------------------------------------------------------------------------------------------------
-//This custom code is untested and needs to be tested thoroughly before using in a production environment.
-//This function encodes a standard number string into a '2 of 5 interleaved code' Barcode encoded compatable
-//string and returns the results.
-//The font used with this encoder is located:  http://grandzebu.net/informatique/codbar-en/code25I.htm
-//
-//Example use:
-//In a Label's onCreate script method use the following code to encode text to 'Code 2 of 5 interleaved':
-//  this.text = encodeCode2Of5i(this.text);
-//
-//To add a checksum value:
-//  this.text = encodeCode2Of5i(this.text,true);
-//
-//*Notes*:
-//Make sure to set the font style to 'Code 2 of 5 interleaved'.
-//The '2 of 5 interleaved' barcode font requires an even number of numbers in the string.
-//However if you want to include a checksum value, the number string must be an odd number in length as 
-//the checksum value adds one character to the length of the string.
-//----------------------------------------------------------------------------------------------------
-function encodeCode2Of5i(textToEncode, addChecksum){
-	textToEncode = "" + textToEncode;  //Convert input to string
-	var checksum = 0;  //Set checksum
-	var dummy = 0;  //Set dummy 
-	var code25i = "";  //Set output
+            //----------------------------------------------------------------------------------------------------
+            //This custom code is untested and needs to be tested thoroughly before using in a production environment.
+            //This function encodes a standard number string into a '2 of 5 interleaved code' Barcode encoded compatable
+            //string and returns the results.
+            //The font used with this encoder is located:  http://grandzebu.net/informatique/codbar-en/code25I.htm
+            //
+            //Example use:
+            //In a Label's onCreate script method use the following code to encode text to 'Code 2 of 5 interleaved':
+            //  this.text = encodeCode2Of5i(this.text);
+            //
+            //To add a checksum value:
+            //  this.text = encodeCode2Of5i(this.text,true);
+            //
+            //*Notes*:
+            //Make sure to set the font style to 'Code 2 of 5 interleaved'.
+            //The '2 of 5 interleaved' barcode font requires an even number of numbers in the string.
+            //However if you want to include a checksum value, the number string must be an odd number in length as 
+            //the checksum value adds one character to the length of the string.
+            //----------------------------------------------------------------------------------------------------
+            function encodeCode2Of5i(textToEncode, addChecksum){
+                textToEncode = "" + textToEncode;  //Convert input to string
+                var checksum = 0;  //Set checksum
+                var dummy = 0;  //Set dummy 
+                var code25i = "";  //Set output
 
-	if(textToEncode.length){  //If value exists
+                if(textToEncode.length){  //If value exists
 
-		//Check to ensure the string contains only numbers
-		for(var i=0;i<textToEncode.length;i++)  //For each character in the string
-			if(textToEncode[i].charCodeAt() < 48 || textToEncode[i].charCodeAt() > 57){  //Check to ensure its a number
-				java.util.logging.Logger.getLogger("birt.report.logger").warning ("Error: Char not supported");  //If not, output to log file
-				return "Error: Char not supported";  //Return message
-			}
+                    //Check to ensure the string contains only numbers
+                    for(var i=0;i<textToEncode.length;i++)  //For each character in the string
+                        if(textToEncode[i].charCodeAt() < 48 || textToEncode[i].charCodeAt() > 57){  //Check to ensure its a number
+                            java.util.logging.Logger.getLogger("birt.report.logger").warning ("Error: Char not supported");  //If not, output to log file
+                            return "Error: Char not supported";  //Return message
+                        }
 
-		//Checksum calculation
-		if(addChecksum){  //If wanting to add a checksum
-			for(i=textToEncode.length-1; i>=0; i-=2)  //For each character in the string from the end to the beginning
-				checksum += parseInt(textToEncode[i]);  //Add number to checksum
-			checksum = checksum * 3;  //Multiply checksum by 3
-			for(i=(textToEncode.length-2); i>=0; i-=2)  //For each character in the string from the second to the end, to the beginning
-				checksum += parseInt(textToEncode[i]);  //Add number to checksum
-			textToEncode += ((10 - (checksum % 10)) % 10);  //Append checksum to end of string
-		}
+                    //Checksum calculation
+                    if(addChecksum){  //If wanting to add a checksum
+                        for(i=textToEncode.length-1; i>=0; i-=2)  //For each character in the string from the end to the beginning
+                            checksum += parseInt(textToEncode[i]);  //Add number to checksum
+                        checksum = checksum * 3;  //Multiply checksum by 3
+                        for(i=(textToEncode.length-2); i>=0; i-=2)  //For each character in the string from the second to the end, to the beginning
+                            checksum += parseInt(textToEncode[i]);  //Add number to checksum
+                        textToEncode += ((10 - (checksum % 10)) % 10);  //Append checksum to end of string
+                    }
 
-		//Check for even number of characters
-		if(textToEncode.length % 2){  //If string is not an even number of characters
-			java.util.logging.Logger.getLogger("birt.report.logger").warning ("Error: Not even number of characters");  //Output error to log file
-			return "Error: Not even number of characters";  //Return message
-		}
+                    //Check for even number of characters
+                    if(textToEncode.length % 2){  //If string is not an even number of characters
+                        java.util.logging.Logger.getLogger("birt.report.logger").warning ("Error: Not even number of characters");  //Output error to log file
+                        return "Error: Not even number of characters";  //Return message
+                    }
 
-		//Encode string
-		for(var i=0;i<textToEncode.length;i+=2){  //For each pair of characters
-			dummy = textToEncode[i] + textToEncode[i+1]  //Get 2 digets
-			dummy = (dummy<94)?(parseInt(dummy)+33):(parseInt(dummy)+101);  //Determine encoding value
-			code25i += String.fromCharCode(dummy);  //Append encoded character to output string
-		}
+                    //Encode string
+                    for(var i=0;i<textToEncode.length;i+=2){  //For each pair of characters
+                        dummy = textToEncode[i] + textToEncode[i+1]  //Get 2 digets
+                        dummy = (dummy<94)?(parseInt(dummy)+33):(parseInt(dummy)+101);  //Determine encoding value
+                        code25i += String.fromCharCode(dummy);  //Append encoded character to output string
+                    }
 
-		code25i = String.fromCharCode(201) + code25i + String.fromCharCode(202);  //Add start and stop values
-		return code25i;  //Return encoded string
-	}
-}
-reportContext.setPersistentGlobalVariable("encodeCode2Of5i", encodeCode2Of5i);]]></method>
+                    code25i = String.fromCharCode(201) + code25i + String.fromCharCode(202);  //Add start and stop values
+                    return code25i;  //Return encoded string
+                }
+            }
+            reportContext.setPersistentGlobalVariable("encodeCode2Of5i", encodeCode2Of5i);]]>
+            </method>
             <property name="dataSource">Base</property>
             <list-property name="resultSet">
                 <structure>
@@ -1352,9 +1356,283 @@ reportContext.setPersistentGlobalVariable("encodeCode2Of5i", encodeCode2Of5i);]]
                     <property name="dataType">string</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select 
-fFactura_Electronica_codigoBarra(?,2) as cod,  
-fFactura_Electronica_codigoBarra(?,0) as string]]></xml-property>
+            <xml-property name="queryText"><![CDATA[SELECT fFactura_Electronica_codigoBarra(?,2) as cod, fFactura_Electronica_codigoBarra(?,0) as string]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ResumenComprobante" id="2726">
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">idComprobante1</property>
+                    <property name="paramName">Id</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">MontoTotalLetras</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">DivisaCambio</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">ValorDivisaCambio</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">DescDivisaCambio</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">SimboloMonetario</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">MontoTotalDivisaCambio</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">NoImprimirLeyendaDolar</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">MontoTotalLetras</property>
+                    <property name="nativeName">MontoTotalLetras</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">DivisaCambio</property>
+                    <property name="nativeName">DivisaCambio</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">ValorDivisaCambio</property>
+                    <property name="nativeName">ValorDivisaCambio</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">DescDivisaCambio</property>
+                    <property name="nativeName">DescDivisaCambio</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">SimboloMonetario</property>
+                    <property name="nativeName">SimboloMonetario</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">MontoTotalDivisaCambio</property>
+                    <property name="nativeName">MontoTotalDivisaCambio</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">NoImprimirLeyendaDolar</property>
+                    <property name="nativeName">NoImprimirLeyendaDolar</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText">
+                <![CDATA[SELECT fNumeroALetras(fComprobante_Monto_Total(C.Id)) AS MontoTotalLetras,
+                                C.DivisaCambio, 
+                                C.ValorDivisaCambio, 
+                                D.Descripcion AS DescDivisaCambio, 
+                                D.SimboloMonetario,
+                                ROUND(fComprobante_Monto_Total(C.Id)/NULLIF(C.ValorDivisaCambio,0),2) AS MontoTotalDivisaCambio,
+                                CAST(P.NoImprimirLeyendaDolar AS UNSIGNED INTEGER) AS NoImprimirLeyendaDolar
+                        FROM Comprobantes C 
+                        INNER JOIN  TiposDeComprobantes TC ON C.TipoDeComprobante = TC.Id
+                        INNER JOIN  Personas P ON C.Persona = P.Id
+                        LEFT  JOIN  TiposDeDivisas D ON C.DivisaCambio = D.Id
+                        WHERE C.Id = ?]]></xml-property>
+            <xml-property name="designerValues">
+                <![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+                <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+                  <Version>2.0</Version>
+                  <design:ResultSets derivedMetaData="true">
+                    <design:resultSetDefinitions>
+                      <design:resultSetColumns>
+                        <design:resultColumnDefinitions>
+                          <design:attributes>
+                            <design:identifier>
+                              <design:name>MontoTotalLetras</design:name>
+                              <design:position>1</design:position>
+                            </design:identifier>
+                            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+                            <design:precision>255</design:precision>
+                            <design:scale>0</design:scale>
+                            <design:nullability>Nullable</design:nullability>
+                            <design:uiHints>
+                              <design:displayName>MontoTotalLetras</design:displayName>
+                            </design:uiHints>
+                          </design:attributes>
+                          <design:usageHints>
+                            <design:label>MontoTotalLetras</design:label>
+                            <design:formattingHints>
+                              <design:displaySize>255</design:displaySize>
+                            </design:formattingHints>
+                          </design:usageHints>
+                        </design:resultColumnDefinitions>
+                        <design:resultColumnDefinitions>
+                          <design:attributes>
+                            <design:identifier>
+                              <design:name>DivisaCambio</design:name>
+                              <design:position>2</design:position>
+                            </design:identifier>
+                            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+                            <design:precision>11</design:precision>
+                            <design:scale>0</design:scale>
+                            <design:nullability>Nullable</design:nullability>
+                            <design:uiHints>
+                              <design:displayName>DivisaCambio</design:displayName>
+                            </design:uiHints>
+                          </design:attributes>
+                          <design:usageHints>
+                            <design:label>DivisaCambio</design:label>
+                            <design:formattingHints>
+                              <design:displaySize>11</design:displaySize>
+                            </design:formattingHints>
+                          </design:usageHints>
+                        </design:resultColumnDefinitions>
+                        <design:resultColumnDefinitions>
+                          <design:attributes>
+                            <design:identifier>
+                              <design:name>ValorDivisaCambio</design:name>
+                              <design:position>3</design:position>
+                            </design:identifier>
+                            <design:nativeDataTypeCode>8</design:nativeDataTypeCode>
+                            <design:precision>12</design:precision>
+                            <design:scale>6</design:scale>
+                            <design:nullability>Nullable</design:nullability>
+                            <design:uiHints>
+                              <design:displayName>ValorDivisaCambio</design:displayName>
+                            </design:uiHints>
+                          </design:attributes>
+                          <design:usageHints>
+                            <design:label>ValorDivisaCambio</design:label>
+                            <design:formattingHints>
+                              <design:displaySize>13</design:displaySize>
+                            </design:formattingHints>
+                          </design:usageHints>
+                        </design:resultColumnDefinitions>
+                        <design:resultColumnDefinitions>
+                          <design:attributes>
+                            <design:identifier>
+                              <design:name>DescDivisaCambio</design:name>
+                              <design:position>4</design:position>
+                            </design:identifier>
+                            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+                            <design:precision>100</design:precision>
+                            <design:scale>0</design:scale>
+                            <design:nullability>Nullable</design:nullability>
+                            <design:uiHints>
+                              <design:displayName>DescDivisaCambio</design:displayName>
+                            </design:uiHints>
+                          </design:attributes>
+                          <design:usageHints>
+                            <design:label>DescDivisaCambio</design:label>
+                            <design:formattingHints>
+                              <design:displaySize>100</design:displaySize>
+                            </design:formattingHints>
+                          </design:usageHints>
+                        </design:resultColumnDefinitions>
+                        <design:resultColumnDefinitions>
+                          <design:attributes>
+                            <design:identifier>
+                              <design:name>SimboloMonetario</design:name>
+                              <design:position>5</design:position>
+                            </design:identifier>
+                            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+                            <design:precision>3</design:precision>
+                            <design:scale>0</design:scale>
+                            <design:nullability>Nullable</design:nullability>
+                            <design:uiHints>
+                              <design:displayName>SimboloMonetario</design:displayName>
+                            </design:uiHints>
+                          </design:attributes>
+                          <design:usageHints>
+                            <design:label>SimboloMonetario</design:label>
+                            <design:formattingHints>
+                              <design:displaySize>3</design:displaySize>
+                            </design:formattingHints>
+                          </design:usageHints>
+                        </design:resultColumnDefinitions>
+                        <design:resultColumnDefinitions>
+                          <design:attributes>
+                            <design:identifier>
+                              <design:name>Monto_DivisaCambio</design:name>
+                              <design:position>6</design:position>
+                            </design:identifier>
+                            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+                            <design:precision>21</design:precision>
+                            <design:scale>2</design:scale>
+                            <design:nullability>Nullable</design:nullability>
+                            <design:uiHints>
+                              <design:displayName>Monto_DivisaCambio</design:displayName>
+                            </design:uiHints>
+                          </design:attributes>
+                          <design:usageHints>
+                            <design:label>Monto_DivisaCambio</design:label>
+                            <design:formattingHints>
+                              <design:displaySize>23</design:displaySize>
+                            </design:formattingHints>
+                          </design:usageHints>
+                        </design:resultColumnDefinitions>
+                        <design:resultColumnDefinitions>
+                          <design:attributes>
+                            <design:identifier>
+                              <design:name>NoImprimirLeyendaDolar</design:name>
+                              <design:position>7</design:position>
+                            </design:identifier>
+                            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+                            <design:precision>4</design:precision>
+                            <design:scale>0</design:scale>
+                            <design:nullability>Nullable</design:nullability>
+                            <design:uiHints>
+                              <design:displayName>NoImprimirLeyendaDolar</design:displayName>
+                            </design:uiHints>
+                          </design:attributes>
+                          <design:usageHints>
+                            <design:label>NoImprimirLeyendaDolar</design:label>
+                            <design:formattingHints>
+                              <design:displaySize>4</design:displaySize>
+                            </design:formattingHints>
+                          </design:usageHints>
+                        </design:resultColumnDefinitions>
+                      </design:resultSetColumns>
+                      <design:criteria/>
+                    </design:resultSetDefinitions>
+                  </design:ResultSets>
+                </model:DesignValues>]]>
+            </xml-property>
         </oda-data-set>
     </data-sets>
     <styles>
@@ -1395,7 +1673,7 @@ fFactura_Electronica_codigoBarra(?,0) as string]]></xml-property>
         </style>
     </styles>
     <page-setup>
-        <simple-master-page name="Simple MasterPage" id="2" extends="Cabecera.Cabecera_y_Pie">
+        <simple-master-page name="Simple MasterPage" id="2">
             <property name="type">a4</property>
             <property name="topMargin">0.25in</property>
             <property name="leftMargin">0.25in</property>
@@ -1407,58 +1685,220 @@ fFactura_Electronica_codigoBarra(?,0) as string]]></xml-property>
             <property name="backgroundRepeat">no-repeat</property>
             <property name="backgroundSizeHeight">auto</property>
             <property name="backgroundSizeWidth">auto</property>
-            <overridden-values>
-                <ref-entry baseId="2324" name="NewGrid" id="2324"/>
-                <ref-entry baseId="2325" id="2325"/>
-                <ref-entry baseId="2326" id="2326"/>
-                <ref-entry baseId="2331" id="2331"/>
-                <ref-entry baseId="2327" id="2327"/>
-                <ref-entry baseId="2328" id="2328"/>
-                <ref-entry baseId="2211" name="NewImage1" id="2211"/>
-                <ref-entry baseId="2329" id="2329"/>
-                <ref-entry baseId="2330" id="2330"/>
-                <ref-entry baseId="2332" name="NewGrid3" id="2332"/>
-                <ref-entry baseId="2333" id="2333"/>
-                <ref-entry baseId="2335" id="2335"/>
-                <ref-entry baseId="2336" id="2336"/>
-                <ref-entry baseId="2338" name="NewLabel" id="2338"/>
-                <ref-entry baseId="2339" name="NewLabel1" id="2339"/>
-                <ref-entry baseId="2340" name="NewGrid4" id="2340"/>
-                <ref-entry baseId="2341" id="2341"/>
-                <ref-entry baseId="2342" id="2342"/>
-                <ref-entry baseId="2343" id="2343"/>
-                <ref-entry baseId="2344" id="2344"/>
-                <ref-entry baseId="2346" name="NewLabel2" id="2346"/>
-                <ref-entry baseId="2347" name="NewLabel3" id="2347"/>
-                <ref-entry baseId="2348" name="NewLabel4" id="2348"/>
-                <ref-entry baseId="2345" id="2345"/>
-                <ref-entry baseId="2349" name="NewText" id="2349"/>
-                <ref-entry baseId="2404" name="NewGrid1" id="2404"/>
-                <ref-entry baseId="2405" id="2405"/>
-                <ref-entry baseId="2406" id="2406"/>
-                <ref-entry baseId="2419" id="2419"/>
-                <ref-entry baseId="2417" id="2417"/>
-                <ref-entry baseId="2407" id="2407"/>
-                <ref-entry baseId="2408" id="2408"/>
-                <ref-entry baseId="2409" id="2409"/>
-                <ref-entry baseId="2433" name="NewLabel5" id="2433"/>
-                <ref-entry baseId="2410" id="2410"/>
-                <ref-entry baseId="2432" name="NewText1" id="2432"/>
-                <ref-entry baseId="2418" id="2418"/>
-                <ref-entry baseId="2416" id="2416"/>
-                <ref-entry baseId="2411" id="2411"/>
-                <ref-entry baseId="2421" name="NewGrid11" id="2421"/>
-                <ref-entry baseId="2422" id="2422"/>
-                <ref-entry baseId="2423" id="2423"/>
-                <ref-entry baseId="2424" id="2424"/>
-                <ref-entry baseId="2425" id="2425"/>
-                <ref-entry baseId="2426" id="2426"/>
-                <ref-entry baseId="2427" name="NewAutoText" id="2427"/>
-                <ref-entry baseId="2428" id="2428"/>
-                <ref-entry baseId="2429" name="NewText12" id="2429"/>
-                <ref-entry baseId="2430" id="2430"/>
-                <ref-entry baseId="2431" name="NewAutoText1" id="2431"/>
-            </overridden-values>
+            <property name="headerHeight">3cm</property>
+            <property name="footerHeight">2.25cm</property>
+            <page-header>
+                <grid id="2324">
+                    <column id="2325">
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">middle</property>
+                        <property name="width">2.316666666666667in</property>
+                    </column>
+                    <column id="2326">
+                        <property name="width">0.16666666666666666in</property>
+                    </column>
+                    <column id="2331">
+                        <property name="verticalAlign">top</property>
+                        <property name="width">100%</property>
+                    </column>
+                    <row id="2327">
+                        <property name="verticalAlign">middle</property>
+                        <cell id="2328">
+                            <image id="2211">
+                                <property name="height">76px</property>
+                                <property name="width">200px</property>
+                                <property name="source">file</property>
+                                <expression name="uri" type="constant">/resources/empresa/Logo_200x76_Reportes_Cabecera.png</expression>
+                            </image>
+                        </cell>
+                        <cell id="2329"/>
+                        <cell id="2330">
+                            <property name="style">linea-inf</property>
+                            <grid id="2332">
+                                <property name="width">5.433333333333334in</property>
+                                <column id="2333">
+                                    <property name="width">5.433333333333334in</property>
+                                </column>
+                                <row id="2335">
+                                    <property name="verticalAlign">bottom</property>
+                                    <cell id="2336">
+                                        <label id="2338">
+                                            <property name="style">encabezado-Estilo-1</property>
+                                            <text-property name="text">{{EMPRESA_NOMBRE_LARGO}}</text-property>
+                                        </label>
+                                        <label id="2339">
+                                            <property name="style">nombre-cabecera</property>
+                                            <text-property name="text">{{ACTIVIDAD_DETALLE_CORTO}}</text-property>
+                                        </label>
+                                    </cell>
+                                </row>
+                            </grid>
+                            <grid id="2340">
+                                <property name="width">5.425in</property>
+                                <column id="2341">
+                                    <property name="width">3.2416666666666667in</property>
+                                </column>
+                                <column id="2342">
+                                    <property name="width">2.183333333333333in</property>
+                                </column>
+                                <row id="2343">
+                                    <cell id="2344">
+                                        <label id="2346">
+                                            <property name="style">encabezado-Estilo-3</property>
+                                            <text-property name="text">{{EMPRESA_DIRECCION_COMPLETA}}</text-property>
+                                        </label>
+                                        <label id="2347">
+                                            <property name="style">encabezado-Estilo-3</property>
+                                            <text-property name="text">{{EMPRESA_TELEFONOS}}</text-property>
+                                        </label>
+                                        <label id="2348">
+                                            <property name="style">encabezado-Estilo-3</property>
+                                            <text-property name="text">{{EMPRESA_MAIL}}</text-property>
+                                        </label>
+                                    </cell>
+                                    <cell id="2345">
+                                        <text id="2349">
+                                            <property name="style">encabezado-Estilo-3</property>
+                                            <property name="contentType">auto</property>
+                                            <text-property name="content"><![CDATA[{{EMPRESA_CUIT_CON_TITULO}}
+{{EMPRESA_ING_BRUTOS_CON_TITULO}}
+{{EMPRESA_INICIO_ACTIVIDAD_CON_TITULO}}
+{{EMPRESA_COND_IVA_CON_TITULO}}]]></text-property>
+                                        </text>
+                                    </cell>
+                                </row>
+                            </grid>
+                        </cell>
+                    </row>
+                </grid>
+            </page-header>
+           <page-footer>
+                <grid id="2727">
+                    <property name="dataSet">ResumenComprobante</property>
+                    <list-property name="boundDataColumns">
+                        <structure>
+                            <property name="name">MontoTotalLetras</property>
+                            <text-property name="displayName">MontoTotalLetras</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["MontoTotalLetras"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">DivisaCambio</property>
+                            <text-property name="displayName">DivisaCambio</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["DivisaCambio"]</expression>
+                            <property name="dataType">integer</property>
+                        </structure>
+                        <structure>
+                            <property name="name">ValorDivisaCambio</property>
+                            <text-property name="displayName">ValorDivisaCambio</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["ValorDivisaCambio"]</expression>
+                            <property name="dataType">float</property>
+                        </structure>
+                        <structure>
+                            <property name="name">DescDivisaCambio</property>
+                            <text-property name="displayName">DescDivisaCambio</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["DescDivisaCambio"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">SimboloMonetario</property>
+                            <text-property name="displayName">SimboloMonetario</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["SimboloMonetario"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">MontoTotalDivisaCambio</property>
+                            <text-property name="displayName">MontoTotalDivisaCambio</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["MontoTotalDivisaCambio"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">NoImprimirLeyendaDolar</property>
+                            <text-property name="displayName">NoImprimirLeyendaDolar</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["NoImprimirLeyendaDolar"]</expression>
+                            <property name="dataType">integer</property>
+                        </structure>
+                    </list-property>
+                    <column id="2728"/>
+                    <row id="2729">
+                        <property name="height">0.5cm</property>
+                        <cell id="2730">
+                            <list-property name="highlightRules">
+                                <structure>
+                                    <property name="operator">eq</property>
+                                    <expression name="testExpr" type="javascript">row["NoImprimirLeyendaDolar"]</expression>
+                                    <simple-property-list name="value1">
+                                        <value type="javascript">1</value>
+                                    </simple-property-list>
+                                    <property name="style">pie-sin-borde</property>
+                                </structure>
+                                <structure>
+                                    <property name="operator">eq</property>
+                                    <expression name="testExpr" type="javascript">row["NoImprimirLeyendaDolar"]</expression>
+                                    <simple-property-list name="value1">
+                                        <value type="javascript">0</value>
+                                    </simple-property-list>
+                                    <property name="style">pie</property>
+                                </structure>
+                            </list-property>
+                            <text-data id="2731">
+                                <property name="fontSize">8pt</property>
+                                <property name="contentType">html</property>
+                                <expression name="valueExpr">if ( row["NoImprimirLeyendaDolar"] == 0 ) { BirtStr.concat("&lt;b&gt;Son Pesos : ",row["MontoTotalLetras"],".-&lt;/b&gt;") }</expression>
+                            </text-data>
+                        </cell>
+                    </row>
+                    <row id="2732">
+                        <property name="height">1.25cm</property>
+                        <cell id="2733">
+                            <property name="style">pie-sin-borde</property>
+                            <text-data id="2734">
+                                <property name="fontSize">8pt</property>
+                                <property name="contentType">html</property>
+                                <expression name="valueExpr">if ( row["NoImprimirLeyendaDolar"] == 0 ) { BirtStr.concat("&lt;b&gt;Total ",row["SimboloMonetario"], " : ", row["MontoTotalDivisaCambio"], " Cambio Base BNA Vendedor : ", row["ValorDivisaCambio"], "&lt;/b&gt;. El monto podrá ser cancelado a su vencimiento en U$S o su equivalente en pesos al tipo de cambio BNA vendedor del día de su efectiva acreditación. El incumplimiento de las condiciones pactadas, o diferencias en el tipo de cambio superiores al 2% podrá derivar en un ajuste de precios al momento de su acreditación final.") }</expression>
+                            </text-data>
+                        </cell>
+                    </row>
+                    <row id="2735">
+                        <property name="height">0.5cm</property>
+                        <cell id="2736">
+                            <property name="style">pie</property>
+                            <grid id="2737">
+                                <column id="2738"/>
+                                <column id="2739"/>
+                                <row id="2743">
+                                    <cell id="2744">
+                                        <text id="2745">
+                                            <property name="textAlign">left</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[Impreso el : <value-of format="dd/MM/YYYY">new Date()</value-of>]]></text-property>
+                                        </text>
+                                    </cell>
+                                    <cell id="2747">
+                                        <property name="textAlign">right</property>
+                                        <auto-text id="2748">
+                                            <property name="display">inline</property>
+                                            <property name="textAlign">right</property>
+                                            <property name="type">page-number</property>
+                                        </auto-text>
+                                        <text id="2749">
+                                            <property name="display">inline</property>
+                                            <property name="textAlign">center</property>
+                                            <property name="contentType">plain</property>
+                                            <text-property name="content"><![CDATA[/]]></text-property>
+                                        </text>
+                                        <auto-text id="2750">
+                                            <property name="display">inline</property>
+                                            <property name="textAlign">left</property>
+                                            <property name="type">total-page</property>
+                                        </auto-text>
+                                    </cell>
+                                </row>
+                            </grid>
+                        </cell>
+                    </row>
+                </grid>
+            </page-footer>
         </simple-master-page>
     </page-setup>
     <body>
@@ -1607,7 +2047,7 @@ fFactura_Electronica_codigoBarra(?,0) as string]]></xml-property>
 var i = 0;&#13;
 var texto = "";&#13;
 while (i &lt; arrStr.length) {&#13;
-	texto = texto + asc(i);&#13;
+    texto = texto + asc(i);&#13;
 }</expression>
                                 <property name="dataType">string</property>
                             </structure>
@@ -2176,7 +2616,6 @@ this.setDisplayValue(encodeCode2Of5i(this.getValue()));  //Set to encoded value
                     <property name="verticalAlign">bottom</property>
                     <text-data id="2681">
                         <property name="style">ids</property>
-                        <expression name="valueExpr">BirtStr.concat('Nº: ', row["CodigoDeComprobante"] ,' ', row["NumeroCompleto"],'  /  C: ', row["IdComprobante"],'  /  P: ',row["Persona"]);</expression>
                         <property name="contentType">html</property>
                     </text-data>
                 </cell>
@@ -2213,7 +2652,7 @@ this.setDisplayValue(encodeCode2Of5i(this.getValue()));  //Set to encoded value
                 </structure>
                 <structure>
                     <property name="name">Cantidad</property>
-      		    <property name="textAlign">right</property>
+                <property name="textAlign">right</property>
                     <expression name="expression" type="javascript">dataSetRow["Cantidad"]</expression>
                     <property name="dataType">decimal</property>
                 </structure>
@@ -2313,13 +2752,13 @@ this.setDisplayValue(encodeCode2Of5i(this.getValue()));  //Set to encoded value
                 <row id="1154">
                     <cell id="1155">
                         <data id="1172">
-		            <property name="textAlign">right</property>
+                    <property name="textAlign">right</property>
                             <property name="resultSetColumn">Cantidad</property>
                         </data>
                     </cell>
                     <cell id="1156">
                         <data id="1174">
-			    <property name="textAlign">right</property>
+                <property name="textAlign">right</property>
                             <property name="resultSetColumn">Articulo</property>
                         </data>
                     </cell>
@@ -2329,6 +2768,7 @@ this.setDisplayValue(encodeCode2Of5i(this.getValue()));  //Set to encoded value
                                 <property name="category">Currency</property>
                                 <property name="pattern">$ #,##0.00</property>
                             </structure>
+                            <method name="onCreate"><![CDATA[if ( reportContext.getGlobalVariable("Persona") == 3582 ) { this.getStyle().numberFormat="$ #,##0.000"; }]]></method>
                             <property name="textAlign">right</property>
                             <property name="resultSetColumn">PrecioUnitario</property>
                         </data>
@@ -2525,9 +2965,9 @@ this.setDisplayValue(encodeCode2Of5i(this.getValue()));  //Set to encoded value
                             <structure>
                                 <property name="format">all</property>
                                 <expression name="valueExpr" type="javascript">if (BirtComp.equalTo( reportContext.getGlobalVariable("TablaRemitosAsociados_Visible"),true ))&#13;
-	false  // No oculta el titulo&#13;
+    false  // No oculta el titulo&#13;
 else&#13;
-	true  // Oculta el titulo</expression>
+    true  // Oculta el titulo</expression>
                             </structure>
                         </list-property>
                         <column id="1182">
@@ -2598,9 +3038,9 @@ else&#13;
                             <structure>
                                 <property name="format">all</property>
                                 <expression name="valueExpr" type="javascript">if (BirtComp.equalTo( reportContext.getGlobalVariable("Observaciones_Visible"),true ))&#13;
-	false  // No oculta el titulo&#13;
+    false  // No oculta el titulo&#13;
 else&#13;
-	true  // Oculta el titulo</expression>
+    true  // Oculta el titulo</expression>
                             </structure>
                         </list-property>
                         <column id="1219">

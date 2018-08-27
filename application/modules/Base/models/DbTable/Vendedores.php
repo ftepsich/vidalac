@@ -35,16 +35,6 @@ class Base_Model_DbTable_Vendedores extends Base_Model_DbTable_Personas
             'comboSource'       => 'datagateway/combolist',
             'refTable'          => 'EstadosCiviles',
             'refColumns'        => 'Id'
-        ),
-        'TipoDeDocumento' => array(
-            'columns'           => 'TipoDeDocumento',
-            'refTableClass'     => 'Base_Model_DbTable_TiposDeDocumentos',
-            'refJoinColumns'    => array("Descripcion"),
-            'comboBox'          => true,
-            'comboSource'       => 'datagateway/combolist',
-            'refTable'          => 'TiposDeDocumentos',
-			'comboPageSize'     => 10,
-            'refColumns'        => 'Id'
         )
     );
 

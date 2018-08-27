@@ -29,16 +29,6 @@ class Base_Model_DbTable_Empleados extends Base_Model_DbTable_Personas
             'refColumns'        => 'Id',
             'comboPageSize'     => 20
         ),
-        'TiposDeDocumentos' => array(
-            'columns'           => 'TipoDeDocumento',
-            'refTableClass'     => 'Base_Model_DbTable_TiposDeDocumentos',
-            'refJoinColumns'    => array('Descripcion'),
-            'comboBox'          => true,
-            'comboSource'       => 'datagateway/combolist',
-            'refTable'          => 'TiposDeDocumentos',
-            'refColumns'        => 'Id',
-            'comboPageSize'     => 20
-        ),
         'EstadosCiviles' => array(
             'columns'           => 'EstadoCivil',
             'refTableClass'     => 'Base_Model_DbTable_EstadosCiviles',
@@ -79,74 +69,6 @@ class Base_Model_DbTable_Empleados extends Base_Model_DbTable_Personas
 
         $filtroEmpresa = ($empresa) ? " AND S.Empresa = $empresa " : " AND S.Empresa = $servicio->Empresa ";
 
-        // Ojo SQL pierde un dia en la suma de cada comparacion que hace el datediff ya  que no hace dia inclusive
-        // por eso es el + 1 en el datediff
-/*
-        $sql = "    SELECT  DATE_ADD(   '1900-01-01',
-                                        INTERVAL SUM(
-                                                        DATEDIFF(
-                                                                if( ifnull(S.FechaBaja,'2199-12-31') > '$fecha',
-                                                                    '$fecha',
-                                                                    S.FechaBaja)
-                                                                ,
-                                                                if( ifnull(P.AntiguedadReconocidaAFecha,'1900-01-01') > S.FechaAlta,
-                                                                P.AntiguedadReconocidaAFecha,
-                                                                S.FechaAlta)
-                                                        ) + 1
-                                                    )
-                                        day) as Antiguedad
-                    FROM    Servicios S
-                    INNER JOIN Personas P on P.Id  = S.Persona
-                    WHERE   S.FechaAlta <= '$fecha'
-                    AND     ifnull(S.FechaBaja,'2199-12-31') >= ifnull(P.AntiguedadReconocidaAFecha,'1900-01-01')
-                    $filtroEmpresa
-                    AND     S.Persona   = ".$servicio->Persona;
-
-        $db = Zend_Registry::get("db");
-        $antiguedad = $db->fetchOne($sql);
-
-        if ($antiguedad) {
-            $a = new datetime($antiguedad);
-            // Como arranca a sumar de 1900-01-01 ya trae un mes y un dia demas, asi que los resto (el mes en este caso no se resta)
-
-            $a->modify( '-1 day' );
-            $dias  = $a->format('d');
-*/            
-            // Si no llega al mes no se resta nada al objeto datetime ya que no existe el mes 0 en el mismo 
-            // y lo que hara sera disminuir un año y poner el mes en 12, se debe restar al valor una vez sacado del datetime
-            /*
-            if ($a->format('Y-m') != '1900-01') {
-                $a->modify( '-1 month' );
-                $meses = $a->format('m');
-            } else {
-                $meses = $a->format('m') - 1;
-            }            
-            */
-
-
-//            $meses = $a->format('m') - 1;
-//            $anios = $a->format('Y') - 1900;
-
-            /*
-            if ($meses == 12) {
-                $meses = 0;
-                $anios = $anios + 1;
-            }
-            */
-/*           
-
-        }
-        
-        echo '++ getAntiguedadBase ++++++++++++++++++++++++++++++++++++++++++++++++++++++'.PHP_EOL;
-        echo '$antiguedad'.$antiguedad.PHP_EOL;
-        echo 'calculo sql'.$a->format('Y-m-d').PHP_EOL;
-        echo '2afecha:'. $afecha.PHP_EOL;
-        echo 'anios:'. $anios.PHP_EOL;
-        echo 'meses:'. $meses.PHP_EOL;
-        echo 'dias :'. $dias.PHP_EOL;
-        echo $sql.PHP_EOL; 
-
-*/
         //MODIFICACION DE LA CONSULTA QUE CALCULA LA ANTIGUEDAD HECHO POR MAXI (CULPARLO A EL)
 
         
@@ -209,12 +131,6 @@ class Base_Model_DbTable_Empleados extends Base_Model_DbTable_Personas
         echo 'anios:'. $anios.PHP_EOL;
         echo 'meses:'. $meses.PHP_EOL;
         echo 'dias :'. $dias.PHP_EOL;
-
-        /*
-        $anios = (!($antiguedad['anios']) || $antiguedad['anios']<0) ? 0:$antiguedad['anios'];
-        $meses = (!($antiguedad['meses']) || $antiguedad['anios']<0) ? 0:$antiguedad['meses'];
-        $dias = (!($antiguedad['dias'])  || $antiguedad['anios']<0) ? 0:$antiguedad['dias'];
-        */
         return array('anios' => $anios, 'meses' => $meses, 'dias' => $dias);
     }
 
@@ -286,28 +202,9 @@ class Base_Model_DbTable_Empleados extends Base_Model_DbTable_Personas
             } else {
                 $dias  = $a->format('d');
             }
-
-
-            // Si no llega al mes no se resta nada al objeto datetime ya que no existe el mes 0 en el mismo 
-            // y lo que hara sera disminuir un año y poner el mes en 12, se debe restar al valor una vez sacado del datetime
-            /*
-            if ($a->format('Y-m') != '1900-01') {
-                $a->modify( '-1 month' );
-                $meses = $a->format('m');
-            } else {
-                $meses = $a->format('m') - 1;
-            }            
-            */
             $meses = $a->format('m') - 1;
             $anios = $a->format('Y') - 1900;
-
-            /*
-            if ($meses == 12) {
-                $meses = 0;
-                $anios = $anios + 1;
-            }
-            */ 
-        
+            
         echo '++ getAntiguedadCompleta ++++++++++++++++++++++++++++++++++++++++++++++++++++++'.PHP_EOL;
         echo 'anios:'. $anios.PHP_EOL;
         echo 'meses:'. $meses.PHP_EOL;

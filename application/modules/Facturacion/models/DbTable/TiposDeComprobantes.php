@@ -42,7 +42,6 @@ class Facturacion_Model_DbTable_TiposDeComprobantes extends Rad_Db_Table
         'Facturacion_Model_DbTable_FacturasVentas',
         'Facturacion_Model_DbTable_Facturas'
     );
-    // protected $_dependentTables = array('Facturacion_Model_DbTable_FacturasCompras', 'Model_DbTable_SubDiarioDeIva');
 
     public function fetchNotasProveedores($where = null, $order = null, $count = null, $offset = null)
     {
@@ -134,5 +133,4 @@ class Facturacion_Model_DbTable_TiposDeComprobantes extends Rad_Db_Table
         $where = $this->_addCondition($where, $condicion);
         return self::fetchAll($where, $order, $count, $offset);
     }
-
 }

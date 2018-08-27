@@ -97,26 +97,8 @@ class Base_Model_DbTable_Chequeras extends Rad_Db_Table
                     'Descripcion' => 'TRIM({remote}.Descripcion)'
                 ));
         }
-
-        // $this->addAutoJoin(
-        //         'TiposDeCuentas',
-        //         'CuentasBancarias.TipoDeCuenta = TiposDeCuentas.Id',
-        //         array(
-        //             'TipoDeCuenta' => 'TiposDeCuentas.Descripcion'
-        //         )
-        // );
-        // $this->addAutoJoin(
-        //         'BancosSucursales',
-        //         'CuentasBancarias.BancoSucursal = BancosSucursales.Id',
-        //         array(
-        //             'BancosSucursalesDescripcion' => 'TRIM(BancosSucursales.Descripcion)'
-        //         )
-        // );
     }
 
-
-
-    // =====================================================================================================================
     public function insert ($data)
     {
         try {
@@ -129,7 +111,9 @@ class Base_Model_DbTable_Chequeras extends Rad_Db_Table
             $M_BS = new Base_Model_DbTable_CuentasBancarias(array(), false);
             $R_BS = $M_BS->find($data['CuentaBancaria'])->current();
 
-            if (!$R_BS) throw new Rad_Db_Table_Exception("No Tiene sucursal asociada");
+            if (!$R_BS) {
+                throw new Rad_Db_Table_Exception("No Tiene sucursal asociada");
+            }
 
             for ($i = 0; $i < $data['Cantidad']; $i++) {
 
@@ -138,7 +122,9 @@ class Base_Model_DbTable_Chequeras extends Rad_Db_Table
                 //controlo que no exista el cheque
                 $R_Ch = $M_Ch->fetchAll("Numero = $numero and BancoSucursal = $R_BS->BancoSucursal")->current();
 
-                if ($R_Ch) throw new Rad_Db_Table_Exception("Ya existen cheques con ese numero.");
+                if ($R_Ch) {
+                    throw new Rad_Db_Table_Exception("Ya existen cheques con ese numero.");
+                }
 
                 //inserto el cheque
                 $Renglon = array(
@@ -160,13 +146,11 @@ class Base_Model_DbTable_Chequeras extends Rad_Db_Table
         }
     }
 
-    // =====================================================================================================================
     public function delete ($where)
     {
         try {
             $this->_db->beginTransaction();
             // Solo dejo borrarla si todos los cheques estan en blanco
-
             $M_Ch = new Base_Model_DbTable_Cheques(array(), false);
             $R_Ch = $M_Ch->fetchAll($where);
 
@@ -185,15 +169,12 @@ class Base_Model_DbTable_Chequeras extends Rad_Db_Table
             throw $e;
         }
     }
-
-    // =====================================================================================================================
     public function update ($data, $where)
     {
         // Si es automatico ver si ya esta impreso
         throw new Rad_Db_Table_Exception("Las chequeras no pueden ser modificadas, deben borrarse y cargarse nuevamente.");
     }
 
-    // =====================================================================================================================
     protected function _SalirSi_TieneChequesUsados ($IdChequera)
     {
         // Veo que todos los cheques esten en estado 1 = sin usar

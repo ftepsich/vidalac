@@ -382,14 +382,7 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
                 } else {
 
                     throw new Rad_Db_Table_Exception("No se puede cambiar la Persona. Elimine y vuelva a crear el Comprobante");
-
-                    /*
-                      $row->setFromArray($data);
-
-                      // Ojo... el nuevo se graba con el id del que se borra
-                      $this->delete($whereRow);
-                      $id = $this->insert($row->toArray());
-                     */
+       
                 }
 
                 if (isset($data['DescuentoEnMonto']) && $data['DescuentoEnMonto'] > 0.001) {
