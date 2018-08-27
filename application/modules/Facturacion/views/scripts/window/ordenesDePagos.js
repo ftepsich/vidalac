@@ -66,7 +66,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
         },
         this
     );
-
+        this.addExtraListeners(); 
         this.createWizard();
         this.grid.abmWindow = app.desktop.createWindow({
             autoHideOnSubmit: false,
@@ -105,6 +105,39 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
             }, this
         );
         this.grid.abmWindow.on('show', function(){this.setDropTargets();},this);
+    },
+
+    /**
+     * Agrega la logica adicional para los campos del formulario
+     */
+    addExtraListeners: function() {
+        var form = this.form.getForm();
+        var grid = this.grid;
+        // Campo Persona (Proveedor)
+        form.findField('Persona').on('select', function (combo, record, index) {
+            Models.Base_Model_ProveedoresMapper.getIBItems(record.data.Id, function(result, e) {
+                if (e.status) {
+                    if ( result == 0 ) {
+                        Ext.Msg.show({
+                            title : 'Atención',
+                            msg : 'El Proveedor no tiene situación impositiva cargada. Desea Continuar ?',
+                            width : 400,
+                            closable : false,
+                            buttons : Ext.Msg.YESNO,
+                            multiline : false,
+                            fn : function(btn) { 
+                              if (btn == 'no') {
+                                form.findField('Persona').reset(); 
+                                grid.abmWindow.closeAbm(); 
+                              }
+                            },
+                            icon : Ext.Msg.WARNING
+                        });
+                        return;
+                    }
+                }
+            }, this);
+        }, this);
     },
 
     /**

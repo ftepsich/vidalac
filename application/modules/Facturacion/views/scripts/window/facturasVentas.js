@@ -6,7 +6,6 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
     requires: [
       '/direct/Contable/LibrosIVA?javascript',
         '/direct/Facturacion/FacturasVentas?javascript',
-        '/direct/Facturacion/FacturasVentas?javascript',
         '/direct/Base/Personas?javascript',
         '/direct/Base/Clientes?javascript'
     ],
@@ -164,6 +163,29 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     }
                 }
             }, this);
+            Models.Base_Model_ClientesMapper.getIBItems(record.data.Id, function(result, e) {
+                if (e.status) {
+                    if ( result == 0 ) {
+                        Ext.Msg.show({
+                            title : 'Atención',
+                            msg : 'El Cliente no tiene situación impositiva cargada. Desde Continuar ?',
+                            width : 400,
+                            closable : false,
+                            buttons : Ext.Msg.YESNO,
+                            multiline : false,
+                            fn : function(btn) { 
+                              if (btn == 'no') {
+                                form.findField('Persona').reset(); 
+                                grid.abmWindow.closeAbm(); 
+                              }
+                            },
+                            icon : Ext.Msg.WARNING
+                        });
+                        return;
+                    }
+                }
+            }, this);
+
             this.updateEstadoDeCuentaPorCliente(record.data.Id);
             // Setea el tipo de comprobante segun la modalidad de iva y el tipo de comprobante
             var form = this.form.getForm();
@@ -752,7 +774,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                 }
                 if (selected.get('Cerrado') == '0') {
                     Ext.Msg.show({
-                        title: 'Atencion',
+                        title: 'Atención',
                         msg: 'Este registro aun no esta cerrado.',
                         modal: true,
                         icon: Ext.Msg.WARNING,
@@ -761,7 +783,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     return;
                 }
 
-                if (Ext.Msg.confirm('Atencion','¿Está seguro que desea anular el comprobante seleccionado?', function (btn) {
+                if (Ext.Msg.confirm('Atención','¿Está seguro que desea anular el comprobante seleccionado?', function (btn) {
                     if (btn == 'yes') {
                         var id = selected.get('Id');
                         this.form.record = selected;
