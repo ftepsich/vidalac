@@ -2616,6 +2616,7 @@ this.setDisplayValue(encodeCode2Of5i(this.getValue()));  //Set to encoded value
                     <property name="verticalAlign">bottom</property>
                     <text-data id="2681">
                         <property name="style">ids</property>
+                        <expression name="valueExpr">BirtStr.concat('Nº: ', row["CodigoDeComprobante"] ,' ', row["NumeroCompleto"]);</expression>
                         <property name="contentType">html</property>
                     </text-data>
                 </cell>
