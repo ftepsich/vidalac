@@ -4,7 +4,7 @@
 require_once('Rad/Db/Table.php');
 
 /**
- * @class 		Almacenes_Model_DbTable_RemitosArticulosDeEntradas
+ * @class 		Almacenes_Model_DbTable_RemitosArticulosDeIngresos
  * @extends		Facturacion_Model_DbTable_ComprobantesDetalles
  *
  *
@@ -24,7 +24,7 @@ require_once('Rad/Db/Table.php');
  * @subpackage 	Almacenes
  *
  */
-class Almacenes_Model_DbTable_RemitosArticulosDeEntradas extends Almacenes_Model_DbTable_RemitosArticulos
+class Almacenes_Model_DbTable_RemitosArticulosDeIngresos extends Almacenes_Model_DbTable_RemitosArticulos
 {
 
     protected $_referenceMap = array(
@@ -48,7 +48,7 @@ class Almacenes_Model_DbTable_RemitosArticulosDeEntradas extends Almacenes_Model
         'Remitos' => array(
             'columns'         => 'Comprobante',
             //'refTableClass' => 'Almacenes_Model_DbTable_Remitos',
-            'refTableClass'   => 'Almacenes_Model_DbTable_RemitosDeEntradas',
+            'refTableClass'   => 'Almacenes_Model_DbTable_RemitosDeIngresos',
             'refJoinColumns'  => array('Numero'),
             'comboBox'        => true,
             'comboSource'     => 'datagateway/combolist',
@@ -82,7 +82,7 @@ class Almacenes_Model_DbTable_RemitosArticulosDeEntradas extends Almacenes_Model
             $this->getJoiner()->joinDep(
                 'Almacenes_Model_DbTable_Mmis',
                  array('CantidadPaletizada' => 'sum(CantidadOriginal)'),
-                 'RemitosArticulosEntrada'
+                 'RemitosArticulosIngresos'
             );
         }
     }
@@ -145,7 +145,7 @@ class Almacenes_Model_DbTable_RemitosArticulosDeEntradas extends Almacenes_Model
                 throw new Rad_Db_Table_Exception('La cantidad no puede ser 0 (cero).');
             }
 
-            $M_RE = new Almacenes_Model_DbTable_RemitosDeEntradas(array(), false);
+            $M_RE = new Almacenes_Model_DbTable_RemitosDeIngresos(array(), false);
 
             $reg = $this->fetchAll($where);
 
@@ -177,7 +177,7 @@ class Almacenes_Model_DbTable_RemitosArticulosDeEntradas extends Almacenes_Model
         try {
             $this->_db->beginTransaction();
 
-            $M_RE = new Almacenes_Model_DbTable_RemitosDeEntradas(array(), false);
+            $M_RE = new Almacenes_Model_DbTable_RemitosDeIngresos(array(), false);
 
             $reg = $this->fetchAll($where);
 

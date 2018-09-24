@@ -1,8 +1,8 @@
 <?php
 
-class Almacenes_Model_RemitosDeEntradasMapper extends Rad_Mapper
+class Almacenes_Model_RemitosDeIngresosMapper extends Rad_Mapper
 {
-    protected $_class = 'Almacenes_Model_DbTable_RemitosDeEntradas';
+    protected $_class = 'Almacenes_Model_DbTable_RemitosDeIngresos';
     
     public function anular ($id)
     {

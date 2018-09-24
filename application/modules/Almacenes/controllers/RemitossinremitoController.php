@@ -73,7 +73,7 @@ class Almacenes_RemitosSinRemitoController extends Rad_Window_Controller_Action
 		$config->autoSave			= true;
 		
 		$this->view->gridRemitosArticulos = $this->view->radGrid(
-			'Almacenes_Model_DbTable_RemitosArticulosDeEntradas',
+			'Almacenes_Model_DbTable_RemitosArticulosDeIngresos',
             $config,
             'abmeditor',
             'wizard'

@@ -61,10 +61,10 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
 
             // quito selecciones
             this.scope.gridRemitos.getSelectionModel().clearSelections();
-            this.scope.gridRemitosEntrada.getSelectionModel().clearSelections();
+            this.scope.gridRemitosIngresos.getSelectionModel().clearSelections();
             this.scope.gridODProducciones.getSelectionModel().clearSelections();
             this.scope.gridODProduccionesDetalles.getSelectionModel().clearSelections();
-            this.scope.gridRemitosArticulosEntrada.getSelectionModel().clearSelections();
+            this.scope.gridRemitosArticulosIngresos.getSelectionModel().clearSelections();
             this.scope.gridRemitosArticulos.getSelectionModel().clearSelections();
 
         },
@@ -108,7 +108,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
          */
         modoRecibir: function() {
             this.itemsSeleccionados = false;
-            this.scope.gridRemitosEntrada.store.reload();
+            this.scope.gridRemitosIngresos.store.reload();
             if (this.deposito.modoVista == 2) {
                 this.deposito.setModoVista(1);
             }
@@ -141,7 +141,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                 partidor: true,
                 mover: true,
                 onDropDeposito: function (source, e, data) {
-                    if (this.scope.gridRemitosArticulosEntrada.id == source.grid.id) {
+                    if (this.scope.gridRemitosArticulosIngresos.id == source.grid.id) {
                         this.scope.paletizar(data);
                     }
                 }
@@ -150,15 +150,15 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
             this.agregarBotones();
 
             this.gridRemitos        = Ext.ComponentMgr.create(<?=$this->gridRemitos?>);
-            this.gridRemitosEntrada = Ext.ComponentMgr.create(<?=$this->gridRemitosEntrada?>);
+            this.gridRemitosIngresos = Ext.ComponentMgr.create(<?=$this->gridRemitosIngresos?>);
 
             this.gridRemitosArticulos        = Ext.ComponentMgr.create(<?=$this->gridRemitosArticulos?>);
-            this.gridRemitosArticulosEntrada = Ext.ComponentMgr.create(<?=$this->gridRemitosArticulosEntrada?>);
+            this.gridRemitosArticulosIngresos = Ext.ComponentMgr.create(<?=$this->gridRemitosArticulosIngresos?>);
 
             this.gridODProducciones         = Ext.ComponentMgr.create(<?=$this->gridODProducciones?>);
             this.gridODProduccionesDetalles = Ext.ComponentMgr.create(<?=$this->gridODProduccionesDetalles?>);
 
-            this.gridRemitosArticulosEntrada.onBeforeCreateColumns = function (columns) {
+            this.gridRemitosArticulosIngresos.onBeforeCreateColumns = function (columns) {
                 columns.push({
                     xtype: 'actioncolumn',
                     header: '',
@@ -236,12 +236,12 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                 this.deposito.gridMmis.store.load();
             }, this);
 
-            this.gridRemitosArticulosEntrada.getSelectionModel().on('rowselect', function (i, rowIndex, r) {
+            this.gridRemitosArticulosIngresos.getSelectionModel().on('rowselect', function (i, rowIndex, r) {
                 this.deposito.deposito.filtros.porArticuloYRemitoArticulo(r.data.Articulo, r.data.Id);
                 this.deposito.deposito.refresh();
 
                 //Resaltamos Los asignados en la grilla
-                this.deposito.gridMmis.getView().resaltarRemitoArticuloEntrada(r.data.Id);
+                this.deposito.gridMmis.getView().resaltarRemitoArticuloIngreso(r.data.Id);
 
                 // filtro la grilla de mmis
                 this.deposito.gridMmis.setPermanentFilter(1, 'Articulo', r.data.Articulo);
@@ -425,7 +425,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                                 function (result, e){
                                     if (e.status) {
                                         this.deposito.deposito.store.reload();
-                                        this.gridRemitosArticulosEntrada.store.reload();
+                                        this.gridRemitosArticulosIngresos.store.reload();
                                         this.paletizador.hide();
                                     }
                                 },
@@ -1206,12 +1206,12 @@ create: function() {
                                         items:	[
                                             {
                                                 layout:	'fit',
-                                                items:	this.gridRemitosEntrada,
+                                                items:	this.gridRemitosIngresos,
                                                 buttons: [{
                                                     icon: 'images/arrow_right.png',
                                                     text:'Siguiente',
                                                     handler: function(b,e) {
-                                                        if (this.gridRemitosEntrada.getSelectionModel().getCount() != 1) {
+                                                        if (this.gridRemitosIngresos.getSelectionModel().getCount() != 1) {
                                                             app.publish('/desktop/showWarning', 'Seleccione primero un remito');
                                                             return;
                                                         }
@@ -1221,7 +1221,7 @@ create: function() {
                                                 }]
                                             },{
                                                 layout:	'fit',
-                                                items:	this.gridRemitosArticulosEntrada,
+                                                items:	this.gridRemitosArticulosIngresos,
                                                 buttons: [{
                                                     icon: 'images/arrow_left.png',
                                                     text:'Atras',
@@ -1230,7 +1230,7 @@ create: function() {
                                                         var botonDesasignar = Ext.getCmp('botonAlmacenesDesasignarMmis');
                                                         botonAsignar.disable();
                                                         botonDesasignar.disable();
-                                                        this.gridRemitosArticulosEntrada.getSelectionModel().clearSelections();
+                                                        this.gridRemitosArticulosIngresos.getSelectionModel().clearSelections();
                                                         b.ownerCt.ownerCt.ownerCt.layout.setActiveItem(0);
                                                         this.deposito.deposito.filtros.quitar();
                                                         this.itemsSeleccionados = false;

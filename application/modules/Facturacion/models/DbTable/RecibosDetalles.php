@@ -34,13 +34,7 @@ class Facturacion_Model_DbTable_RecibosDetalles extends Facturacion_Model_DbTabl
 
     protected $_name = "ComprobantesDetalles";
     /*
-    protected $_calculatedFields = array(
-        'DescArreglada' => "case
-            when (ComprobantesDetalles.Observaciones is not null) then (ComprobantesDetalles.Observaciones)
-            when (ComprobantesDetalles.ConceptoImpositivo is not null) then (ConceptosImpositivos.Descripcion)
-            else ''
-        end"
-    );
+
     */
     protected $_calculatedFields = array(
         'DescArreglada' => "case

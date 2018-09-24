@@ -9,10 +9,10 @@ require_once('Rad/Db/Table.php');
  *
  * @package 	Aplicacion
  * @subpackage 	Almacenes
- * @class 	Almacenes_Model_DbTable_RemitosDeEntradas
+ * @class 	Almacenes_Model_DbTable_RemitosDeIngresos
  * @extends	Almacenes_Model_DbTable_Remitos
  */
-class Almacenes_Model_DbTable_RemitosDeEntradas extends Almacenes_Model_DbTable_Remitos
+class Almacenes_Model_DbTable_RemitosDeIngresos extends Almacenes_Model_DbTable_Remitos
 {
 
     protected $_name = "Comprobantes";
@@ -95,7 +95,7 @@ class Almacenes_Model_DbTable_RemitosDeEntradas extends Almacenes_Model_DbTable_
             'refColumns' => 'Id'
         )
     );
-    protected $_dependentTables = array("Almacenes_Model_DbTable_RemitosArticulosDeEntradas");
+    protected $_dependentTables = array("Almacenes_Model_DbTable_RemitosArticulosDeIngresos");
 
     public function update ($data, $where)
     {
@@ -212,7 +212,7 @@ class Almacenes_Model_DbTable_RemitosDeEntradas extends Almacenes_Model_DbTable_
      */
     public function marcarRemitoPaletizadoTotal($idremito)
     {  
-        $M_RAE = new Almacenes_Model_DbTable_RemitosArticulosDeEntradas();
+        $M_RAE = new Almacenes_Model_DbTable_RemitosArticulosDeIngresos();
         $M_C = new Facturacion_Model_DbTable_Comprobantes();
 
         $R_RAE = $M_RAE->fetchAll("Comprobante = $idremito");
@@ -238,7 +238,7 @@ class Almacenes_Model_DbTable_RemitosDeEntradas extends Almacenes_Model_DbTable_
 
         $where = " Id = $idremito ";
         $data['Despachado'] = $paletizado;
-        // uso modelo comprobante para saltear la logica de los padres del modelo remito de entrada
+        // uso modelo comprobante para saltear la logica de los padres del modelo remito de ingresos
         $M_C->update($data,$where);
     }
 
@@ -254,7 +254,7 @@ class Almacenes_Model_DbTable_RemitosDeEntradas extends Almacenes_Model_DbTable_
         $M_C = new Facturacion_Model_DbTable_Comprobantes();
         $where = " Id = $idremito ";
         $data['Despachado'] = 0;
-        // uso modelo comprobante para saltear la logica de los padres del modelo remito de entrada
+        // uso modelo comprobante para saltear la logica de los padres del modelo remito de ingresos
         $M_C->update($data,$where);
     }    
 
