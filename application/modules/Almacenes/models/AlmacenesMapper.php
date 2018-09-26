@@ -57,12 +57,12 @@ class Almacenes_Model_AlmacenesMapper extends Rad_Mapper
     public function paletizarRemitoArticulo ($remitoArticulo, $almacenDestino, $cantidad, $cantidadPorMmi, $tipoPalet, $loteNumero = null, $loteVencimiento = null, $loteElaboracion = null, $articuloVersion)
     {
 
-        $remitosArticulos   = new Almacenes_Model_DbTable_RemitosArticulosDeEntradas(array(), true);
+        $remitosArticulos   = new Almacenes_Model_DbTable_RemitosArticulosDeIngresos(array(), true);
         $remitoArticulo     = $remitosArticulos->find($remitoArticulo)->current();
 
         if (!$remitoArticulo)  throw new Almacenes_Model_Almacenes_Exception('No se encontro el articulo del remito');
 
-        $remito     = $remitoArticulo->findParentRow('Almacenes_Model_DbTable_RemitosDeEntradas');
+        $remito     = $remitoArticulo->findParentRow('Almacenes_Model_DbTable_RemitosDeIngresos');
 
         $articulos  = new Base_Model_DbTable_Articulos();
         $articulo   = $articulos->find($remitoArticulo->Articulo)->current();

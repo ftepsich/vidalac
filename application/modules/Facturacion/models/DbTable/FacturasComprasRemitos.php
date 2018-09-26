@@ -29,7 +29,7 @@ class Facturacion_Model_DbTable_FacturasComprasRemitos extends Facturacion_Model
     protected $_referenceMap = array(
         'Remitos' => array(
             'columns' => 'ComprobanteHijo',
-            'refTableClass' => 'Almacenes_Model_DbTable_RemitosDeEntradas',
+            'refTableClass' => 'Almacenes_Model_DbTable_RemitosDeIngresos',
             'refTable' => 'Comprobantes',
             'refColumns' => 'Id'
         ),
@@ -47,7 +47,7 @@ class Facturacion_Model_DbTable_FacturasComprasRemitos extends Facturacion_Model
      * Se utilizan en las funciones: asociarComprobanteHijoConPadre y agregarComprobanteHijoAPadre
      */
 	protected $_class_comprobantePadre = "Facturacion_Model_DbTable_FacturasComprasArticulos";
-	protected $_class_comprobanteHijo  = "Almacenes_Model_DbTable_RemitosArticulosDeEntradas";
+	protected $_class_comprobanteHijo  = "Almacenes_Model_DbTable_RemitosArticulosDeIngresos";
 
     /**
      * Inserta un registro y agrega lo disponible en M_CD o en el caso que este cerrada la factura
