@@ -81,7 +81,7 @@ class Almacenes_Model_DbTable_RemitosSinRemito extends Almacenes_Model_DbTable_R
             'refColumns' => 'Id'
         )
     );
-    protected $_dependentTables = array("Almacenes_Model_DbTable_RemitosArticulosDeIngresos");
+    protected $_dependentTables = array("Almacenes_Model_DbTable_RemitosArticulosDeEntradas");
     // Para poner un valor por defecto en un campo--------
     protected $_defaultSource = self::DEFAULT_CLASS;
 

@@ -9,10 +9,10 @@ require_once('Rad/Db/Table.php');
  *
  * @package 	Aplicacion
  * @subpackage 	Almacenes
- * @class 	Almacenes_Model_DbTable_RemitosDeIngresos
+ * @class 	Almacenes_Model_DbTable_RemitosDeEntradas
  * @extends	Almacenes_Model_DbTable_Remitos
  */
-class Almacenes_Model_DbTable_RemitosDeIngresos extends Almacenes_Model_DbTable_Remitos
+class Almacenes_Model_DbTable_RemitosDeEntradas extends Almacenes_Model_DbTable_Remitos
 {
 
     protected $_name = "Comprobantes";
@@ -29,8 +29,8 @@ class Almacenes_Model_DbTable_RemitosDeIngresos extends Almacenes_Model_DbTable_
         'Proveedores' => array(
             'columns' => 'Persona',
             'refTableClass' => 'Base_Model_DbTable_Proveedores',
-            'refJoinColumns' => array("RazonSocial"),
-            'comboBox' => true, 
+            'refJoinColumns' => array("RazonSocial"), // De esta relacion queremos traer estos campos por JOIN
+            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Personas',
             'refColumns' => 'Id',
@@ -39,8 +39,8 @@ class Almacenes_Model_DbTable_RemitosDeIngresos extends Almacenes_Model_DbTable_
         'TransportistasRetiro' => array(
             'columns' => 'TransportistaRetiroDeOrigen',
             'refTableClass' => 'Base_Model_DbTable_Transportistas',
-            'refJoinColumns' => array("RazonSocial"), 
-            'comboBox' => true, 
+            'refJoinColumns' => array("RazonSocial"), // De esta relacion queremos traer estos campos por JOIN
+            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Personas',
             'refColumns' => 'Id',
@@ -49,8 +49,8 @@ class Almacenes_Model_DbTable_RemitosDeIngresos extends Almacenes_Model_DbTable_
         'TransportistasEntrego' => array(
             'columns' => 'TransportistaEntregoEnDestino',
             'refTableClass' => 'Base_Model_DbTable_Transportistas',
-            'refJoinColumns' => array("RazonSocial"),
-            'comboBox' => true, 
+            'refJoinColumns' => array("RazonSocial"), // De esta relacion queremos traer estos campos por JOIN
+            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Personas',
             'refColumns' => 'Id',
@@ -59,8 +59,8 @@ class Almacenes_Model_DbTable_RemitosDeIngresos extends Almacenes_Model_DbTable_
         'FletesTiposDePagos' => array(
             'columns' => 'FleteFormaPago',
             'refTableClass' => 'Base_Model_DbTable_FletesFormasPagos',
-            'refJoinColumns' => array("Descripcion"), 
-            'comboBox' => true, 
+            'refJoinColumns' => array("Descripcion"), // De esta relacion queremos traer estos campos por JOIN
+            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'FletesFormasPagos',
             'refColumns' => 'Id'
@@ -68,8 +68,8 @@ class Almacenes_Model_DbTable_RemitosDeIngresos extends Almacenes_Model_DbTable_
         'DepositoPropio' => array(
             'columns' => 'DepositoSalida',
             'refTableClass' => 'Base_Model_DbTable_Direcciones',
-            'refJoinColumns' => array("Comentario"), 
-            'comboBox' => true, 
+            'refJoinColumns' => array("Comentario"), // De esta relacion queremos traer estos campos por JOIN
+            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Direcciones',
             'refColumns' => 'Id',
@@ -78,8 +78,8 @@ class Almacenes_Model_DbTable_RemitosDeIngresos extends Almacenes_Model_DbTable_
         'DepositoTercero' => array(
             'columns' => 'DepositoEntrega',
             'refTableClass' => 'Base_Model_DbTable_Depositos',
-            'refJoinColumns' => array("Direccion"),
-            'comboBox' => true,
+            'refJoinColumns' => array("Direccion"), // De esta relacion queremos traer estos campos por JOIN
+            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
             'comboSource' => 'datagateway/combolist/fetch/Propio',
             'refTable' => 'Direcciones',
             'refColumns' => 'Id',
@@ -95,7 +95,7 @@ class Almacenes_Model_DbTable_RemitosDeIngresos extends Almacenes_Model_DbTable_
             'refColumns' => 'Id'
         )
     );
-    protected $_dependentTables = array("Almacenes_Model_DbTable_RemitosArticulosDeIngresos");
+    protected $_dependentTables = array("Almacenes_Model_DbTable_RemitosArticulosDeEntradas");
 
     public function update ($data, $where)
     {
@@ -212,7 +212,7 @@ class Almacenes_Model_DbTable_RemitosDeIngresos extends Almacenes_Model_DbTable_
      */
     public function marcarRemitoPaletizadoTotal($idremito)
     {  
-        $M_RAE = new Almacenes_Model_DbTable_RemitosArticulosDeIngresos();
+        $M_RAE = new Almacenes_Model_DbTable_RemitosArticulosDeEntradas();
         $M_C = new Facturacion_Model_DbTable_Comprobantes();
 
         $R_RAE = $M_RAE->fetchAll("Comprobante = $idremito");
@@ -238,7 +238,7 @@ class Almacenes_Model_DbTable_RemitosDeIngresos extends Almacenes_Model_DbTable_
 
         $where = " Id = $idremito ";
         $data['Despachado'] = $paletizado;
-        // uso modelo comprobante para saltear la logica de los padres del modelo remito de ingresos
+        // uso modelo comprobante para saltear la logica de los padres del modelo remito de entrada
         $M_C->update($data,$where);
     }
 
@@ -254,7 +254,7 @@ class Almacenes_Model_DbTable_RemitosDeIngresos extends Almacenes_Model_DbTable_
         $M_C = new Facturacion_Model_DbTable_Comprobantes();
         $where = " Id = $idremito ";
         $data['Despachado'] = 0;
-        // uso modelo comprobante para saltear la logica de los padres del modelo remito de ingresos
+        // uso modelo comprobante para saltear la logica de los padres del modelo remito de entrada
         $M_C->update($data,$where);
     }    
 
