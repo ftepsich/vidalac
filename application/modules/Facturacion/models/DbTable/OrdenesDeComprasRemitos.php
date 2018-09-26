@@ -38,7 +38,7 @@ class Facturacion_Model_DbTable_OrdenesDeComprasRemitos extends Facturacion_Mode
      * hijo y cual el modelo padre.
      * Se utilizan en las funciones: asociarComprobanteHijoConPadre y agregarComprobanteHijoAPadre
      */
-	protected $_class_comprobantePadre = "Almacenes_Model_DbTable_RemitosArticulosDeIngresos";
+	protected $_class_comprobantePadre = "Almacenes_Model_DbTable_RemitosArticulosDeEntradas";
 	protected $_class_comprobanteHijo  = "Facturacion_Model_DbTable_OrdenesDeComprasArticulos";
 
     /**

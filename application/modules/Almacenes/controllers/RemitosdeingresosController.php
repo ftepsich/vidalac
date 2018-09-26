@@ -17,7 +17,7 @@ class Almacenes_RemitosDeIngresosController extends Rad_Window_Controller_Action
          * Formulario Principal Remitos de Ingreso (Paso 1)
          */
         $this->view->form = $this->view->radForm(
-            'Almacenes_Model_DbTable_RemitosDeIngresos',
+            'Almacenes_Model_DbTable_RemitosDeEntradas',
             'datagateway',
             'wizard'
         );
@@ -73,7 +73,7 @@ class Almacenes_RemitosDeIngresosController extends Rad_Window_Controller_Action
         $config->autoSave        = true;
 
         $this->view->gridRemitosArticulos = $this->view->radGrid(
-            'Almacenes_Model_DbTable_RemitosArticulosDeIngresos',
+            'Almacenes_Model_DbTable_RemitosArticulosDeEntradas',
             $config,
             'abmeditor',
             'wizard'
@@ -84,7 +84,7 @@ class Almacenes_RemitosDeIngresosController extends Rad_Window_Controller_Action
          * Grilla Remitos de Ingresos
          */
         $this->view->grid = $this->view->radGrid(
-            'Almacenes_Model_DbTable_RemitosDeIngresos',
+            'Almacenes_Model_DbTable_RemitosDeEntradas',
             array(
                 'abmForm' => '',
                 'loadAuto' => false,
@@ -114,7 +114,7 @@ class Almacenes_RemitosDeIngresosController extends Rad_Window_Controller_Action
         $idRemito   = $db->quote($idRemito, 'INTEGER');
 
         try {
-            $M_RE = new Almacenes_Model_DbTable_RemitosDeIngresos(array(), false);
+            $M_RE = new Almacenes_Model_DbTable_RemitosDeEntradas(array(), false);
             $M_RE->cerrar($idRemito);
 
             echo '{success: true}';

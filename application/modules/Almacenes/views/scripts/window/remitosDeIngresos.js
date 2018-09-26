@@ -4,7 +4,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
 	title: '<?=$this->title?>',
 	appChannel: '/desktop/modules<?=$this->url()?>',
 	requires: [
-      '/direct/Almacenes/RemitosDeIngresos?javascript'
+      '/direct/Almacenes/RemitosDeEntradas?javascript'
     ],
 	
 	eventfind: function (ev) {
@@ -88,7 +88,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
 				if (id != 0) {
 				// Actualizo la grilla
 				Rad.callRemoteJsonAction ({
-					url: '/datagateway/get/model/RemitosDeIngresos/m/Almacenes/',
+					url: '/datagateway/get/model/RemitosDeEntradas/m/Almacenes/',
 					params: {id: id},
 					scope: this,
 					success: function(response) {
@@ -141,7 +141,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
 						this.gridRemitosArticulos.loadAsDetailGrid(detailGrid, id);
 					break;
 					case 3: 
-						Ext.getCmp('impresionRemitosDeIngresosHtml').setSrc('/Window/birtreporter/report?template=Comp_RemitoRecibido_Ver&output=html&id='+ this.form.getForm().findField('Id').getValue());
+						Ext.getCmp('impresionRemitosDeEntradasHtml').setSrc('/Window/birtreporter/report?template=Comp_RemitoRecibido_Ver&output=html&id='+ this.form.getForm().findField('Id').getValue());
 					break;
 				}
 			}, 
@@ -269,7 +269,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
             border: false,
             items:  [{
                 xtype: 'iframepanel',
-                id: 'impresionRemitosDeIngresosHtml',
+                id: 'impresionRemitosDeEntradasHtml',
                 bodyStyle: 'background-color:white;'
             }],
             buttons : [{
@@ -277,7 +277,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                 scope: this,
                 handler: function() {
                     var Id = this.form.getForm().findField('Id').getValue();
-                    Models.Almacenes_Model_RemitosDeIngresosMapper.cerrar(Id, Ext.emtpyFn, this); 
+                    Models.Almacenes_Model_RemitosDeEntradasMapper.cerrar(Id, Ext.emtpyFn, this); 
 					this.grid.abmWindow.closeAbm(); 
                 }
             }]

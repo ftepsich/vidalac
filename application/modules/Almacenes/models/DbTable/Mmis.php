@@ -111,9 +111,9 @@ class Almacenes_Model_DbTable_Mmis extends Rad_Db_Table
             'refTable' => 'Articulos',
             'refColumns' => 'Id'
         ),
-        'RemitosArticulosIngresos' => array(
+        'RemitosArticulosEntrada' => array(
             'columns' => 'RemitoArticulo',
-            'refTableClass' => 'Almacenes_Model_DbTable_RemitosArticulosDeIngresos',
+            'refTableClass' => 'Almacenes_Model_DbTable_RemitosArticulosDeEntradas',
             'refTable' => 'Articulos',
             'refColumns' => 'Id'
         )
@@ -141,8 +141,8 @@ class Almacenes_Model_DbTable_Mmis extends Rad_Db_Table
             $id = parent::insert($data);
 
             if($data['RemitoArticulo']){
-                $M_RE = new Almacenes_Model_DbTable_RemitosDeIngresos();
-                $M_RAE = new Almacenes_Model_DbTable_RemitosArticulosDeIngresos();
+                $M_RE = new Almacenes_Model_DbTable_RemitosDeEntradas();
+                $M_RAE = new Almacenes_Model_DbTable_RemitosArticulosDeEntradas();
 
                 $R_RAE = $M_RAE->find($data['RemitoArticulo'])->current();
 
@@ -177,8 +177,8 @@ class Almacenes_Model_DbTable_Mmis extends Rad_Db_Table
                 $M_MM->salirSi_tieneMovimientos($row);
 
                 if($row['RemitoArticulo']){
-                    $M_RE = new Almacenes_Model_DbTable_RemitosDeIngresos();
-                    $M_RAE = new Almacenes_Model_DbTable_RemitosArticulosDeIngresos();
+                    $M_RE = new Almacenes_Model_DbTable_RemitosDeEntradas();
+                    $M_RAE = new Almacenes_Model_DbTable_RemitosArticulosDeEntradas();
 
                     $R_RAE = $M_RAE->find($row['RemitoArticulo'])->current();
 
