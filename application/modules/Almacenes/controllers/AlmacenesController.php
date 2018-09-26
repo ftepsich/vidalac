@@ -48,10 +48,10 @@ class Almacenes_AlmacenesController extends Rad_Window_Controller_Action
         );
 
         /**
-         * Grillas remitos articulos de ingresos
+         * Grillas remitos articulos de entradas
          */
         $configGrillaremitos = array(
-            'id'            => $this->getName() . 'remitosartingresos_Grid',
+            'id'            => $this->getName() . 'remitosartentradas_Grid',
             'withPaginator' => false,
             'loadAuto'      => false,
             'border'        => false,
@@ -60,8 +60,8 @@ class Almacenes_AlmacenesController extends Rad_Window_Controller_Action
             'sm'            => new Zend_Json_Expr("new Ext.grid.RowSelectionModel({singleSelect: true})")
         );
 
-        $this->view->gridRemitosArticulosIngresos = $this->view->radGrid(
-            'Almacenes_Model_DbTable_RemitosArticulosDeIngresos',
+        $this->view->gridRemitosArticulosEntrada = $this->view->radGrid(
+            'Almacenes_Model_DbTable_RemitosArticulosDeEntradas',
             $configGrillaremitos,
             null,
             'reducido'
@@ -105,9 +105,9 @@ class Almacenes_AlmacenesController extends Rad_Window_Controller_Action
         );
 
         /**
-         * Grilla remitos de ingresos
+         * Grilla remitos de entradas
          */
-        $detailGrid1->id = $this->getName() . 'remitosartingresos_Grid';
+        $detailGrid1->id = $this->getName() . 'remitosartentradas_Grid';
         $detailGrid1->remotefield = 'Comprobante';
         $detailGrid1->localfield  = 'Id';
 
@@ -134,8 +134,8 @@ class Almacenes_AlmacenesController extends Rad_Window_Controller_Action
             }")*/
         );
 
-        $this->view->gridRemitosIngresos = $this->view->radGrid(
-            'Almacenes_Model_DbTable_RemitosDeIngresos',
+        $this->view->gridRemitosEntrada = $this->view->radGrid(
+            'Almacenes_Model_DbTable_RemitosDeEntradas',
             $configGrillaremitos,
             null,
             'reducidoalmacenes'

@@ -24,7 +24,7 @@ class Almacenes_RelacionarRemitosFacturasComprasController extends Rad_Window_Co
 		$this->view->gridFacturaCompra = $this->view->RadGridManyToMany(
     		'Facturacion_Model_DbTable_FacturasCompras',
     		'Facturacion_Model_DbTable_FacturasComprasRemitos',
-    		'Almacenes_Model_DbTable_RemitosDeIngresos',
+    		'Almacenes_Model_DbTable_RemitosDeEntradas',
     		array(
     		    'withPaginator'	  => false,
     		    'withToolbar'	  => false,
@@ -59,7 +59,7 @@ class Almacenes_RelacionarRemitosFacturasComprasController extends Rad_Window_Co
 		 * Grilla Remitos de Ingresos
 		 */
         $this->view->grid = $this->view->radGrid(
-           'Almacenes_Model_DbTable_RemitosDeIngresos',
+           'Almacenes_Model_DbTable_RemitosDeEntradas',
            array(
                'abmForm'=>'',
                'detailGrid'=> $detailGrid,
