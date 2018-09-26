@@ -142,7 +142,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                         '<span>{FechaEntrega}</span>',
                     '</div>',
                 '</tpl>',
-                '<img src="images/Forward.png" onclick="app.publish(\'/desktop/modules/Almacenes/remitosDeIngresos\',{action:\'find\', value: {Id}})" style="position:absolute;right:3px;bottom:3px;left:auto;top:auto;padding:5px;cursor:pointer">',
+                '<img src="images/Forward.png" onclick="app.publish(\'/desktop/modules/Almacenes/remitosDeEntradas\',{action:\'find\', value: {Id}})" style="position:absolute;right:3px;bottom:3px;left:auto;top:auto;padding:5px;cursor:pointer">',
             '</div>'
         );
 
