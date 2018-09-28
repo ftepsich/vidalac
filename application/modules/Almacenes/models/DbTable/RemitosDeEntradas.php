@@ -49,8 +49,8 @@ class Almacenes_Model_DbTable_RemitosDeEntradas extends Almacenes_Model_DbTable_
         'TransportistasEntrego' => array(
             'columns' => 'TransportistaEntregoEnDestino',
             'refTableClass' => 'Base_Model_DbTable_Transportistas',
-            'refJoinColumns' => array("RazonSocial"), // De esta relacion queremos traer estos campos por JOIN
-            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'refJoinColumns' => array("RazonSocial"), 
+            'comboBox' => true, 
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Personas',
             'refColumns' => 'Id',
@@ -59,8 +59,8 @@ class Almacenes_Model_DbTable_RemitosDeEntradas extends Almacenes_Model_DbTable_
         'FletesTiposDePagos' => array(
             'columns' => 'FleteFormaPago',
             'refTableClass' => 'Base_Model_DbTable_FletesFormasPagos',
-            'refJoinColumns' => array("Descripcion"), // De esta relacion queremos traer estos campos por JOIN
-            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'refJoinColumns' => array("Descripcion"), 
+            'comboBox' => true, -
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'FletesFormasPagos',
             'refColumns' => 'Id'
@@ -68,8 +68,8 @@ class Almacenes_Model_DbTable_RemitosDeEntradas extends Almacenes_Model_DbTable_
         'DepositoPropio' => array(
             'columns' => 'DepositoSalida',
             'refTableClass' => 'Base_Model_DbTable_Direcciones',
-            'refJoinColumns' => array("Comentario"), // De esta relacion queremos traer estos campos por JOIN
-            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'refJoinColumns' => array("Comentario"), 
+            'comboBox' => true, 
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Direcciones',
             'refColumns' => 'Id',
@@ -78,8 +78,8 @@ class Almacenes_Model_DbTable_RemitosDeEntradas extends Almacenes_Model_DbTable_
         'DepositoTercero' => array(
             'columns' => 'DepositoEntrega',
             'refTableClass' => 'Base_Model_DbTable_Depositos',
-            'refJoinColumns' => array("Direccion"), // De esta relacion queremos traer estos campos por JOIN
-            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'refJoinColumns' => array("Direccion"), 
+            'comboBox' => true, 
             'comboSource' => 'datagateway/combolist/fetch/Propio',
             'refTable' => 'Direcciones',
             'refColumns' => 'Id',
