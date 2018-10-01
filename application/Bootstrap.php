@@ -9,7 +9,6 @@
  */
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
-
     protected function _initView()
     {
         // Initialize view
@@ -23,7 +22,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         // Return it, so that it can be stored by the bootstrap
         return $view;
     }
-
     protected function _initFastCache()
     {
         if (extension_loaded('memcache')) {
@@ -32,7 +30,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 'automatic_serialization' => true,
                 'ignore_user_abort'       => true
             );
-
             $backendOptions =  array(
                 'servers' => array(
                     array(
@@ -42,8 +39,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 ),
                 'compression' => true
             );
-
-
             $cache = Zend_Cache::factory(
                 'Core', 'Zend_Cache_Backend_Libmemcached', $frontendOptions, $backendOptions, false, true
             );
@@ -53,30 +48,27 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 'automatic_serialization' => true,
                 'ignore_user_abort' => true
             );
+            $backendOptions = array(
+                'cache_dir' => '/usr/share/nginx/vidalac/data/cache'
 
-              $backendOptions = array();
-
+            );
             $cache = Zend_Cache::factory(
                 'Core', 'Zend_Cache_Backend_File', $frontendOptions, $backendOptions, false, true
             );
         }
-
         // Hacemos del cache de memoria el cache por defecto de la clase db_table
         if (APPLICATION_ENV == 'production') {
             Zend_Db_Table_Abstract::setDefaultMetadataCache($cache);
             Rad_Acl::setCache($cache);
         }
-
         Zend_Registry::set('fastCache', $cache);
         return $cache;
     }
-
     protected function _initPubSub()
     {
         if (APPLICATION_ENV == 'production') {
             $this->bootstrap('FastCache');
             $fastCache = $this->getResource('FastCache');
-
             Rad_PubSub::setCache($fastCache);
         }
         Rad_PubSub::init('/configs/subscribers.yml');
@@ -89,13 +81,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $this->bootstrap('Registry');
         $this->bootstrap('PubSub');
         $db = $this->getResource('db');
-
         Service_WorkflowDispatcher::init($db);
-
         // Agregamos despachador adicional de pubsubs
         Rad_PubSub::addDispatcher('Service_WorkflowDispatcher', 'dispatch');
     }*/
-
     protected function _initSlowCache()
     {
         $frontendOptions = array(
@@ -103,26 +92,21 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             'automatic_serialization' => true,
             'ignore_user_abort' => true
         );
-
         $backendOptions = array();
-
         $cache = Zend_Cache::factory(
             'Core', 'Zend_Cache_Backend_File', $frontendOptions, $backendOptions, false, true
         );
         Zend_Registry::set('slowCache', $cache);
         return $cache;
     }
-
     public function _initRegistry()
     {
         $this->bootstrap('db');
         $db = $this->getResource('db');
-
         Zend_Registry::set('db', $db);
         // para poder acceder en forma facil a la configuracion de la aplicacion
         Zend_Registry::set('config', $this->getOptions());
     }
-
     protected function _initDbProfiler()
     {
         $this->bootstrap('db');
@@ -135,7 +119,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             $profiler->setEnabled(true);
         }
     }
-
     //BARRA DE DEPURACION LA DESACTIVO PQ NO SIRVE PARA PETICIONES AJAX
     /*
       protected function _initZFDebug ()
@@ -149,7 +132,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
           $frontController = $this->getResource('frontController');
           $frontController->registerPlugin($debug);
       } */
-
     protected function _initAutoLoad()
     {
         //TODO: ver si esta bien configurado
@@ -159,18 +141,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 'basePath'  => APPLICATION_PATH //. '/modules/default'
             )
         );
-
-
         return $moduleLoader;
     }
-
     /*
       protected function _initAcl()
       {
           $this->bootstrap('db');
           $db = $this->getResource('db');
           $acl = Rad_Acl::getInstance($db);
-
           return $acl;
       } */
 }

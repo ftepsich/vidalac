@@ -79,7 +79,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
             $punto = $row->Punto;
         }
 
-        return str_pad($punto, 4, "0", STR_PAD_LEFT) . '-' . str_pad($row->Numero, 8, "0", STR_PAD_LEFT);
+        return str_pad($punto, 5, "0", STR_PAD_LEFT) . '-' . str_pad($row->Numero, 8, "0", STR_PAD_LEFT);
     }
 
     /**

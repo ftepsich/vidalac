@@ -12,6 +12,8 @@ class Base_Model_DbTable_ChequesDeTerceros extends Base_Model_DbTable_Cheques
 {
 
     protected $_defaultSource = self::DEFAULT_CLASS;
+    protected $_sort = array('FechaDeEmision Desc');
+
     
     protected $_permanentValues = array(
         'TipoDeEmisorDeCheque' => 2
@@ -69,18 +71,6 @@ class Base_Model_DbTable_ChequesDeTerceros extends Base_Model_DbTable_Cheques
         return Rad_Db_Table::delete($where);
     }
 	
-    // No se puede cargar un cheque con el mismo BancoSucursal/Serie/Numero.
-    public function insert($data)
-    {
-        $where = "BancoSucursal = " . $data['BancoSucursal'] . " and Serie = '" . $data['Serie'] . "' and Numero = '" . $data['Numero'] . "'";
-        $exist = $this->fetchRow($where);
-
-        if ($exist) {
-            throw new Rad_Db_Table_Exception('Ya existe un cheque ingresado con ese mismo BancoSucursal/Serie/Numero.');
-        }
-
-        return parent::insert($data);
-    }
 
 
     public function fetchIngresados ($where = null, $order = null, $count = null, $offset = null)

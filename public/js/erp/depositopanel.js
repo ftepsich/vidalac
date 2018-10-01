@@ -371,8 +371,8 @@ ERP.depositoPanel = Ext.extend(Ext.Panel, {
                 resaltarRemitoArticuloSalida: function(a) {
                     this.resaltar = {tipo:'RemitoArticuloSalida', valor: a};
                 },
-                resaltarRemitoArticuloEntrada: function(a) {
-                    this.resaltar = {tipo:'RemitoArticuloEntrada', valor: a};
+                resaltarRemitoArticuloIngreso: function(a) {
+                    this.resaltar = {tipo:'RemitoArticuloIngreso', valor: a};
                 },
                 resaltarTemporalesProduccion: function(a) {
                     this.resaltar = {tipo:'TemporalesProduccion', valor: a};

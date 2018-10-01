@@ -2005,15 +2005,27 @@ AND  	TC.Grupo in (4,10)]]></xml-property>
                     <property name="paddingTop">1pt</property>
                 </cell>
                 <cell id="1143">
-                    <property name="colSpan">2</property>
-                    <property name="rowSpan">1</property>
                     <property name="paddingTop">1pt</property>
-                    <property name="verticalAlign">bottom</property>
-                    <text-data id="2681">
-                        <property name="style">ids</property>
-                        <expression name="valueExpr">BirtStr.concat('Nº: ', row["CodigoDeComprobante"] ,' ', row["NumeroCompleto"],'  /  C: ', row["IdComprobante"],'  /  P: ',row["Persona"]);</expression>
-                        <property name="contentType">html</property>
-                    </text-data>
+                    <label id="2143">
+                        <property name="style">nombre-cabecera</property>
+                        <text-property name="text">Plan de Cuenta</text-property>
+                    </label>
+                </cell>
+                <cell id="1144">
+                    <property name="paddingTop">1pt</property>
+                    <data id="2144">
+                        <property name="style">campo-cabecera</property>
+                        <property name="dataSet">ComprobanteCabecera</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">PlanDeCuenta_Descripcion</property>
+                                <text-property name="displayName">PlanDeCuenta_Descripcion</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["PlanDeCuenta_Descripcion"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">PlanDeCuenta_Descripcion</property>
+                    </data>
                 </cell>
             </row>
         </grid>
