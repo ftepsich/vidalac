@@ -12,6 +12,8 @@ class Base_Model_DbTable_ChequesDeTerceros extends Base_Model_DbTable_Cheques
 {
 
     protected $_defaultSource = self::DEFAULT_CLASS;
+    protected $_sort = array('FechaDeEmision Desc');
+
     
     protected $_permanentValues = array(
         'TipoDeEmisorDeCheque' => 2

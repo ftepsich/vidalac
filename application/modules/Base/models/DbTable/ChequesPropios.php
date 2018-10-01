@@ -11,8 +11,9 @@
 class Base_Model_DbTable_ChequesPropios extends Base_Model_DbTable_Cheques
 {
 
-    protected $_sort = array('Chequera_cdisplay Asc','Numero Asc');
-        
+    protected $_sort = array('Chequera_cdisplay Asc','FechaDeEmision Desc');
+ 
+
     protected $_permanentValues = array(
         'TipoDeEmisorDeCheque' => 1
     );
