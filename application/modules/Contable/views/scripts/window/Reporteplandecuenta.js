@@ -47,7 +47,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
     {
         return {
             xtype: 'form',
-            url : '/Contable/ReportePlanDeCuentaMercaderia/verreporte',
+            url : '/Contable/ReportePlanDeCuenta/verreporte',
             layout: 'form',
             border: false,
             bodyStyle: 'padding:10px',
@@ -62,9 +62,10 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                         fields: ['desc', 'id'],
                         data : [
                                
-                                ['General', '1'],
-                                ['Detallado', '2'],
-                                ['Por Grupo', '3'],
+                                ['General por Cuenta', '1'],
+                                ['Detallado por Cuenta', '2'],
+                                ['General por Grupo', '3'],
+                                ['Detallado por Grupo', '4'],
                       
                         ]
                     }),
@@ -113,21 +114,42 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                 {
                     typeAhead: true,
                     xtype: 'xcombo',
-                    fieldLabel: 'Grupo',                 
+                    fieldLabel: 'Cuenta',                 
                     anchor: '96%',
                     displayField: 'Descripcion',
-                    name: 'plandecuentaGrupo',
+                    name: 'cuenta',
                     valueField: 'Id',
                     selectOnFocus: true,
                     forceSelection: true,
                     forceReload: true,
-                    hiddenName: "plandecuentaGrupo",
+                    hiddenName: "cuenta",
                     loadingText: "Cargando...",
                     msgTarget: 'under',
                     triggerAction: 'all',
                     store: new Ext.data.JsonStore({
                         id: 0,
-                        url:"datagateway\/combolist\/model\/PlanesDeCuentasGrupos/m\/Contable\/search\/Descripcion\/sort\/Id\/dir\/desc",
+                        url:"datagateway\/combolist\/model\/PlanesDeCuentas/m\/Contable\/search\/Descripcion\/sort\/Descripcion\/dir\/asc",
+                        storeId: "PlanDeCuentaStore"
+                    })
+                },
+                {
+                    typeAhead: true,
+                    xtype: 'xcombo',
+                    fieldLabel: 'Grupo',                 
+                    anchor: '96%',
+                    displayField: 'Descripcion',
+                    name: 'grupo',
+                    valueField: 'Id',
+                    selectOnFocus: true,
+                    forceSelection: true,
+                    forceReload: true,
+                    hiddenName: "grupo",
+                    loadingText: "Cargando...",
+                    msgTarget: 'under',
+                    triggerAction: 'all',
+                    store: new Ext.data.JsonStore({
+                        id: 0,
+                        url:"datagateway\/combolist\/model\/PlanesDeCuentasGrupos/m\/Contable\/search\/Descripcion\/sort\/Descripcion\/dir\/asc",
                         storeId: "PlanDeCuentaGrupoStore"
                     })
                 },
@@ -148,11 +170,13 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                         values = this.ownerCt.ownerCt.getForm().getValues();
                         var  params = '';
 
+                        values.modelo        = values.modelo.replace(/undefined/gi,"");
                         values.fechaDesde    = values.fechaDesde.replace(/undefined/gi,"");
                         values.fechaHasta    = values.fechaHasta.replace(/undefined/gi,"");
                         values.libroIvaDesde = values.libroIvaDesde.replace(/undefined/gi,"");
                         values.libroIvaHasta = values.libroIvaHasta.replace(/undefined/gi,"");
-                        values.idProveedor   = values.idProveedor.replace(/undefined/gi,"");
+                        values.cuenta        = values.cuenta.replace(/undefined/gi,"");
+                        values.grupo         = values.grupo.replace(/undefined/gi,"");
 
                         if(values.fechaDesde == '' && values.fechaHasta == '' && values.libroIvaDesde == '' && values.libroIvaHasta == '') {
                           Ext.Msg.alert('Atencion', 'Debe seleccionar un rango de fechas Desde/Hasta o un periodo Libro IVA Desde/Hasta');
@@ -171,7 +195,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                         if (values.modelo) {
                             params += '/modelo/'+values.modelo;
                         } else {
-                            Ext.Msg.alert('Atencion', 'Debe seleccionar un modelo de reporte');
+                            Ext.Msg.alert('Atencion', 'Debe seleccionar un Modelo de reporte');
                             return;
                         }
  
@@ -191,7 +215,24 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                             params += '/libroivahasta/'+values.libroIvaHasta;
                         }
 
-               
+                        if (values.cuenta) {
+                            params += '/cuenta/'+values.cuenta;
+                        } else {
+                            if (values.modelo == 2) {
+                               Ext.Msg.alert('Atencion', 'Debe seleccionar una Cuenta');
+                               return;
+                            }
+                        }
+
+                        if (values.grupo) {
+                            params += '/grupo/'+values.grupo;
+                        } else {
+                            if (values.modelo == 4) {
+                               Ext.Msg.alert('Atencion', 'Debe seleccionar una Grupo');
+                               return;
+                            }
+
+                        }
  
                         if (values.formato) {
                             params += '/formato/'+values.formato;
@@ -202,10 +243,10 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
 
                         app.publish('/desktop/modules/js/commonApps/showUrl.js', {
                             action: 'launch',
-                            url: '/Contable/ReportePlanDeCuentaMercaderia/verreporte'+params,
+                            url: '/Contable/ReportePlanDeCuenta/verreporte'+params,
                             width: 900,
                             height: 500,
-                            title: 'Reporte Plan de Cuenta Mercadería'
+                            title: 'Reporte Plan de Cuenta'
                         });
                     }
                 }
