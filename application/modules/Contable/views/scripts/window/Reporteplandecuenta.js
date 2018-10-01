@@ -227,7 +227,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                         if (values.grupo) {
                             params += '/grupo/'+values.grupo;
                         } else {
-                            if (values.modelo == 4) {
+                            if (values.modelo == 3 || values.modelo == 4) {
                                Ext.Msg.alert('Atencion', 'Debe seleccionar una Grupo');
                                return;
                             }
