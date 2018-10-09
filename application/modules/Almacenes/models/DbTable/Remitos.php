@@ -89,8 +89,8 @@ class Almacenes_Model_DbTable_Remitos extends Facturacion_Model_DbTable_Comproba
         'Persona' => array(
             'columns' => 'Persona',
             'refTableClass' => 'Base_Model_DbTable_Personas',
-            'refJoinColumns' => array("RazonSocial"), // De esta relacion queremos traer estos campos por JOIN
-            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'refJoinColumns' => array("RazonSocial"), 
+            'comboBox' => true, 
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Personas',
             'refColumns' => 'Id',
@@ -99,8 +99,8 @@ class Almacenes_Model_DbTable_Remitos extends Facturacion_Model_DbTable_Comproba
         'TransportistasRetiro' => array(
             'columns' => 'TransportistaRetiroDeOrigen',
             'refTableClass' => 'Base_Model_DbTable_Transportistas',
-            'refJoinColumns' => array("RazonSocial"), // De esta relacion queremos traer estos campos por JOIN
-            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'refJoinColumns' => array("RazonSocial"), 
+            'comboBox' => true, 
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Personas',
             'refColumns' => 'Id',
@@ -109,8 +109,8 @@ class Almacenes_Model_DbTable_Remitos extends Facturacion_Model_DbTable_Comproba
         'TransportistasEntrego' => array(
             'columns' => 'TransportistaEntregoEnDestino',
             'refTableClass' => 'Base_Model_DbTable_Transportistas',
-            'refJoinColumns' => array("RazonSocial"), // De esta relacion queremos traer estos campos por JOIN
-            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'refJoinColumns' => array("RazonSocial"),
+            'comboBox' => true, 
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Personas',
             'refColumns' => 'Id',
