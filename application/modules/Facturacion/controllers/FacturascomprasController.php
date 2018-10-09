@@ -36,7 +36,7 @@ class Facturacion_FacturasComprasController extends Rad_Window_Controller_Action
         $configHijaR1->withPaginator = false;
         $configHijaR1->id = 'RA_FCGridHija123';
         $grillaHijaR1 = $this->view->radGrid(
-                'Almacenes_Model_DbTable_RemitosArticulosDeIngresos', $configHijaR1
+                'Almacenes_Model_DbTable_RemitosArticulosDeEntradas', $configHijaR1
         );
 
         $this->view->gridRemitoArt = $grillaHijaR1;
@@ -47,7 +47,7 @@ class Facturacion_FacturasComprasController extends Rad_Window_Controller_Action
 
 
         $grillaAR = $this->view->RadGridManyToMany(
-            "Almacenes_Model_DbTable_RemitosDeIngresos", "Facturacion_Model_DbTable_FacturasComprasRemitos", "Facturacion_Model_DbTable_FacturasCompras", array(
+            "Almacenes_Model_DbTable_RemitosDeEntradas", "Facturacion_Model_DbTable_FacturasComprasRemitos", "Facturacion_Model_DbTable_FacturasCompras", array(
             'title' => 'Remitos',
             'xtype' => 'radformmanytomanyeditorgridpanel',
             'detailGrid' => $detailGrid,

@@ -48,7 +48,7 @@ class Almacenes_Model_DbTable_RemitosArticulosDeIngresos extends Almacenes_Model
         'Remitos' => array(
             'columns'         => 'Comprobante',
             //'refTableClass' => 'Almacenes_Model_DbTable_Remitos',
-            'refTableClass'   => 'Almacenes_Model_DbTable_RemitosDeIngresos',
+            'refTableClass'   => 'Almacenes_Model_DbTable_RemitosDeEntradas',
             'refJoinColumns'  => array('Numero'),
             'comboBox'        => true,
             'comboSource'     => 'datagateway/combolist',
@@ -145,7 +145,7 @@ class Almacenes_Model_DbTable_RemitosArticulosDeIngresos extends Almacenes_Model
                 throw new Rad_Db_Table_Exception('La cantidad no puede ser 0 (cero).');
             }
 
-            $M_RE = new Almacenes_Model_DbTable_RemitosDeIngresos(array(), false);
+            $M_RE = new Almacenes_Model_DbTable_RemitosDeEntradas(array(), false);
 
             $reg = $this->fetchAll($where);
 
@@ -177,7 +177,7 @@ class Almacenes_Model_DbTable_RemitosArticulosDeIngresos extends Almacenes_Model
         try {
             $this->_db->beginTransaction();
 
-            $M_RE = new Almacenes_Model_DbTable_RemitosDeIngresos(array(), false);
+            $M_RE = new Almacenes_Model_DbTable_RemitosDeIEntaradas(array(), false);
 
             $reg = $this->fetchAll($where);
 

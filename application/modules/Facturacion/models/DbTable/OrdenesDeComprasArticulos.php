@@ -117,18 +117,7 @@ class Facturacion_Model_DbTable_OrdenesDeComprasArticulos extends Facturacion_Mo
 			
 			$M_OC->salirSi_estaCerrado($data['Comprobante']);				
 			
-			// Verifico si ya existe el articulo en el comprobante
-			if ($data['Articulo'] && $this->estaElArticuloEnComprobante($data['Comprobante'],$data['Articulo'])){
-				// el articulo se encuentra en el comprobante => updatear cantidad
-				$Rx = $this->fetchRow("Comprobante = ".$data['Comprobante']." and Articulo = ".$data['Articulo']);
-				if ($Rx) {
-					$data["Cantidad"] = $Rx->Cantidad + $data["Cantidad"];
-				}
-				$this->update($data,"ComprobantesDetalles.Id = $Rx->Id");
-				$id = $Rx->Id;
-				// Publico
-				Rad_PubSub::publish('Facturacion_OCA_Updateado',$Rx);
-			} else {			
+					
 			
 				// Si esta en moneda extranjera calculo el Precio Unitario en moneda local 
 				if($M_OC->estaEnMonedaExtranjera($data['Comprobante'])) {
@@ -150,7 +139,7 @@ class Facturacion_Model_DbTable_OrdenesDeComprasArticulos extends Facturacion_Mo
 				$id = parent::insert($data);
 				$R_Ins = $this->find($id)->current();
 				Rad_PubSub::publish('Facturacion_OCA_Insertado',$R_Ins);	
-            }
+        
        
 			$this->_db->commit();
 	        return $id;
