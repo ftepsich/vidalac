@@ -55,7 +55,7 @@ class Facturacion_Model_DbTable_FacturasVentasArticulos extends Facturacion_Mode
         'Articulos' => array(
             'columns' => 'Articulo',
             'refTableClass' => 'Base_Model_DbTable_Articulos',
-            'refJoinColumns' => array('Descripcion', 'DescArreglada' => 'IF(ComprobantesDetalles.Articulo is null,ComprobantesDetalles.Observaciones,Articulos.Descripcion)', 'Tipo', "Codigo"), // De esta relacion queremos traer estos campos por JOIN
+            'refJoinColumns' => array('Descripcion', 'DescArreglada' => 'IF(ComprobantesDetalles.Articulo is null,ComprobantesDetalles.Observaciones,Articulos.Descripcion)', 'Tipo', "Codigo"),
             'comboBox' => true, 
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Articulos',
