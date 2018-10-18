@@ -329,6 +329,7 @@ WHERE c.Cerrado = 1
   AND c.Anulado = 0
   AND tc.Grupo NOT IN ( 4, 5, 9, 10, 11 ) 
   AND ( pcc.Id IS NOT NULL OR pc.Id IS NOT NULL )
+  AND l.mes <> 0
 ) AS d 
 JOIN  vplanesdecuentasarbol AS p ON p.Id = d.PlanDeCuenta_Id
 {WHEREQUERY2}
@@ -1579,6 +1580,7 @@ WHERE c.Cerrado = 1
   AND c.Anulado = 0
   AND tc.Grupo NOT IN ( 4, 5, 9, 10, 11 ) 
   AND ( pcc.Id IS NOT NULL OR pc.Id IS NOT NULL )
+  AND l.mes <> 0
 ) AS d 
 JOIN  vplanesdecuentasarbol AS p ON p.Id = d.PlanDeCuenta_Id
 {WHEREQUERY1}
