@@ -1276,11 +1276,11 @@ call Birt_Comprobante_Cabecera(?);]]></xml-property>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
-            <property name="type">a4</property>
-            <property name="topMargin">4.5cm</property>
-            <property name="leftMargin">8mm</property>
-            <property name="bottomMargin">3cm</property>
-            <property name="rightMargin">8mm</property>
+           <property name="type">a4</property>
+            <property name="topMargin">0.25in</property>
+            <property name="leftMargin">0.25in</property>
+            <property name="bottomMargin">0.25in</property>
+            <property name="rightMargin">0.15in</property>
             <property name="backgroundAttachment">scroll</property>
             <property name="backgroundPositionX">50%</property>
             <property name="backgroundPositionY">70%</property>

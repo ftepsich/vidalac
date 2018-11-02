@@ -1183,6 +1183,7 @@ FROM ComprobantesDetalles CD
     </data-sets>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
+            <property name="type">a4</property>
             <property name="topMargin">4cm</property>
             <property name="leftMargin">0.8cm</property>
             <property name="bottomMargin">3cm</property>

@@ -418,6 +418,7 @@ group by C.FechaDeVencimiento]]></xml-property>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2"/>
+        <property name="type">a4</property>
     </page-setup>
     <body>
         <grid id="240">

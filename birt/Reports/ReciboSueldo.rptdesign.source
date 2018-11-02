@@ -647,7 +647,7 @@ order by P.LegajoNumero asc
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
-            <property name="type">us-legal</property>
+            <property name="type">a4</property>
             <property name="orientation">landscape</property>
             <property name="topMargin">0.1in</property>
             <property name="leftMargin">0.15in</property>
