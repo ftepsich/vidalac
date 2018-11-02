@@ -9,8 +9,8 @@ class Base_Model_DbTable_EntesRecaudadores extends Rad_Db_Table {
         'Ambitos' => array(
             'columns' => 'Ambito',
             'refTableClass' => 'Base_Model_DbTable_Ambitos',
-            'refJoinColumns' => array("Descripcion"), // De esta relacion queremos traer estos campos por JOIN
-            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'refJoinColumns' => array("Descripcion"), 
+            'comboBox' => true,
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Ambitos',
             'refColumns' => 'Id'
