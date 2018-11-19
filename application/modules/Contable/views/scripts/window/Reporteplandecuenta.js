@@ -154,6 +154,10 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     })
                 },
                 {
+                    xtype: 'checkbox',
+                    fieldLabel: 'Incluir Período Iva 00',
+                },
+                {
                     xtype: 'radiogroup',
                     fieldLabel: 'Formato',
                     width: 150,
