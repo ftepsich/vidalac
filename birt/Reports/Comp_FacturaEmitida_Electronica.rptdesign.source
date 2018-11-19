@@ -1384,7 +1384,7 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                     <structure>
                         <property name="position">3</property>
                         <property name="name">ValorDivisaCambio</property>
-                        <property name="dataType">float</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
@@ -1428,7 +1428,7 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                     <property name="position">3</property>
                     <property name="name">ValorDivisaCambio</property>
                     <property name="nativeName">ValorDivisaCambio</property>
-                    <property name="dataType">float</property>
+                    <property name="dataType">decimal</property>
                     <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
@@ -1792,7 +1792,7 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                             <property name="name">ValorDivisaCambio</property>
                             <text-property name="displayName">ValorDivisaCambio</text-property>
                             <expression name="expression" type="javascript">dataSetRow["ValorDivisaCambio"]</expression>
-                            <property name="dataType">float</property>
+                            <property name="dataType">decimal</property>
                         </structure>
                         <structure>
                             <property name="name">DescDivisaCambio</property>
