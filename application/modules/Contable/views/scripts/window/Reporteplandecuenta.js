@@ -156,6 +156,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                 {
                     xtype: 'checkbox',
                     fieldLabel: 'Incluir Período Iva 00',
+                    name: 'periodoiva00'
                 },
                 {
                     xtype: 'radiogroup',
@@ -243,6 +244,10 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                         } else {
                             Ext.Msg.alert('Atencion', 'Debe seleccionar un Formato de Salida');
                             return;
+                        }
+                        
+                        if (values.periodoiva00) {
+                            params += '/periodoiva00/1';
                         }
 
                         app.publish('/desktop/modules/js/commonApps/showUrl.js', {
