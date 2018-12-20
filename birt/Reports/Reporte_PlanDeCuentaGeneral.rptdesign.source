@@ -326,7 +326,7 @@ SELECT
   c.Id                        AS Comprobante_Id,
   fNumeroCompleto (c.Id, 'R') AS Comprobante_Numero,
   c.FechaEmision              AS Comprobante_FechaEmision,
-  c.LibroIva                  AS Comprobante_LibroIva,
+  l.Id                        AS Comprobante_LibroIva,
   l.Descripcion               AS Comprobante_LibroIva_Descripcion,
   c.TipoDeComprobante         AS Comprobante_TipoDeComprobante,
   tc.Grupo                    AS Comprobante_GrupoDeComprobante,
@@ -340,7 +340,7 @@ SELECT
 FROM comprobantesdetalles cd
 INNER JOIN comprobantes c            ON c.Id   = cd.Comprobante
 INNER JOIN personas p                ON p.Id   = c.Persona
-INNER JOIN librosIva l               ON l.Id   = c.LibroIva 
+INNER JOIN {FROMQUERY1} l            ON l.Id   = c.LibroIva 
 LEFT JOIN articulos a                ON a.Id   = cd.Articulo
 LEFT JOIN planesdecuentas pc         ON pc.Id  = a.Cuenta
 LEFT JOIN planesdecuentas pcc        ON pcc.Id = cd.CuentaCasual
@@ -349,7 +349,6 @@ WHERE c.Cerrado = 1
   AND c.Anulado = 0
   AND tc.Grupo NOT IN ( 4, 5, 9, 10, 11 ) 
   AND ( pcc.Id IS NOT NULL OR pc.Id IS NOT NULL )
-  AND l.mes <> 0
 ) AS d 
 JOIN  vplanesdecuentasarbol AS p ON p.Id = d.PlanDeCuenta_Id
 {WHEREQUERY1}
