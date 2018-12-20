@@ -23,7 +23,9 @@ class Contable_ReportePlanDeCuentaController extends Rad_Window_Controller_Actio
         $report = new Rad_BirtEngine();
 
         $rq = $this->getRequest();
-     
+
+        $db = Zend_Registry::get('db');
+
         $modelo          = ($rq->modelo) ? $rq->modelo : 1;
         $fechaDesde      = ($rq->fechadesde) ? $rq->fechadesde : '';
         $fechaHasta      = ($rq->fechahasta) ? $rq->fechahasta : '';
@@ -31,7 +33,11 @@ class Contable_ReportePlanDeCuentaController extends Rad_Window_Controller_Actio
         $idLibroIVAHasta = ($rq->libroivahasta) ? $rq->libroivahasta : 0;
         $cuenta          = ($rq->cuenta) ? $rq->cuenta : 0;
         $grupo           = ($rq->grupo)  ? $rq->grupo : 0;
+        $periodoiva00    = ($rq->periodoiva00)  ? $rq->periodoiva00 : 0;
         $formato         = ($rq->formato) ? $rq->formato : 'pdf';
+        $reporteSufijo   = "";
+        $fromQuery1      = "vLibrosIva";
+        $fromQuery2      = "vLibrosIva";
         $whereQuery1     = " ";
         $whereQuery2     = " ";
         $selectQuery1    = " ";
@@ -40,25 +46,25 @@ class Contable_ReportePlanDeCuentaController extends Rad_Window_Controller_Actio
         $selectQuery4    = " ";
         switch ($modelo) {
             case 1:
-                $texto  = "Plan de cuenta General".' Desde '.$fechaDesde.''.' Hasta '.$fechaHasta;   
+                $texto  = "Plan de cuenta General";
                 $path  = APPLICATION_PATH . "/../birt/Reports/Reporte_PlanDeCuentaGeneral.rptdesign";
                 $whereQuery1 = " WHERE PlanDeCuenta_Id IS NOT NULL ";
                 break;
             case 2:
-                $texto = "Plan de Cuenta Detallado".' Desde '.$fechaDesde.''.' Hasta '.$fechaHasta;     
+                $texto = "Plan de Cuenta Detallado";
                 $path  = APPLICATION_PATH . "/../birt/Reports/Reporte_PlanDeCuentaDetallado.rptdesign";
                 $report->setParameter('idCuenta', $cuenta, 'Int');
                 $whereQuery1 = " WHERE PlanDeCuenta_Id = ".$cuenta; 
                 $whereQuery2 = $whereQuery1;
                 break;
             case 3:
-                $texto = "Plan de Cuenta General por Grupo ".' Desde '.$fechaDesde.''.' Hasta '.$fechaHasta;     
+                $texto = "Plan de Cuenta General por Grupo";
                 $path  = APPLICATION_PATH . "/../birt/Reports/Reporte_PlanDeCuentaGeneralGrupo.rptdesign";
                 $report->setParameter('idGrupo', $grupo, 'Int');
                 $whereQuery1 = " WHERE PlanDeCuenta_Id IS NOT NULL AND Grupo = ".$grupo;
                 break;
             case 4:
-                $texto = "Plan de Cuenta Detallado por Grupo ".' Desde '.$fechaDesde.''.' Hasta '.$fechaHasta;    
+                $texto = "Plan de Cuenta Detallado por Grupo";
                 $path  = APPLICATION_PATH . "/../birt/Reports/Reporte_PlanDeCuentaDetalladoGrupo.rptdesign";
                 $report->setParameter('idGrupo', $grupo, 'Int');
                 $whereQuery1 = " WHERE Grupo = ".$grupo;
@@ -78,7 +84,8 @@ class Contable_ReportePlanDeCuentaController extends Rad_Window_Controller_Actio
                    $selectQuery1 .= " Comprobante_FechaEmision < '".$fechaDesde."'";
                    $whereQuery2 .= " AND Comprobante_FechaEmision >= '".$fechaDesde."'";
                    break;
-            } 
+            }
+            $reporteSufijo .= "_FechaDesde_".$fechaDesde;
         }
         if ( $fechaHasta <> '' ) {
             $report->setParameter('fechaHasta', $fechaHasta, 'String');
@@ -95,6 +102,7 @@ class Contable_ReportePlanDeCuentaController extends Rad_Window_Controller_Actio
                    $whereQuery2  .= " AND Comprobante_FechaEmision <= '".$fechaHasta."'";
                    break;
             }
+            $reporteSufijo .= "_FechaHasta_".$fechaHasta;
         }
         if ( $idLibroIVADesde <> 0 ) {
             $report->setParameter('idLibroIVADesde', $idLibroIVADesde, 'Int');
@@ -108,6 +116,10 @@ class Contable_ReportePlanDeCuentaController extends Rad_Window_Controller_Actio
                    $selectQuery1 .= " Comprobante_LibroIva < ".$idLibroIVADesde;
                    $whereQuery2 .= " AND Comprobante_LibroIva >= ".$idLibroIVADesde; 
                    break;
+            }
+            $row  = $db->fetchOne("SELECT descripcion FROM librosiva WHERE id = ".$idLibroIVADesde); 
+            if ($row) {
+              $reporteSufijo .= "_LibroIVADesde_".$row;
             }
         }
         if ( $idLibroIVAHasta <> 0 ) {
@@ -125,18 +137,28 @@ class Contable_ReportePlanDeCuentaController extends Rad_Window_Controller_Actio
                    $whereQuery2  .= " AND Comprobante_LibroIva <= ".$idLibroIVAHasta;
                    break;
             }
+            $row  = $db->fetchOne("SELECT descripcion FROM librosiva WHERE id = ".$idLibroIVAHasta); 
+            if ($row) {
+              $reporteSufijo .= "_LibroIVAHasta_".$row;
+            }
         }
+        if ( $periodoiva00 <> 0 ) {
+          $fromQuery1 = "LibrosIva";
+          $fromQuery2 = "LibrosIva";
+        } 
+        
         $report->renderFromFile($path, $formato, array(
             'TEXTO' => $texto,
             'SELECTQUERY1' => $selectQuery1,
             'SELECTQUERY2' => $selectQuery2,
             'SELECTQUERY3' => $selectQuery3,
             'SELECTQUERY4' => $selectQuery4,
+            'FROMQUERY1'   => $fromQuery1,
+            'FROMQUERY2'   => $fromQuery2,
             'WHEREQUERY1'  => $whereQuery1,
             'WHEREQUERY2'  => $whereQuery2
         ));
-        $nombreRep      = str_replace(  array(" ","/"), array("_","-") , $texto);
-        $NombreReporte  = "Reporte_".$nombreRep."_".date('YmdHis');        
+        $NombreReporte      = "Reporte_".str_replace(  array(" ","/"), array("_","-") , $texto.$reporteSufijo );     
         $report->sendStream($NombreReporte);
     }
 }
