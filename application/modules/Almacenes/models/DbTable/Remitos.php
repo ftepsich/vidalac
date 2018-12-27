@@ -200,11 +200,7 @@ class Almacenes_Model_DbTable_Remitos extends Facturacion_Model_DbTable_Comproba
                 $this->salirSi_estaCerrado($row->Id);
             }
 
-//            foreach ($R_R as $row) {
-//                parent::update($data, "Id = $row->Id");
-//                // Publico y updateo
-//                Rad_PubSub::publish('R_Borrar', $R_R);
-//            }
+
             parent::update($data, $where);
             $this->_db->commit();
         } catch (Exception $e) {
