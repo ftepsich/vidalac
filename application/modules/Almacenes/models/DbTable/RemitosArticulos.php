@@ -105,10 +105,7 @@ class Almacenes_Model_DbTable_RemitosArticulos extends Facturacion_Model_DbTable
             // Inserto el articulo y publico
             $id = parent::insert($data);
 
-            /* 	TODO: Ojo con las dobles publicaciones, aca se publica en el hijo y aca tambien (padre)
-              $R_Ins = $this->find($id)->current();
-              Rad_PubSub::publish('Almacenes_RA_Insertado',$R_Ins);
-             */
+        
 
             $this->_db->commit();
             return $id;

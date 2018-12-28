@@ -210,44 +210,4 @@ class Almacenes_Model_DbTable_RemitosArticulosDeEntradas extends Almacenes_Model
         return parent:: fetchAll($where, $order, $count, $offset);
     }
 
-    /**
-     * Agrega metadatos extra NO DEBERIA ESTAR ACA YA QUE NO ES LOGICA DEL MODELO SINO DE VISUALIZACION
-     *
-     */
-    // public function addExtraMetadata($return, $start, $end, $sort, $select, $fetch)
-    // {
-
-    //     if ($return['metaData']) {
-    //         array_unshift($return['metaData']->fields, new Zend_Json_Expr("
-    //         {
-    //             xtype: 'actioncolumn',
-    //             header: '',
-    //             menuDisabled: true,
-    //             width: 45,
-    //             items: [
-    //                 {
-    //                     icon   : 'images/printer.png',                // Use a URL in the icon config
-    //                     tooltip: 'Imprimir identificadores',
-    //                     handler: function(grid, rowIndex, colIndex) {
-    //                         var rec = grid.store.getAt(rowIndex);
-    //                         if (rec.data.CantidadPaletizada > 0) {
-    //                             app.publish('/desktop/modules/js/commonApps/showUrl.js', {
-    //                             action: 'launch',
-    //                             url: '/Window/BirtReporter/report/template/Identificador_Palets_Entrantes_xRemitoDetalle/id/' + rec.data.Id,
-    //                             width: 900,
-    //                             height: 500,
-    //                             title: 'Mmi'
-    //                         });
-    //                         } else {
-    //                             app.publish('/desktop/showError','Debe paletizar primero.');
-    //                         }
-    //                     }
-    //                 }
-    //             ]
-    //         }
-    //         "));
-    //     }
-    //     return $return;
-    // }
-
 }

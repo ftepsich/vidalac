@@ -33,8 +33,8 @@ class Base_Model_DbTable_PersonasListasDePreciosInformados extends Rad_Db_Table
          'Articulos' => array(
             'columns'           => 'Articulo',
             'refTableClass'     => 'Base_Model_DbTable_Articulos',
-            'refJoinColumns'    => array("Descripcion","Codigo"),                     // De esta relacion queremos traer estos campos por JOIN
-            'comboBox'          => true,                                     // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'refJoinColumns'    => array("Descripcion","Codigo"),                   
+            'comboBox'          => true,                         
             'comboSource'       => 'datagateway/combolist/fetch/EsArticuloParaCompra',
             'refTable'          => 'Productos',
             'refColumns'        => 'Id',

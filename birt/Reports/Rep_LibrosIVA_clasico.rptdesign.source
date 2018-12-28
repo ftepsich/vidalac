@@ -890,6 +890,7 @@ ORDER BY FechaEmision, NumeroC]]></xml-property>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie">
+            <property name="type">a4</property>
             <property name="orientation">landscape</property>
             <property name="leftMargin">0in</property>
             <property name="rightMargin">0in</property>

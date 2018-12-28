@@ -165,24 +165,7 @@ class Almacenes_Model_DbTable_RemitosDeSalidas extends Almacenes_Model_DbTable_R
      *
      * @return int
      */
-    /*
-	public function generarValorDeclarado($idRemito)
-    {
 
-        // Recupero el Detalle
-		$M_CD = new Facturacion_Model_DbTable_ComprobantesDetalles(array(), false);
-        $R_CD = $M_CD->find($idRemito)->current();
-
-        if (count($R_CD)) {
-
-            $M_A = new Base_Model_DbTable_Articulos(array(), false);
-            foreach ($R_CD as $row) {
-
-
-			}
-		}
-	}
-	*/
 
     /**
      * Genera el numero proximo de Remito

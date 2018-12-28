@@ -1,0 +1,2474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.21" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">2793</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">2793</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">2793</property>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">fixed layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">120</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">librerias/ConectorDB.rptlibrary</property>
+            <property name="namespace">ConectorDB</property>
+        </structure>
+        <structure>
+            <property name="fileName">librerias/CabeceraInterna.rptlibrary</property>
+            <property name="namespace">CabeceraInterna</property>
+        </structure>
+    </list-property>
+    <list-property name="cssStyleSheets">
+        <structure>
+            <property name="fileName">css/EstiloBase.css</property>
+            <property name="useExternalCss">false</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="fechaDesde" id="2680">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="fechaHasta" id="2681">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="idLibroIVADesde" id="2544">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="idLibroIVAHasta" id="2549">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="idCuenta" id="2551">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="modelo" id="2685">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="idGrupo" id="2686">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Base" id="186"
+ extends="ConectorDB.DataSource">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="PlanDeCuentasDetallado" id="2548">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Fecha</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Fecha</text-property>
+                    <text-property name="heading">Fecha</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Periodo</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Periodo</text-property>
+                    <text-property name="heading">Periodo</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Comprobante_Numero</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Comprobante_Numero</text-property>
+                    <text-property name="heading">Comprobante_Numero</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Proveedor</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Proveedor</text-property>
+                    <text-property name="heading">Proveedor</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Observaciones</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Observaciones</text-property>
+                    <text-property name="heading">Observaciones</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Saldo_Debe</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Saldo_Debe</text-property>
+                    <text-property name="heading">Saldo_Debe</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Saldo_Haber</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Saldo_Haber</text-property>
+                    <text-property name="heading">Saldo_Haber</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Fecha</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Periodo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">Comprobante_Numero</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">Proveedor</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">Observaciones</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">Saldo_Debe</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">Saldo_Haber</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Fecha</property>
+                    <property name="nativeName">Fecha</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">Periodo</property>
+                    <property name="nativeName">Periodo</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">Comprobante_Numero</property>
+                    <property name="nativeName">Comprobante_Numero</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">Proveedor</property>
+                    <property name="nativeName">Proveedor</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">Observaciones</property>
+                    <property name="nativeName">Observaciones</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">Saldo_Debe</property>
+                    <property name="nativeName">Saldo_Debe</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">Saldo_Haber</property>
+                    <property name="nativeName">Saldo_Haber</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT d.Comprobante_FechaEmision          AS Fecha,
+       d.Comprobante_LibroIva_Descripcion  AS Periodo,
+       d.Comprobante_Numero                AS Comprobante_Numero,
+       d.Persona_RazonSocial               AS Proveedor,
+       d.Articulo_Descripcion              AS Observaciones,
+       ROUND(SUM( CASE WHEN d.Comprobante_Multiplicador = -1 THEN d.Articulo_SubTotal ELSE 0 END ), 2) AS Saldo_Debe, 
+       ROUND(SUM( CASE WHEN d.Comprobante_Multiplicador =  1 THEN d.Articulo_SubTotal ELSE 0 END ), 2) AS Saldo_Haber
+FROM  (
+SELECT
+  p.Id                        AS Persona_Id,
+  p.Cuit                      AS Persona_Cuit,
+  p.RazonSocial               AS Persona_RazonSocial,
+  c.Id                        AS Comprobante_Id,
+  fNumeroCompleto (c.Id, 'R') AS Comprobante_Numero,
+  c.FechaEmision              AS Comprobante_FechaEmision,
+  l.Id                        AS Comprobante_LibroIva,
+  l.Descripcion               AS Comprobante_LibroIva_Descripcion,
+  c.TipoDeComprobante         AS Comprobante_TipoDeComprobante,
+  tc.Grupo                    AS Comprobante_GrupoDeComprobante,
+  tc.Multiplicador            AS Comprobante_Multiplicador,
+  a.Id                        AS Articulo_Id,
+  CASE WHEN ( cd.CuentaCasual IS NOT NULL ) THEN ( CASE WHEN ( cd.CuentaCasual = a.Cuenta ) THEN a.Descripcion ELSE CAST( cd.Observaciones AS CHAR (255) ) END ) ELSE a.Descripcion END AS Articulo_Descripcion,
+  cd.PrecioUnitario           AS Articulo_PrecioUnitario,
+  cd.Cantidad                 AS Articulo_Cantidad,
+  ( cd.PrecioUnitario * cd.Cantidad )  AS Articulo_SubTotal,
+  CASE WHEN ( cd.CuentaCasual IS NOT NULL ) THEN pcc.Id ELSE pc.Id END AS PlanDeCuenta_Id
+FROM comprobantesdetalles cd
+INNER JOIN comprobantes c            ON c.Id   = cd.Comprobante
+INNER JOIN personas p                ON p.Id   = c.Persona
+INNER JOIN {FROMQUERY2} l            ON l.Id   = c.LibroIva 
+LEFT JOIN articulos a                ON a.Id   = cd.Articulo
+LEFT JOIN planesdecuentas pc         ON pc.Id  = a.Cuenta
+LEFT JOIN planesdecuentas pcc        ON pcc.Id = cd.CuentaCasual
+LEFT JOIN tiposdecomprobantes tc     ON tc.Id  = c.TipoDeComprobante
+WHERE c.Cerrado = 1
+  AND c.Anulado = 0
+  AND tc.Grupo NOT IN ( 4, 5, 9, 10, 11 ) 
+  AND ( pcc.Id IS NOT NULL OR pc.Id IS NOT NULL )
+) AS d 
+JOIN  vplanesdecuentasarbol AS p ON p.Id = d.PlanDeCuenta_Id
+{WHEREQUERY2}
+GROUP BY d.Comprobante_FechaEmision          ,
+         d.Comprobante_LibroIva_Descripcion  ,
+         d.Comprobante_Numero                ,
+         d.Persona_RazonSocial               ,
+         d.Articulo_Descripcion              ;
+]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="FiltroLibroDesde" id="2650">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Descripcion</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Descripcion</text-property>
+                    <text-property name="heading">Descripcion</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">idLibroIVADesde</property>
+                    <property name="paramName">idLibroIVADesde</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">1</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Descripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Descripcion</property>
+                    <property name="nativeName">Descripcion</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select librosiva.Descripcion from librosiva where Id = ?]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Descripcion</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Descripcion</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Descripcion</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="FiltroLibroHasta" id="2651">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Descripcion</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Descripcion</text-property>
+                    <text-property name="heading">Descripcion</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">idLibroIVAHasta</property>
+                    <property name="paramName">idLibroIVAHasta</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">1</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Descripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Descripcion</property>
+                    <property name="nativeName">Descripcion</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select librosiva.Descripcion from librosiva where Id = ?]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Descripcion</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Descripcion</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Descripcion</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="FiltroCuenta" id="2793">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">id</text-property>
+                    <text-property name="heading">id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">jerarquia</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">jerarquia</text-property>
+                    <text-property name="heading">jerarquia</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">descripcion</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">descripcion</text-property>
+                    <text-property name="heading">descripcion</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">id_1</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">id_1</text-property>
+                    <text-property name="heading">id_1</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">jerarquia_1</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">jerarquia_1</text-property>
+                    <text-property name="heading">jerarquia_1</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">descripcion_1</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">descripcion_1</text-property>
+                    <text-property name="heading">descripcion_1</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">id_2</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">id_2</text-property>
+                    <text-property name="heading">id_2</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">jerarquia_2</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">jerarquia_2</text-property>
+                    <text-property name="heading">jerarquia_2</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">descripcion_2</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">descripcion_2</text-property>
+                    <text-property name="heading">descripcion_2</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">id_3</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">id_3</text-property>
+                    <text-property name="heading">id_3</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">jerarquia_3</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">jerarquia_3</text-property>
+                    <text-property name="heading">jerarquia_3</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">descripcion_3</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">descripcion_3</text-property>
+                    <text-property name="heading">descripcion_3</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">id_4</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">id_4</text-property>
+                    <text-property name="heading">id_4</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">jerarquia_4</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">jerarquia_4</text-property>
+                    <text-property name="heading">jerarquia_4</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">descripcion_4</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">descripcion_4</text-property>
+                    <text-property name="heading">descripcion_4</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">id_5</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">id_5</text-property>
+                    <text-property name="heading">id_5</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">jerarquia_5</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">jerarquia_5</text-property>
+                    <text-property name="heading">jerarquia_5</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">descripcion_5</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">descripcion_5</text-property>
+                    <text-property name="heading">descripcion_5</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">id_6</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">id_6</text-property>
+                    <text-property name="heading">id_6</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">jerarquia_6</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">jerarquia_6</text-property>
+                    <text-property name="heading">jerarquia_6</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">descripcion_6</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">descripcion_6</text-property>
+                    <text-property name="heading">descripcion_6</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">idCuenta</property>
+                    <property name="paramName">idCuenta</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">1</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">jerarquia</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">descripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">id_1</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">jerarquia_1</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">descripcion_1</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">id_2</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">jerarquia_2</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">descripcion_2</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">id_3</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">jerarquia_3</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">descripcion_3</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">id_4</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">jerarquia_4</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">descripcion_4</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">id_5</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">jerarquia_5</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">descripcion_5</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">19</property>
+                        <property name="name">id_6</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">20</property>
+                        <property name="name">jerarquia_6</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">21</property>
+                        <property name="name">descripcion_6</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">jerarquia</property>
+                    <property name="nativeName">jerarquia</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">descripcion</property>
+                    <property name="nativeName">descripcion</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">id_1</property>
+                    <property name="nativeName">id_1</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">jerarquia_1</property>
+                    <property name="nativeName">jerarquia_1</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">descripcion_1</property>
+                    <property name="nativeName">descripcion_1</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">id_2</property>
+                    <property name="nativeName">id_2</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">jerarquia_2</property>
+                    <property name="nativeName">jerarquia_2</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">descripcion_2</property>
+                    <property name="nativeName">descripcion_2</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">id_3</property>
+                    <property name="nativeName">id_3</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">jerarquia_3</property>
+                    <property name="nativeName">jerarquia_3</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">descripcion_3</property>
+                    <property name="nativeName">descripcion_3</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">id_4</property>
+                    <property name="nativeName">id_4</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">jerarquia_4</property>
+                    <property name="nativeName">jerarquia_4</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">descripcion_4</property>
+                    <property name="nativeName">descripcion_4</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">id_5</property>
+                    <property name="nativeName">id_5</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">jerarquia_5</property>
+                    <property name="nativeName">jerarquia_5</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">18</property>
+                    <property name="name">descripcion_5</property>
+                    <property name="nativeName">descripcion_5</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">19</property>
+                    <property name="name">id_6</property>
+                    <property name="nativeName">id_6</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">20</property>
+                    <property name="name">jerarquia_6</property>
+                    <property name="nativeName">jerarquia_6</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">21</property>
+                    <property name="name">descripcion_6</property>
+                    <property name="nativeName">descripcion_6</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT *
+FROM vplanesdecuentasarbol
+WHERE id = ?]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>8</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>12</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>jerarquia</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>jerarquia</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>jerarquia</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>descripcion</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>descripcion</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>descripcion</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id_1</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id_1</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id_1</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>jerarquia_1</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>jerarquia_1</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>jerarquia_1</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>descripcion_1</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>descripcion_1</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>descripcion_1</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id_2</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id_2</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id_2</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>jerarquia_2</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>jerarquia_2</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>jerarquia_2</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>descripcion_2</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>descripcion_2</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>descripcion_2</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id_3</design:name>
+              <design:position>10</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id_3</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id_3</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>jerarquia_3</design:name>
+              <design:position>11</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>jerarquia_3</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>jerarquia_3</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>descripcion_3</design:name>
+              <design:position>12</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>descripcion_3</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>descripcion_3</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id_4</design:name>
+              <design:position>13</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id_4</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id_4</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>jerarquia_4</design:name>
+              <design:position>14</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>jerarquia_4</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>jerarquia_4</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>descripcion_4</design:name>
+              <design:position>15</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>descripcion_4</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>descripcion_4</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id_5</design:name>
+              <design:position>16</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id_5</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id_5</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>jerarquia_5</design:name>
+              <design:position>17</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>jerarquia_5</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>jerarquia_5</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>descripcion_5</design:name>
+              <design:position>18</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>descripcion_5</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>descripcion_5</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id_6</design:name>
+              <design:position>19</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id_6</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id_6</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>jerarquia_6</design:name>
+              <design:position>20</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>jerarquia_6</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>jerarquia_6</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>descripcion_6</design:name>
+              <design:position>21</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>descripcion_6</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>descripcion_6</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="PlanDeCuentasGeneral" id="2826">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">jerarquia_1</property>
+                    <text-property name="displayName">jerarquia_1</text-property>
+                    <text-property name="heading">jerarquia_1</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">descripcion_1</property>
+                    <text-property name="displayName">descripcion_1</text-property>
+                    <text-property name="heading">descripcion_1</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">jerarquia</property>
+                    <text-property name="displayName">jerarquia</text-property>
+                    <text-property name="heading">jerarquia</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">descripcion</property>
+                    <text-property name="displayName">descripcion</text-property>
+                    <text-property name="heading">descripcion</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Debe_Saldo_Inicio</property>
+                    <text-property name="displayName">Debe_Saldo_Inicio</text-property>
+                    <text-property name="heading">Debe_Saldo_Inicio</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Haber_Saldo_Inicio</property>
+                    <text-property name="displayName">Haber_Saldo_Inicio</text-property>
+                    <text-property name="heading">Haber_Saldo_Inicio</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Debe_Saldo_Cierre</property>
+                    <text-property name="displayName">Debe_Saldo_Cierre</text-property>
+                    <text-property name="heading">Debe_Saldo_Cierre</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Haber_Saldo_Cierre</property>
+                    <text-property name="displayName">Haber_Saldo_Cierre</text-property>
+                    <text-property name="heading">Haber_Saldo_Cierre</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">jerarquia_1</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">descripcion_1</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">jerarquia</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">descripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">Debe_Saldo_Inicio</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">Haber_Saldo_Inicio</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">Debe_Saldo_Cierre</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">Haber_Saldo_Cierre</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">jerarquia_1</property>
+                    <property name="nativeName">jerarquia_1</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">descripcion_1</property>
+                    <property name="nativeName">descripcion_1</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">jerarquia</property>
+                    <property name="nativeName">jerarquia</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">descripcion</property>
+                    <property name="nativeName">descripcion</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">Debe_Saldo_Inicio</property>
+                    <property name="nativeName">Debe_Saldo_Inicio</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">Haber_Saldo_Inicio</property>
+                    <property name="nativeName">Haber_Saldo_Inicio</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">Debe_Saldo_Cierre</property>
+                    <property name="nativeName">Debe_Saldo_Cierre</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">Haber_Saldo_Cierre</property>
+                    <property name="nativeName">Haber_Saldo_Cierre</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT p.Jerarquia_1,
+       p.Descripcion_1,
+       p.Jerarquia,
+       p.Descripcion,
+       ROUND(SUM( CASE WHEN {SELECTQUERY1} THEN ( CASE WHEN d.Comprobante_Multiplicador = -1 THEN d.Articulo_SubTotal ELSE 0 END ) ELSE 0 END ), 2) AS Debe_Saldo_Inicio, 
+       ROUND(SUM( CASE WHEN {SELECTQUERY1} THEN ( CASE WHEN d.Comprobante_Multiplicador =  1 THEN d.Articulo_SubTotal ELSE 0 END ) ELSE 0 END ), 2) AS Haber_Saldo_Inicio, 
+       ROUND(SUM( CASE WHEN {SELECTQUERY2} THEN ( CASE WHEN d.Comprobante_Multiplicador = -1 THEN d.Articulo_SubTotal ELSE 0 END ) ELSE 0 END ), 2) AS Debe_Saldo_Cierre,
+       ROUND(SUM( CASE WHEN {SELECTQUERY2} THEN ( CASE WHEN d.Comprobante_Multiplicador =  1 THEN d.Articulo_SubTotal ELSE 0 END ) ELSE 0 END ), 2) AS Haber_Saldo_Cierre
+FROM  (
+SELECT
+  p.Id                        AS Persona_Id,
+  p.Cuit                      AS Persona_Cuit,
+  p.RazonSocial               AS Persona_RazonSocial,
+  c.Id                        AS Comprobante_Id,
+  fNumeroCompleto (c.Id, 'R') AS Comprobante_Numero,
+  c.FechaEmision              AS Comprobante_FechaEmision,
+  L.Id                        AS Comprobante_LibroIva,
+  l.Descripcion               AS Comprobante_LibroIva_Descripcion,
+  c.TipoDeComprobante         AS Comprobante_TipoDeComprobante,
+  tc.Grupo                    AS Comprobante_GrupoDeComprobante,
+  tc.Multiplicador            AS Comprobante_Multiplicador,
+  a.Id                        AS Articulo_Id,
+  CASE WHEN ( cd.CuentaCasual IS NOT NULL ) THEN ( CASE WHEN ( cd.CuentaCasual = a.Cuenta ) THEN a.Descripcion ELSE CAST( cd.Observaciones AS CHAR (255) ) END ) ELSE a.Descripcion END AS Articulo_Descripcion,
+  cd.PrecioUnitario           AS Articulo_PrecioUnitario,
+  cd.Cantidad                 AS Articulo_Cantidad,
+  ( cd.PrecioUnitario * cd.Cantidad )  AS Articulo_SubTotal,
+  CASE WHEN ( cd.CuentaCasual IS NOT NULL ) THEN pcc.Id ELSE pc.Id END AS PlanDeCuenta_Id
+FROM comprobantesdetalles cd
+INNER JOIN comprobantes c            ON c.Id   = cd.Comprobante
+INNER JOIN personas p                ON p.Id   = c.Persona
+INNER JOIN {FROMQUERY1} l            ON l.Id   = c.LibroIva 
+LEFT JOIN articulos a                ON a.Id   = cd.Articulo
+LEFT JOIN planesdecuentas pc         ON pc.Id  = a.Cuenta
+LEFT JOIN planesdecuentas pcc        ON pcc.Id = cd.CuentaCasual
+LEFT JOIN tiposdecomprobantes tc     ON tc.Id  = c.TipoDeComprobante
+WHERE c.Cerrado = 1
+  AND c.Anulado = 0
+  AND tc.Grupo NOT IN ( 4, 5, 9, 10, 11 ) 
+  AND ( pcc.Id IS NOT NULL OR pc.Id IS NOT NULL )
+) AS d 
+JOIN  vplanesdecuentasarbol AS p ON p.Id = d.PlanDeCuenta_Id
+{WHEREQUERY1}
+GROUP BY p.Jerarquia_1, p.Descripcion_1, p.Jerarquia, p.Descripcion]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>jerarquia_1</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>jerarquia_1</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>jerarquia_1</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>descripcion_1</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>descripcion_1</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>descripcion_1</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>jerarquia</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>jerarquia</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>jerarquia</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>descripcion</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>descripcion</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>descripcion</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Debe_Saldo_Inicio</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>44</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Debe_Saldo_Inicio</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Debe_Saldo_Inicio</design:label>
+            <design:formattingHints>
+              <design:displaySize>46</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Haber_Saldo_Inicio</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>44</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Haber_Saldo_Inicio</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Haber_Saldo_Inicio</design:label>
+            <design:formattingHints>
+              <design:displaySize>46</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Debe_Saldo_Cierre</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>44</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Debe_Saldo_Cierre</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Debe_Saldo_Cierre</design:label>
+            <design:formattingHints>
+              <design:displaySize>46</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Haber_Saldo_Cierre</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>44</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Haber_Saldo_Cierre</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Haber_Saldo_Cierre</design:label>
+            <design:formattingHints>
+              <design:displaySize>46</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie">
+            <property name="type">us-legal</property>
+            <property name="orientation">landscape</property>
+            <property name="leftMargin">0.15in</property>
+            <property name="rightMargin">0.15in</property>
+            <overridden-values>
+                <ref-entry baseId="2434" name="Cabecera" id="2434"/>
+                <ref-entry baseId="2435" id="2435"/>
+                <ref-entry baseId="2436" id="2436"/>
+                <ref-entry baseId="2437" id="2437"/>
+                <ref-entry baseId="2438" name="NewLabel1" id="2438"/>
+                <ref-entry baseId="2404" name="NewGrid" id="2404"/>
+                <ref-entry baseId="2405" id="2405"/>
+                <ref-entry baseId="2406" id="2406"/>
+                <ref-entry baseId="2419" id="2419"/>
+                <ref-entry baseId="2417" id="2417"/>
+                <ref-entry baseId="2407" id="2407"/>
+                <ref-entry baseId="2408" id="2408"/>
+                <ref-entry baseId="2409" id="2409"/>
+                <ref-entry baseId="2433" name="NewLabel" id="2433"/>
+                <ref-entry baseId="2410" id="2410"/>
+                <ref-entry baseId="2432" name="NewText" id="2432"/>
+                <ref-entry baseId="2418" id="2418"/>
+                <ref-entry baseId="2416" id="2416"/>
+                <ref-entry baseId="2411" id="2411"/>
+                <ref-entry baseId="2421" name="NewGrid1" id="2421"/>
+                <ref-entry baseId="2422" id="2422"/>
+                <ref-entry baseId="2423" id="2423"/>
+                <ref-entry baseId="2424" id="2424"/>
+                <ref-entry baseId="2425" id="2425"/>
+                <ref-entry baseId="2426" id="2426"/>
+                <ref-entry baseId="2427" name="NewAutoText" id="2427"/>
+                <ref-entry baseId="2428" id="2428"/>
+                <ref-entry baseId="2429" name="NewText1" id="2429"/>
+                <ref-entry baseId="2430" id="2430"/>
+                <ref-entry baseId="2431" name="NewAutoText1" id="2431"/>
+            </overridden-values>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid name="Separador 1" id="2478">
+            <property name="height">5pt</property>
+            <column id="2479"/>
+            <row id="2480">
+                <cell id="2481"/>
+            </row>
+        </grid>
+        <grid name="TextoEncabezado" id="2519">
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Column Binding</property>
+                    <expression name="expression" type="javascript">params["fechaDesde"].value</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaDesde</property>
+                    <expression name="expression" type="javascript">params["fechaDesde"].value</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaHasta</property>
+                    <expression name="expression" type="javascript">params["fechaHasta"].value</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="2520"/>
+            <row id="2521">
+                <cell id="2522">
+                    <grid id="2653">
+                        <column id="2654">
+                            <property name="width">30%</property>
+                        </column>
+                        <column id="2655">
+                            <property name="width">5%</property>
+                        </column>
+                        <column id="2656">
+                            <property name="width">10%</property>
+                        </column>
+                        <column id="2657">
+                            <property name="width">5%</property>
+                        </column>
+                        <column id="2658">
+                            <property name="width">10%</property>
+                        </column>
+                        <column id="2659">
+                            <property name="width">6%</property>
+                        </column>
+                        <column id="2660"/>
+                        <row id="2661">
+                            <cell id="2662">
+                                <label id="2670">
+                                    <property name="fontFamily">"Verdana"</property>
+                                    <property name="fontSize">12pt</property>
+                                    <property name="fontWeight">bold</property>
+                                    <property name="fontStyle">normal</property>
+                                    <text-property name="text">{TEXTO}</text-property>
+                                </label>
+                            </cell>
+                            <cell id="2663">
+                                <label id="2671">
+                                    <property name="fontFamily">"Verdana"</property>
+                                    <property name="fontWeight">bold</property>
+                                    <text-property name="text">Desde :</text-property>
+                                </label>
+                            </cell>
+                            <cell id="2664">
+                                <data id="2677">
+                                    <property name="fontFamily">"Verdana"</property>
+                                    <property name="display">inline</property>
+                                    <property name="dataSet">FiltroLibroDesde</property>
+                                    <list-property name="visibility">
+                                        <structure>
+                                            <property name="format">all</property>
+                                            <expression name="valueExpr" type="javascript">params["idLibroIVADesde"].value == null</expression>
+                                        </structure>
+                                    </list-property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">Descripcion</property>
+                                            <text-property name="displayName">Descripcion</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["Descripcion"]</expression>
+                                            <property name="dataType">string</property>
+                                            <property name="allowExport">true</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">Descripcion</property>
+                                </data>
+                                <data id="2683">
+                                    <property name="fontFamily">"Verdana"</property>
+                                    <property name="display">inline</property>
+                                    <list-property name="visibility">
+                                        <structure>
+                                            <property name="format">all</property>
+                                            <expression name="valueExpr" type="javascript">params["fechaDesde"].value = null</expression>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">FechaDesde</property>
+                                </data>
+                            </cell>
+                            <cell id="2665">
+                                <label id="2672">
+                                    <property name="fontFamily">"Verdana"</property>
+                                    <property name="fontWeight">bold</property>
+                                    <text-property name="text">Hasta : </text-property>
+                                </label>
+                            </cell>
+                            <cell id="2666">
+                                <data id="2678">
+                                    <property name="fontFamily">"Verdana"</property>
+                                    <property name="display">inline</property>
+                                    <property name="dataSet">FiltroLibroHasta</property>
+                                    <list-property name="visibility">
+                                        <structure>
+                                            <property name="format">all</property>
+                                            <expression name="valueExpr" type="javascript">params["idLibroIVAHasta"].value == null</expression>
+                                        </structure>
+                                    </list-property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">Descripcion</property>
+                                            <text-property name="displayName">Descripcion</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["Descripcion"]</expression>
+                                            <property name="dataType">string</property>
+                                            <property name="allowExport">true</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">Descripcion</property>
+                                </data>
+                                <data id="2684">
+                                    <property name="fontFamily">"Verdana"</property>
+                                    <property name="display">inline</property>
+                                    <list-property name="visibility">
+                                        <structure>
+                                            <property name="format">all</property>
+                                            <expression name="valueExpr" type="javascript">params["fechaHasta"].value = null</expression>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">FechaHasta</property>
+                                </data>
+                            </cell>
+                            <cell id="2667">
+                                <label id="2792">
+                                    <property name="fontFamily">"Verdana"</property>
+                                    <property name="fontWeight">bold</property>
+                                    <text-property name="text">Cuenta : </text-property>
+                                </label>
+                            </cell>
+                            <cell id="2668">
+                                <data id="2797">
+                                    <property name="fontFamily">"Verdana"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="textAlign">left</property>
+                                    <property name="dataSet">FiltroCuenta</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">descripcion</property>
+                                            <text-property name="displayName">descripcion</text-property>
+                                            <expression name="expression" type="javascript">BirtStr.concat(dataSetRow["descripcion_1"], '-', dataSetRow["descripcion"])</expression>
+                                            <property name="dataType">string</property>
+                                            <property name="allowExport">true</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">descripcion</property>
+                                </data>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
+            <row id="2790">
+                <cell id="2791"/>
+            </row>
+        </grid>
+        <grid id="3003">
+            <column id="3004">
+                <property name="width">6%</property>
+            </column>
+            <column id="3005">
+                <property name="width">6%</property>
+            </column>
+            <column id="3006">
+                <property name="width">12%</property>
+            </column>
+            <column id="3007">
+                <property name="width">25%</property>
+            </column>
+            <column id="3008">
+                <property name="width">25%</property>
+            </column>
+            <column id="3009">
+                <property name="width">15%</property>
+            </column>
+            <column id="3010">
+                <property name="width">15%</property>
+            </column>
+            <row id="3011">
+                <property name="backgroundColor">#E6E6FA</property>
+                <property name="fontFamily">"Verdana"</property>
+                <property name="fontSize">8pt</property>
+                <property name="borderBottomStyle">solid</property>
+                <property name="borderBottomWidth">thin</property>
+                <property name="borderTopStyle">solid</property>
+                <property name="borderTopWidth">thin</property>
+                <cell id="3012">
+                    <label id="3019">
+                        <property name="fontFamily">"Verdana"</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">left</property>
+                        <text-property name="text">FECHA</text-property>
+                    </label>
+                </cell>
+                <cell id="3013">
+                    <label id="3020">
+                        <property name="fontFamily">"Verdana"</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">left</property>
+                        <text-property name="text">PERIODO</text-property>
+                    </label>
+                </cell>
+                <cell id="3014">
+                    <label id="3021">
+                        <property name="fontFamily">"Verdana"</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">left</property>
+                        <text-property name="text">Nº COMPROBANTE</text-property>
+                    </label>
+                </cell>
+                <cell id="3015">
+                    <label id="3022">
+                        <property name="fontFamily">"Verdana"</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">left</property>
+                        <text-property name="text">PROVEEDOR</text-property>
+                    </label>
+                </cell>
+                <cell id="3016">
+                    <label id="3023">
+                        <property name="fontFamily">"Verdana"</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">left</property>
+                        <text-property name="text">OBSERVACIONES</text-property>
+                    </label>
+                </cell>
+                <cell id="3017">
+                    <label id="3024">
+                        <property name="fontFamily">"Verdana"</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">right</property>
+                        <text-property name="text">DEBE</text-property>
+                    </label>
+                </cell>
+                <cell id="3018">
+                    <label id="3025">
+                        <property name="fontFamily">"Verdana"</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">right</property>
+                        <text-property name="text">HABER</text-property>
+                    </label>
+                </cell>
+            </row>
+        </grid>
+        <table id="2926">
+            <property name="dataSet">PlanDeCuentasGeneral</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">jerarquia_1</property>
+                    <text-property name="displayName">jerarquia_1</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["jerarquia_1"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">descripcion_1</property>
+                    <text-property name="displayName">descripcion_1</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["descripcion_1"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">jerarquia</property>
+                    <text-property name="displayName">jerarquia</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["jerarquia"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">descripcion</property>
+                    <text-property name="displayName">descripcion</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["descripcion"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Debe_Saldo_Inicio</property>
+                    <text-property name="displayName">Debe_Saldo_Inicio</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Debe_Saldo_Inicio"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Haber_Saldo_Inicio</property>
+                    <text-property name="displayName">Haber_Saldo_Inicio</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Haber_Saldo_Inicio"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Debe_Saldo_Cierre</property>
+                    <text-property name="displayName">Debe_Saldo_Cierre</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Debe_Saldo_Cierre"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Haber_Saldo_Cierre</property>
+                    <text-property name="displayName">Haber_Saldo_Cierre</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Haber_Saldo_Cierre"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <column id="2951">
+                <property name="width">6%</property>
+            </column>
+            <column id="2952">
+                <property name="width">6%</property>
+            </column>
+            <column id="2953">
+                <property name="width">12%</property>
+            </column>
+            <column id="2954">
+                <property name="width">25%</property>
+            </column>
+            <column id="2955">
+                <property name="width">25%</property>
+            </column>
+            <column id="2956">
+                <property name="width">15%</property>
+            </column>
+            <column id="2957">
+                <property name="width">15%</property>
+            </column>
+            <detail>
+                <row id="2935">
+                    <property name="borderBottomStyle">solid</property>
+                    <cell id="2936"/>
+                    <cell id="2937"/>
+                    <cell id="2938"/>
+                    <cell id="2939"/>
+                    <cell id="2940">
+                        <label id="3001">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">SALDO INICIO</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2941">
+                        <data id="2997">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="fontWeight">bold</property>
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">Debe_Saldo_Inicio</property>
+                        </data>
+                    </cell>
+                    <cell id="2942">
+                        <data id="2998">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="fontWeight">bold</property>
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">Haber_Saldo_Inicio</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+        <table id="2602">
+            <property name="dataSet">PlanDeCuentasDetallado</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Fecha</property>
+                    <text-property name="displayName">Fecha</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Fecha"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">Periodo</property>
+                    <text-property name="displayName">Periodo</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Periodo"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Comprobante_Numero</property>
+                    <text-property name="displayName">Comprobante_Numero</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Comprobante_Numero"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Proveedor</property>
+                    <text-property name="displayName">Proveedor</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Proveedor"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Observaciones</property>
+                    <text-property name="displayName">Observaciones</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Observaciones"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Saldo_Debe</property>
+                    <text-property name="displayName">Saldo_Debe</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Saldo_Debe"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Saldo_Haber</property>
+                    <text-property name="displayName">Saldo_Haber</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Saldo_Haber"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <column id="2775">
+                <property name="width">6%</property>
+            </column>
+            <column id="2779">
+                <property name="width">6%</property>
+            </column>
+            <column id="2642">
+                <property name="width">12%</property>
+            </column>
+            <column id="2641">
+                <property name="repeat">1</property>
+                <property name="width">25%</property>
+            </column>
+            <column id="2646">
+                <property name="repeat">1</property>
+                <property name="width">25%</property>
+            </column>
+            <column id="2645">
+                <property name="width">15%</property>
+            </column>
+            <column id="2647">
+                <property name="width">15%</property>
+            </column>
+            <detail>
+                <row id="2618">
+                    <cell id="2773">
+                        <data id="2782">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <structure name="dateTimeFormat">
+                                <property name="category">Custom</property>
+                                <property name="pattern">dd/MM/yyyy</property>
+                            </structure>
+                            <property name="resultSetColumn">Fecha</property>
+                        </data>
+                    </cell>
+                    <cell id="2777">
+                        <data id="2783">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="resultSetColumn">Periodo</property>
+                        </data>
+                    </cell>
+                    <cell id="2621">
+                        <data id="2784">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="resultSetColumn">Comprobante_Numero</property>
+                        </data>
+                    </cell>
+                    <cell id="2619">
+                        <data id="2785">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="resultSetColumn">Proveedor</property>
+                        </data>
+                    </cell>
+                    <cell id="2627">
+                        <data id="2786">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="resultSetColumn">Observaciones</property>
+                        </data>
+                    </cell>
+                    <cell id="2629">
+                        <data id="2787">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">Saldo_Debe</property>
+                        </data>
+                    </cell>
+                    <cell id="2631">
+                        <data id="2788">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">Saldo_Haber</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+        <table id="2981">
+            <property name="dataSet">PlanDeCuentasGeneral</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">descripcion_1</property>
+                    <text-property name="displayName">descripcion_1</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["descripcion_1"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">jerarquia</property>
+                    <text-property name="displayName">jerarquia</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["jerarquia"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">descripcion</property>
+                    <text-property name="displayName">descripcion</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["descripcion"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Debe_Saldo_Inicio</property>
+                    <text-property name="displayName">Debe_Saldo_Inicio</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Debe_Saldo_Inicio"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Haber_Saldo_Inicio</property>
+                    <text-property name="displayName">Haber_Saldo_Inicio</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Haber_Saldo_Inicio"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Debe_Saldo_Cierre</property>
+                    <text-property name="displayName">Debe_Saldo_Cierre</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Debe_Saldo_Cierre"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Haber_Saldo_Cierre</property>
+                    <text-property name="displayName">Haber_Saldo_Cierre</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Haber_Saldo_Cierre"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <column id="2990">
+                <property name="width">6%</property>
+            </column>
+            <column id="2991">
+                <property name="width">6%</property>
+            </column>
+            <column id="2992">
+                <property name="width">12%</property>
+            </column>
+            <column id="2993">
+                <property name="width">25%</property>
+            </column>
+            <column id="2994">
+                <property name="width">25%</property>
+            </column>
+            <column id="2995">
+                <property name="width">15%</property>
+            </column>
+            <column id="2996">
+                <property name="width">15%</property>
+            </column>
+            <detail>
+                <row id="2982">
+                    <property name="borderTopStyle">solid</property>
+                    <cell id="2983"/>
+                    <cell id="2984"/>
+                    <cell id="2985"/>
+                    <cell id="2986"/>
+                    <cell id="2987">
+                        <label id="3002">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">SALDO CIERRE</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2988">
+                        <data id="2999">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="fontWeight">bold</property>
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">Debe_Saldo_Cierre</property>
+                        </data>
+                    </cell>
+                    <cell id="2989">
+                        <data id="3000">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="fontWeight">bold</property>
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">Haber_Saldo_Cierre</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+    </body>
+</report>
