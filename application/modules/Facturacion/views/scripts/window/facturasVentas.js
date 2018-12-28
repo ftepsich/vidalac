@@ -168,7 +168,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     if ( result == 0 ) {
                         Ext.Msg.show({
                             title : 'Atención',
-                            msg : 'El Cliente no tiene situación impositiva cargada. Desde Continuar ?',
+                            msg : 'El Cliente no tiene situación impositiva cargada. ¿Desea Continuar ?',
                             width : 400,
                             closable : false,
                             buttons : Ext.Msg.YESNO,
@@ -476,7 +476,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                         Models.Base_Model_ClientesMapper.getIBProximosVencimientosCM05(IdPersonaComprobante.getValue(), function(result, e) {
                             if (e.status) {
                                 if ( result > 0 ) {
-                                    Ext.Msg.confirm('Atencion','El formulario CM05 de Ingresos Brutos del Cliente se encuentra vencido. Continuar ?',function(btn) {
+                                    Ext.Msg.confirm('Atencion','El formulario CM05 de Ingresos Brutos del Cliente se encuentra vencido. ¿Continuar?',function(btn) {
                                            if (btn == 'yes') {
                                                 app.publish('/desktop/wait', 'Cerrando el comprobante');
                                                 Models.Facturacion_Model_FacturasVentasMapper.cerrar(IdComprobante, function (result, e) {

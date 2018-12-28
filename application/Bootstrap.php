@@ -50,10 +50,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             );
             $backendOptions = array(
                 'cache_dir' => '/usr/share/nginx/vidalac/data/cache'
-<<<<<<< HEAD
-=======
-
->>>>>>> master
             );
             $cache = Zend_Cache::factory(
                 'Core', 'Zend_Cache_Backend_File', $frontendOptions, $backendOptions, false, true
