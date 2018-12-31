@@ -168,7 +168,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     if ( result == 0 ) {
                         Ext.Msg.show({
                             title : 'Atención',
-                            msg : 'El Cliente no tiene situación impositiva cargada. ¿Desea Continuar ?',
+                            msg : 'El Cliente no tiene situación impositiva cargada. ¿Desea Continuar?',
                             width : 400,
                             closable : false,
                             buttons : Ext.Msg.YESNO,
