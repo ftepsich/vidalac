@@ -309,7 +309,7 @@ class Almacenes_Model_DbTable_Remitos extends Facturacion_Model_DbTable_Comproba
         }
     }
 
-    public function fetchAll($where = null, $order = null, $count = null, $offset = null)
+public function fetchAll($where = null, $order = null, $count = null, $offset = null)
     {
         if ($_POST['factura']) {
             $idF = $this->_db->quote($_POST['factura'], 'INTEGER');
@@ -319,6 +319,15 @@ class Almacenes_Model_DbTable_Remitos extends Facturacion_Model_DbTable_Comproba
             $idOrdenesDePago = implode(',', $idOrdenesDePago);
 
             $where = $this->_addCondition($where, "Comprobantes.Id in ($idOrdenesDePago)");
+        }
+        if ($_POST['ordencompra']) {
+            $idF = $this->_db->quote($_POST['ordencompra'], 'INTEGER');
+
+            $idRemitos = $this->_db->fetchCol("SELECT ComprobantePadre FROM ComprobantesRelacionados where ComprobanteHijo = $idF");
+
+            $idRemitos = implode(',', $idRemitos);
+
+            $where = $this->_addCondition($where, "Comprobantes.Id in ($idRemitos)");
         }
         return parent:: fetchAll($where, $order, $count, $offset);
     }
