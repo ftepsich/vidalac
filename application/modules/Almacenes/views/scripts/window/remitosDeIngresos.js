@@ -23,6 +23,11 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
 		this.createWindow();
 		this.grid.store.load({params:{factura: ev.value}});
 	},
+	
+        eventingresado: function (ev) {
+                this.createWindow();
+                this.grid.store.load({params:{ordencompra: ev.value}});
+        },
 
 	eventsearch: function (ev) {
 		this.createWindow();
