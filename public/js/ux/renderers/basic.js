@@ -155,6 +155,26 @@ Ext.ux.Format = function() {
             return renderer;
         },
 
+        ingresadoConRemito: function(app) {
+            var renderer = function(v, params, record) {
+                var a= '<div onclick="app.publish(app.channels.apps+\''+ app +'\', {action:\'ingresado\', value: '+record.data.Id+'})" style="background-image:url(images/lorry_go.png)" qtip="Ver Remitos" class="ux-cell-action"> </div>';
+
+                if (record.data.EstadoRecibido=='Nada') {
+                    v = '<font color=red>'+record.data.EstadoRecibido+'</font>'}
+                if (record.data.EstadoRecibido=='Parcialmente') {
+                    v = a+'<font color=blue>'+record.data.EstadoRecibido+'</font>'
+                }
+                if (record.data.EstadoRecibido == 'Totalmente') {
+                    v = a+'<font color=green>'+record.data.EstadoRecibido+'</font>'
+                }
+                if (record.data.EstadoRecibido == 'Excedido') {
+                    v = a+'<font color=black>'+record.data.EstadoRecibido+'</font>'
+                }
+
+                return v;
+            }
+            return renderer;
+        },
      
 
         zeroFill: function(ceros, campo) {
