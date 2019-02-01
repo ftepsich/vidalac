@@ -26,6 +26,11 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
         this.createWindow();
         this.grid.store.load();
     },
+    
+    eventremito: function (ev) {
+        this.createWindow();
+        this.grid.store.load({params:{remito: ev.value}});
+    },
 
     createWindow: function () {
         var win = app.desktop.getWindow(this.id+'-win');
