@@ -465,4 +465,14 @@ class Facturacion_Model_DbTable_FacturasCompras extends Facturacion_Model_DbTabl
         $where = $this->_addCondition($where, "Comprobantes.Cerrado = 1 and Comprobantes.Anulado = 0 and Comprobantes.TipoDeComprobante in (19,20,21,22,23)");
         return parent::fetchAll($where, $order, $count, $offset);
     }
+    
+    public function fetchAll($where = null, $order = null, $count = null, $offset = null)
+    {
+        Rad_Log::debug('remito :'.$_POST['remito']);
+        if ($_POST['remito']) {
+            $idRemito = $this->_db->quote($_POST['remito'], 'INTEGER');
+            $where = $this->_addCondition($where, "Comprobantes.Cerrado = 1 AND Comprobantes.Anulado = 0 AND Comprobantes.Id IN ( SELECT ComprobantePadre FROM ComprobantesRelacionados WHERE ComprobanteHijo = $idRemito )");
+        }
+        return parent:: fetchAll($where, $order, $count, $offset);
+    }
 }
