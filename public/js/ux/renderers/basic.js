@@ -160,15 +160,16 @@ Ext.ux.Format = function() {
                 var a= '<div onclick="app.publish(app.channels.apps+\''+ app +'\', {action:\'ingresado\', value: '+record.data.Id+'})" style="background-image:url(images/lorry_go.png)" qtip="Ver Remitos" class="ux-cell-action"> </div>';
 
                 if (record.data.EstadoRecibido=='Nada') {
-                    v = '<font color=red>'+record.data.EstadoRecibido+'</font>'}
+                    v = '<font color=red></font>'
+                }
                 if (record.data.EstadoRecibido=='Parcialmente') {
-                    v = a+'<font color=blue>'+record.data.EstadoRecibido+'</font>'
+                    v = a+'<font color=blue></font>'
                 }
                 if (record.data.EstadoRecibido == 'Totalmente') {
-                    v = a+'<font color=green>'+record.data.EstadoRecibido+'</font>'
+                    v = a+'<font color=green></font>'
                 }
                 if (record.data.EstadoRecibido == 'Excedido') {
-                    v = a+'<font color=black>'+record.data.EstadoRecibido+'</font>'
+                    v = a+'<font color=black></font>'
                 }
 
                 return v;
