@@ -84,7 +84,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
             items : [{
                     region : 'west',
                     layout: 'fit',
-                    width : 320,
+                    width : 498,
                     split: true,
                     items: [
                         this.grid

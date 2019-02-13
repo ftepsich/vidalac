@@ -281,9 +281,19 @@ class Facturacion_OrdenesDePagosController extends Rad_Window_Controller_Action
                     text:     'Cargar Cupon',
                     iconCls:  'add',
                     handler:  function() {
+                        msg: '¿Está seguro que desea borrar los registros seleccionados?',
+
                         this.publish('/desktop/modules/Window/abm/index/m/Facturacion/model/TarjetasDeCreditoCuponesSalientes', { action: 'launch' });
                     },
                     scope:    this,
+                },{
+                    text:     'Borrar Cupon',
+                    id:      id+'-Borrar Cupon',
+                    iconCls: 'remove',
+                    handler: function() {
+                        this.deleteRows();
+                    },
+                    scope:   this,
                 }]
             });
         }");
