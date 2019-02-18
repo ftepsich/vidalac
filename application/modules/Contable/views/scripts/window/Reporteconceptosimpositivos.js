@@ -60,8 +60,8 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                 fieldLabel: 'Concepto',
                 width: 200,
                 items: [
-                    { boxLabel: 'Retención', name: 'concepto', inputValue: 'retencion'},
-                    { boxLabel: 'Percepción', name: 'concepto', inputValue: 'percepcion' }
+                    { boxLabel: 'Retención', name: 'conceptoretencion', inputValue: 'retencion'},
+                    { boxLabel: 'Percepción', name: 'conceptopercepcion', inputValue: 'percepcion' }
                 ]
             },
           
@@ -70,7 +70,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     xtype:"xcombo",
                     anchor: '96%',
                     displayField: 'Descripcion',
-                    name: 'concepto',
+                    name: 'tipodeconcepto',
                     typeAhead:true,
                     valueField: 'Id',
                     allowBlank: true,
@@ -80,7 +80,6 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     selectOnFocus:true,
                     forceSelection:true,
                     forceReload:true,
-                    hiddenName:"idTipoDeConcepto",
                     loadingText:"Cargando...",
                     lazyRender:true,
                     store:new Ext.data.JsonStore({
@@ -93,11 +92,11 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                 autocomplete:true
                 },
                 {
-                    fieldLabel: 'Jurisicción',
+                    fieldLabel: 'Jurisdicción',
                     xtype:"xcombo",
                     anchor: '96%',
                     displayField: 'Descripcion',
-                    name: 'enterecaudador',
+                    name: 'jurisdiccion',
                     typeAhead:true,
                     valueField: 'Id',
                     allowBlank: true,
@@ -107,7 +106,6 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     selectOnFocus:true,
                     forceSelection:true,
                     forceReload:true,
-                    hiddenName:"idEnteRecaudador",
                     loadingText:"Cargando...",
                     lazyRender:true,
                     store:new Ext.data.JsonStore({
@@ -123,8 +121,8 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     xtype:          'compositefield',
                     fieldLabel:     'Fecha de Ret/Perce ',
                     items: [
-                        {xtype: 'displayfield', value: 'Desde:'},{name : 'fechaDesde', xtype: 'xdatefield',format: 'd/m/Y',  dateFormat:'Y-m-d'},
-                        {xtype: 'displayfield', value: 'Hasta:'},{name : 'fechaHasta', xtype: 'xdatefield',format: 'd/m/Y',  dateFormat:'Y-m-d'},
+                        {xtype: 'displayfield', value: 'Desde:'},{name : 'fechadesde', xtype: 'xdatefield',format: 'd/m/Y',  dateFormat:'Y-m-d'},
+                        {xtype: 'displayfield', value: 'Hasta:'},{name : 'fechahasta', xtype: 'xdatefield',format: 'd/m/Y',  dateFormat:'Y-m-d'},
                     ]
                 },
                 {
@@ -144,9 +142,50 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                         values = this.ownerCt.ownerCt.getForm().getValues();
                         var  params = '';
 
-                    
+                        //values.conceptoretencion  = values.conceptoretencion.replace(/undefined/gi,"");
+                        //values.conceptopercepcion = values.conceptopercepcion.replace(/undefined/gi,"");
+                        values.tipodeconcepto     = values.tipodeconcepto.replace(/undefined/gi,"");
+                        values.jurisdiccion       = values.jurisdiccion.replace(/undefined/gi,"");
+                        values.fechadesde         = values.fechadesde.replace(/undefined/gi,"");
+                        values.fechahasta         = values.fechahasta.replace(/undefined/gi,"");
+
+                        console.log(values.conceptoretencion); 
+                        console.log(values.conceptopercepcion);
+                        console.log(values.tipodeconcepto);
+                        console.log(values.jurisdiccion);
+                        console.log(values.fechadesde);
+                        console.log(values.fechahasta);
  
- 
+                        if (values.conceptoretencion || values.conceptopercepcion) {
+                           if (values.conceptoretencion) {
+                                params += '/conceptoretencion/'+values.conceptoretencion;
+                           }
+                           if (values.conceptopercepcion) {
+                                params += '/conceptopercepcion/'+values.conceptopercepcion;
+                           }
+                        } else {
+                            Ext.Msg.alert('Atencion', 'Debe seleccionar al menos un Concepto');
+                            return;
+                        }
+
+                        if (values.tipodeconcepto) {
+                            params += '/tipodeconcepto/'+values.tipodeconcepto;
+                        } else {
+                            Ext.Msg.alert('Atencion', 'Debe seleccionar al menos un Tipo de Concepto');
+                            return;
+                        }
+
+                        if (values.jurisdiccion) {
+                            params += '/jurisdiccion/'+values.jurisdiccion;
+                        }
+
+                        if(values.fechadesde == '' || values.fechahasta == '') {
+                            Ext.Msg.alert('Atencion', 'Debe seleccionar un rango de fechas Desde/Hasta');
+                            return;
+                        } else {
+                            params += '/fechadesde/'+values.fechadesde+'/fechahasta/'+values.fechahasta;
+                        }
+
                         if (values.formato) {
                             params += '/formato/'+values.formato;
                         } else {
