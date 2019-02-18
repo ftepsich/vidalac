@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.21" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">fixed layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">120</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">librerias/ConectorDB.rptlibrary</property>
+            <property name="namespace">ConectorDB</property>
+        </structure>
+        <structure>
+            <property name="fileName">librerias/CabeceraInterna.rptlibrary</property>
+            <property name="namespace">CabeceraInterna</property>
+        </structure>
+    </list-property>
+    <list-property name="cssStyleSheets">
+        <structure>
+            <property name="fileName">css/EstiloBase.css</property>
+            <property name="useExternalCss">false</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="modelo" id="2685">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Base" id="186"
+ extends="ConectorDB.DataSource">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <encrypted-property name="odaPassword" encryptionID="base64">dmlkYWxhYzExNjA1OQ==</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="RetencionesPercepcionesSufridas" id="2548">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Tipo</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Tipo</text-property>
+                    <text-property name="heading">Tipo</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Impuesto</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Impuesto</text-property>
+                    <text-property name="heading">Impuesto</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ImpuestoDescripcion</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ImpuestoDescripcion</text-property>
+                    <text-property name="heading">ImpuestoDescripcion</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Jurisdiccion</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Jurisdiccion</text-property>
+                    <text-property name="heading">Jurisdiccion</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">JurisdiccionDescripcion</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">JurisdiccionDescripcion</text-property>
+                    <text-property name="heading">JurisdiccionDescripcion</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Fecha</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Fecha</text-property>
+                    <text-property name="heading">Fecha</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">RazonSocial</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">RazonSocial</text-property>
+                    <text-property name="heading">RazonSocial</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Cuit</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Cuit</text-property>
+                    <text-property name="heading">Cuit</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Importe</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Importe</text-property>
+                    <text-property name="heading">Importe</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Comprobante</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Comprobante</text-property>
+                    <text-property name="heading">Comprobante</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Tipo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Impuesto</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">ImpuestoDescripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">Jurisdiccion</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">JurisdiccionDescripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">Fecha</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">RazonSocial</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">Cuit</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">Importe</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">Comprobante</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Tipo</property>
+                    <property name="nativeName">Tipo</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">Impuesto</property>
+                    <property name="nativeName">Impuesto</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">ImpuestoDescripcion</property>
+                    <property name="nativeName">ImpuestoDescripcion</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">Jurisdiccion</property>
+                    <property name="nativeName">Jurisdiccion</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">JurisdiccionDescripcion</property>
+                    <property name="nativeName">JurisdiccionDescripcion</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">Fecha</property>
+                    <property name="nativeName">Fecha</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">RazonSocial</property>
+                    <property name="nativeName">RazonSocial</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">Cuit</property>
+                    <property name="nativeName">Cuit</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">Importe</property>
+                    <property name="nativeName">Importe</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">Comprobante</property>
+                    <property name="nativeName">Comprobante</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT Tipo, Impuesto, ImpuestoDescripcion, Jurisdiccion, JurisdiccionDescripcion, Fecha, RazonSocial, Cuit, Importe, Comprobante FROM vretencionespercepcionessufridas {WHERE} ORDER BY Tipo,Fecha]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie">
+            <property name="type">us-legal</property>
+            <property name="orientation">landscape</property>
+            <property name="leftMargin">0.15in</property>
+            <property name="rightMargin">0.15in</property>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid name="Separador 1" id="2478">
+            <property name="height">5pt</property>
+            <column id="2479"/>
+            <row id="2480">
+                <cell id="2481"/>
+            </row>
+        </grid>
+        <grid name="TextoEncabezado" id="2519">
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Column Binding</property>
+                    <expression name="expression" type="javascript">params["fechaDesde"].value</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaDesde</property>
+                    <expression name="expression" type="javascript">params["fechaDesde"].value</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaHasta</property>
+                    <expression name="expression" type="javascript">params["fechaHasta"].value</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="2520"/>
+            <row id="2521">
+                <cell id="2522">
+                    <grid id="2653">
+                        <property name="width">13.591666666666667in</property>
+                        <column id="2654">
+                            <property name="width">13.591666666666667in</property>
+                        </column>
+                        <row id="2661">
+                            <cell id="2662">
+                                <label id="2670">
+                                    <property name="fontFamily">"Verdana"</property>
+                                    <property name="fontSize">12pt</property>
+                                    <property name="fontWeight">bold</property>
+                                    <property name="fontStyle">normal</property>
+                                    <text-property name="text">{TEXTO}</text-property>
+                                </label>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
+            <row id="2790">
+                <cell id="2791"/>
+            </row>
+        </grid>
+        <grid id="3003">
+            <column id="3004">
+                <property name="width">8%</property>
+            </column>
+            <column id="3005">
+                <property name="width">12%</property>
+            </column>
+            <column id="3006">
+                <property name="width">12%</property>
+            </column>
+            <column id="3007">
+                <property name="width">10%</property>
+            </column>
+            <column id="3008">
+                <property name="width">25%</property>
+            </column>
+            <column id="3033">
+                <property name="width">12%</property>
+            </column>
+            <column id="3009">
+                <property name="width">15%</property>
+            </column>
+            <column id="3010">
+                <property name="width">15%</property>
+            </column>
+            <row id="3011">
+                <property name="backgroundColor">#E6E6FA</property>
+                <property name="fontFamily">"Verdana"</property>
+                <property name="fontSize">8pt</property>
+                <property name="borderBottomStyle">solid</property>
+                <property name="borderBottomWidth">thin</property>
+                <property name="borderTopStyle">solid</property>
+                <property name="borderTopWidth">thin</property>
+                <cell id="3012">
+                    <label id="3019">
+                        <property name="fontFamily">"Verdana"</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">left</property>
+                        <text-property name="text">TIPO</text-property>
+                    </label>
+                </cell>
+                <cell id="3013">
+                    <label id="3020">
+                        <property name="fontFamily">"Verdana"</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">left</property>
+                        <text-property name="text">IMPUESTO</text-property>
+                    </label>
+                </cell>
+                <cell id="3014">
+                    <label id="3021">
+                        <property name="fontFamily">"Verdana"</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">left</property>
+                        <text-property name="text">JURISDICCION</text-property>
+                    </label>
+                </cell>
+                <cell id="3015">
+                    <label id="3022">
+                        <property name="fontFamily">"Verdana"</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">left</property>
+                        <text-property name="text">FECHA ORIGEN</text-property>
+                    </label>
+                </cell>
+                <cell id="3016">
+                    <label id="3023">
+                        <property name="fontFamily">"Verdana"</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">left</property>
+                        <text-property name="text">RAZON SOCIAL EMISOR</text-property>
+                    </label>
+                </cell>
+                <cell id="3032">
+                    <label id="3034">
+                        <property name="fontFamily">"Verdana"</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">left</property>
+                        <text-property name="text">CUIT EMISOR</text-property>
+                    </label>
+                </cell>
+                <cell id="3017">
+                    <label id="3024">
+                        <property name="fontFamily">"Verdana"</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="marginRight">5pt</property>
+                        <property name="textAlign">right</property>
+                        <text-property name="text">IMPORTE</text-property>
+                    </label>
+                </cell>
+                <cell id="3018">
+                    <label id="3025">
+                        <property name="fontFamily">"Verdana"</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="marginLeft">5pt</property>
+                        <property name="textAlign">left</property>
+                        <text-property name="text">Nº COMPROBANTE ORIGEN</text-property>
+                    </label>
+                </cell>
+            </row>
+        </grid>
+        <table id="2602">
+            <property name="dataSet">RetencionesPercepcionesSufridas</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Fecha</property>
+                    <text-property name="displayName">Fecha</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Fecha"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">Tipo</property>
+                    <text-property name="displayName">Tipo</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Tipo"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">ImpuestoDescripcion</property>
+                    <text-property name="displayName">ImpuestoDescripcion</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ImpuestoDescripcion"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">JurisdiccionDescripcion</property>
+                    <text-property name="displayName">JurisdiccionDescripcion</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["JurisdiccionDescripcion"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">RazonSocial</property>
+                    <text-property name="displayName">RazonSocial</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["RazonSocial"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Cuit</property>
+                    <text-property name="displayName">Cuit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Cuit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Importe</property>
+                    <text-property name="displayName">Importe</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Importe"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Comprobante</property>
+                    <text-property name="displayName">Comprobante</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Comprobante"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">SubTotal</property>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>GrupoTipo</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["Importe"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Total</property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["Importe"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="2775">
+                <property name="width">8%</property>
+            </column>
+            <column id="2779">
+                <property name="width">12%</property>
+            </column>
+            <column id="2642">
+                <property name="width">12%</property>
+            </column>
+            <column id="2641">
+                <property name="repeat">1</property>
+                <property name="width">10%</property>
+            </column>
+            <column id="2646">
+                <property name="repeat">1</property>
+                <property name="width">25%</property>
+            </column>
+            <column id="3038">
+                <property name="width">12%</property>
+            </column>
+            <column id="2645">
+                <property name="width">15%</property>
+            </column>
+            <column id="2647">
+                <property name="width">15%</property>
+            </column>
+            <group id="3079">
+                <property name="groupName">GrupoTipo</property>
+                <expression name="keyExpr" type="javascript">row["Tipo"]</expression>
+                <structure name="toc">
+                    <expression name="expressionValue" type="javascript">row["Tipo"]</expression>
+                </structure>
+                <property name="hideDetail">false</property>
+                <header>
+                    <row id="3080">
+                    	<property name="display">none</property>
+                        <cell id="3081"/>
+                        <cell id="3082"/>
+                        <cell id="3083"/>
+                        <cell id="3084"/>
+                        <cell id="3085"/>
+                        <cell id="3086"/>
+                        <cell id="3087"/>
+                        <cell id="3088"/>
+                    </row>
+                </header>
+                <footer>
+                    <row id="3089">
+                        <property name="borderTopStyle">solid</property>
+                        <cell id="3090"/>
+                        <cell id="3091"/>
+                        <cell id="3092"/>
+                        <cell id="3093"/>
+                        <cell id="3094"/>
+                        <cell id="3095">
+                            <label id="3099">
+                                <property name="fontFamily">"Verdana"</property>
+                                <property name="fontSize">8pt</property>
+                                <property name="fontWeight">bold</property>
+                                <property name="textAlign">right</property>
+                                <text-property name="text">SUBTOTAL</text-property>
+                            </label>
+                        </cell>
+                        <cell id="3096">
+                            <data id="3103">
+                                <property name="fontFamily">"verdana"</property>
+                                <property name="fontSize">8pt</property>
+                                <property name="fontWeight">bold</property>
+                                <property name="marginRight">5pt</property>
+                                <property name="textAlign">right</property>
+                                <property name="resultSetColumn">SubTotal</property>
+                            </data>
+                        </cell>
+                        <cell id="3097"/>
+                    </row>
+                </footer>
+            </group>
+            <detail>
+                <row id="2618">
+                    <cell id="2773">
+                        <data id="3041">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="resultSetColumn">Tipo</property>
+                        </data>
+                    </cell>
+                    <cell id="2777">
+                        <data id="3042">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="resultSetColumn">ImpuestoDescripcion</property>
+                        </data>
+                    </cell>
+                    <cell id="2621">
+                        <data id="3043">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="resultSetColumn">JurisdiccionDescripcion</property>
+                        </data>
+                    </cell>
+                    <cell id="2619">
+                        <data id="3044">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="resultSetColumn">Fecha</property>
+                        </data>
+                    </cell>
+                    <cell id="2627">
+                        <data id="3045">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="resultSetColumn">RazonSocial</property>
+                        </data>
+                    </cell>
+                    <cell id="3037">
+                        <data id="3046">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="resultSetColumn">Cuit</property>
+                        </data>
+                    </cell>
+                    <cell id="2629">
+                        <data id="3047">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="marginRight">5pt</property>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">Importe</property>
+                        </data>
+                    </cell>
+                    <cell id="2631">
+                        <data id="3048">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="marginLeft">5pt</property>
+                            <property name="resultSetColumn">Comprobante</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="3068">
+                    <property name="borderTopStyle">solid</property>
+                    <cell id="3069"/>
+                    <cell id="3070"/>
+                    <cell id="3071"/>
+                    <cell id="3072"/>
+                    <cell id="3073"/>
+                    <cell id="3074">
+                        <label id="3077">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">TOTAL</text-property>
+                        </label>
+                    </cell>
+                    <cell id="3075">
+                        <data id="3104">
+                            <property name="fontFamily">"verdana"</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="marginRight">5pt</property>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">Total</property>
+                        </data>
+                    </cell>
+                    <cell id="3076"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>
