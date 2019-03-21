@@ -4,7 +4,8 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
     title: '<?=$this->title?>',
     appChannel: '/desktop/modules<?=$this->url()?>',
     requires: [
-        '/direct/Facturacion/OrdenesDePagos?javascript'
+        '/direct/Facturacion/OrdenesDePagos?javascript',
+	'/direct/Base/Proveedores?javascript'
     ],
 
     eventfind: function (ev) {
