@@ -850,6 +850,9 @@ class Facturacion_Model_DbTable_ComprobantesRelacionados extends Rad_Db_Table
 
         $rX = $this->_db->query($sql);
         $R = $rX->fetchAll();
+        
+        $idFCRD = 0;
+        $cantidadFCRD = 0;
 
         if (count($R)) {
 
@@ -861,7 +864,7 @@ class Facturacion_Model_DbTable_ComprobantesRelacionados extends Rad_Db_Table
                 if ($cantPorAsociar > 0.001) {
                     // Recupero lo que queda disponible del articulo.
                     $disponible = $this->comprobanteComoHijo_CantSinAsociar($row["idRemito"], $idArticulo);
-
+                    $cantidadAgregar = 0;
 
                     if ($disponible > 0.001) {
                         if ($disponible >= $cantPorAsociar) {
@@ -875,7 +878,19 @@ class Facturacion_Model_DbTable_ComprobantesRelacionados extends Rad_Db_Table
                         $data['Cantidad'] = $row["CantAsociada"] + $cantidadAgregar;
                         $M_CRD->update($data, "Id=" . $row["idFCRD"]);
                     }
+                    $idFCRD = $row["idFCRD"];
+                    $cantidadFCRD = $row["CantAsociada"] + $cantidadAgregar;
                 }
+            }
+
+            // Si existe aun un exceso se lo asignamos al ultimo comprobante relacionado.
+
+            if ($cantPorAsociar > 0.001) {
+               if ( $idFCRD <> 0 ) {
+                  $data['Cantidad'] = $cantidadFCRD + $cantPorAsociar;
+                  $M_CRD->update($data, "Id=" . $row["idFCRD"]);
+                  $cantPorAsociar = 0;
+               }
             }
 
             // Si sobro tengo qeu ver si a alguno de los hijos le queda algo sin asociar y en ese caso reasociarlo
