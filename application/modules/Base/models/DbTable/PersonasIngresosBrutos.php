@@ -64,21 +64,6 @@ class Base_Model_DbTable_PersonasIngresosBrutos extends Rad_Db_Table
         )
     );
 
-        protected $_validators = array(
-        'ConceptoImpositivo' => array(
-            array(
-                'Db_NoRecordExists',
-                'PersonasIngresosBrutos',
-                'ConceptoImpositivo',
-                array(
-                    'field' => 'Id',
-                    'value' => "{Id}"
-                )
-            ),
-            'messages' => 'Ya esta asignado el concepto impositivo para ese Cliente/Proveedor'
-        )
-    );
-
     public function insert($data)
     {
         try {
@@ -151,8 +136,6 @@ class Base_Model_DbTable_PersonasIngresosBrutos extends Rad_Db_Table
             throw $e;
         }
     }
-
-
 
     public function fetchParaClientes($where = null, $order = null, $count = null, $offset = null)
     {
