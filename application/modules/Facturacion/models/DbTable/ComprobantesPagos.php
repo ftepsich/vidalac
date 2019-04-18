@@ -570,8 +570,8 @@ class Facturacion_Model_DbTable_ComprobantesPagos extends Facturacion_Model_DbTa
                         END AS MontoMinimo,
                         CASE
                           WHEN PIB.TipoInscripcionIB = 3 THEN
-                            -- Si el coeficiente es mayor a 0.1 y no tienen actividad cargada se asume Base de Retencion 50%
-                            CASE WHEN PIB.CoeficienteCM05 > 0.1 THEN CASE WHEN ( CAA.Id IS NULL ) THEN 50 ELSE 100 END ELSE 100 END
+                            -- Siempre la Retencion es con Base al 50% cuando el CoeficienteCM05 es mayor a 0.1
+                            CASE WHEN PIB.CoeficienteCM05 > 0.1 THEN 50 ELSE 100 END ELSE 100 END
                           ELSE 
                             100
                         END AS PorcentajeBaseMonto
