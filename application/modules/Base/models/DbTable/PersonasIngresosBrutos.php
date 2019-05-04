@@ -120,9 +120,7 @@ class Base_Model_DbTable_PersonasIngresosBrutos extends Rad_Db_Table
              if($data['ConceptoImpositivo']){
                $condicion = "ConceptoImpositivo = '".$data['ConceptoImpositivo']."' AND PersonasIngresosBrutos.Id <> ".$row->Id;
                $conceptoImpositivo = $this->fetchRow($condicion);
-
-               if($conceptoImpositivo) throw new Rad_Db_Table_Exception("Ya esta asignado ese ConceptoImpositivo");
-             }
+                         }
 
              parent::update($data,'PersonasIngresosBrutos.Id ='.$row->Id);
 

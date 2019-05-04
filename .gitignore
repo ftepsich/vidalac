@@ -26,3 +26,4 @@ application/configs/cert/
 application/Boostrap.php
 .idea/
 /nbproject/private/
+application/Bootstrap.php
