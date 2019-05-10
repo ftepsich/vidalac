@@ -289,6 +289,11 @@
                         <property name="name">NroConstancia</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">19</property>
+                        <property name="name">Anulado</property>
+                        <property name="dataType">integer</property>
+                    </structure>
                 </list-property>
             </structure>
             <property name="dataSource">Base</property>
@@ -401,6 +406,11 @@
                     <property name="nativeName">NroConstancia</property>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="position">19</property>
+                    <property name="name">Anulado</property>
+                    <property name="dataType">integer</property>
+                </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[call Birt_Retenciones_Cabecera(?);]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
@@ -504,7 +514,13 @@
                             <structure>
                                 <property name="name">NroConstancia</property>
                                 <text-property name="displayName">NroConstancia</text-property>
-                                <expression name="expression" type="javascript">BirtStr.concat("Nº de Constancia : ", dataSetRow["NroConstancia"] )</expression>
+                                <expression name="expression" type="javascript">
+                                if ( dataSetRow["Anulado"] == '1' ) { 
+                                   BirtStr.concat("Nº de Constancia : ", dataSetRow["NroConstancia"], "  --- ANULADA --- ");
+                                } else {
+                                   BirtStr.concat("Nº de Constancia : ", dataSetRow["NroConstancia"] );
+                                }
+                                </expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>
