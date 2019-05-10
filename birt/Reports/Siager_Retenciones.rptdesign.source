@@ -225,8 +225,8 @@ SELECT
     CONCAT(LPAD(PV.Numero,4,'0'),LPAD(C.Numero,8,'0')) AS NumeroComprobante,
     LPAD( ABS( TRUNCATE (C2.MontoImponible,2)),15,'0') AS ImporteBase,
     LPAD( ABS( TRUNCATE (C2.ConceptoImpositivoPorcentaje,2)),6,'0') AS Alicuota,
-    LPAD( ABS( TRUNCATE (C2.Monto,2)),15,'0') AS ImporteRetenido,
-    'No' AS Anulacion,
+    LPAD( ABS( TRUNCATE (CASE WHEN IFNULL(C2.Anulado,0) = 0 THEN C2.Monto ELSE 0 END,2)),15,'0') AS ImporteRetenido,
+    CASE WHEN IFNULL(C2.Anulado,0) = 0 THEN 'No' ELSE 'Sí' END AS Anulacion,
     CASE WHEN P.TipoInscripcionIB = 3 THEN 'Sí' ELSE 'No' END AS ContribuyenteConvMultilateral
 FROM Comprobantes C2
 INNER JOIN ConceptosImpositivos CI    ON C2.ConceptoImpositivo = CI.Id
