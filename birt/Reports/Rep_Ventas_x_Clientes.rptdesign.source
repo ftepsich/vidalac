@@ -126,23 +126,21 @@
                     <property name="nativeDataType">12</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[SELECT 	CONCAT(	P.RazonSocial, ' [', P.Cuit,']') AS Persona,
-		SUM(CD.PrecioUnitario * CD.Cantidad) AS MontoTotal,
-        SUM(CD.Cantidad) AS Cantidad,
+            <xml-property name="queryText"><![CDATA[
+SELECT 	CONCAT(	P.RazonSocial, ' [', P.Cuit,']') AS Persona,
+        SUM(CD.PrecioUnitario * CD.Cantidad * TC.Multiplicador * (-1)) AS MontoTotal,
+        SUM(CD.Cantidad * TC.Multiplicador * (-1)) AS Cantidad,
         UM.Descripcion Unidad,
         A.Descripcion Articulo
 FROM Comprobantes C
-inner join TiposDeComprobantes TC	ON TC.Id 	= C.TipoDeComprobante
-inner join ComprobantesDetalles CD 	ON CD.Comprobante = C.Id
-inner join Articulos A 				ON A.Id 	= CD.Articulo 
-inner JOIN Personas P 				ON P.Id 	= C.Persona
-inner join UnidadesDeMedidas UM		ON UM.Id	= A.UnidadDeMedida
-
-where	TC.Grupo in (6)
-and		A.Tipo = 1
-
+INNER JOIN TiposDeComprobantes TC   ON TC.Id 	      = C.TipoDeComprobante
+INNER JOIN ComprobantesDetalles CD  ON CD.Comprobante = C.Id
+INNER JOIN Articulos A              ON A.Id 	      = CD.Articulo 
+INNER JOIN Personas P     	    ON P.Id 	      = C.Persona
+INNER JOIN UnidadesDeMedidas UM	    ON UM.Id	      = A.UnidadDeMedida
+WHERE TC.Grupo IN (6,7,12)
+  AND A.Tipo = 1
 {WHERE}
-
 GROUP BY P.Razonsocial, A.Descripcion
 ORDER BY P.Razonsocial, A.Descripcion]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
@@ -308,7 +306,6 @@ ORDER BY P.Razonsocial, A.Descripcion]]></xml-property>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie">
-            <property name="type">a4</property>
             <overridden-values>
                 <ref-entry baseId="2434" name="Cabecera" id="2434"/>
                 <ref-entry baseId="2435" id="2435"/>
@@ -436,7 +433,7 @@ ORDER BY P.Razonsocial, A.Descripcion]]></xml-property>
                     <list-property name="arguments">
                         <structure>
                             <property name="name">Expression</property>
-                            <expression name="value" type="javascript">row["MontoTotal"]</expression>
+                            <expression name="value" type="javascript">row["Cantidad"]</expression>
                         </structure>
                     </list-property>
                 </structure>
@@ -453,10 +450,10 @@ ORDER BY P.Razonsocial, A.Descripcion]]></xml-property>
                 </structure>
             </list-property>
             <column id="2507">
-                <property name="width">1.125in</property>
+                <property name="width">0.125in</property>
             </column>
             <column id="2508">
-                <property name="width">4.058333333333334in</property>
+                <property name="width">5.058333333333334in</property>
             </column>
             <column id="2510">
                 <property name="width">1.4083333333333334in</property>
@@ -502,8 +499,9 @@ ORDER BY P.Razonsocial, A.Descripcion]]></xml-property>
                 <property name="pageBreakInside">auto</property>
                 <header>
                     <row id="2598">
+                        <cell id="2600"/>
                         <cell id="2599">
-                            <property name="colSpan">2</property>
+                            <property name="colSpan">1</property>
                             <property name="rowSpan">1</property>
                             <data id="2608">
                                 <property name="resultSetColumn">Persona</property>
