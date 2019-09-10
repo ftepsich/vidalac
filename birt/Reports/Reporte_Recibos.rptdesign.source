@@ -1,0 +1,993 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.21" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">2548</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">2548</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">2548</property>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">fixed layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">120</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">librerias/ConectorDB.rptlibrary</property>
+            <property name="namespace">ConectorDB</property>
+        </structure>
+        <structure>
+            <property name="fileName">librerias/CabeceraInterna.rptlibrary</property>
+            <property name="namespace">CabeceraInterna</property>
+        </structure>
+    </list-property>
+    <list-property name="cssStyleSheets">
+        <structure>
+            <property name="fileName">css/EstiloBase.css</property>
+            <property name="useExternalCss">false</property>
+        </structure>
+    </list-property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Base" id="186"
+ extends="ConectorDB.DataSource">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ComprantesDetalle" id="2548">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Persona</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Persona</text-property>
+                    <text-property name="heading">Persona</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">RazonSocial</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">RazonSocial</text-property>
+                    <text-property name="heading">RazonSocial</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ComprobantePadre_Numero</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ComprobantePadre_Numero</text-property>
+                    <text-property name="heading">ComprobantePadre_Numero</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ComprobantePadre_FechaEmision</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ComprobantePadre_FechaEmision</text-property>
+                    <text-property name="heading">ComprobantePadre_FechaEmision</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ComprobanteHijo_Numero</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ComprobanteHijo_Numero</text-property>
+                    <text-property name="heading">ComprobanteHijo_Numero</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ComprobanteHijo_FechaEmision</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ComprobanteHijo_FechaEmision</text-property>
+                    <text-property name="heading">ComprobanteHijo_FechaEmision</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ComprobanteHijo_Monto</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">ComprobanteHijo_Monto</text-property>
+                    <text-property name="heading">ComprobanteHijo_Monto</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ValoresPago_Detalle</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ValoresPago_Detalle</text-property>
+                    <text-property name="heading">ValoresPago_Detalle</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ValoresPago_Fecha</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ValoresPago_Fecha</text-property>
+                    <text-property name="heading">ValoresPago_Fecha</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ValoresPago_Monto</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ValoresPago_Monto</text-property>
+                    <text-property name="heading">ValoresPago_Monto</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Persona</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">RazonSocial</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">ComprobantePadre_Numero</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">ComprobantePadre_FechaEmision</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">ComprobanteHijo_Numero</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">ComprobanteHijo_FechaEmision</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">ComprobanteHijo_Monto</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">ValoresPago_Detalle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">ValoresPago_Fecha</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">ValoresPago_Monto</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Persona</property>
+                    <property name="nativeName">Persona</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">RazonSocial</property>
+                    <property name="nativeName">RazonSocial</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">ComprobantePadre_Numero</property>
+                    <property name="nativeName">ComprobantePadre_Numero</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">ComprobantePadre_FechaEmision</property>
+                    <property name="nativeName">ComprobantePadre_FechaEmision</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">ComprobanteHijo_Numero</property>
+                    <property name="nativeName">ComprobanteHijo_Numero</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">ComprobanteHijo_FechaEmision</property>
+                    <property name="nativeName">ComprobanteHijo_FechaEmision</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">ComprobanteHijo_Monto</property>
+                    <property name="nativeName">ComprobanteHijo_Monto</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">ValoresPago_Detalle</property>
+                    <property name="nativeName">ValoresPago_Detalle</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">ValoresPago_Fecha</property>
+                    <property name="nativeName">ValoresPago_Fecha</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">ValoresPago_Monto</property>
+                    <property name="nativeName">ValoresPago_Monto</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT * FROM vrecibosdetalles {WHERE}]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie">
+            <property name="type">a4</property>
+            <property name="orientation">landscape</property>
+            <property name="leftMargin">0.15in</property>
+            <property name="rightMargin">0.15in</property>
+            <overridden-values>
+                <ref-entry baseId="2434" name="Cabecera" id="2434"/>
+                <ref-entry baseId="2435" id="2435"/>
+                <ref-entry baseId="2436" id="2436"/>
+                <ref-entry baseId="2437" id="2437"/>
+                <ref-entry baseId="2438" name="NewLabel1" id="2438"/>
+                <ref-entry baseId="2404" name="NewGrid" id="2404"/>
+                <ref-entry baseId="2405" id="2405"/>
+                <ref-entry baseId="2406" id="2406"/>
+                <ref-entry baseId="2419" id="2419"/>
+                <ref-entry baseId="2417" id="2417"/>
+                <ref-entry baseId="2407" id="2407"/>
+                <ref-entry baseId="2408" id="2408"/>
+                <ref-entry baseId="2409" id="2409"/>
+                <ref-entry baseId="2433" name="NewLabel" id="2433"/>
+                <ref-entry baseId="2410" id="2410"/>
+                <ref-entry baseId="2432" name="NewText" id="2432"/>
+                <ref-entry baseId="2418" id="2418"/>
+                <ref-entry baseId="2416" id="2416"/>
+                <ref-entry baseId="2411" id="2411"/>
+                <ref-entry baseId="2421" name="NewGrid1" id="2421"/>
+                <ref-entry baseId="2422" id="2422"/>
+                <ref-entry baseId="2423" id="2423"/>
+                <ref-entry baseId="2424" id="2424"/>
+                <ref-entry baseId="2425" id="2425"/>
+                <ref-entry baseId="2426" id="2426"/>
+                <ref-entry baseId="2427" name="NewAutoText" id="2427"/>
+                <ref-entry baseId="2428" id="2428"/>
+                <ref-entry baseId="2429" name="NewText1" id="2429"/>
+                <ref-entry baseId="2430" id="2430"/>
+                <ref-entry baseId="2431" name="NewAutoText1" id="2431"/>
+            </overridden-values>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid name="TextoEncabezado" id="2518">
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">xls</property>
+                    <expression name="valueExpr" type="javascript">true</expression>
+                </structure>
+            </list-property>
+            <row id="2519">
+                <cell id="2520"/>
+            </row>
+            <row id="2521">
+                <cell id="2522">
+                    <grid id="2653">
+                        <property name="width">13.6in</property>
+                        <column id="2654">
+                            <property name="width">13.6in</property>
+                        </column>
+                        <row id="2661">
+                            <cell id="2662">
+                                <label id="2670">
+                                    <property name="fontFamily">"Verdana"</property>
+                                    <property name="fontSize">12pt</property>
+                                    <property name="fontWeight">bold</property>
+                                    <property name="fontStyle">normal</property>
+                                    <text-property name="text">{TEXTO}</text-property>
+                                </label>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
+            <row id="2790">
+                <cell id="2791"/>
+            </row>
+        </grid>
+        <table id="3141">
+            <property name="fontFamily">"Verdana"</property>
+            <property name="fontSize">6pt</property>
+            <property name="dataSet">ComprantesDetalle</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Persona</property>
+                    <text-property name="displayName">Persona</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["RazonSocial"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">ComprobantePadre_Numero</property>
+                    <text-property name="displayName">ComprobantePadre_Numero</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ComprobantePadre_Numero"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">ComprobantePadre_FechaEmision</property>
+                    <text-property name="displayName">ComprobantePadre_FechaEmision</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ComprobantePadre_FechaEmision"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">ComprobanteHijo_Numero</property>
+                    <text-property name="displayName">ComprobanteHijo_Numero</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ComprobanteHijo_Numero"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">ComprobanteHijo_FechaEmision</property>
+                    <text-property name="displayName">ComprobanteHijo_FechaEmision</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ComprobanteHijo_FechaEmision"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">ComprobanteHijo_Monto</property>
+                    <text-property name="displayName">ComprobanteHijo_Monto</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ComprobanteHijo_Monto"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">ValoresPago_Detalle</property>
+                    <text-property name="displayName">ValoresPago_Detalle</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ValoresPago_Detalle"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">ValoresPago_Fecha</property>
+                    <text-property name="displayName">ValoresPago_Fecha</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ValoresPago_Fecha"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">ValoresPago_Monto</property>
+                    <text-property name="displayName">ValoresPago_Monto</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ValoresPago_Monto"]</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Suma_Comprobante_Monto</property>
+                    <text-property name="displayName">Suma_Comprobante_Monto</text-property>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>GrupoPersona</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["ComprobanteHijo_Monto"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Suma_ValoresPago_Monto</property>
+                    <text-property name="displayName">Suma_ValoresPago_Monto</text-property>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>GrupoPersona</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["ValoresPago_Monto"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">row["ComprobanteHijo_Monto"]</property>
+                    <text-property name="displayName">TotalComprobanteHijo_Monto</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["ComprobanteHijo_Monto"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">row["ValoresPago_Monto"]</property>
+                    <text-property name="displayName">TotalValoresPago_Monto</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["ValoresPago_Monto"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="3190">
+                <property name="width">20%</property>
+            </column>
+            <column id="3191">
+                <property name="width">10%</property>
+            </column>
+            <column id="3192">
+                <property name="width">7%</property>
+            </column>
+            <column id="3193">
+                <property name="width">10%</property>
+            </column>
+            <column id="3194">
+                <property name="width">7%</property>
+            </column>
+            <column id="3195">
+                <property name="width">7%</property>
+            </column>
+            <column id="3196">
+                <property name="width">25%</property>
+            </column>
+            <column id="3197">
+                <property name="width">7%</property>
+            </column>
+            <column id="3198">
+                <property name="width">8%</property>
+            </column>
+            <header>
+                <row id="3142">
+                    <cell id="3143">
+                        <label id="3144">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Persona</text-property>
+                        </label>
+                    </cell>
+                    <cell id="3145">
+                        <label id="3146">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Recibo Nro.</text-property>
+                        </label>
+                    </cell>
+                    <cell id="3147">
+                        <label id="3148">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Recibo Fecha</text-property>
+                        </label>
+                    </cell>
+                    <cell id="3149">
+                        <label id="3150">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Cpte. Nro.</text-property>
+                        </label>
+                    </cell>
+                    <cell id="3151">
+                        <label id="3152">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Cpte. Fecha</text-property>
+                        </label>
+                    </cell>
+                    <cell id="3153">
+                        <label id="3154">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Cpte. Monto</text-property>
+                        </label>
+                    </cell>
+                    <cell id="3155">
+                        <label id="3156">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Valores Detalle</text-property>
+                        </label>
+                    </cell>
+                    <cell id="3157">
+                        <label id="3158">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Valores Fecha</text-property>
+                        </label>
+                    </cell>
+                    <cell id="3159">
+                        <label id="3160">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Valores Monto</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <group id="3199">
+                <property name="groupName">GrupoPersona</property>
+                <expression name="keyExpr" type="javascript">row["Persona"]</expression>
+                <structure name="toc">
+                    <expression name="expressionValue" type="javascript">row["Persona"]</expression>
+                </structure>
+                <property name="hideDetail">false</property>
+                <header>
+                    <row id="3200">
+                        <property name="backgroundColor">white</property>
+                        <property name="color">#FFFFFF</property>
+                        <property name="borderBottomStyle">none</property>
+                        <property name="display">none</property>
+                        <cell id="3201"/>
+                        <cell id="3202"/>
+                        <cell id="3203"/>
+                        <cell id="3204"/>
+                        <cell id="3205"/>
+                        <cell id="3206"/>
+                        <cell id="3207"/>
+                        <cell id="3208"/>
+                        <cell id="3209"/>
+                    </row>
+                </header>
+                <footer>
+                    <row id="3210">
+                        <property name="backgroundColor">#E6E6FA</property>
+                        <property name="borderTopStyle">solid</property>
+                        <cell id="3211">
+                            <data id="3223">
+                                <property name="backgroundAttachment">scroll</property>
+                                <property name="backgroundPositionX">0%</property>
+                                <property name="backgroundPositionY">0%</property>
+                                <property name="backgroundRepeat">repeat</property>
+                                <property name="fontFamily">sans-serif</property>
+                                <property name="fontSize">7pt</property>
+                                <property name="fontWeight">bold</property>
+                                <property name="fontStyle">normal</property>
+                                <property name="fontVariant">small-caps</property>
+                                <property name="color">#000000</property>
+                                <property name="textLineThrough">none</property>
+                                <property name="textOverline">none</property>
+                                <property name="textUnderline">none</property>
+                                <property name="borderBottomColor">black</property>
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderBottomWidth">medium</property>
+                                <property name="borderLeftColor">black</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderLeftWidth">medium</property>
+                                <property name="borderRightColor">black</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderRightWidth">medium</property>
+                                <property name="borderTopColor">black</property>
+                                <property name="borderTopStyle">none</property>
+                                <property name="borderTopWidth">medium</property>
+                                <property name="marginTop">0pt</property>
+                                <property name="marginLeft">0pt</property>
+                                <property name="marginBottom">0pt</property>
+                                <property name="marginRight">0pt</property>
+                                <property name="paddingTop">1pt</property>
+                                <property name="paddingLeft">1pt</property>
+                                <property name="paddingBottom">1pt</property>
+                                <property name="paddingRight">1pt</property>
+                                <property name="letterSpacing">normal</property>
+                                <property name="lineHeight">normal</property>
+                                <property name="orphans">2</property>
+                                <property name="textTransform">none</property>
+                                <property name="whiteSpace">normal</property>
+                                <property name="widows">2</property>
+                                <property name="wordSpacing">normal</property>
+                                <property name="display">block</property>
+                                <property name="pageBreakAfter">auto</property>
+                                <property name="pageBreakBefore">auto</property>
+                                <property name="pageBreakInside">auto</property>
+                                <property name="showIfBlank">false</property>
+                                <property name="canShrink">false</property>
+                                <property name="overflow">hidden</property>
+                                <property name="resultSetColumn">Persona</property>
+                            </data>
+                        </cell>
+                        <cell id="3212">
+                            <label id="3228">
+                                <property name="backgroundAttachment">scroll</property>
+                                <property name="backgroundPositionX">0%</property>
+                                <property name="backgroundPositionY">0%</property>
+                                <property name="backgroundRepeat">repeat</property>
+                                <property name="fontFamily">sans-serif</property>
+                                <property name="fontSize">7pt</property>
+                                <property name="fontWeight">bold</property>
+                                <property name="fontStyle">normal</property>
+                                <property name="fontVariant">small-caps</property>
+                                <property name="color">#000000</property>
+                                <property name="textLineThrough">none</property>
+                                <property name="textOverline">none</property>
+                                <property name="textUnderline">none</property>
+                                <property name="borderBottomColor">black</property>
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderBottomWidth">medium</property>
+                                <property name="borderLeftColor">black</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderLeftWidth">medium</property>
+                                <property name="borderRightColor">black</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderRightWidth">medium</property>
+                                <property name="borderTopColor">black</property>
+                                <property name="borderTopStyle">none</property>
+                                <property name="borderTopWidth">medium</property>
+                                <property name="marginTop">0pt</property>
+                                <property name="marginLeft">0pt</property>
+                                <property name="marginBottom">0pt</property>
+                                <property name="marginRight">0pt</property>
+                                <property name="paddingTop">1pt</property>
+                                <property name="paddingLeft">1pt</property>
+                                <property name="paddingBottom">1pt</property>
+                                <property name="paddingRight">1pt</property>
+                                <property name="letterSpacing">normal</property>
+                                <property name="lineHeight">normal</property>
+                                <property name="orphans">2</property>
+                                <property name="textTransform">none</property>
+                                <property name="whiteSpace">normal</property>
+                                <property name="widows">2</property>
+                                <property name="wordSpacing">normal</property>
+                                <property name="display">block</property>
+                                <property name="pageBreakAfter">auto</property>
+                                <property name="pageBreakBefore">auto</property>
+                                <property name="pageBreakInside">auto</property>
+                                <property name="showIfBlank">false</property>
+                                <property name="canShrink">false</property>
+                                <property name="overflow">hidden</property>
+                                <text-property name="text">SubTotal</text-property>
+                            </label>
+                        </cell>
+                        <cell id="3213"/>
+                        <cell id="3214"/>
+                        <cell id="3215"/>
+                        <cell id="3216">
+                            <data id="3221">
+                                <property name="fontWeight">bold</property>
+                                <structure name="numberFormat">
+                                    <property name="category">Currency</property>
+                                    <property name="pattern">$ #,##0.00{RoundingMode=HALF_UP}</property>
+                                </structure>
+                                <property name="textAlign">right</property>
+                                <property name="resultSetColumn">Suma_Comprobante_Monto</property>
+                            </data>
+                        </cell>
+                        <cell id="3217"/>
+                        <cell id="3218"/>
+                        <cell id="3219">
+                            <property name="textAlign">right</property>
+                            <data id="3222">
+                                <property name="fontWeight">bold</property>
+                                <structure name="numberFormat">
+                                    <property name="category">Currency</property>
+                                    <property name="pattern">$ #,##0.00{RoundingMode=HALF_UP}</property>
+                                </structure>
+                                <property name="resultSetColumn">Suma_ValoresPago_Monto</property>
+                            </data>
+                        </cell>
+                    </row>
+                </footer>
+            </group>
+            <detail>
+                <row id="3161">
+                    <cell id="3162">
+                        <data id="3220">
+                            <property name="fontWeight">bold</property>
+                            <property name="resultSetColumn">Persona</property>
+                        </data>
+                    </cell>
+                    <cell id="3164">
+                        <data id="3165">
+                            <property name="resultSetColumn">ComprobantePadre_Numero</property>
+                        </data>
+                    </cell>
+                    <cell id="3166">
+                        <data id="3167">
+                            <structure name="dateTimeFormat">
+                                <property name="category">Custom</property>
+                                <property name="pattern">dd/MM/yyyy</property>
+                            </structure>
+                            <property name="resultSetColumn">ComprobantePadre_FechaEmision</property>
+                        </data>
+                    </cell>
+                    <cell id="3168">
+                        <data id="3169">
+                            <property name="resultSetColumn">ComprobanteHijo_Numero</property>
+                        </data>
+                    </cell>
+                    <cell id="3170">
+                        <data id="3171">
+                            <structure name="dateTimeFormat">
+                                <property name="category">Custom</property>
+                                <property name="pattern">dd/MM/yyyy</property>
+                            </structure>
+                            <property name="resultSetColumn">ComprobanteHijo_FechaEmision</property>
+                        </data>
+                    </cell>
+                    <cell id="3172">
+                        <data id="3173">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">ComprobanteHijo_Monto</property>
+                        </data>
+                    </cell>
+                    <cell id="3174">
+                        <data id="3175">
+                            <property name="resultSetColumn">ValoresPago_Detalle</property>
+                        </data>
+                    </cell>
+                    <cell id="3176">
+                        <data id="3177">
+                            <structure name="dateTimeFormat">
+                                <property name="category">Custom</property>
+                                <property name="pattern">dd/MM/yyyy</property>
+                            </structure>
+                            <property name="resultSetColumn">ValoresPago_Fecha</property>
+                        </data>
+                    </cell>
+                    <cell id="3178">
+                        <data id="3179">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">ValoresPago_Monto</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="3180">
+                    <property name="borderTopStyle">solid</property>
+                    <cell id="3181"/>
+                    <cell id="3182">
+                        <label id="3229">
+                            <property name="backgroundAttachment">scroll</property>
+                            <property name="backgroundPositionX">0%</property>
+                            <property name="backgroundPositionY">0%</property>
+                            <property name="backgroundRepeat">repeat</property>
+                            <property name="fontFamily">sans-serif</property>
+                            <property name="fontSize">7pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="fontVariant">small-caps</property>
+                            <property name="color">#000000</property>
+                            <property name="textLineThrough">none</property>
+                            <property name="textOverline">none</property>
+                            <property name="textUnderline">none</property>
+                            <property name="borderBottomColor">black</property>
+                            <property name="borderBottomStyle">none</property>
+                            <property name="borderBottomWidth">medium</property>
+                            <property name="borderLeftColor">black</property>
+                            <property name="borderLeftStyle">none</property>
+                            <property name="borderLeftWidth">medium</property>
+                            <property name="borderRightColor">black</property>
+                            <property name="borderRightStyle">none</property>
+                            <property name="borderRightWidth">medium</property>
+                            <property name="borderTopColor">black</property>
+                            <property name="borderTopStyle">none</property>
+                            <property name="borderTopWidth">medium</property>
+                            <property name="marginTop">0pt</property>
+                            <property name="marginLeft">0pt</property>
+                            <property name="marginBottom">0pt</property>
+                            <property name="marginRight">0pt</property>
+                            <property name="paddingTop">1pt</property>
+                            <property name="paddingLeft">1pt</property>
+                            <property name="paddingBottom">1pt</property>
+                            <property name="paddingRight">1pt</property>
+                            <property name="letterSpacing">normal</property>
+                            <property name="lineHeight">normal</property>
+                            <property name="orphans">2</property>
+                            <property name="textTransform">none</property>
+                            <property name="whiteSpace">normal</property>
+                            <property name="widows">2</property>
+                            <property name="wordSpacing">normal</property>
+                            <property name="display">block</property>
+                            <property name="pageBreakAfter">auto</property>
+                            <property name="pageBreakBefore">auto</property>
+                            <property name="pageBreakInside">auto</property>
+                            <property name="showIfBlank">false</property>
+                            <property name="canShrink">false</property>
+                            <property name="overflow">hidden</property>
+                            <text-property name="text">Total General</text-property>
+                        </label>
+                    </cell>
+                    <cell id="3183"/>
+                    <cell id="3184"/>
+                    <cell id="3185"/>
+                    <cell id="3186">
+                        <data id="3225">
+                            <property name="backgroundAttachment">scroll</property>
+                            <property name="backgroundPositionX">0%</property>
+                            <property name="backgroundPositionY">0%</property>
+                            <property name="backgroundRepeat">repeat</property>
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">6pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="fontVariant">normal</property>
+                            <property name="color">black</property>
+                            <property name="textLineThrough">none</property>
+                            <property name="textOverline">none</property>
+                            <property name="textUnderline">none</property>
+                            <property name="borderBottomColor">black</property>
+                            <property name="borderBottomStyle">none</property>
+                            <property name="borderBottomWidth">medium</property>
+                            <property name="borderLeftColor">black</property>
+                            <property name="borderLeftStyle">none</property>
+                            <property name="borderLeftWidth">medium</property>
+                            <property name="borderRightColor">black</property>
+                            <property name="borderRightStyle">none</property>
+                            <property name="borderRightWidth">medium</property>
+                            <property name="borderTopColor">black</property>
+                            <property name="borderTopStyle">none</property>
+                            <property name="borderTopWidth">medium</property>
+                            <property name="marginTop">0pt</property>
+                            <property name="marginLeft">0pt</property>
+                            <property name="marginBottom">0pt</property>
+                            <property name="marginRight">0pt</property>
+                            <property name="paddingTop">1pt</property>
+                            <property name="paddingLeft">1pt</property>
+                            <property name="paddingBottom">1pt</property>
+                            <property name="paddingRight">1pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="letterSpacing">normal</property>
+                            <property name="lineHeight">normal</property>
+                            <property name="orphans">2</property>
+                            <property name="textTransform">none</property>
+                            <property name="whiteSpace">normal</property>
+                            <property name="widows">2</property>
+                            <property name="wordSpacing">normal</property>
+                            <property name="display">block</property>
+                            <property name="pageBreakAfter">auto</property>
+                            <property name="pageBreakBefore">auto</property>
+                            <property name="pageBreakInside">auto</property>
+                            <property name="showIfBlank">false</property>
+                            <property name="canShrink">false</property>
+                            <property name="overflow">hidden</property>
+                            <property name="resultSetColumn">row["ComprobanteHijo_Monto"]</property>
+                        </data>
+                    </cell>
+                    <cell id="3187"/>
+                    <cell id="3188"/>
+                    <cell id="3189">
+                        <data id="3227">
+                            <property name="backgroundAttachment">scroll</property>
+                            <property name="backgroundPositionX">0%</property>
+                            <property name="backgroundPositionY">0%</property>
+                            <property name="backgroundRepeat">repeat</property>
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">6pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="fontVariant">normal</property>
+                            <property name="color">black</property>
+                            <property name="textLineThrough">none</property>
+                            <property name="textOverline">none</property>
+                            <property name="textUnderline">none</property>
+                            <property name="borderBottomColor">black</property>
+                            <property name="borderBottomStyle">none</property>
+                            <property name="borderBottomWidth">medium</property>
+                            <property name="borderLeftColor">black</property>
+                            <property name="borderLeftStyle">none</property>
+                            <property name="borderLeftWidth">medium</property>
+                            <property name="borderRightColor">black</property>
+                            <property name="borderRightStyle">none</property>
+                            <property name="borderRightWidth">medium</property>
+                            <property name="borderTopColor">black</property>
+                            <property name="borderTopStyle">none</property>
+                            <property name="borderTopWidth">medium</property>
+                            <property name="marginTop">0pt</property>
+                            <property name="marginLeft">0pt</property>
+                            <property name="marginBottom">0pt</property>
+                            <property name="marginRight">0pt</property>
+                            <property name="paddingTop">1pt</property>
+                            <property name="paddingLeft">1pt</property>
+                            <property name="paddingBottom">1pt</property>
+                            <property name="paddingRight">1pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="letterSpacing">normal</property>
+                            <property name="lineHeight">normal</property>
+                            <property name="orphans">2</property>
+                            <property name="textTransform">none</property>
+                            <property name="whiteSpace">normal</property>
+                            <property name="widows">2</property>
+                            <property name="wordSpacing">normal</property>
+                            <property name="display">block</property>
+                            <property name="pageBreakAfter">auto</property>
+                            <property name="pageBreakBefore">auto</property>
+                            <property name="pageBreakInside">auto</property>
+                            <property name="showIfBlank">false</property>
+                            <property name="canShrink">false</property>
+                            <property name="overflow">hidden</property>
+                            <property name="resultSetColumn">row["ValoresPago_Monto"]</property>
+                        </data>
+                    </cell>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>
