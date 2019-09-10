@@ -18,6 +18,12 @@
             <property name="footerHeight">0.3in</property>
             <page-header>
                 <grid name="NewGrid" id="2324">
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">xls</property>
+                    <expression name="valueExpr" type="javascript">true</expression>
+                </structure>
+            </list-property>
                     <column id="2325">
                         <property name="width">2.316666666666667in</property>
                         <property name="textAlign">center</property>
@@ -103,6 +109,12 @@
             </page-header>
             <page-footer>
                 <grid name="NewGrid1" id="2404">
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">xls</property>
+                    <expression name="valueExpr" type="javascript">true</expression>
+                </structure>
+            </list-property>
                     <property name="height">0.4in</property>
                     <property name="width">100%</property>
                     <column id="2405">
