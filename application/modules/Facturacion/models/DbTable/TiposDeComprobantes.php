@@ -133,4 +133,18 @@ class Facturacion_Model_DbTable_TiposDeComprobantes extends Rad_Db_Table
         $where = $this->_addCondition($where, $condicion);
         return self::fetchAll($where, $order, $count, $offset);
     }
+
+    public function fetchEsOrdenDePagoSinIVA($where = null, $order = null, $count = null, $offset = null)
+    {
+        $condicion = " TiposDeComprobantes.Id = 69";
+        $where = $this->_addCondition($where, $condicion);
+        return self::fetchAll($where, $order, $count, $offset);
+    }
+
+    public function fetchComprobantesSinIVA($where = null, $order = null, $count = null, $offset = null)
+    {
+        $condicion = " TiposDeComprobantes.Grupo = 21";
+        $where = $this->_addCondition($where, $condicion);
+        return self::fetchAll($where, $order, $count, $offset);
+    }
 }

@@ -5,7 +5,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
     appChannel: '/desktop/modules<?=$this->url()?>',
     requires: [
         '/direct/Facturacion/OrdenesDePagos?javascript',
-	'/direct/Base/Proveedores?javascript'
+        '/direct/Base/Proveedores?javascript'
     ],
 
     eventfind: function (ev) {
@@ -66,6 +66,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
         },
         this
     );
+
         this.addExtraListeners(); 
         this.createWizard();
         this.grid.abmWindow = app.desktop.createWindow({

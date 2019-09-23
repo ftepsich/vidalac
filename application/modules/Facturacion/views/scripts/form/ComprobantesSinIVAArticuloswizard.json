@@ -1,0 +1,64 @@
+{
+    xtype: 'panel',
+    layout: 'form',
+    buttonAlign: 'center',
+    id: 'ComprobantesSinIVAArticulosFormpanel',
+    modeloArticulos: 'Articulos', // Define el modelo inicial que se usa para el combo (NO TOCAR)
+    cambiarTipo: function (i) {
+        var cuenta   = this.ownerCt.getForm().findField('CuentaCasual');
+        var obs      = this.ownerCt.getForm().findField('Observaciones');
+        var cantidad = 1
+        var sel      = Ext.getCmp('ComprobantesSinIVAArticulos-selector-tipo');
+
+        sel.setValue(parseInt(i));
+        
+        switch (i) {
+
+            // Varios
+            case '2':
+                obs.allowBlank = true;
+                cuenta.allowBlank = false;
+                cuenta.show();
+
+                break;
+                
+        }
+    },
+    
+    buttons: [{
+        text:       'Guardar',
+        formBind:   true,
+        handler:    function() {
+            var form = this.findParentByType(Rad.Form);
+            form.submit();
+        }
+    }],
+    
+    items: [
+        new Ext.form.ComboBox ({
+                id: 'ComprobantesSinIVAArticulos-selector-tipo',
+                fieldLabel      : 'Tipo',
+                displayField    : 'Descripcion',
+                valueField      : 'Id',
+                mode            : 'local',
+                triggerAction   : 'all',
+                editable        : false,
+                value           : 2,
+                store: new Ext.data.SimpleStore ({
+                    fields  : [ 'Id','Descripcion' ],
+                    data    : [ ['2','Varios'] ],
+                }),
+                listeners: {
+                    select: function (combo, record, index) {
+                        var panel = Ext.getCmp('ComprobantesSinIVAArticulosFormpanel');
+                        panel.cambiarTipo(record.data.Id);
+                    }
+                }
+            }),
+        <<Id>>,
+        <<Comprobante>>,
+        <<Observaciones>>,
+        <<PrecioUnitario>>,
+        <<CuentaCasual>>
+    ]
+}

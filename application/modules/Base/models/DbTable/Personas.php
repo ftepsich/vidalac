@@ -74,6 +74,15 @@ class Base_Model_DbTable_Personas extends Rad_Db_Table_SemiReferencial
             'comboSource'       => 'datagateway/combolist',
             'refTable'          => 'Sexos',
             'refColumns'        => 'Id'
+        ),
+        'Paises' => array(
+            'columns'           => 'Pais',
+            'refTableClass'     => 'Base_Model_DbTable_Paises',
+            'refJoinColumns'    => array('Descripcion'),
+            'comboBox'          => true,
+            'comboSource'       => 'datagateway/combolist',
+            'refTable'          => 'Paises',
+            'refColumns'        => 'Id'
         )
     );
 

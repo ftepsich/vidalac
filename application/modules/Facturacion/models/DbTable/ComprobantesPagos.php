@@ -10,7 +10,7 @@
  * Campos:
  * Id                   -> Identificador Unico
  * Persona              -> Cliente al que se le realiza el Cobro
- * TipoDeComprobante    -> (cte) = 5, 6, 7, 8 y 9
+ * TipoDeComprobante    -> (cte) = 5, 6, 7, 8, 9, 48, 58, 69
  * Punto                -> (cte) = 1
  * Numero               -> Numero del Recibo
  * FechaEmision         -> Fecha de generacion del Recibo
@@ -31,7 +31,7 @@ class Facturacion_Model_DbTable_ComprobantesPagos extends Facturacion_Model_DbTa
     protected $_onDeletePublish = 'Facturacion_CP_preBorrar';
 
     protected $_permanentValues = array(
-        'TipoDeComprobante' => array(5, 6, 7, 8, 9, 48, 58)
+        'TipoDeComprobante' => array(5, 6, 7, 8, 9, 48, 58, 69)
     );
 
     /**
@@ -548,7 +548,7 @@ class Facturacion_Model_DbTable_ComprobantesPagos extends Facturacion_Model_DbTa
                               -- Convenio Multilateral --
                               WHEN PIB.TipoInscripcionIB = 3 THEN
                                 -- Si el coeficiente es menos a 0.1 o NULL = No Retener.
-                                CASE WHEN (PIB.CoeficienteCM05 IS NULL OR PIB.CoeficienteCM05 < 0.1) THEN 0
+                                CASE WHEN (PIB.CoeficienteCM05 = 0 OR PIB.CoeficienteCM05 < 0.1) THEN 0
                                      -- Sino tiene coeficiente o es mayor a 0.1 se toma el porcentaje de la actividad si se encuentra asiganda de lo contrario se asume el porcentaje actual del concepto.
                                      ELSE CASE WHEN ( CAA.Id IS NOT NULL ) THEN CAA.Porcentaje ELSE CI.PorcentajeActual END 
                                 END
@@ -569,6 +569,7 @@ class Facturacion_Model_DbTable_ComprobantesPagos extends Facturacion_Model_DbTa
                             PIB.MontoMinimo 
                         END AS MontoMinimo,
                         CASE
+                          -- Convenio Multilateral --
                           WHEN PIB.TipoInscripcionIB = 3 THEN
                             -- Siempre la Retencion es con Base al 50% cuando el CoeficienteCM05 es mayor a 0.1
                             CASE WHEN PIB.CoeficienteCM05 > 0.1 THEN 50 ELSE 100 END

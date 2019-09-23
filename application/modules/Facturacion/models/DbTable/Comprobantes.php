@@ -163,6 +163,42 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
     }
 
     /**
+     * Selecciona el periodo de imputacion sin iva al cual debe asignarse un comprobante
+     *
+     * @param date $fechaEmision fecha de emision del comprobante
+     *
+     * @return int
+     */
+    protected function seleccionarPeriodoImputacionSinIVA ($fechaEmision)
+    {
+        $Periodo = 0;
+        //$Fecha = new Zend_Date();
+        $M_PIVA = new Contable_Model_DbTable_PeriodosImputacionSinIVA(array(), false);
+        // Busco el periodo correcto para ese comprobante
+        $clausula = " mes = " . date("m", strtotime($fechaEmision)) . " and anio = " . date("Y", strtotime($fechaEmision));
+        $R_Periodo = $M_PIVA->fetchRow($clausula);
+        if (!$R_Periodo) {
+            if (Rad_Confirm::confirm( "No Existe el Periodo de Imputación del mes ".date("m", strtotime($fechaEmision)).". Desea crearlo?", _FILE_._LINE_, array('includeCancel' => false)) == 'yes') {
+                $R_Periodo->Id = $M_PIVA->crearPeriodo(date("m", strtotime($fechaEmision)),date("Y", strtotime($fechaEmision)));
+            }
+        }
+
+        // Reviso si el periodo correspondiente esta cerrado
+        if ($R_Periodo->Cerrado == 1) {
+            // Busco el periodo mas viejo abierto
+            $R_PeriodoMasViejo = $M_PIVA->fetchRow("Cerrado = 0", array("Anio asc", "Mes asc"));
+            if ($R_PeriodoMasViejo) {
+                $Periodo = $R_PeriodoMasViejo->Id;
+            } else {
+                throw new Rad_Db_Table_Exception("No existe un periodo de imputacion al que asignar el comprobante. Revise si no debe crear el periodo de imputación de este mes desde el menu Contable.");
+            }
+        } else {
+            $Periodo = $R_Periodo->Id;
+        }
+        return $Periodo;
+    }
+
+    /**
      * Permite borrar los conceptos impositivos que sean hijos de un comprobante
      *
      * @param int $idComprobante 	identificador del comprobante
@@ -1291,9 +1327,9 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
 
         // Log Usuarios
   if ( $rowComprobante->Numero == 0 ) {
-            Rad_Log::user("Cerró comprobante ($tipoComprobante->Descripcion ID $rowComprobante->Id)");
+            Rad_Log::user("Cerro comprobante ($tipoComprobante->Descripcion ID $rowComprobante->Id)");
         } else {
-            Rad_Log::user("Cerró comprobante ($tipoComprobante->Descripcion N° $rowComprobante->Numero)");
+            Rad_Log::user("Cerro comprobante ($tipoComprobante->Descripcion Nº $rowComprobante->Numero)");
         }
         // Publico...
         Rad_PubSub::publish('Comprobante_Cerrar', $rowComprobante);
@@ -1319,9 +1355,9 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         $tipoComprobante = $comprobante->findParentRow("Facturacion_Model_DbTable_TiposDeComprobantes");
   // Log Usuarios
         if ( $comprobante->Numero == 0 ) {
-            Rad_Log::user("Anuló comprobante ($tipoComprobante->Descripcion ID $comprobante->Id)");
+            Rad_Log::user("Anulo comprobante ($tipoComprobante->Descripcion ID $comprobante->Id)");
         } else {
-            Rad_Log::user("Anuló comprobante ($tipoComprobante->Descripcion N° $comprobante->Numero)");
+            Rad_Log::user("Anulo comprobante ($tipoComprobante->Descripcion N° $comprobante->Numero)");
         }
 
         // Publico...
@@ -1418,6 +1454,30 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
             return false;
         }
     }
+
+    /**
+     * Verifica si el comprobante es de tipo sin IVA.
+     *
+     * @param int|Rad_Db_Table_Row $idComprobante identificador del comprobante a verificar o
+     *
+     * @return boolean
+     */
+    public function esComprobanteSinIVA ($idComprobante)
+    {
+        $R_C = Facturacion_Model_DbTable_Comprobantes::recuperarRow($idComprobante);
+        if (!$R_C) {
+            throw new Rad_Db_Table_Exception("No se encontro el comprobante.");
+        }
+        // Recupero el Grupo del Comprobante
+        $Grupo = $this->recuperarGrupoComprobante($idComprobante);
+
+        if ($Grupo == 21) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     /**
      * Verifica si el comprobante es un Concepto Impositivo
@@ -2086,7 +2146,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         if ( $comprobante->Numero == 0 ) {
             Rad_Log::user("Nuevo Comprobante ($tipoComprobante->Descripcion ID $idComprobante)");
         } else {
-            Rad_Log::user("Nuevo Comprobante ($tipoComprobante->Descripcion N° $comprobante->Numero)");
+            Rad_Log::user("Nuevo Comprobante ($tipoComprobante->Descripcion Nº $comprobante->Numero)");
         }
         return $idComprobante;
 

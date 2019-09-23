@@ -56,64 +56,34 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
             },
             items: [
                 {
-                   xtype: 'xdatefield',
-                   fieldLabel: 'Fecha Desde',
-                   format: 'd/m/Y',
-                   dateFormat:'Y-m-d',
-                   name: 'fechaDesde',
-                   forceSelection: true,
-                   anchor: '45%'
-                },
+                    xtype:          'compositefield',
+                    fieldLabel:     'Fecha',
+                    items: [
+                        {xtype: 'displayfield', value: 'Desde:'},{name : 'fechaDesde', xtype: 'xdatefield',format: 'd/m/Y',  dateFormat:'Y-m-d'},
+                        {xtype: 'displayfield', value: 'Hasta:'},{name : 'fechaHasta', xtype: 'xdatefield',format: 'd/m/Y',  dateFormat:'Y-m-d'},
+                    ]
+                },    
                 {
-                   xtype: 'xdatefield',
-                   fieldLabel : 'Fecha Hasta',
-                   format: 'd/m/Y',
-                   dateFormat:'Y-m-d',
-                   name: 'fechaHasta',
-                   forceSelection: true,
-                   anchor: '45%'
-                },
-                {
-                    xtype: 'xcombo',
-                    fieldLabel: 'Libro IVA Desde',                 
-                    anchor: '45%',
-                    displayField: 'Descripcion',
-                    name: 'libroivadesde',
-                    valueField: 'Id',
-                    selectOnFocus: true,
-                    forceSelection: true,
-                    forceReload: true,
-                    hiddenName: "libroIvaDesde",
-                    loadingText: "Cargando...",
-                    msgTarget: 'under',
-                    triggerAction: 'all',
-                    store: new Ext.data.JsonStore({
-                        id: 0,
-                        url:"datagateway\/combolist\/model\/LibrosIVA/m\/Contable\/search\/Descripcion\/sort\/Id\/dir\/desc",
-                        storeId: "LibroIVAStore"
-                    })
-                },
-                
-                {
-                    xtype: 'xcombo',
-                    fieldLabel: 'Libro IVA Hasta',
-                    anchor: '45%',
-                    displayField: 'Descripcion',
-                    name: 'libroivahasta',
-                    valueField: 'Id',
-                    selectOnFocus: true,
-                    forceSelection: true,
-                    forceReload: true,
-                    hiddenName: "libroIvaHasta",
-                    loadingText: "Cargando...",
-                    msgTarget: 'under',
-                    triggerAction: 'all',
-                    store: new Ext.data.JsonStore({
-                        id: 0,
-                        url:"datagateway\/combolist\/model\/LibrosIVA/m\/Contable\/search\/Descripcion\/sort\/Id\/dir\/desc",
-                        storeId: "LibroIVAStore"
-                    })
-                },
+                    xtype:          'compositefield',
+                    fieldLabel:     'Libro Iva',
+                    items: [
+                        {xtype: 'displayfield', value: 'Desde:'},{displayField: 'Descripcion',name : 'libroivadesde',valueField: 'Id', xtype: 'xcombo', selectOnFocus: true, forceSelection: true, forceReload: true,
+                        hiddenName: "libroIvaDesde",loadingText: "Cargando...", msgTarget: 'under',width: 116,
+                        triggerAction: 'all', store: new Ext.data.JsonStore({
+                            id: 0,
+                            url:"datagateway\/combolist\/model\/LibrosIVA/m\/Contable\/search\/Descripcion\/sort\/Id\/dir\/desc",
+                            storeId: "LibroIVAStore"
+                        })},
+                        {xtype: 'displayfield', value: 'Hasta:'},{ displayField: 'Descripcion',name:'libroivahasta', valueField: 'Id',xtype: 'xcombo',selectOnFocus: true, forceSelection: true, forceReload: true,
+                        hiddenName: "libroIvaHasta",loadingText: "Cargando...", msgTarget: 'under',width: 116,
+
+                        triggerAction: 'all',store: new Ext.data.JsonStore({
+                            id: 0,
+                            url:"datagateway\/combolist\/model\/LibrosIVA/m\/Contable\/search\/Descripcion\/sort\/Id\/dir\/desc",
+                            storeId: "LibroIVAStore"
+                        })},
+                    ]
+                }, 
                 {
                     fieldLabel: 'Proveedor',
                     ref: '../persona',

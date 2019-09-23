@@ -109,7 +109,7 @@ class Facturacion_Model_DbTable_ComprobantesRelacionados extends Rad_Db_Table
 
             if (count($R_CR)){
 
-                $grupoPago  = array(9,11);
+                $grupoPago  = array(9,11,22);
                 // Veo que el padre sea un comprobante de pago
                 $M_C = new Facturacion_Model_DbTable_Comprobantes(array(), false);
                 if ( in_array($M_C->recuperarGrupoComprobante($idPadre), $grupoPago) ) {
@@ -720,6 +720,7 @@ class Facturacion_Model_DbTable_ComprobantesRelacionados extends Rad_Db_Table
                         // Incremento la cantidad
                         $cantPorAsociar = $R_CD->Cantidad - $cantidadAnt;
                         // Asocio
+                        //Rad_Log::debug($cantPorAsociar);
                         $this->asociar($idPadre, $idArticulo, $cantPorAsociar);
                     } else {
 
@@ -850,7 +851,7 @@ class Facturacion_Model_DbTable_ComprobantesRelacionados extends Rad_Db_Table
 
         $rX = $this->_db->query($sql);
         $R = $rX->fetchAll();
-        
+    
         $idFCRD = 0;
         $cantidadFCRD = 0;
 
@@ -865,7 +866,6 @@ class Facturacion_Model_DbTable_ComprobantesRelacionados extends Rad_Db_Table
                     // Recupero lo que queda disponible del articulo.
                     $disponible = $this->comprobanteComoHijo_CantSinAsociar($row["idRemito"], $idArticulo);
                     $cantidadAgregar = 0;
-
                     if ($disponible > 0.001) {
                         if ($disponible >= $cantPorAsociar) {
                             $cantidadAgregar = $cantPorAsociar;
@@ -874,7 +874,6 @@ class Facturacion_Model_DbTable_ComprobantesRelacionados extends Rad_Db_Table
                             $cantidadAgregar = $disponible;
                             $cantPorAsociar = $cantPorAsociar - $disponible;
                         }
-
                         $data['Cantidad'] = $row["CantAsociada"] + $cantidadAgregar;
                         $M_CRD->update($data, "Id=" . $row["idFCRD"]);
                     }
@@ -883,7 +882,7 @@ class Facturacion_Model_DbTable_ComprobantesRelacionados extends Rad_Db_Table
                 }
             }
 
-            // Si existe aun un exceso se lo asignamos al ultimo comprobante relacionado.
+           // Si existe aun un exceso se lo asignamos al ultimo comprobante relacionado.
 
             if ($cantPorAsociar > 0.001) {
                if ( $idFCRD <> 0 ) {

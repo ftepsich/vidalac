@@ -81,7 +81,7 @@ class Base_Model_DbTable_Clientes extends Base_Model_DbTable_Personas
             'comboSource'        => 'datagateway/combolist',
             'refTable'           => 'TiposFletesACargo',
             'refColumns'         => 'Id'
-        )
+        ),
 
     );
 

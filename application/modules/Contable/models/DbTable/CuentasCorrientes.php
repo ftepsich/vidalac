@@ -168,6 +168,19 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
                     $asiento->Debe = 0;
                 }
                 break;
+
+            case 21: // Comprobantes sin IVA (H)
+                $asiento->DescripcionComprobante = 'CSI: ' . $row->NumeroSinIVA;
+                $asiento->Haber = $row->getTable()->recuperarMontoTotal($row->Id);
+                $asiento->Debe = 0;
+                break;
+
+            case 22: // Orden de Pago (D)
+                $asiento->DescripcionComprobante = 'OPSI: ' . $this->_getDescripcionComprobante($row);
+                $asiento->Haber = 0;
+                $asiento->Debe = $row->getTable()->recuperarMontoTotal($row->Id);
+                break;
+
         }
 
         $this->delete("Comprobante = $row->Id");
@@ -318,7 +331,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
         
         public function fetchCuentaCorrienteComoProveedor($where = null, $order = null, $count = null, $offset = null) {
         $condicion = "(
-             (TiposDeComprobantes.Grupo IN (1,8,9,13,15,20) AND Comprobantes.EsCliente = 0)
+             (TiposDeComprobantes.Grupo IN (1,8,9,13,15,20,21,22) AND Comprobantes.EsCliente = 0)
              OR (TiposDeComprobantes.Grupo in (6,7,12) AND Comprobantes.EsProveedor = 1) 
              OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci LIKE '%Saldo s/Orden de Pago%') 
              )";

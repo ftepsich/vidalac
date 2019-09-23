@@ -89,7 +89,9 @@
                                         labelWidth: 120,
                                         items: [
                                             <<ListaDePrecio>>,
-                                            <<CondicionDePago>>
+                                            <<CondicionDePago>>,
+                                           <<OrganismoPublico>>
+
                                         ]
                                     }
                                 ]
