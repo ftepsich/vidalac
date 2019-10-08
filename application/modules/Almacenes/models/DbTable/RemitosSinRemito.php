@@ -5,7 +5,7 @@ class Almacenes_Model_DbTable_RemitosSinRemito extends Almacenes_Model_DbTable_R
 
     protected $_name = "Comprobantes";
     
-    protected $_sort = "Id Desc";
+    protected $_sort = array('FechaEmision Desc');
 	
     protected $_permanentValues = array(
         'TipoDeComprobante' => 17
