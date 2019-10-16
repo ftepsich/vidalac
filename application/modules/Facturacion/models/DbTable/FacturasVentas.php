@@ -64,7 +64,7 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
      *
      */
     protected $_permanentValues = array(
-        'TipoDeComprobante' => array(24, 25, 26, 27, 28, 29, 30, 31, 32, 37, 38, 39, 40, 52, 54, 56, 59, 61, 67, 68)
+        'TipoDeComprobante' => array(24, 25, 27, 29, 30, 31,37, 38, 39, 59, 61, 67, 68)
     );
     /**
      * Validadores
