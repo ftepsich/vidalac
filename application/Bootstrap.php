@@ -14,7 +14,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         // Initialize view
         $view = new Zend_View();
         $view->doctype('XHTML1_STRICT');
-        $view->headTitle('Gestion | SmartSoftware Argentina');
+        $view->headTitle('Gestion | Alimentos Vida S.A.');
         // Add it to the ViewRenderer
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
         $view->addHelperPath(APPLICATION_PATH . '/common/helpers', 'View_Helper');
@@ -72,18 +72,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         }
         Rad_PubSub::init('/configs/subscribers.yml');
     }
-/*
-    protected function _initWorkflowDispatcher()
-    {
-        // Depende de pubsub
-        $this->bootstrap('AutoLoad');
-        $this->bootstrap('Registry');
-        $this->bootstrap('PubSub');
-        $db = $this->getResource('db');
-        Service_WorkflowDispatcher::init($db);
-        // Agregamos despachador adicional de pubsubs
-        Rad_PubSub::addDispatcher('Service_WorkflowDispatcher', 'dispatch');
-    }*/
+
     protected function _initSlowCache()
     {
         $frontendOptions = array(
@@ -118,19 +107,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             $profiler->setEnabled(true);
         }
     }
-    //BARRA DE DEPURACION LA DESACTIVO PQ NO SIRVE PARA PETICIONES AJAX
-    /*
-      protected function _initZFDebug ()
-      {
-          $autoloader = Zend_Loader_Autoloader::getInstance();
-          $autoloader->registerNamespace('ZFDebug');
-          $options = array('plugins' => array('Variables' , 'Database' => array('adapter' => $db) , 'File' => array('basePath' => '/path/to/project') , 'Memory' , 'Time' , 'Registry' , //'Cache' => array('backend' => $cache->getBackend()) ,
-          'Exception'));
-          $debug = new ZFDebug_Controller_Plugin_Debug($options);
-          $this->bootstrap('frontController');
-          $frontController = $this->getResource('frontController');
-          $frontController->registerPlugin($debug);
-      } */
+
     protected function _initAutoLoad()
     {
         //TODO: ver si esta bien configurado
