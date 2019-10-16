@@ -223,7 +223,7 @@ Rad.confirmDialog = function (cnf, callback) {
 }
 
 Rad.loginWindow = Ext.extend(Ext.Window, {
-    title:'SmartGestión',
+    title:'Iniciar Sesión',
     width:300,
     height:260,
 
