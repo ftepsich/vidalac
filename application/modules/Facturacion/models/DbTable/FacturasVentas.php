@@ -64,8 +64,9 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
      *
      */
     protected $_permanentValues = array(
-        'TipoDeComprobante' => array(24, 25, 27, 29, 30, 31,37, 38, 39, 59, 61, 67, 68)
+        'TipoDeComprobante' => array(24, 25, 27, 29, 30, 31, 37, 38, 39, 59, 61, 67, 68, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88)
     );
+
     /**
      * Validadores
      *
@@ -86,7 +87,7 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
                 'Punto = {Punto} AND Numero = {Numero} AND TipoDeComprobante = {TipoDeComprobante} AND Id <> {Id} And Numero <> 0 AND Anulado <> 1'
             ),
             'messages' => array(
-                'Falta ingresar el Número',
+                'Falta ingresar el NÃºmero',
                 'El numero %value% de Factura de venta ya existe'
             )
         ),
@@ -272,6 +273,15 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
             case 12: // Notas de Debito Emitidas
                 $data['DescripcionComprobante'] = 'NDE: ' . $M_CC->_getDescripcionComprobante($row2);
                 break;
+	    case 23: //Facturas de Crédito MiPyMEs 
+            $data['DescripcionComprobante'] = 'FCM: ' . $M_CC->_getDescripcionComprobante($row2);
+            break;	
+            case 24: //Notas de Debito MiPyMEs Emitidas 
+            $data['DescripcionComprobante'] = 'NDME: ' . $M_CC->_getDescripcionComprobante($row2);
+            break;
+            case 26: //Notas de Credito MiPyMEs Emitidas 
+            $data['DescripcionComprobante'] = 'NCME: ' . $M_CC->_getDescripcionComprobante($row2);
+            break;	
         }
         try {
             $M_CC->update($data, 'Comprobante = '. $id);
@@ -299,7 +309,7 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
             foreach ($reg as $row) {
 
                 //Controla que no se cargue una factura con fecha anterior a una factura ya impresa
-                //Recupera y graba el Libro de IVA del mes y año en que se emite la factura
+                //Recupera y graba el Libro de IVA del mes y aÃ±o en que se emite la factura
                 if ($data['FechaEmision']) {
                     if ($data['TipoDeComprobante']) {
                         $Tipo = $data['TipoDeComprobante'];
@@ -345,7 +355,7 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
 
                     // Si el adaptador genera numero no permitimos el cambio
                     if ($adaptador->getGeneraNumero()) {
-                        throw new Rad_Db_Table_Exception('El punto de venta genera numeracion, no puede cambiar el número');
+                        throw new Rad_Db_Table_Exception('El punto de venta genera numeracion, no puede cambiar el nÃºmero');
                     }
                 }
 
@@ -466,13 +476,7 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
                         LEFT JOIN TiposDeComprobantes TDC ON C.TipoDeComprobante = TDC.Id
                     WHERE CD.ComprobantePadre = $idFactura AND TDC.Grupo = 10";
             $R = $this->_db->fetchAll($sql);
-            // Si tiene solo un remito, updatea el valor declarado del mismo
-            if (count($R) == 1) {
-                $M_RS = Service_TableManager::get('Almacenes_Model_DbTable_RemitosDeSalidas');
-                $M_C  = Service_TableManager::get('Facturacion_Model_DbTable_Comprobantes');
-
-                $M_RS->updatearValorDeclarado($R[0]['Id'], $M_C->recuperarMontoTotal($idFactura));
-            }
+        
             // Fiscalizamos la factura
             $fiscalizador = new Facturacion_Model_Fiscalizar();
             $fiscalizador->fiscalizar($factura);
@@ -837,7 +841,7 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
     // ========================================================================================================================
     public function fetchFacturasDeVentas ($where = null, $order = null, $count = null, $offset = null)
     {
-        $condicion = "Comprobantes.Cerrado = 1 and Comprobantes.Anulado = 0 and Comprobantes.TipoDeComprobante in (24,25,26,27,28)";
+        $condicion = "Comprobantes.Cerrado = 1 and Comprobantes.Anulado = 0 and Comprobantes.TipoDeComprobante in (24,25,26,27,28,79,80)";
         $this->_addCondition($where, $condicion);
         return parent::fetchAll($where, $order, $count, $offset);
     }

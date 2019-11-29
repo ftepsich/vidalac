@@ -17,7 +17,6 @@ class Server
 
 	public function estado ($a, $b)
 	{
-		// throw new Exception('Se enpingo la cachinga');
 		return array (
 			'success' => false,
 			'msg' 	  => 'error'

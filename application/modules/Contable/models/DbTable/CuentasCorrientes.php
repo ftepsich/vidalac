@@ -181,7 +181,26 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
                 $asiento->Debe = $row->getTable()->recuperarMontoTotal($row->Id);
                 break;
 
+	    case 23: // Facturas de Credito MiPyMEs  (D)
+            $asiento->DescripcionComprobante = 'FCM: ' . $this->_getDescripcionComprobante($row);
+            $asiento->Debe = $row->getTable()->recuperarMontoTotal($row->Id);
+            $asiento->Haber = 0; 
+            break;
+
+            case 24: // Notas de Debito MiPyMEs Emitidas  (D)
+            $asiento->DescripcionComprobante = 'NDME: ' . $this->_getDescripcionComprobante($row);
+            $asiento->Haber = 0;
+            $asiento->Debe = $row->getTable()->recuperarMontoTotal($row->Id);
+            break;
+
+            case 26: // Notas de Credito MiPyMEs Emitidas  (H)
+            $asiento->DescripcionComprobante = 'NCME: ' . $this->_getDescripcionComprobante($row);
+            $asiento->Haber = $row->getTable()->recuperarMontoTotal($row->Id);
+            $asiento->Debe = 0;
+            break;
         }
+
+        
 
         $this->delete("Comprobante = $row->Id");
 
@@ -213,7 +232,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
             $TotalMontoCompensacion = $this->_db->fetchOne($sql);
             if ($TotalMontoCompensacion > 0) {
 
-                // Compensación Ventas en Orden de Pago
+                // CompensaciÃ³n Ventas en Orden de Pago
                 $asiento = $this->createRow();
                 $asiento->Persona = $row->Persona;
                 $asiento->Comprobante = $row->Id;
@@ -225,7 +244,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
                 $asiento->TipoDeComprobante = 67;
                 $asiento->save();
 
-                // Compensación Compras en Orden de Pago
+                // CompensaciÃ³n Compras en Orden de Pago
                 $asiento = $this->createRow();
                 $asiento->Persona = $row->Persona;
                 $asiento->Comprobante = $row->Id;
@@ -254,7 +273,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
 
             if ($TotalMontoCompensacion <> 0) {
 
-                // Compensación Ventas en Recibo
+                // CompensaciÃ³n Ventas en Recibo
                 $asiento = $this->createRow();
                 $asiento->Persona = $row->Persona;
                 $asiento->Comprobante = $row->Id;
@@ -266,7 +285,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
                 $asiento->TipoDeComprobante = 67;
                 $asiento->save();
 
-                // Compensación Compras en Recibo
+                // CompensaciÃ³n Compras en Recibo
                 $asiento = $this->createRow();
                 $asiento->Persona = $row->Persona;
                 $asiento->Comprobante = $row->Id;
@@ -321,7 +340,7 @@ class Contable_Model_DbTable_CuentasCorrientes extends Rad_Db_Table {
 
     public function fetchCuentaCorrienteComoCliente($where = null, $order = null, $count = null, $offset = null) {
         $condicion = "( 
-            (TiposDeComprobantes.Grupo IN (6,7,11,12,19) AND TiposDeComprobantes.Id NOT IN (65,66) AND Comprobantes.EsProveedor = 0) 
+            (TiposDeComprobantes.Grupo IN (6,7,11,12,19,23,24,26) AND TiposDeComprobantes.Id NOT IN (65,66) AND Comprobantes.EsProveedor = 0) 
             OR (TiposDeComprobantes.Grupo IN (1,8,13,15) AND Comprobantes.EsCliente = 1) 
             OR (fNumeroCompleto(CuentasCorrientes.Comprobante,'S') COLLATE utf8_general_ci LIKE '%Saldo s/Recibo%') 
             )";

@@ -6,7 +6,7 @@ ERP.depositoResaltadorMenu = Ext.extend(Ext.menu.Item, {
      * Inicializa el componente
      */
     initComponent: function() {
-        this.menu = {        // <-- submenu by nested config object
+        this.menu = {        
             items: [{
                 text: 'Articulo',
                 scope: this,

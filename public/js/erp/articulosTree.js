@@ -64,7 +64,6 @@ Rad.ArticulosTreePanel = Ext.extend(Ext.TabPanel, {
     initComponent: function() {
         /**
          * @event clickNode
-         * Fires when a node is clicked
          * @param {Ext.Component} this
          * @param {number} articuloVersion
          * @param item

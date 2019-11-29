@@ -60,7 +60,6 @@ class ConfiguracionController extends Rad_Window_Controller_Action
 
     public function getwallpapersAction()
     {
-        // no se renderiza
         $this->_helper->viewRenderer->setNoRender(true);
 
         $rowset = array();

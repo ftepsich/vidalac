@@ -93,7 +93,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
             border: false,
             layout: 'fit',
             ishidden: true,
-            title: 'Emisión de Comprobante',
+            title: 'EmisiÃ³n de Comprobante',
             plain: true,
             items: this.wizard,
             form: this.form,
@@ -151,7 +151,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     if ( result == 1 ) {
                         Ext.Msg.show({
                             title : 'Atencion',
-                            msg : 'El Cliente seleccionado se encuentra BLOQUEADO.<br><br> No puede utilizarse para la operación que intenta realizar.',
+                            msg : 'El Cliente seleccionado se encuentra BLOQUEADO.<br><br> No puede utilizarse para la operaciÃ³n que intenta realizar.',
                             width : 400,
                             closable : false,
                             buttons : Ext.Msg.OK,
@@ -167,8 +167,8 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                 if (e.status) {
                     if ( result == 0 ) {
                         Ext.Msg.show({
-                            title : 'Atención',
-                            msg : 'El Cliente no tiene situación impositiva cargada. ¿Desea Continuar?',
+                            title : 'AtenciÃ³n',
+                            msg : 'El Cliente no tiene situaciÃ³n impositiva cargada. Â¿Desea Continuar ?',
                             width : 400,
                             closable : false,
                             buttons : Ext.Msg.YESNO,
@@ -185,7 +185,6 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     }
                 }
             }, this);
-
             this.updateEstadoDeCuentaPorCliente(record.data.Id);
             // Setea el tipo de comprobante segun la modalidad de iva y el tipo de comprobante
             var form = this.form.getForm();
@@ -250,7 +249,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
         var combo = this.form.getForm().findField('Persona');
         var tipo = this.form.getForm().findField('TipoDeComprobante');
         var ComprobanteRelacionado = this.form.getForm().findField('ComprobanteRelacionado');
-        if (tipo.getValue() < 29) {
+        if (tipo.getValue() < 29 || tipo.getValue() > 70) {
             ComprobanteRelacionado.disable();
             ComprobanteRelacionado.setValue(null);
             combo.store.baseParams.EsCliente = 1;
@@ -272,7 +271,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
             defaults: {border:false},
             items: [
                 this.renderWizardItem('Ingresar los datos del comprobante', '', this.form),
-                this.renderWizardItem('Ingresar datos Exportación', '', this.renderExportForm()),
+                this.renderWizardItem('Ingresar datos ExportaciÃ³n', '', this.renderExportForm()),
                 this.renderWizardItem('Seleccionar los remitos asociados', '', this.renderPaso1()),
                 this.renderWizardItem('Agregar art&iacute;culos y completar datos', '', this.gridArticulos),
                 this.renderWizardItem('Ingresar los conceptos impositivos', '', this.gridCI),
@@ -285,7 +284,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
             'activate',
             function (i) {
                 switch (i) {
-                    // si activo el paso 1 cargo la grilla de Permisos de Exportación
+                    // si activo el paso 1 cargo la grilla de Permisos de ExportaciÃ³n
                     case 1:
                         var id   		= this.form.record.data.Id;
                         var detailGrid 	= {remotefield: 'Comprobante', localfield: 'Id'};
@@ -476,7 +475,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                         Models.Base_Model_ClientesMapper.getIBProximosVencimientosCM05(IdPersonaComprobante.getValue(), function(result, e) {
                             if (e.status) {
                                 if ( result > 0 ) {
-                                    Ext.Msg.confirm('Atencion','El formulario CM05 de Ingresos Brutos del Cliente se encuentra vencido. ¿Continuar?',function(btn) {
+                                    Ext.Msg.confirm('Atencion','El formulario CM05 de Ingresos Brutos del Cliente se encuentra vencido. Continuar ?',function(btn) {
                                            if (btn == 'yes') {
                                                 app.publish('/desktop/wait', 'Cerrando el comprobante');
                                                 Models.Facturacion_Model_FacturasVentasMapper.cerrar(IdComprobante, function (result, e) {
@@ -541,7 +540,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                 menu: [
                     {
                         text: 'Refiscalizar',
-                        tooltip :'<b>Refiscaliza el comprobante</b><br>Imprime nuevamente o lo informa a la AFIP de ser electrónico',
+                        tooltip :'<b>Refiscaliza el comprobante</b><br>Imprime nuevamente o lo informa a la AFIP de ser electrÃ³nico',
                         icon: 'images/printer.png',
                         cls: 'x-btn-text-icon',
                         scope:  this.grid,
@@ -573,7 +572,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                             var sel = this.getSelectionModel().getSelected();
                             if (!sel) return;
 
-                            Ext.MessageBox.confirm('Atención','Quieres cambiar el comprobante de cta. cte. (Proveedor - Cliente)<br><br><span style="color:red">Desea continuar?</span>',function(btn){
+                            Ext.MessageBox.confirm('AtenciÃ³n','Quieres cambiar el comprobante de cta. cte. (Proveedor - Cliente)<br><br><span style="color:red">Desea continuar?</span>',function(btn){
                                 if (btn == 'yes') {
                                     Rad.callRemoteJsonAction({
                                         params: {
@@ -774,7 +773,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                 }
                 if (selected.get('Cerrado') == '0') {
                     Ext.Msg.show({
-                        title: 'Atención',
+                        title: 'Atencion',
                         msg: 'Este registro aun no esta cerrado.',
                         modal: true,
                         icon: Ext.Msg.WARNING,
@@ -783,7 +782,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     return;
                 }
 
-                if (Ext.Msg.confirm('Atención','¿Está seguro que desea anular el comprobante seleccionado?', function (btn) {
+                if (Ext.Msg.confirm('Atencion','Â¿EstÃ¡ seguro que desea anular el comprobante seleccionado?', function (btn) {
                     if (btn == 'yes') {
                         var id = selected.get('Id');
                         this.form.record = selected;
