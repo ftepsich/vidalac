@@ -39,7 +39,7 @@ class Almacenes_Model_DbTable_RemitosArticulosDeEntradas extends Almacenes_Model
                                     )",
                 'Tipo'
             ),
-            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'comboBox' => true, 
             'comboSource' => 'datagateway/combolist/fetch/EsArticuloParaCompra',
             'refTable' => 'Articulos',
             'refColumns' => 'Id',
@@ -47,7 +47,6 @@ class Almacenes_Model_DbTable_RemitosArticulosDeEntradas extends Almacenes_Model
         ),
         'Remitos' => array(
             'columns'         => 'Comprobante',
-            //'refTableClass' => 'Almacenes_Model_DbTable_Remitos',
             'refTableClass'   => 'Almacenes_Model_DbTable_RemitosDeEntradas',
             'refJoinColumns'  => array('Numero'),
             'comboBox'        => true,
@@ -209,5 +208,4 @@ class Almacenes_Model_DbTable_RemitosArticulosDeEntradas extends Almacenes_Model
 
         return parent:: fetchAll($where, $order, $count, $offset);
     }
-
 }

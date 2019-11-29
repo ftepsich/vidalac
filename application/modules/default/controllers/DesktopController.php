@@ -141,7 +141,7 @@ class DesktopController extends Zend_Controller_Action
                         <div class="loadinganim-ball1"></div>
                     </div>
                     <div class="loading-indicator">
-                        <img src="/images/cargando.jpg" alt="Cargando..." /><br />
+                        <img src="/images/VidalacLogo.jpg" alt="Cargando..." /><br />
                         <span id="loading-msg">Cargando...</span><br />
                     </div>
                 </div>';
