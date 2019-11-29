@@ -54,7 +54,7 @@ class Almacenes_Model_DbTable_RemitosArticulos extends Facturacion_Model_DbTable
                 "DescArreglada" => "IF(ComprobantesDetalles.Articulo is null,ComprobantesDetalles.Observaciones,Articulos.Descripcion)",
                 'Tipo'
             ),
-            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'comboBox' => true, 
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Articulos',
             'refColumns' => 'Id',
@@ -143,9 +143,6 @@ class Almacenes_Model_DbTable_RemitosArticulos extends Facturacion_Model_DbTable
                 // Updateo
                 parent::update($data, "Id=" . $row['Id']);
 
-                /* 	TODO: Ojo con las dobles publicaciones, aca se publica en el hijo y aca tambien (padre)
-                  Rad_PubSub::publish('Almacenes_RA_Updateado',$row);
-                 */
             }
 
             $this->_db->commit();
@@ -181,9 +178,6 @@ class Almacenes_Model_DbTable_RemitosArticulos extends Facturacion_Model_DbTable
                 foreach ($reg as $row) {
                     // Publico y borro el renglon
                     parent::delete("Id =" . $row['Id']);
-                    /* 	TODO: Ojo con las dobles publicaciones, aca se publica en el hijo y aca tambien (padre)
-                      Rad_PubSub::publish('Almacenes_RA_Borrado',$row);
-                     */
                 }
             }
             $this->_db->commit();
@@ -192,5 +186,4 @@ class Almacenes_Model_DbTable_RemitosArticulos extends Facturacion_Model_DbTable
             throw $e;
         }
     }
-
 }
