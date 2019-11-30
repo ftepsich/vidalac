@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.21" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 2.5.2.v20100208 Build &lt;2.5.2.v20100210-0630></property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
     <property name="units">in</property>
     <method name="initialize"><![CDATA[reportContext.setGlobalVariable("TablaRemitosAsociados_Visible",false);
 reportContext.setGlobalVariable("Observaciones_Visible",false);
@@ -20,6 +20,7 @@ reportContext.setGlobalVariable("Anulada_Visible",false);]]></method>
     <list-property name="cssStyleSheets">
         <structure>
             <property name="fileName">css/EstiloBase.css</property>
+            <property name="useExternalCss">false</property>
         </structure>
     </list-property>
     <parameters>
@@ -48,6 +49,12 @@ reportContext.setGlobalVariable("Anulada_Visible",false);]]></method>
                 <ex-property>
                     <name>metadataBidiFormatStr</name>
                     <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
                 </ex-property>
             </list-property>
         </oda-data-source>
@@ -193,33 +200,89 @@ reportContext.setGlobalVariable("Anulada_Visible",false);]]></method>
                     </structure>
                     <structure>
                         <property name="position">26</property>
+                        <property name="name">Divisa</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">27</property>
+                        <property name="name">ValorDivisa</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">28</property>
                         <property name="name">DireccionDeEntrega</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">27</property>
-                        <property name="name">DireccionDeSalida</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                    <structure>
-                        <property name="position">28</property>
-                        <property name="name">CAE_FechaVencimiento</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                    <structure>
                         <property name="position">29</property>
-                        <property name="name">CAE_Obs</property>
+                        <property name="name">LocalidadDeEntrega</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">30</property>
+                        <property name="name">ProvinciaDeEntrega</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">31</property>
+                        <property name="name">DireccionDeSalida</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">32</property>
+                        <property name="name">LocalidadDeSalida</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">33</property>
+                        <property name="name">ProvinciaDeSalida</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">34</property>
+                        <property name="name">CAE_FechaVencimiento</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">35</property>
+                        <property name="name">CAE_Obs</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">36</property>
                         <property name="name">CAE_Numero</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">37</property>
+                        <property name="name">AfipCodigoComprobante</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">38</property>
+                        <property name="name">PlanDeCuenta_Descripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">39</property>
+                        <property name="name">FechaVencimiento</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">40</property>
+                        <property name="name">CBUOrigen</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">41</property>
+                        <property name="name">ComprobanteRelacionado</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
             </structure>
             <method name="onFetch"><![CDATA[
                reportContext.setGlobalVariable("Persona",dataSetRow["Persona"]);
+               reportContext.setGlobalVariable("Divisa" ,dataSetRow["Divisa"]);
                if (row["ObservacionesImpresas"]){
                       reportContext.setGlobalVariable("Observaciones_Visible",true);
                }
@@ -380,37 +443,103 @@ reportContext.setGlobalVariable("Anulada_Visible",false);]]></method>
                 </structure>
                 <structure>
                     <property name="position">26</property>
+                    <property name="name">Divisa</property>
+                    <property name="nativeName">Divisa</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">27</property>
+                    <property name="name">ValorDivisa</property>
+                    <property name="nativeName">ValorDivisa</property>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="position">28</property>
                     <property name="name">DireccionDeEntrega</property>
                     <property name="nativeName">DireccionDeEntrega</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">27</property>
+                    <property name="position">29</property>
+                    <property name="name">LocalidadDeEntrega</property>
+                    <property name="nativeName">LocalidadDeEntrega</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">30</property>
+                    <property name="name">ProvinciaDeEntrega</property>
+                    <property name="nativeName">ProvinciaDeEntrega</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">31</property>
                     <property name="name">DireccionDeSalida</property>
                     <property name="nativeName">DireccionDeSalida</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">28</property>
+                    <property name="position">32</property>
+                    <property name="name">LocalidadDeSalida</property>
+                    <property name="nativeName">LocalidadDeSalida</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">33</property>
+                    <property name="name">ProvinciaDeSalida</property>
+                    <property name="nativeName">ProvinciaDeSalida</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">34</property>
                     <property name="name">CAE_FechaVencimiento</property>
                     <property name="nativeName">CAE_FechaVencimiento</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">29</property>
+                    <property name="position">35</property>
                     <property name="name">CAE_Obs</property>
                     <property name="nativeName">CAE_Obs</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">30</property>
+                    <property name="position">36</property>
                     <property name="name">CAE_Numero</property>
                     <property name="nativeName">CAE_Numero</property>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="position">37</property>
+                    <property name="name">AfipCodigoComprobante</property>
+                    <property name="nativeName">AfipCodigoComprobante</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">38</property>
+                    <property name="name">PlanDeCuenta_Descripcion</property>
+                    <property name="nativeName">PlanDeCuenta_Descripcion</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">39</property>
+                    <property name="name">FechaVencimiento</property>
+                    <property name="nativeName">FechaVencimiento</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">40</property>
+                    <property name="name">CBUOrigen</property>
+                    <property name="nativeName">CBUOrigen</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">41</property>
+                    <property name="name">ComprobanteRelacionado</property>
+                    <property name="nativeName">ComprobanteRelacionado</property>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[
-call Birt_Comprobante_Cabecera(?);]]></xml-property>
+call Birt_Comprobante_Divisa_Cabecera(?);]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>1.0</Version>
@@ -900,7 +1029,7 @@ call Birt_Comprobante_Cabecera(?);]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[call Birt_Comprobante_Detalle(?);]]></xml-property>
+            <xml-property name="queryText"><![CDATA[call Birt_Comprobante_Divisa_Detalle(?);]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>1.0</Version>
@@ -1068,13 +1197,13 @@ call Birt_Comprobante_Cabecera(?);]]></xml-property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[SELECT    
-    fNumeroCompleto(CR.ComprobanteHijo,'CG') 	AS NumeroCompleto,
-    C.FechaEmision 							AS FechaEmision
+    fNumeroCompleto(CR.ComprobanteHijo,'CG')    AS NumeroCompleto,
+    C.FechaEmision                          AS FechaEmision
 FROM    ComprobantesRelacionados CR    
-        INNER JOIN Comprobantes C 			ON C.Id = CR.ComprobanteHijo
-        INNER JOIN TiposDeComprobantes TC 	ON TC.Id = C.TipoDeComprobante
-where 	CR.ComprobantePadre = ?  
-AND  	TC.Grupo in (4,10)]]></xml-property>
+        INNER JOIN Comprobantes C           ON C.Id = CR.ComprobanteHijo
+        INNER JOIN TiposDeComprobantes TC   ON TC.Id = C.TipoDeComprobante
+where   CR.ComprobantePadre = ?  
+AND     TC.Grupo in (4,10)]]></xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="NetosGravados" id="1279">
             <list-property name="parameters">
@@ -1116,7 +1245,7 @@ AND  	TC.Grupo in (4,10)]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[call Birt_ComprobanteEmitido_NetosGravados(?,0);]]></xml-property>
+            <xml-property name="queryText"><![CDATA[call Birt_ComprobanteEmitido_Divisa_NetosGravados(?,0);]]></xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Impuestos" id="1284">
             <list-property name="columnHints">
@@ -1170,12 +1299,12 @@ AND  	TC.Grupo in (4,10)]]></xml-property>
             </list-property>
             <xml-property name="queryText"><![CDATA[select 
     CASE WHEN CI.TipoDeConcepto = 3 THEN CONCAT(CI.Descripcion, ' ', TRIM(TRAILING '.' FROM TRIM(TRAILING '0' FROM C.ConceptoImpositivoPorcentaje)), '%') ELSE CI.Descripcion END AS Impuesto,
-    C.Monto 		AS Monto
+    (C.Monto/IFNULL(CP.ValorDivisa,1))   AS Monto
   from 
     Comprobantes C
-    inner join ConceptosImpositivos CI       on C.ConceptoImpositivo = CI.Id 
-    inner join Comprobantes         CPadre   on CPadre.Id = C.ComprobantePadre
-    inner join TiposDeComprobantes  TC       on CPadre.TipoDeComprobante = TC.Id 
+    inner join ConceptosImpositivos CI  on C.ConceptoImpositivo = CI.Id 
+    inner join Comprobantes         CP  on CP.Id = C.ComprobantePadre
+    inner join TiposDeComprobantes  TC  on CP.TipoDeComprobante = TC.Id 
   where 
     TC.DiscriminaImpuesto = 1 and C.ComprobantePadre=?
   order by CI.TipoDeConcepto ]]></xml-property>
@@ -1714,6 +1843,26 @@ AND  	TC.Grupo in (4,10)]]></xml-property>
                     <expression name="expression" type="javascript">dataSetRow["CAE_Numero"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">CBUOrigen</property>
+                    <text-property name="displayName">CBUOrigen</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["CBUOrigen"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaVencimiento</property>
+                    <text-property name="displayName">FechaVencimiento</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaVencimiento"]</expression>
+                    <property name="dataType">date</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">ComprobanteRelacionado</property>
+                    <text-property name="displayName">ComprobanteRelacionado</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ComprobanteRelacionado"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="966">
                 <property name="width">3.323166666666667cm</property>
@@ -1777,6 +1926,7 @@ AND  	TC.Grupo in (4,10)]]></xml-property>
                                 <text-property name="displayName">FechaEmision</text-property>
                                 <expression name="expression" type="javascript">dataSetRow["FechaEmision"]</expression>
                                 <property name="dataType">date</property>
+                                <property name="allowExport">true</property>
                             </structure>
                         </list-property>
                         <property name="resultSetColumn">FechaEmision</property>
@@ -2001,12 +2151,137 @@ AND  	TC.Grupo in (4,10)]]></xml-property>
                     </data>
                 </cell>
             </row>
+            <row id="2682">
+                <cell id="2683">
+                    <property name="paddingTop">1pt</property>
+                    <label id="2688">
+                        <property name="style">nombre-cabecera</property>
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                                <expression name="valueExpr" >row["CBUOrigen"] == null</expression>
+                            </structure>
+                        </list-property>
+                        <text-property name="text">CBU</text-property>
+                    </label>
+                </cell>
+                <cell id="2684">
+                    <property name="paddingTop">1pt</property>
+                    <data id="2690">
+                        <property name="style">campo-cabecera</property>
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                                <expression name="valueExpr" >row["CBUOrigen"] == null</expression>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">CBUOrigen</property>
+                    </data>
+                </cell>
+                <cell id="2685">
+                    <property name="paddingTop">1pt</property>
+                </cell>
+                <cell id="2686">
+                    <property name="paddingTop">1pt</property>
+                    <property name="verticalAlign">bottom</property>
+                    <label id="2689">
+                        <property name="style">nombre-cabecera</property>
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                                <expression name="valueExpr" >row["FechaVencimiento"] == null</expression>
+                            </structure>
+                        </list-property>
+                        <text-property name="text">Fecha Vto.</text-property>
+                    </label>
+                </cell>
+                <cell id="2687">
+                    <property name="paddingTop">1pt</property>
+                    <property name="verticalAlign">bottom</property>
+                    <data id="2691">
+                        <property name="style">campo-cabecera</property>
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                                <expression name="valueExpr" >row["FechaVencimiento"] == null</expression>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">FechaVencimiento</property>
+                    </data>
+                </cell>
+            </row>
             <row id="1139">
                 <cell id="1140">
                     <property name="paddingTop">1pt</property>
+                    <label id="2693">
+                        <property name="style">nombre-cabecera</property>
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                                <expression name="valueExpr" >row["ComprobanteRelacionado"] == null</expression>
+                            </structure>
+                        </list-property>
+                        <text-property name="text">Cbte. Relacionado</text-property>
+                    </label>
                 </cell>
                 <cell id="1141">
                     <property name="paddingTop">1pt</property>
+                    <data id="2695">
+                        <property name="backgroundAttachment">scroll</property>
+                        <property name="backgroundPositionX">0%</property>
+                        <property name="backgroundPositionY">0%</property>
+                        <property name="backgroundRepeat">repeat</property>
+                        <property name="fontFamily">"Verdana"</property>
+                        <property name="fontSize">9pt</property>
+                        <property name="fontWeight">lighter</property>
+                        <property name="fontStyle">normal</property>
+                        <property name="fontVariant">normal</property>
+                        <property name="color">#000000</property>
+                        <property name="textLineThrough">none</property>
+                        <property name="textOverline">none</property>
+                        <property name="textUnderline">none</property>
+                        <property name="borderBottomColor">black</property>
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftColor">black</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightColor">black</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopColor">black</property>
+                        <property name="borderTopStyle">none</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="marginTop">0pt</property>
+                        <property name="marginLeft">0pt</property>
+                        <property name="marginBottom">0pt</property>
+                        <property name="marginRight">0pt</property>
+                        <property name="paddingTop">1pt</property>
+                        <property name="paddingLeft">1pt</property>
+                        <property name="paddingBottom">1pt</property>
+                        <property name="paddingRight">1pt</property>
+                        <property name="letterSpacing">normal</property>
+                        <property name="lineHeight">normal</property>
+                        <property name="orphans">2</property>
+                        <property name="textTransform">none</property>
+                        <property name="whiteSpace">normal</property>
+                        <property name="widows">2</property>
+                        <property name="wordSpacing">normal</property>
+                        <property name="display">block</property>
+                        <property name="pageBreakAfter">auto</property>
+                        <property name="pageBreakBefore">auto</property>
+                        <property name="pageBreakInside">auto</property>
+                        <property name="showIfBlank">false</property>
+                        <property name="canShrink">false</property>
+                        <property name="overflow">hidden</property>
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                                <expression name="valueExpr" >row["ComprobanteRelacionado"] == null</expression>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">ComprobanteRelacionado</property>
+                    </data>
                 </cell>
                 <cell id="1142">
                     <property name="paddingTop">1pt</property>
@@ -2167,8 +2442,12 @@ AND  	TC.Grupo in (4,10)]]></xml-property>
                                 <property name="category">Currency</property>
                                 <property name="pattern">$ #,##0.00</property>
                             </structure>
-                            <method name="onCreate"><![CDATA[if ( reportContext.getGlobalVariable("Persona") == 3582 ) { this.getStyle().numberFormat="$ #,##0.000"; }]]></method>
                             <property name="textAlign">right</property>
+                            <method name="onCreate"><![CDATA[
+                                if ( reportContext.getGlobalVariable("Persona") == 3582 ) { this.getStyle().numberFormat="$ #,##0.000"; }
+                                if ( reportContext.getGlobalVariable("Divisa") == 2 ) { this.getStyle().numberFormat="u$s #,##0.00"; }
+                                
+                            ]]></method>
                             <property name="resultSetColumn">PrecioUnitario</property>
                         </data>
                     </cell>
@@ -2188,6 +2467,7 @@ AND  	TC.Grupo in (4,10)]]></xml-property>
                                 <property name="category">Currency</property>
                                 <property name="pattern">$ #,##0.00</property>
                             </structure>
+                            <method name="onCreate"><![CDATA[if ( reportContext.getGlobalVariable("Divisa") == 2 ) { this.getStyle().numberFormat="u$s #,##0.00"; } ]]></method>
                             <property name="textAlign">right</property>
                             <property name="resultSetColumn">MontoSinDescuento</property>
                         </data>
@@ -2214,6 +2494,7 @@ AND  	TC.Grupo in (4,10)]]></xml-property>
                                 <property name="category">Currency</property>
                                 <property name="pattern">$ #,##0.00</property>
                             </structure>
+                            <method name="onCreate"><![CDATA[if ( reportContext.getGlobalVariable("Divisa") == 2 ) { this.getStyle().numberFormat="u$s #,##0.00"; } ]]></method>
                             <property name="resultSetColumn">SubTotal</property>
                         </data>
                     </cell>
@@ -2364,9 +2645,9 @@ AND  	TC.Grupo in (4,10)]]></xml-property>
                             <structure>
                                 <property name="format">all</property>
                                 <expression name="valueExpr" type="javascript">if (BirtComp.equalTo( reportContext.getGlobalVariable("TablaRemitosAsociados_Visible"),true ))&#13;
-	false  // No oculta el titulo&#13;
+    false  // No oculta el titulo&#13;
 else&#13;
-	true  // Oculta el titulo</expression>
+    true  // Oculta el titulo</expression>
                             </structure>
                         </list-property>
                         <column id="1182">
@@ -2437,9 +2718,9 @@ else&#13;
                             <structure>
                                 <property name="format">all</property>
                                 <expression name="valueExpr" type="javascript">if (BirtComp.equalTo( reportContext.getGlobalVariable("Observaciones_Visible"),true ))&#13;
-	false  // No oculta el titulo&#13;
+    false  // No oculta el titulo&#13;
 else&#13;
-	true  // Oculta el titulo</expression>
+    true  // Oculta el titulo</expression>
                             </structure>
                         </list-property>
                         <column id="1219">
@@ -2637,6 +2918,7 @@ else&#13;
                                         <property name="pattern">$ #,##0.00</property>
                                     </structure>
                                     <property name="textAlign">right</property>
+                                    <method name="onCreate"><![CDATA[if ( reportContext.getGlobalVariable("Divisa") == 2 ) { this.getStyle().numberFormat="u$s #,##0.00"; } ]]></method>
                                     <property name="resultSetColumn">SumDescuento</property>
                                 </data>
                             </cell>
@@ -2680,6 +2962,7 @@ else&#13;
                                             <property name="pattern">$ #,##0.00</property>
                                         </structure>
                                         <property name="textAlign">right</property>
+                                        <method name="onCreate"><![CDATA[if ( reportContext.getGlobalVariable("Divisa") == 2 ) { this.getStyle().numberFormat="u$s #,##0.00"; } ]]></method>
                                         <property name="resultSetColumn">NetoGravado</property>
                                     </data>
                                 </cell>
@@ -2722,6 +3005,7 @@ else&#13;
                                             <property name="pattern">$ #,##0.00</property>
                                         </structure>
                                         <property name="textAlign">right</property>
+                                        <method name="onCreate"><![CDATA[if ( reportContext.getGlobalVariable("Divisa") == 2 ) { this.getStyle().numberFormat="u$s #,##0.00"; } ]]></method>
                                         <property name="resultSetColumn">Monto</property>
                                     </data>
                                 </cell>
@@ -2823,6 +3107,7 @@ else&#13;
                                         <property name="category">Currency</property>
                                         <property name="pattern">$ #,##0.00</property>
                                     </structure>
+                                    <method name="onCreate"><![CDATA[if ( reportContext.getGlobalVariable("Divisa") == 2 ) { this.getStyle().numberFormat="u$s #,##0.00"; } ]]></method>
                                     <property name="resultSetColumn">MontoTotal</property>
                                 </data>
                             </cell>
