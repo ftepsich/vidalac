@@ -29,7 +29,7 @@ class Almacenes_Model_DbTable_RemitosArticulosDeSalidas extends Almacenes_Model_
         'Articulos' => array(
             'columns'       => 'Articulo',
             'refTableClass' => 'Base_Model_DbTable_ArticulosGenericos',
-            'comboBox'      => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'comboBox'      => true, 
             'comboSource'   => 'datagateway/combolist/fetch/EsArticuloParaVenta',
             'refTable'      => 'Articulos',
             'refColumns'    => 'Id',

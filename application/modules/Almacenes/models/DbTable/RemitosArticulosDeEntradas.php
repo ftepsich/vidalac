@@ -39,7 +39,7 @@ class Almacenes_Model_DbTable_RemitosArticulosDeEntradas extends Almacenes_Model
                                     )",
                 'Tipo'
             ),
-            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'comboBox' => true, 
             'comboSource' => 'datagateway/combolist/fetch/EsArticuloParaCompra',
             'refTable' => 'Articulos',
             'refColumns' => 'Id',

@@ -9,8 +9,8 @@ class Almacenes_Model_DbTable_MmisMovimientos extends Rad_Db_Table
         'Mmis' => array(
             'columns'           => 'Mmi',
             'refTableClass'     => 'Almacenes_Model_DbTable_Mmis',
-            'refJoinColumns'    => array("Identificador"),                     // De esta relacion queremos traer estos campos por JOIN
-            'comboBox'          => true,                                     // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'refJoinColumns'    => array("Identificador"),                     
+            'comboBox'          => true,                                     
             'comboSource'       => 'datagateway/combolist',
             'refTable'          => 'Mmis',
             'refColumns'        => 'Id'
@@ -18,8 +18,8 @@ class Almacenes_Model_DbTable_MmisMovimientos extends Rad_Db_Table
         'UbicacionesOrigenes' => array(
             'columns'           => 'UbicacionOrigen',
             'refTableClass'     => 'Almacenes_Model_DbTable_Ubicaciones',
-            'refJoinColumns'    => array("Descripcion"),                     // De esta relacion queremos traer estos campos por JOIN
-            'comboBox'          => true,                                     // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'refJoinColumns'    => array("Descripcion"),                     
+            'comboBox'          => true,                                     
             'comboSource'       => 'datagateway/combolist',
             'refTable'          => 'Ubicaciones',
             'refColumns'        => 'Id',
@@ -28,8 +28,8 @@ class Almacenes_Model_DbTable_MmisMovimientos extends Rad_Db_Table
         'AlmacenesOrigenes' => array(
             'columns'           => 'AlmacenOrigen',
             'refTableClass'     => 'Almacenes_Model_DbTable_Almacenes',
-            'refJoinColumns'    => array("Descripcion"),                     // De esta relacion queremos traer estos campos por JOIN
-            'comboBox'          => true,                                     // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'refJoinColumns'    => array("Descripcion"),                     
+            'comboBox'          => true,                                     
             'comboSource'       => 'datagateway/combolist',
             'refTable'          => 'Almacenes',
             'refColumns'        => 'Id',
@@ -38,8 +38,8 @@ class Almacenes_Model_DbTable_MmisMovimientos extends Rad_Db_Table
         'UbicacionesDestino' => array(
             'columns'           => 'UbicacionDestino',
             'refTableClass'     => 'Almacenes_Model_DbTable_Ubicaciones',
-            'refJoinColumns'    => array("Descripcion"),                     // De esta relacion queremos traer estos campos por JOIN
-            'comboBox'          => true,                                     // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'refJoinColumns'    => array("Descripcion"),                     
+            'comboBox'          => true,                                     
             'comboSource'       => 'datagateway/combolist',
             'refTable'          => 'Ubicaciones',
             'refColumns'        => 'Id',
@@ -48,8 +48,8 @@ class Almacenes_Model_DbTable_MmisMovimientos extends Rad_Db_Table
         'AlmacenesDestino' => array(
             'columns'           => 'AlmacenDestino',
             'refTableClass'     => 'Almacenes_Model_DbTable_Almacenes',
-            'refJoinColumns'    => array("Descripcion"),                     // De esta relacion queremos traer estos campos por JOIN
-            'comboBox'          => true,                                     // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'refJoinColumns'    => array("Descripcion"),                    
+            'comboBox'          => true,                                    
             'comboSource'       => 'datagateway/combolist',
             'refTable'          => 'Almacenes',
             'refColumns'        => 'Id',

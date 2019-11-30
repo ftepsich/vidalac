@@ -88,11 +88,6 @@ RadDesktop.Desktop = function(app) {
             // re-add the button if truely hidden
             win.ishidden = false;
             win.taskButton = taskbar.taskButtonPanel.add(win);
-            /*
-             * Saco la animacion por problemas con el autogrid con autowidth de columnas!!! Martin Santangelo
-             * La volvi a poner pq no se pq la saque : Martin Santangelo(el de arriba es un dolobu barbaro)
-             *
-             */
 
             if ( win.trayButton ) {
                 win.animateTarget = win.trayButton.el;

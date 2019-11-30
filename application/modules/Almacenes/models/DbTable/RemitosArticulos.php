@@ -54,7 +54,7 @@ class Almacenes_Model_DbTable_RemitosArticulos extends Facturacion_Model_DbTable
                 "DescArreglada" => "IF(ComprobantesDetalles.Articulo is null,ComprobantesDetalles.Observaciones,Articulos.Descripcion)",
                 'Tipo'
             ),
-            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'comboBox' => true, 
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Articulos',
             'refColumns' => 'Id',
