@@ -1,5 +1,4 @@
 <?php
-    //TODO: Reescribir esta chanchada (Martin)
     $section = ($this->iniSection == 'default') ? '' : $this->iniSection;
     $jsonExtFile = APPLICATION_PATH.'/modules/'.$this->moduleName.'/views/scripts/form/' . ($this->modelName) .$section. '.json';
     $isTemplate = file_exists($jsonExtFile);

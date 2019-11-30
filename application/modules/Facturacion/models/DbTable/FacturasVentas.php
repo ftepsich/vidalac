@@ -64,8 +64,9 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
      *
      */
     protected $_permanentValues = array(
-        'TipoDeComprobante' => array(24, 25, 27, 29, 30, 31, 37, 38, 39, 59, 61, 67, 68)
+        'TipoDeComprobante' => array(24, 25, 27, 29, 30, 31, 37, 38, 39, 59, 61, 67, 68, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88)
     );
+
     /**
      * Validadores
      *
@@ -272,6 +273,15 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
             case 12: // Notas de Debito Emitidas
                 $data['DescripcionComprobante'] = 'NDE: ' . $M_CC->_getDescripcionComprobante($row2);
                 break;
+	    case 23: //Facturas de Crédito MiPyMEs 
+            $data['DescripcionComprobante'] = 'FCM: ' . $M_CC->_getDescripcionComprobante($row2);
+            break;	
+            case 24: //Notas de Debito MiPyMEs Emitidas 
+            $data['DescripcionComprobante'] = 'NDME: ' . $M_CC->_getDescripcionComprobante($row2);
+            break;
+            case 26: //Notas de Credito MiPyMEs Emitidas 
+            $data['DescripcionComprobante'] = 'NCME: ' . $M_CC->_getDescripcionComprobante($row2);
+            break;	
         }
         try {
             $M_CC->update($data, 'Comprobante = '. $id);
@@ -466,6 +476,7 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
                         LEFT JOIN TiposDeComprobantes TDC ON C.TipoDeComprobante = TDC.Id
                     WHERE CD.ComprobantePadre = $idFactura AND TDC.Grupo = 10";
             $R = $this->_db->fetchAll($sql);
+        
             // Fiscalizamos la factura
             $fiscalizador = new Facturacion_Model_Fiscalizar();
             $fiscalizador->fiscalizar($factura);
@@ -830,7 +841,7 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
     // ========================================================================================================================
     public function fetchFacturasDeVentas ($where = null, $order = null, $count = null, $offset = null)
     {
-        $condicion = "Comprobantes.Cerrado = 1 and Comprobantes.Anulado = 0 and Comprobantes.TipoDeComprobante in (24,25,26,27,28)";
+        $condicion = "Comprobantes.Cerrado = 1 and Comprobantes.Anulado = 0 and Comprobantes.TipoDeComprobante in (24,25,26,27,28,79,80)";
         $this->_addCondition($where, $condicion);
         return parent::fetchAll($where, $order, $count, $offset);
     }

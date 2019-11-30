@@ -9,19 +9,17 @@
  */
 class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Comprobantes {
 
-    protected $_sort = array(
-        'FechaEmision ASC','Numero ASC'
-        );
-
     /**
      * Valores Permanentes
      *
-     * 'TipoDeComprobante' => '19, 20, 21, 22, 23'
+     * 'TipoDeComprobante' => '19, 20, 21, 22, 23, 33, 34, 35, 36, 41, 42, 43, 44, 24, 25, 26, 27, 28, 29, 30, 31, 32, 37, 38, 39, 40, 47, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88'
      *
      */
-    protected $_permanentValues = array(
-        'TipoDeComprobante' => array(19, 20, 21, 22, 23, 33, 34, 35, 36, 41, 42, 43, 44, 24, 25, 26, 27, 28, 29, 30, 31, 32, 37, 38, 39, 40, 47, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66)
+      protected $_permanentValues = array(
+        'TipoDeComprobante' => array(19, 20, 21, 22, 23, 33, 34, 35, 36, 41, 42, 43, 44, 24, 25, 26, 27, 28, 29, 30, 31, 32, 37, 38, 39, 40, 47, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88)
     );
+
+    
     protected $_calculatedFields = array(
         'EstadoPagado' => "fEstadoRelHijoPago(Comprobantes.Id) COLLATE utf8_general_ci ",
         'EstadoRecibido' => "fEstadoRelPadre(Comprobantes.Id) COLLATE utf8_general_ci",

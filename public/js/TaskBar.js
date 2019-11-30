@@ -449,7 +449,6 @@ Ext.ux.TaskBar.TaskButton = function(win, el){
                     if ( win.closeAction == 'hide' )
                         win.hide();
                     else {
-                        // closing here isn't right
                         // instead we'll show and animate
                         //win.close();
                         win.show();

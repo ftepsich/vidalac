@@ -63,7 +63,6 @@ Ext.override( Ext.util.Observable, {
                 return true;
 
         if ( eventName.substr( 0, 1 ) == '/' && eventName.length > 1 ) {
-            // Hierarchical
             var chans = eventName.substr( 1 ).split( '/' );
             var matched = false;
             for ( var i = 0, len = chans.length; i <= len; i++ ) {

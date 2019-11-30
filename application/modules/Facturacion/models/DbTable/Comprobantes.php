@@ -1185,7 +1185,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         if (!$comprobante) throw new Rad_Db_Table_Exception('No se encontro el comprobante');
 
         // Si es factura o Nota A o M
-        if (in_array($comprobante->TipoDeComprobante,array(24,28,29,32,37,40))) {
+        if (in_array($comprobante->TipoDeComprobante,array(24,28,29,32,37,40,79,81,82,85,86))) {
 
             $sql = "select  CI.afip as codAfip,
                             ifnull(C.MontoImponible,0) as MontoImponible,
@@ -1199,7 +1199,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
                     order by afip desc";
             $R = $this->_db->fetchAll($sql);
             // Si es factura o Nota  B,C,E
-        } else if (in_array($comprobante->TipoDeComprobante,array(25,26,27,30,31,38,39))) {
+        } else if (in_array($comprobante->TipoDeComprobante,array(25,26,27,30,31,38,39,80,83,84,87,88))) {
             $R = $this->afip_RecuperarTotalesIVA($idComprobante);
         }
 

@@ -249,7 +249,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
         var combo = this.form.getForm().findField('Persona');
         var tipo = this.form.getForm().findField('TipoDeComprobante');
         var ComprobanteRelacionado = this.form.getForm().findField('ComprobanteRelacionado');
-        if (tipo.getValue() < 29) {
+        if (tipo.getValue() < 29 || tipo.getValue() > 70) {
             ComprobanteRelacionado.disable();
             ComprobanteRelacionado.setValue(null);
             combo.store.baseParams.EsCliente = 1;
