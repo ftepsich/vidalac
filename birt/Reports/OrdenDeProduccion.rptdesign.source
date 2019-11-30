@@ -578,10 +578,10 @@ where OP.Id= ?]]></xml-property>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2" extends="EncabezadoReducido.NewSimpleMasterPage">
-            <property name="type">a4</property>
-            <property name="orientation">landscape</property>
+	    <property name="type">a4</property>
+            <property name="topMargin">0.25in</property>
             <property name="leftMargin">0.25in</property>
-            <property name="bottomMargin">0.1in</property>
+            <property name="rightMargin">0.15in</property>
             <overridden-values>
                 <ref-entry baseId="28" name="NewGrid" id="28"/>
                 <ref-entry baseId="29" id="29"/>

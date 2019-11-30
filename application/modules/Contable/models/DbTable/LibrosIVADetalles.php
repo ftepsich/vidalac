@@ -98,7 +98,7 @@ class Contable_Model_DbTable_LibrosIVADetalles extends Rad_Db_Table
 
         $Multiplicador = 0;
 
-        // Credito en Cuenta Corriente / Debito en Cuenta Corriente / Retencion IB Entre Rios (R) / PercepciÃ³n IB Entre RÃ­Â­os (R)
+        // Credito en Cuenta Corriente / Debito en Cuenta Corriente / Retencion IB Entre Rios (R) / Percepción IB Entre Rí­os (R)
         if ($row->TipoDeComprobante == 65 || $row->TipoDeComprobante == 66 || $row->ConceptoImpositivo == 41 || $row->ConceptoImpositivo == 42) {
             // Comprobante que no se inserta en el libro de IVA, debe mejorarse y crear una columna para estos casos y su correspondiente filtro
             return true;
@@ -122,11 +122,11 @@ class Contable_Model_DbTable_LibrosIVADetalles extends Rad_Db_Table
                     $condicion = " and C.ComprobantePadre = ";
                 }
 
-            // 1:FC, 6:FV, 7:NCE, 8:NCR, 9:OP, 11:RC, 12:NDE, 13:NDR,23:FCM,24:NDME, 26:NCME
+                // 1:FC, 6:FV, 7:NCE, 8:NCR, 9:OP, 11:RC, 12:NDE, 13:NDR
                 switch ($R_TC->Grupo) {
-                    case 1: case 6: case 9: case 11: case 13: case 12: case 14: case 15: case 16: case 23: case 24: $Multiplicador = 1;
+                    case 1: case 6: case 9: case 11: case 13: case 12: case 14: case 15: case 16: $Multiplicador = 1;
                         break;
-                    case 7: case 8: case 26: $Multiplicador = -1;
+                    case 7: case 8: $Multiplicador = -1;
                         break;
                 }
 
@@ -134,7 +134,7 @@ class Contable_Model_DbTable_LibrosIVADetalles extends Rad_Db_Table
                     /* 1 = Compra -- 2 = Venta */
                     case 1: case 8: case 9: case 11: case 13: case 14: case 15: case 16: $tipoDeLibro = 1;
                         break;
-                    case 6: case 7: case 12: case 23: case 24: case 26: $tipoDeLibro = 2;
+                    case 6: case 7: case 12: $tipoDeLibro = 2;
                         break;
                 }
 

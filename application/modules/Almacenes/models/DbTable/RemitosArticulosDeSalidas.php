@@ -29,7 +29,7 @@ class Almacenes_Model_DbTable_RemitosArticulosDeSalidas extends Almacenes_Model_
         'Articulos' => array(
             'columns'       => 'Articulo',
             'refTableClass' => 'Base_Model_DbTable_ArticulosGenericos',
-            'comboBox'      => true, 
+            'comboBox'      => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
             'comboSource'   => 'datagateway/combolist/fetch/EsArticuloParaVenta',
             'refTable'      => 'Articulos',
             'refColumns'    => 'Id',
@@ -43,18 +43,27 @@ class Almacenes_Model_DbTable_RemitosArticulosDeSalidas extends Almacenes_Model_
         'Remitos' => array(
             'columns'        => 'Comprobante',
             'refTableClass'  => 'Almacenes_Model_DbTable_Remitos',
+            // 'refJoinColumns' => array('Numero'),
+            // 'comboBox'       => true,
+            // 'comboSource'    => 'datagateway/combolist',
             'refTable'       => 'Comprobantes',
             'refColumns'     => 'Id',
         ),
         'RemitosDeSalidas' => array(
             'columns'        => 'Comprobante',
             'refTableClass'  => 'Almacenes_Model_DbTable_RemitosDeSalidas',
+            // 'refJoinColumns' => array('Numero'),
+            // 'comboBox'       => true,
+            // 'comboSource'    => 'datagateway/combolist',
             'refTable'       => 'Comprobantes',
             'refColumns'     => 'Id',
         ),
         'RemitosSinRemitoSalida' => array(
             'columns'        => 'Comprobante',
             'refTableClass'  => 'Almacenes_Model_DbTable_RemitosSinRemitoSalida',
+            // 'refJoinColumns' => array('Numero'),
+            // 'comboBox'       => true,
+            // 'comboSource'    => 'datagateway/combolist',
             'refTable'       => 'Comprobantes',
             'refColumns'     => 'Id',
         )
@@ -128,6 +137,40 @@ class Almacenes_Model_DbTable_RemitosArticulosDeSalidas extends Almacenes_Model_
      * @param array $data
      * @return mixed
      */
+    /*
+    public function insert($data)
+    {
+
+        $this->_db->beginTransaction();
+        try {
+
+            if (isset($data['Cantidad']) && $data['Cantidad'] <= 0) {
+                throw new Rad_Db_Table_Exception('La cantidad no puede ser 0 (cero).');
+            }
+
+            if ($data['Articulo'] && $this->estaElArticuloEnComprobante($data['Comprobante'], $data['Articulo'])) {
+                // el articulo se encuentra en el comprobante => updatear cantidad
+                $Rx = $this->fetchRow("ComprobantesDetalles.Comprobante = " . $data['Comprobante'] . " and ComprobantesDetalles.Articulo = " . $data['Articulo']);
+                if ($Rx) {
+                    $data["Cantidad"] = $Rx->Cantidad + $data["Cantidad"];
+                }
+                $this->update($data, "ComprobantesDetalles.Id =".$Rx->Id);
+                $id = $Rx->Id;
+                // Publico
+                Rad_PubSub::publish('Almacenes_RSA_Updateado', $Rx);
+            } else {
+                $id = parent::insert($data);
+                $R_Ins = $this->find($id)->current();
+                Rad_PubSub::publish('Almacenes_RA_Insertado', $R_Ins);
+            }
+            $this->_db->commit();
+            return $id;
+        } catch (Exception $e) {
+            $this->_db->rollBack();
+            throw $e;
+        }
+    }
+    */
 
     /**
      * updateo un registro
@@ -146,6 +189,7 @@ class Almacenes_Model_DbTable_RemitosArticulosDeSalidas extends Almacenes_Model_
             if (isset($data['Cantidad']) && $data['Cantidad'] <= 0) {
                 throw new Rad_Db_Table_Exception('La cantidad no puede ser 0 (cero).');
             }
+
             $M_RE = new Almacenes_Model_DbTable_RemitosDeSalidas(array(), false);
             $reg = $this->fetchAll($where);
 
@@ -157,6 +201,7 @@ class Almacenes_Model_DbTable_RemitosArticulosDeSalidas extends Almacenes_Model_
                 parent::update($data, "$this->_name.Id=" . $row['Id']);
                 Rad_PubSub::publish('Almacenes_RA_Updateado', $row);
             }
+
             $this->_db->commit();
         } catch (Exception $e) {
             $this->_db->rollBack();
@@ -199,4 +244,5 @@ class Almacenes_Model_DbTable_RemitosArticulosDeSalidas extends Almacenes_Model_
             throw $e;
         }
     }
+
 }

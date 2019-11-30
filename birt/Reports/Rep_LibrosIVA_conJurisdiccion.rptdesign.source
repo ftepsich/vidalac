@@ -954,8 +954,8 @@ where	CR.ComprobantePadre = ?]]></xml-property>
         <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie">
          <property name="type">a4</property>
             <property name="orientation">landscape</property>
-            <property name="leftMargin">0in</property>
-            <property name="rightMargin">0in</property>
+            <property name="leftMargin">0.15in</property>
+            <property name="rightMargin">0.15in</property>
             <overridden-values>
                 <ref-entry baseId="2434" name="Cabecera" id="2434"/>
                 <ref-entry baseId="2435" id="2435"/>

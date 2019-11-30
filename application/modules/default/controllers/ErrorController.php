@@ -42,6 +42,7 @@ class ErrorController extends Zend_Controller_Action
                 break;
             default:
 				$req = $this->getRequest();
+
                 Rad_ErrorHandler::handleException($errors->exception, $req);
 				
 				// si la llamada anterior no corta la ejecucion y manda la respuesta renderizo el template estandar de error
@@ -65,7 +66,13 @@ class ErrorController extends Zend_Controller_Action
      */
     protected function _sendJsonResponse($data)
     {
+        // $json = $this->getHelper('Json');
+        // $json->suppressExit = true;
+        // Zend_Wildfire_Channel_HttpHeaders::getInstance()->flush(); // fix para q no rompa el envio a firebug
+        // $json->getResponse()->sendResponse();
+        // $json->sendJson($data, array('enableJsonExprFinder' => true));
 
+        // no puedo enviar la cabecera  json/javascript porque el formulario al tener fielUpload: true no funciona
         $this->_helper->viewRenderer->setNoRender(true);
         Zend_Wildfire_Channel_HttpHeaders::getInstance()->flush(); // fix para q no rompa el envio a firebug
         $data = Zend_Json::encode($data, null, array('enableJsonExprFinder' => true));

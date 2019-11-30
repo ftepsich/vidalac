@@ -41,8 +41,8 @@ class Facturacion_Model_DbTable_OrdenesDeComprasArticulos extends Facturacion_Mo
         'Articulos' => array(
             'columns'           => 'Articulo',
             'refTableClass'     => 'Base_Model_DbTable_ArticulosGenericos',
-     		'refJoinColumns'    => array("Descripcion","DescArreglada" =>"IF(ComprobantesDetalles.Articulo is null,ComprobantesDetalles.Observaciones,Articulos.Descripcion)", 'Tipo'),                    
-     		'comboBox'			=> true,                                  
+     		'refJoinColumns'    => array("Descripcion","DescArreglada" =>"IF(ComprobantesDetalles.Articulo is null,ComprobantesDetalles.Observaciones,Articulos.Descripcion)", 'Tipo'),                     // De esta relacion queremos traer estos campos por JOIN
+     		'comboBox'			=> true,                                     // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
      		'comboSource'		=> 'datagateway/combolist/fetch/EsArticuloParaCompra',
             'refTable'			=> 'Articulos',
             'refColumns'        => 'Id',
@@ -68,16 +68,7 @@ class Facturacion_Model_DbTable_OrdenesDeComprasArticulos extends Facturacion_Mo
 	 */
 	public function init()     {
         $this ->_validators = array(
-            'Articulo'=> array(
-                array(
-                    'Db_NoRecordExists',
-                    'ComprobantesDetalles',
-                    'Articulo',
-                    'Comprobante = {Comprobante} AND Id <> {Id}'
-                ),
-            'messages' => array('El articulo ya existe en la Orden de Compra')
-            ),
-            'Cantidad'=> array(
+                 'Cantidad'=> array(
                 array( 'GreaterThan',
                         0
                 ),
@@ -98,7 +89,7 @@ class Facturacion_Model_DbTable_OrdenesDeComprasArticulos extends Facturacion_Mo
 	 * @param array $data
 	 * @return mixed
 	 */	
-	public function insert($data)	{
+		public function insert($data)	{
 
 	    $this->_db->beginTransaction();
 	    try {

@@ -93,7 +93,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
             border: false,
             layout: 'fit',
             ishidden: true,
-            title: 'EmisiÃ³n de Comprobante',
+            title: 'Emisión de Comprobante',
             plain: true,
             items: this.wizard,
             form: this.form,
@@ -151,7 +151,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     if ( result == 1 ) {
                         Ext.Msg.show({
                             title : 'Atencion',
-                            msg : 'El Cliente seleccionado se encuentra BLOQUEADO.<br><br> No puede utilizarse para la operaciÃ³n que intenta realizar.',
+                            msg : 'El Cliente seleccionado se encuentra BLOQUEADO.<br><br> No puede utilizarse para la operación que intenta realizar.',
                             width : 400,
                             closable : false,
                             buttons : Ext.Msg.OK,
@@ -167,8 +167,8 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                 if (e.status) {
                     if ( result == 0 ) {
                         Ext.Msg.show({
-                            title : 'AtenciÃ³n',
-                            msg : 'El Cliente no tiene situaciÃ³n impositiva cargada. Â¿Desea Continuar ?',
+                            title : 'Atención',
+                            msg : 'El Cliente no tiene situación impositiva cargada. ¿Desea Continuar ?',
                             width : 400,
                             closable : false,
                             buttons : Ext.Msg.YESNO,
@@ -249,7 +249,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
         var combo = this.form.getForm().findField('Persona');
         var tipo = this.form.getForm().findField('TipoDeComprobante');
         var ComprobanteRelacionado = this.form.getForm().findField('ComprobanteRelacionado');
-        if (tipo.getValue() < 29 || tipo.getValue() > 70) {
+        if (tipo.getValue() < 29) {
             ComprobanteRelacionado.disable();
             ComprobanteRelacionado.setValue(null);
             combo.store.baseParams.EsCliente = 1;
@@ -271,7 +271,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
             defaults: {border:false},
             items: [
                 this.renderWizardItem('Ingresar los datos del comprobante', '', this.form),
-                this.renderWizardItem('Ingresar datos ExportaciÃ³n', '', this.renderExportForm()),
+                this.renderWizardItem('Ingresar datos Exportación', '', this.renderExportForm()),
                 this.renderWizardItem('Seleccionar los remitos asociados', '', this.renderPaso1()),
                 this.renderWizardItem('Agregar art&iacute;culos y completar datos', '', this.gridArticulos),
                 this.renderWizardItem('Ingresar los conceptos impositivos', '', this.gridCI),
@@ -284,7 +284,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
             'activate',
             function (i) {
                 switch (i) {
-                    // si activo el paso 1 cargo la grilla de Permisos de ExportaciÃ³n
+                    // si activo el paso 1 cargo la grilla de Permisos de Exportación
                     case 1:
                         var id   		= this.form.record.data.Id;
                         var detailGrid 	= {remotefield: 'Comprobante', localfield: 'Id'};
@@ -540,7 +540,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                 menu: [
                     {
                         text: 'Refiscalizar',
-                        tooltip :'<b>Refiscaliza el comprobante</b><br>Imprime nuevamente o lo informa a la AFIP de ser electrÃ³nico',
+                        tooltip :'<b>Refiscaliza el comprobante</b><br>Imprime nuevamente o lo informa a la AFIP de ser electrónico',
                         icon: 'images/printer.png',
                         cls: 'x-btn-text-icon',
                         scope:  this.grid,
@@ -572,7 +572,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                             var sel = this.getSelectionModel().getSelected();
                             if (!sel) return;
 
-                            Ext.MessageBox.confirm('AtenciÃ³n','Quieres cambiar el comprobante de cta. cte. (Proveedor - Cliente)<br><br><span style="color:red">Desea continuar?</span>',function(btn){
+                            Ext.MessageBox.confirm('Atención','Quieres cambiar el comprobante de cta. cte. (Proveedor - Cliente)<br><br><span style="color:red">Desea continuar?</span>',function(btn){
                                 if (btn == 'yes') {
                                     Rad.callRemoteJsonAction({
                                         params: {
@@ -782,7 +782,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     return;
                 }
 
-                if (Ext.Msg.confirm('Atencion','Â¿EstÃ¡ seguro que desea anular el comprobante seleccionado?', function (btn) {
+                if (Ext.Msg.confirm('Atencion','¿Está seguro que desea anular el comprobante seleccionado?', function (btn) {
                     if (btn == 'yes') {
                         var id = selected.get('Id');
                         this.form.record = selected;

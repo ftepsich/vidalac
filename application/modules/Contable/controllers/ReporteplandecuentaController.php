@@ -158,6 +158,7 @@ class Contable_ReportePlanDeCuentaController extends Rad_Window_Controller_Actio
             'WHEREQUERY1'  => $whereQuery1,
             'WHEREQUERY2'  => $whereQuery2
         ));
+        Rad_Log::debug($texto.$reporteSufijo);
         $NombreReporte      = "Reporte_".str_replace(  array(" ","/"), array("_","-") , $texto.$reporteSufijo );     
         $report->sendStream($NombreReporte);
     }

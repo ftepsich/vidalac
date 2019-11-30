@@ -148,10 +148,8 @@ ORDER BY L.Provincia]]></xml-property>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="23" extends="CabeceraInterna.Cabecera_y_Pie">
             <property name="type">a4</property>
-            <property name="topMargin">0.25in</property>
             <property name="leftMargin">0.25in</property>
-            <property name="bottomMargin">0.25in</property>
-            <property name="rightMargin">0.15in</property>
+            <property name="headerHeight">0.5in</property>
         </simple-master-page>
     </page-setup>
     <body>

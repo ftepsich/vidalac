@@ -36,7 +36,7 @@ class Facturacion_Model_Fiscalizar_FactElectronica extends Facturacion_Fiscaliza
      * @var array
      */
     protected $tiposComprobantes = array(
-        24, 25, 26, 28, 29, 30, 31, 32, 37, 38, 39, 40, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88
+        24, 25, 26, 28, 29, 30, 31, 32, 37, 38, 39, 40
     );
 
     /**
@@ -67,7 +67,7 @@ class Facturacion_Model_Fiscalizar_FactElectronica extends Facturacion_Fiscaliza
 
         // Obtenemos la divisa nuestra
         $tipoDivisa = $comprobante->findParentRow('Base_Model_DbTable_TiposDeDivisas');
-        if (!$tipoDivisa) throw new Facturacion_Model_Fiscalizar_Exception('No se encontro el tipo de divisa');
+        if (!$tipoDivisa) throw new Facturacion_Model_Fiscalizar_Exception('No se enconctro el tipo de divisa');
 
         // Obtenemos la divisa de Afip a partir de la nuestra
         $afipDivisa = $tipoDivisa->findParentRow('Afip_Model_DbTable_AfipMonedas');
@@ -133,21 +133,9 @@ class Facturacion_Model_Fiscalizar_FactElectronica extends Facturacion_Fiscaliza
         $FEDetRequest->ImpOpEx      = round($comprobantesModel->afip_ImporteNetoExento($comprobante->Id),2);
         $FEDetRequest->ImpTrib      = round($comprobantesModel->afip_MontoConceptosNoIVA($comprobante->Id),2);
 
-//        Rad_Log::debug( $FEDetRequest->ImpTotal );
-//        Rad_Log::debug( $FEDetRequest->ImpTotConc );
-//        Rad_Log::debug( $FEDetRequest->ImpNeto );
-//        Rad_Log::debug( $FEDetRequest->ImpOpEx );
-//        Rad_Log::debug( $FEDetRequest->ImpTrib );
-
-        // MiPyMEs - Solo se informa FchVtoPago en Facturas 
-        if (in_array($afipTiposDeComprobantes->Codigo,array(201,206))){
-           $FEDetRequest->FchVtoPago   = date('Ymd', strtotime($comprobante->FechaVencimiento));
-        }
-
-        $FEDetRequest->MonId        = 'PES';
-        $FEDetRequest->MonCotiz     = 1;
-//        $FEDetRequest->MonId        = $afipDivisa->Codigo;
-//        $FEDetRequest->MonCotiz     = $cotizacion;
+//        $FEDetRequest->FchVtoPago   = date('Ymd', date('U'));
+        $FEDetRequest->MonId        = $afipDivisa->Codigo;
+        $FEDetRequest->MonCotiz     = $cotizacion;
 //        $FEDetRequest->FchServDesde = date('Ymd', date('U'));
 //        $FEDetRequest->FchServHasta = date('Ymd', date('U'));
 //
@@ -160,7 +148,6 @@ class Facturacion_Model_Fiscalizar_FactElectronica extends Facturacion_Fiscaliza
            // if (!$iva['Monto']) continue;
             $tmp = new stdClass();
             $tmp->Id        = $iva['codAfip'];
-//          Rad_Log::debug( $tmp->Id );
             $tmp->BaseImp   = round($iva['MontoImponible'],2);
             $tmp->Importe   = round($iva['Monto'],2);
             $totalIvas      += $iva['Monto'];
@@ -169,8 +156,6 @@ class Facturacion_Model_Fiscalizar_FactElectronica extends Facturacion_Fiscaliza
         }
 
         $FEDetRequest->ImpIVA = round($totalIvas,2);
-
-//      Rad_Log::debug( $FEDetRequest->ImpIVA );
 
         // Agregamos los tributos
         $tributos = $comprobantesModel->afip_ArrayConceptosNoIVA($comprobante->Id);
@@ -184,64 +169,6 @@ class Facturacion_Model_Fiscalizar_FactElectronica extends Facturacion_Fiscaliza
             $tmp->Importe = $trib['Monto'];
             $tmp->Desc    = $trib['Descripcion'];
             $FEDetRequest->Tributos->Tributo[] = $tmp;
-        }
-
-        // Opcionales para MiPyMEs (obligatorio)
-        if ($afipTiposDeComprobantes->Codigo >= 201 && $afipTiposDeComprobantes->Codigo <= 208){
-           
-           if (in_array($comprobante->TipoDeComprobante,array(79,80))) {
-
-              $modelCBP = new Facturacion_Model_DbTable_vCuentaBancariaPrincipal();
-              $rsCBP = $modelCBP->fetchRow('TipoDeCuenta=1 and Propia=1');
-
-              // CBU
-              $tmp = new stdClass();
-              $tmp->Id      = "2101";
-              $tmp->Valor   = $rsCBP->Cbu;
-              $FEDetRequest->Opcionales->Opcional[] = $tmp;
-              // CBU Alias
-              //$tmp = new stdClass();
-              //$tmp->Id      = "2102";
-              //$tmp->Valor   = "CBU.ALIAS";
-              //$FEDetRequest->Opcionales->Opcional[] = $tmp;
-
-           }
-    
-           // Anulacion por Emisión
-           if (in_array($comprobante->TipoDeComprobante,array(81,83,85,87))) {
-               $tmp = new stdClass();
-               $tmp->Id      = "22";
-               $tmp->Valor   = "N";
-               $FEDetRequest->Opcionales->Opcional[] = $tmp;
-           }
-           // Anulacion por Rechazo
-           if (in_array($comprobante->TipoDeComprobante,array(82,84,86,88))) {
-               $tmp = new stdClass();
-               $tmp->Id      = "22";
-               $tmp->Valor   = "S";
-               $FEDetRequest->Opcionales->Opcional[] = $tmp;
-           }
-           // Comprobante Relacionado a la Anulacion
-
-           if (in_array($comprobante->TipoDeComprobante,array(81,82,83,84,85,86,87))) {
-
-              if ($comprobante->ComprobanteRelacionado) {
-
-                 $modelFEA = new Facturacion_Model_DbTable_FacturacionElectronicaAfip();
-                 $rsFEA = $modelFEA->fetchRow('Comprobante = '.$comprobante->ComprobanteRelacionado);
-
-                 $tmp = new stdClass();
-                 $tmp->Tipo    = $rsFEA->CbteTipo;
-                 $tmp->PtoVta  = $rsFEA->PtoVta;
-                 $tmp->Nro     = $rsFEA->CbteDesde;
-                 $tmp->Cuit    = $rsFEA->Cuit;
-                 $tmp->CbteFch = $rsFEA->CbteFch;
-                 $FEDetRequest->CbtesAsoc->CbteAsoc[] = $tmp;
-
-              }
-
-           }
-
         }
 
         $FeDetReq[0] = $FEDetRequest;
@@ -327,7 +254,7 @@ class Facturacion_Model_Fiscalizar_FactElectronica extends Facturacion_Fiscaliza
 
     protected function _getFacturaNumero($comprobante, $afipTiposDeComprobantes, $punto)
     {
-//      Rad_Log::debug("$punto");
+        Rad_Log::debug("$punto");
         $ultCmp = FactElect_Wsfev1::FECompUltimoAutorizado(array(
             'PtoVta'   => $punto,
             'CbteTipo' => $afipTiposDeComprobantes->Codigo

@@ -126,6 +126,7 @@ Ext.ux.StartMenu = Ext.extend(Ext.menu.Menu, {
     },
 
     /**
+     * Displays this menu relative to another element
      * @param {Mixed} element The element to align to
      * @param {String} position (optional) The {@link Ext.Element#alignTo} anchor position to use in aligning to
      * the element (defaults to this.defaultAlign)

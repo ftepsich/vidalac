@@ -492,13 +492,13 @@ myGrid.on('render', function(grid) {
     // private
     onShow : function(){
         Ext.ToolTip.superclass.onShow.call(this);
-        Ext.getDoc().on('mousedown', this.onDocMouseDown, this);
+        Ext.getDoc().on('mouseover', this.onDocMouseDown, this);
     },
 
     // private
     onHide : function(){
         Ext.ToolTip.superclass.onHide.call(this);
-        Ext.getDoc().un('mousedown', this.onDocMouseDown, this);
+        Ext.getDoc().un('mouseover', this.onDocMouseDown, this);
     },
 
     // private

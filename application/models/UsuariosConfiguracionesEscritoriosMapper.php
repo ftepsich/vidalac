@@ -32,7 +32,7 @@ class Model_UsuariosConfiguracionesEscritoriosMapper extends Rad_Mapper
         if(!preg_match('/^[a-fA-F0-9]{6}$/i', $color)) {
             throw new Rad_Exception('El color tiene un formato erroneo');
         }
-        $row->setReadOnly(false); 
+        $row->setReadOnly(false); // no se pq hay veces q marca como solo lectura el row
         $row->ColorFondo = $color;
         $row->save();
     }
@@ -58,7 +58,7 @@ class Model_UsuariosConfiguracionesEscritoriosMapper extends Rad_Mapper
             $row->ImagenFondoPosicion = 'center';
         }
 
-        $row->setReadOnly(false); 
+        $row->setReadOnly(false); // no se pq hay veces q marca como solo lectura el row
         $row->ImagenFondo = $fondo;
         $row->save();
     }
@@ -80,7 +80,7 @@ class Model_UsuariosConfiguracionesEscritoriosMapper extends Rad_Mapper
             $row->ImagenFondoPosicion = 'center';
         }
 
-        $row->setReadOnly(false); 
+        $row->setReadOnly(false); // no se pq hay veces q marca como solo lectura el row
         $row->ImagenFondo = null;
         $row->save();
     }
@@ -107,7 +107,7 @@ class Model_UsuariosConfiguracionesEscritoriosMapper extends Rad_Mapper
             $row->Usuario             = $usuario;
         }
 
-        $row->setReadOnly(false); 
+        $row->setReadOnly(false); // no se pq hay veces q marca como solo lectura el row
         $row->ImagenFondoPosicion = $posicion;
         $row->save();
     }

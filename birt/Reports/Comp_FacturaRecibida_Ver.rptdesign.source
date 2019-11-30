@@ -1923,7 +1923,7 @@ AND  	TC.Grupo in (4,10)]]></xml-property>
                     <property name="paddingTop">1pt</property>
                     <label id="1005">
                         <property name="style">nombre-cabecera</property>
-                        <text-property name="text">Condición IVA</text-property>
+                        <text-property name="text">Condicion IVA</text-property>
                     </label>
                 </cell>
                 <cell id="980">
@@ -1974,7 +1974,7 @@ AND  	TC.Grupo in (4,10)]]></xml-property>
                     <property name="paddingTop">1pt</property>
                     <label id="1145">
                         <property name="style">nombre-cabecera</property>
-                        <text-property name="text">Condición Venta</text-property>
+                        <text-property name="text">Condicion Venta</text-property>
                     </label>
                 </cell>
                 <cell id="992">
@@ -2131,7 +2131,7 @@ AND  	TC.Grupo in (4,10)]]></xml-property>
                     <cell id="1150">
                         <label id="1173">
                             <property name="textAlign">left</property>
-                            <text-property name="text">Descripción</text-property>
+                            <text-property name="text">Descripcion</text-property>
                         </label>
                     </cell>
                     <cell id="1151">

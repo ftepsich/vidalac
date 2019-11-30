@@ -178,7 +178,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         $clausula = " mes = " . date("m", strtotime($fechaEmision)) . " and anio = " . date("Y", strtotime($fechaEmision));
         $R_Periodo = $M_PIVA->fetchRow($clausula);
         if (!$R_Periodo) {
-            if (Rad_Confirm::confirm( "No Existe el Periodo de ImputaciÃ³n del mes ".date("m", strtotime($fechaEmision)).". Desea crearlo?", _FILE_._LINE_, array('includeCancel' => false)) == 'yes') {
+            if (Rad_Confirm::confirm( "No Existe el Periodo de Imputación del mes ".date("m", strtotime($fechaEmision)).". Desea crearlo?", _FILE_._LINE_, array('includeCancel' => false)) == 'yes') {
                 $R_Periodo->Id = $M_PIVA->crearPeriodo(date("m", strtotime($fechaEmision)),date("Y", strtotime($fechaEmision)));
             }
         }
@@ -190,7 +190,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
             if ($R_PeriodoMasViejo) {
                 $Periodo = $R_PeriodoMasViejo->Id;
             } else {
-                throw new Rad_Db_Table_Exception("No existe un periodo de imputacion al que asignar el comprobante. Revise si no debe crear el periodo de imputaciÃ³n de este mes desde el menu Contable.");
+                throw new Rad_Db_Table_Exception("No existe un periodo de imputacion al que asignar el comprobante. Revise si no debe crear el periodo de imputación de este mes desde el menu Contable.");
             }
         } else {
             $Periodo = $R_Periodo->Id;
@@ -1185,7 +1185,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         if (!$comprobante) throw new Rad_Db_Table_Exception('No se encontro el comprobante');
 
         // Si es factura o Nota A o M
-        if (in_array($comprobante->TipoDeComprobante,array(24,28,29,32,37,40,79,81,82,85,86))) {
+        if (in_array($comprobante->TipoDeComprobante,array(24,28,29,32,37,40))) {
 
             $sql = "select  CI.afip as codAfip,
                             ifnull(C.MontoImponible,0) as MontoImponible,
@@ -1199,7 +1199,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
                     order by afip desc";
             $R = $this->_db->fetchAll($sql);
             // Si es factura o Nota  B,C,E
-        } else if (in_array($comprobante->TipoDeComprobante,array(25,26,27,30,31,38,39,80,83,84,87,88))) {
+        } else if (in_array($comprobante->TipoDeComprobante,array(25,26,27,30,31,38,39))) {
             $R = $this->afip_RecuperarTotalesIVA($idComprobante);
         }
 
@@ -1329,7 +1329,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
   if ( $rowComprobante->Numero == 0 ) {
             Rad_Log::user("Cerro comprobante ($tipoComprobante->Descripcion ID $rowComprobante->Id)");
         } else {
-            Rad_Log::user("Cerro comprobante ($tipoComprobante->Descripcion NÂº $rowComprobante->Numero)");
+            Rad_Log::user("Cerro comprobante ($tipoComprobante->Descripcion Nº $rowComprobante->Numero)");
         }
         // Publico...
         Rad_PubSub::publish('Comprobante_Cerrar', $rowComprobante);
@@ -1357,7 +1357,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         if ( $comprobante->Numero == 0 ) {
             Rad_Log::user("Anulo comprobante ($tipoComprobante->Descripcion ID $comprobante->Id)");
         } else {
-            Rad_Log::user("Anulo comprobante ($tipoComprobante->Descripcion NÂ° $comprobante->Numero)");
+            Rad_Log::user("Anulo comprobante ($tipoComprobante->Descripcion N° $comprobante->Numero)");
         }
 
         // Publico...
@@ -2130,7 +2130,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
       /**
      *  Insert
      *
-     * @param array $data   Valores que se insertarÃ¡n
+     * @param array $data   Valores que se insertarán
      *
      */
     public function insert($data)
@@ -2146,7 +2146,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         if ( $comprobante->Numero == 0 ) {
             Rad_Log::user("Nuevo Comprobante ($tipoComprobante->Descripcion ID $idComprobante)");
         } else {
-            Rad_Log::user("Nuevo Comprobante ($tipoComprobante->Descripcion NÂº $comprobante->Numero)");
+            Rad_Log::user("Nuevo Comprobante ($tipoComprobante->Descripcion Nº $comprobante->Numero)");
         }
         return $idComprobante;
 

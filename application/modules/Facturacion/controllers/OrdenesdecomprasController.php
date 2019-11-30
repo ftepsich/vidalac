@@ -73,7 +73,7 @@ class Facturacion_OrdenesDeComprasController extends Rad_Window_Controller_Actio
         $html .= '</div></div>';
         echo $html;
     }
-    
+
     public function getdetalleestado2Action()
     {
         $this->_helper->viewRenderer->setNoRender(true);

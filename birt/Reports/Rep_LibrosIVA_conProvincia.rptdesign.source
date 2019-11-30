@@ -952,7 +952,7 @@ where   C.Id = ? LIMIT 1]]></xml-property>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie">
-            <property name="type">a4</property>
+         <property name="type">a4</property>
             <property name="orientation">landscape</property>
             <property name="leftMargin">0.15in</property>
             <property name="rightMargin">0.15in</property>

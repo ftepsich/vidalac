@@ -98,6 +98,7 @@ class Almacenes_Model_DbTable_RemitosSinRemitoSalida extends Almacenes_Model_DbT
         // hardcodeo el Id de persona al de la propia empresa (Normalmente Id = 2)
         $this->_permanentValues['Persona'] = Rad_Cfg::get()->Base->idNuestraEmpresa;
 
+        // no necesito el estado facturado en este modelo
         unset($this->_calculatedFields['EstadoFacturado']);
     }
 

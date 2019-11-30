@@ -52,7 +52,11 @@ class AuthController extends Zend_Controller_Action
 
         //$authAdapter = new MyAuthAdapter( $this->getRequest()->getParam('login'), $this->getRequest()->getParam('password'));
         $response = new stdClass();
-   
+        // Attempt authentication, saving the result
+        if (!$this->_checkHardware()) {
+            $response->success = false;
+            $response->msg = "Este software no fue licenciado para este servidor.<br> SmartSoftware sera notificado.";
+        } else {
             $result = $auth->authenticate($authAdapter);
             switch ($result->getCode()) {
                 case Zend_Auth_Result::FAILURE_IDENTITY_NOT_FOUND:
@@ -84,9 +88,33 @@ class AuthController extends Zend_Controller_Action
 
                     break;
             }
-        
+        }
 
         echo json_encode($response);
+    }
+
+    /**
+     * Agregar en /etc/sudoers !!!
+     * www-data  ALL=NOPASSWD: /usr/sbin/dmidecode
+     *
+     *
+     * @return unknown_type
+     */
+    public function gethwidAction()
+    {
+        $this->_helper->viewRenderer->setNoRender(true);
+        $hwId = shell_exec("sudo /usr/sbin/dmidecode |grep 'Serial Number:'");
+        echo md5($hwId);
+    }
+
+    protected function _checkHardware()
+    {
+        $hwId = shell_exec("sudo /usr/sbin/dmidecode |grep 'Serial Number:'");
+        return true;
+        if (!$hwId) {
+            return false;
+        }
+        return ("905686403935953b27e84624215f2d8f" == md5($hwId));
     }
 
     /**

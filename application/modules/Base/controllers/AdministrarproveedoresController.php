@@ -34,8 +34,6 @@ class Base_AdministrarProveedoresController extends Rad_Window_Controller_Action
             'proveedores');
         unset($config);
 
-    
-
         /**
          * Grilla Generales -> Telefonos
          */
@@ -282,12 +280,6 @@ class Base_AdministrarProveedoresController extends Rad_Window_Controller_Action
         $detailGrids = array();
 
         $dg->id = $this->getName() . '_GridProveedoresDirecciones';
-        $dg->remotefield = 'Persona';
-        $dg->localfield = 'Id';
-        $detailGrids[] = $dg;
-        unset($dg);
-
-        $dg->id = $this->getName() . '_GridProveedoresPaises';
         $dg->remotefield = 'Persona';
         $dg->localfield = 'Id';
         $detailGrids[] = $dg;

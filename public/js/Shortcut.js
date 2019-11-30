@@ -3,7 +3,7 @@ Ext.namespace("Ext.ux");
 // Drag Zone de Iconos de Escritorio
 Ext.ux.FileDragZone = function(view, config){
     this.view = view;
-    this.scroll = false; 
+    this.scroll = false; // or the desktop scrolls... which is bad
     Ext.ux.FileDragZone.superclass.constructor.call(this, view.getEl(), config);
 };
 

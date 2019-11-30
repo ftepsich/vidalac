@@ -18,7 +18,7 @@ class Base_Model_DbTable_Personas extends Rad_Db_Table_SemiReferencial
     protected $_defaultSource = self::DEFAULT_CLASS;
     protected $_sort = array ('RazonSocial ASC');
 
-    protected $_validators = array(
+     protected $_validators = array(
         'NroInscripcionIB' => array('Digits'),
         'Cuit' => array(
             array('Regex', '(\d{2}-\d{8}-\d{1})'),

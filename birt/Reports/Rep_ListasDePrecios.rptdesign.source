@@ -350,7 +350,6 @@ where	Id = ?]]></xml-property>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie">
-            <property name="type">a4</property>
             <property name="orientation">landscape</property>
         </simple-master-page>
     </page-setup>

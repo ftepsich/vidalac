@@ -26,6 +26,7 @@ class GruposDeUsuariosController extends Rad_Window_Controller_Action
                 'withPaginator'	 => false,
                 'withToolbar'	 => false,
                 'loadAuto'           => false,
+                //'iniSection'       => 'reducido',
                 'id'                 => $this->getName().'_Roles'
             )
         );

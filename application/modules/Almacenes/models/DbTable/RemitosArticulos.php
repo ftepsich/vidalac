@@ -54,7 +54,7 @@ class Almacenes_Model_DbTable_RemitosArticulos extends Facturacion_Model_DbTable
                 "DescArreglada" => "IF(ComprobantesDetalles.Articulo is null,ComprobantesDetalles.Observaciones,Articulos.Descripcion)",
                 'Tipo'
             ),
-            'comboBox' => true, 
+            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Articulos',
             'refColumns' => 'Id',
@@ -105,7 +105,10 @@ class Almacenes_Model_DbTable_RemitosArticulos extends Facturacion_Model_DbTable
             // Inserto el articulo y publico
             $id = parent::insert($data);
 
-        
+            /* 	TODO: Ojo con las dobles publicaciones, aca se publica en el hijo y aca tambien (padre)
+              $R_Ins = $this->find($id)->current();
+              Rad_PubSub::publish('Almacenes_RA_Insertado',$R_Ins);
+             */
 
             $this->_db->commit();
             return $id;
@@ -143,6 +146,9 @@ class Almacenes_Model_DbTable_RemitosArticulos extends Facturacion_Model_DbTable
                 // Updateo
                 parent::update($data, "Id=" . $row['Id']);
 
+                /* 	TODO: Ojo con las dobles publicaciones, aca se publica en el hijo y aca tambien (padre)
+                  Rad_PubSub::publish('Almacenes_RA_Updateado',$row);
+                 */
             }
 
             $this->_db->commit();
@@ -178,6 +184,9 @@ class Almacenes_Model_DbTable_RemitosArticulos extends Facturacion_Model_DbTable
                 foreach ($reg as $row) {
                     // Publico y borro el renglon
                     parent::delete("Id =" . $row['Id']);
+                    /* 	TODO: Ojo con las dobles publicaciones, aca se publica en el hijo y aca tambien (padre)
+                      Rad_PubSub::publish('Almacenes_RA_Borrado',$row);
+                     */
                 }
             }
             $this->_db->commit();
@@ -186,4 +195,5 @@ class Almacenes_Model_DbTable_RemitosArticulos extends Facturacion_Model_DbTable
             throw $e;
         }
     }
+
 }

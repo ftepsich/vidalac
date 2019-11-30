@@ -12,6 +12,7 @@ class MobileController extends Zend_Controller_Action
     
     public function indexAction ()
     {
+        //TODO: Hacer esto global desde un plugin
         if (! Zend_Auth::getInstance()->hasIdentity()) {
             $this->_helper->redirector('mobile', 'auth');
             return;

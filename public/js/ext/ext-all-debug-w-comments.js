@@ -24,7 +24,42 @@ var EXTUTIL = Ext.util,
     EACH = Ext.each,
     TRUE = true,
     FALSE = false;
+/**
+ * @class Ext.util.Observable
+ * Base class that provides a common interface for publishing events. Subclasses are expected to
+ * to have a property "events" with all the events defined, and, optionally, a property "listeners"
+ * with configured listeners defined.<br>
+ * For example:
+ * <pre><code>
+Employee = Ext.extend(Ext.util.Observable, {
+    constructor: function(config){
+        this.name = config.name;
+        this.addEvents({
+            "fired" : true,
+            "quit" : true
+        });
 
+        // Copy configured listeners into *this* object so that the base class&#39;s
+        // constructor will add them.
+        this.listeners = config.listeners;
+
+        // Call our superclass constructor to complete construction process.
+        Employee.superclass.constructor.call(this, config)
+    }
+});
+</code></pre>
+ * This could then be used like this:<pre><code>
+var newEmployee = new Employee({
+    name: employeeName,
+    listeners: {
+        quit: function() {
+            // By default, "this" will be the object that fired the event.
+            alert(this.name + " has quit!");
+        }
+    }
+});
+</code></pre>
+ */
 EXTUTIL.Observable = function(){
     /**
      * @cfg {Object} listeners (optional) <p>A config object containing one or more event handlers to be added to this

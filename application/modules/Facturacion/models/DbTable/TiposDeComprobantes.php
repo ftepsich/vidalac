@@ -59,14 +59,14 @@ class Facturacion_Model_DbTable_TiposDeComprobantes extends Rad_Db_Table
 
     public function fetchFacturasVentas($where = null, $order = null, $count = null, $offset = null)
     {
- 	$condicion = " (TiposDeComprobantes.Grupo = 6) and TiposDeComprobantes.Id not in (26,28,52,54,56)";
+        $condicion = " (TiposDeComprobantes.Grupo = 6) and TiposDeComprobantes.Id not in (26,28)";
         $where = $this->_addCondition($where, $condicion);
         return parent:: fetchAll($where, $order, $count, $offset);
     }
 
     public function fetchFacturasVentasNotasEmitidas($where = null, $order = null, $count = null, $offset = null)
     {
-        $condicion = " TiposDeComprobantes.Grupo in(6,7,12,23,24,26) and TiposDeComprobantes.Id not In (26,28,31,32,39,40,52,54,56,65,66)";
+        $condicion = " TiposDeComprobantes.Grupo in(6,7,12) and TiposDeComprobantes.Id not In (26,28,31,32,39,40,52,54,56,65,66)";
         $where = $this->_addCondition($where, $condicion);
         return parent:: fetchAll($where, $order, $count, $offset);
     }

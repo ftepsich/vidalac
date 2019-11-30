@@ -19,36 +19,6 @@ class Base_Model_DbTable_CuentasBancarias extends Rad_Db_Table
     protected $_name = 'CuentasBancarias';
     protected $_sort = array('BancosSucursales.Descripcion asc');
 
-    protected $_validators = array(
-        'Cbu' => array(
-            'NotEmpty',
-            'allowEmpty'=>false,
-            array('Regex', '(^\d{22}$)'),
-            array(
-                'Db_NoRecordExists',
-                'CuentasBancarias',
-                'Cbu',
-                'Cbu = "{Cbu}" AND Id <> {Id}'
-            ),
-            'messages' => array(
-                'Falta ingresar el CBU.',
-                'Formato Incorrecto del Cbu',
-                'El CBU ingresado ya se encuentra asociado a otra cuenta'
-            )
-        ),
-        'Numero' => array(
-            'NotEmpty',
-            'allowEmpty'=>false,
-            'messages' => array(
-                'Falta ingresar el Numero de la cuenta.'
-            )
-        ),
-        'CuitTitular' => array(
-            array('Regex', '(\d{2}-\d{8}-\d{1})'),
-            'messages' => array('Formato Incorrecto del Cuit')
-        )
-    );
-
     protected $_referenceMap = array(
         'BancosSucursales' => array(
             'columns' => 'BancoSucursal',

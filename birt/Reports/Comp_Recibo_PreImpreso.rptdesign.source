@@ -1183,11 +1183,10 @@ FROM ComprobantesDetalles CD
     </data-sets>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
-            <property name="type">a4</property>
-             <property name="topMargin">0.25in</property>
-            <property name="leftMargin">0.25in</property>
-            <property name="bottomMargin">0.25in</property>
-            <property name="rightMargin">0.15in</property>
+             <property name="topMargin">4cm</property>
+            <property name="leftMargin">0.8cm</property>
+            <property name="bottomMargin">3cm</property>
+            <property name="rightMargin">0.8cm</property>
         </simple-master-page>
     </page-setup>
     <body>
@@ -1533,6 +1532,7 @@ FROM ComprobantesDetalles CD
                     <property name="verticalAlign">bottom</property>
                     <text-data id="2681">
                         <property name="style">ids</property>
+                        <expression name="valueExpr">BirtStr.concat('Nº: ', row["CodigoDeComprobante"] ,' ', row["NumeroCompleto"],'  /  C: ', row["IdComprobante"],'  /  P: ',row["Persona"]);</expression>
                         <property name="contentType">html</property>
                     </text-data>
                 </cell>

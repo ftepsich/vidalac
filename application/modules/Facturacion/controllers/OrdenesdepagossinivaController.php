@@ -268,7 +268,7 @@ class Facturacion_OrdenesDePagosSinIVAController extends Rad_Window_Controller_A
                         handler: function() {
                                     this.deleteRows();
                                 },
-                    msg: 'ï¿½Estï¿½ seguro que desea borrar los registros seleccionados?',
+                    msg: '¿Está seguro que desea borrar los registros seleccionados?',
 
                     scope:    this,
 
@@ -521,7 +521,7 @@ class Facturacion_OrdenesDePagosSinIVAController extends Rad_Window_Controller_A
             $ordenes = new Facturacion_Model_DbTable_OrdenesDePagosSinIVA(array(), false);
             $orden = $ordenes->find($idOrdenDePago)->current();
             if (!$orden) {
-                throw new Rad_Exception('No se encontro el comprobante de cancelaciï¿½n interno.');
+                throw new Rad_Exception('No se encontro el comprobante de cancelación interno.');
             }
             echo "{success: true, monto: '$orden->MontoTotal'}";
         } catch (Rad_Db_Table_Exception $e) {

@@ -48,8 +48,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 'automatic_serialization' => true,
                 'ignore_user_abort' => true
             );
-            $backendOptions = array(
-                'cache_dir' => '/usr/share/nginx/vidalac/data/cache'
+             $backendOptions = array(
             );
             $cache = Zend_Cache::factory(
                 'Core', 'Zend_Cache_Backend_File', $frontendOptions, $backendOptions, false, true
@@ -95,6 +94,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         // para poder acceder en forma facil a la configuracion de la aplicacion
         Zend_Registry::set('config', $this->getOptions());
     }
+
     protected function _initDbProfiler()
     {
         $this->bootstrap('db');

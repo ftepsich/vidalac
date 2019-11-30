@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.21" id="1">
     <property name="author">SmartSoftware</property>
     <property name="createdBy">Eclipse BIRT Designer Version 2.5.2.v20100208 Build &lt;2.5.2.v20100210-0630></property>
@@ -1186,6 +1187,7 @@ FROM ComprobantesDetalles CD
     </data-sets>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2" extends="Cabecera.Cabecera_y_Pie">
+            <property name="type">a4</property>
             <property name="topMargin">0.25in</property>
             <property name="leftMargin">0.25in</property>
             <property name="bottomMargin">0.25in</property>
@@ -1700,6 +1702,7 @@ FROM ComprobantesDetalles CD
                     <property name="verticalAlign">bottom</property>
                     <text-data id="2681">
                         <property name="style">ids</property>
+                        <expression name="valueExpr">BirtStr.concat('Nº: ', row["CodigoDeComprobante"] ,' ', row["NumeroCompleto"]);</expression>
                         <property name="contentType">html</property>
                     </text-data>
                 </cell>

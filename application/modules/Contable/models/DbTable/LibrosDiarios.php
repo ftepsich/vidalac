@@ -343,6 +343,8 @@ class Contable_Model_DbTable_LibrosDiarios extends Rad_Db_Table {
 
     /**
      * Recuperar de un comprobante de pago la parte que se pago con depositos
+     * Ojo en este caso tengo que poner la caja de la que se saco la plata para
+     * hacer el deposito.
      *
      * @param int 	Identificador del Comprobante
      *

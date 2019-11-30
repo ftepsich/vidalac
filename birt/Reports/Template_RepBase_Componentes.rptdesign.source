@@ -1318,6 +1318,8 @@ AND C.Persona = (SELECT C3.Persona FROM Comprobantes C3 WHERE C3.Id = ?)]]></xml
                 <ref-entry baseId="2429" name="NewText1" id="2429"/>
                 <ref-entry baseId="2430" id="2430"/>
                 <ref-entry baseId="2431" name="NewAutoText1" id="2431"/>
+            <property name="type">us-legal</property>
+
             </overridden-values>
         </simple-master-page>
     </page-setup>

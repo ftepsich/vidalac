@@ -78,7 +78,7 @@ class Base_Model_DbTable_PersonasIngresosBrutos extends Rad_Db_Table
                 throw new Rad_Db_Table_Exception("La Fecha de Inicio CM05 no puede ser menor a la Fecha de Alta en la Jurisdiccion CM.");
             }
             $data['PeriodoCM05'] = ( ($data['PeriodoCM05'] == 0) ? null : $data['PeriodoCM05'] );
-            $data['CoeficienteCM05'] = ( ($data['CoeficienteCM05'] == 0) ? null : $data['CoeficienteCM05'] );
+            $data['CoeficienteCM05'] = $data['CoeficienteCM05'] ;
             $data['Porcentaje'] = ( ($data['Porcentaje'] == 0) ? null : $data['Porcentaje'] );
             $data['MontoMinimo'] = ( ($data['MontoMinimo'] == 0) ? null : $data['MontoMinimo'] );
             $data['FechaAlta'] = date('Y-m-d H:i:s');
@@ -106,7 +106,7 @@ class Base_Model_DbTable_PersonasIngresosBrutos extends Rad_Db_Table
                 throw new Rad_Db_Table_Exception("La Fecha de Inicio CM05 no puede ser menor a la Fecha de Alta en la Jurisdiccion CM.");
             }
             $data['PeriodoCM05'] = ( ($data['PeriodoCM05'] == 0) ? null : $data['PeriodoCM05'] );
-            $data['CoeficienteCM05'] = ( ($data['CoeficienteCM05'] == 0) ? null : $data['CoeficienteCM05'] );
+            $data['CoeficienteCM05'] = $data['CoeficienteCM05'] ;
             $data['Porcentaje'] = ( ($data['Porcentaje'] == 0) ? null : $data['Porcentaje'] );
             $data['MontoMinimo'] = ( ($data['MontoMinimo'] == 0) ? null : $data['MontoMinimo'] );
             $data['FechaUltCambio'] = date('Y-m-d H:i:s');
@@ -120,7 +120,8 @@ class Base_Model_DbTable_PersonasIngresosBrutos extends Rad_Db_Table
              if($data['ConceptoImpositivo']){
                $condicion = "ConceptoImpositivo = '".$data['ConceptoImpositivo']."' AND PersonasIngresosBrutos.Id <> ".$row->Id;
                $conceptoImpositivo = $this->fetchRow($condicion);
-                         }
+
+             }
 
              parent::update($data,'PersonasIngresosBrutos.Id ='.$row->Id);
 
@@ -134,6 +135,8 @@ class Base_Model_DbTable_PersonasIngresosBrutos extends Rad_Db_Table
             throw $e;
         }
     }
+
+
 
     public function fetchParaClientes($where = null, $order = null, $count = null, $offset = null)
     {

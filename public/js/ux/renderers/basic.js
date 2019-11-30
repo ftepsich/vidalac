@@ -111,29 +111,6 @@ Ext.ux.Format = function() {
             return rend;
         },
 
-        facturadoCon: function(app) {
-            var renderer = function(v, params, record) {
-                var a= '<div onclick="app.publish(app.channels.apps+\''+ app +'\', {action:\'facturado\', value: '+record.data.Id+'})" style="background-image:url(images/lorry_go.png)" qtip="Ver Facturas" class="ux-cell-action"> </div>';
-
-                if (record.data.EstadoFacturado=='Nada') {
-                    v = '<font color=black>'+record.data.EstadoFacturado+'</font>'}
-                if (record.data.EstadoFacturado=='Parcialmente') {
-                    v = a+'<font color=brown>'+record.data.EstadoFacturado+'</font>'
-                }
-                if (record.data.EstadoFacturado == 'Totalmente') {
-                    v = a+'<font color=blue>'+record.data.EstadoFacturado+'</font>'
-                }
-                if (record.data.EstadoFacturado == 'Excedido') {
-                    v = a+'<font color=red>'+record.data.EstadoFacturado+'</font>'
-                }
-
-                return v;
-            }
-            return renderer;
-        },
-
-
-
         recibidoConRemito: function(app) {
             var renderer = function(v, params, record) {
                 var a= '<div onclick="app.publish(app.channels.apps+\''+ app +'\', {action:\'recibido\', value: '+record.data.Id+'})" style="background-image:url(images/lorry_go.png)" qtip="Ver Remitos" class="ux-cell-action"> </div>';
@@ -176,7 +153,7 @@ Ext.ux.Format = function() {
             }
             return renderer;
         },
-        
+
         ingresadoConFactura: function(app) {
             var renderer = function(v, params, record) {
                 var a= '<div onclick="app.publish(app.channels.apps+\''+ app +'\', {action:\'remito\', value: '+record.data.Id+'})" style="background-image:url(images/lorry_go.png)" qtip="Ver Facturas" class="ux-cell-action"> </div>';

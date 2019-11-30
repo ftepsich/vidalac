@@ -12,7 +12,7 @@ class Base_Model_DbTable_ChequesDeTerceros extends Base_Model_DbTable_Cheques
 {
 
     protected $_defaultSource = self::DEFAULT_CLASS;
-    protected $_sort = array('FechaDeEmision Desc');
+    protected $_sort = array('FechaDeEmision DESC');
 
     
     protected $_permanentValues = array(
@@ -71,8 +71,7 @@ class Base_Model_DbTable_ChequesDeTerceros extends Base_Model_DbTable_Cheques
         return Rad_Db_Table::delete($where);
     }
 	
-
-
+ 
     public function fetchIngresados ($where = null, $order = null, $count = null, $offset = null)
     {
         $condicion = "ChequeEstado = 8";

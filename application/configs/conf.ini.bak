@@ -1,0 +1,73 @@
+; #### Configuracion Base
+    Base.divisaLocal = 1
+    Base.idNuestraEmpresa = 3583
+    
+; #### Configuracion de mails
+    Mail.usuario  = "vidalac.contacto@gmail.com"
+    Mail.password = "vidalac$765"
+    Mail.smtp	  = "smtp.gmail.com"
+
+; #### Configuracion de Facturacion Impresora comun
+    Facturacion.Preimpreso.Cups = 10.108.100.10
+    ; impresora q se usa si no hay una especifica para el tipo de comprobante
+    Facturacion.Preimpreso.CommonPrinter = "/printers/p1102"
+    ; Reportes por tipo de comprobante
+    Facturacion.Preimpreso.Reporte.15 = Remito
+    Facturacion.Preimpreso.Reporte.16 = Remito
+    Facturacion.Preimpreso.Reporte.45 = Remito
+    Facturacion.Preimpreso.Copias.15  = 3
+    Facturacion.Preimpreso.Copias.16  = 3
+    Facturacion.Preimpreso.Copias.45  = 3
+
+    Facturacion.Preimpreso.Reporte.24 = ComprobanteFactura
+    Facturacion.Preimpreso.Reporte.25 = ComprobanteFactura
+    Facturacion.Preimpreso.Reporte.26 = ComprobanteFactura
+    Facturacion.Preimpreso.Reporte.27 = ComprobanteFactura
+    Facturacion.Preimpreso.Reporte.28 = ComprobanteFactura
+    Facturacion.Preimpreso.Reporte.29 = ComprobanteFactura
+    Facturacion.Preimpreso.Reporte.30 = ComprobanteFactura
+    Facturacion.Preimpreso.Reporte.31 = ComprobanteFactura
+    Facturacion.Preimpreso.Reporte.32 = ComprobanteFactura
+    Facturacion.Preimpreso.Copias.24 = 2
+    Facturacion.Preimpreso.Copias.25 = 2
+    Facturacion.Preimpreso.Copias.26 = 2
+    Facturacion.Preimpreso.Copias.27 = 2
+    Facturacion.Preimpreso.Copias.28 = 2
+    Facturacion.Preimpreso.Copias.29 = 2
+    Facturacion.Preimpreso.Copias.30 = 2
+    Facturacion.Preimpreso.Copias.31 = 2
+    Facturacion.Preimpreso.Copias.32 = 2
+    ;Facturacion.Preimpreso.Printer.1 = "/printers/p1102"
+ 
+
+; #### Configuracion de Facturacion Electronica
+    FacturacionElectronica.TA         = APPLICATION_PATH "/../data/eFactura/"
+    FacturacionElectronica.TEMPPATH   = APPLICATION_PATH "/../data/eFactura"
+    FacturacionElectronica.WSFEURL    = "https://wswhomo.afip.gov.ar/wsfe/service.asmx"
+    FacturacionElectronica.WSFEV1URL  = "https://wswhomo.afip.gov.ar/wsfev1/service.asmx"
+    ;FacturacionElectronica.WSFEV1URL = "https://servicios1.afip.gov.ar/wsfev1/service.asmx"
+    FacturacionElectronica.WSFEXURL   = "https://wswhomo.afip.gov.ar/wsfex/service.asmx"
+    FacturacionElectronica.CUIT       = "20268092189"
+    FacturacionElectronica.CERT       = APPLICATION_PATH "/../library/FactElect/cert/CUIT_20268092189.crt"
+    FacturacionElectronica.PRIVATEKEY = APPLICATION_PATH "/../library/FactElect/cert/privada"
+    FacturacionElectronica.PASSPHRASE = "xxxxxxx"
+    FacturacionElectronica.WSAAURL    = "https://wsaahomo.afip.gov.ar/ws/services/LoginCms"
+    ;FacturacionElectronica.WSAAURL   = "https://wsaa.afip.gov.ar/ws/services/LoginCms"
+
+    FacturacionElectronica.REMVERIFY   = false
+    FacturacionElectronica.REMSELFSIGN = false
+
+    FacturacionElectronica.REMCN      = "wsaahomo.afip.gov.ar"
+    FacturacionElectronica.REMCACERT  = APPLICATION_PATH "/../library/FactElect/cert/AFIPcerthomo.crt"
+
+; #### Configuracion de Remitos
+    Remitos.limiteArticulos = 8
+
+; #### Configuracion de Recibos
+    Recibo.limiteArticulos  = 8
+
+; #### Configuracion de Notas
+    Notas.limiteArticulos  = 8
+
+; #### Configuracion de Facturas Ventas
+    FacturasVentas.limiteArticulos = 8

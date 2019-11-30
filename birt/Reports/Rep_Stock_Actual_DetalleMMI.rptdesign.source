@@ -297,7 +297,6 @@ order by M.Deposito, {ORDEN}
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie"/>
-        <property name="type">a4</property>
     </page-setup>
     <body>
         <grid name="Separador 1" id="2478">

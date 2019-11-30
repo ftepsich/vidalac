@@ -368,9 +368,11 @@ class DesktopController extends Zend_Controller_Action
                 $subAllow = $this->permissionTree($subitem,$n+1);
                 if ($subAllow) {
                     $allowed = true;
+                    // Rad_Log::debug($esp.$item['text'].' permitido por hijos');
                     $subitem['allowed'] = true;
                 } else {
                     $subitem['allowed'] = false;
+                    // Rad_Log::debug($esp.'no permitido');
                 }
 
             }

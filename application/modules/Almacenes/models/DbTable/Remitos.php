@@ -89,8 +89,8 @@ class Almacenes_Model_DbTable_Remitos extends Facturacion_Model_DbTable_Comproba
         'Persona' => array(
             'columns' => 'Persona',
             'refTableClass' => 'Base_Model_DbTable_Personas',
-            'refJoinColumns' => array("RazonSocial"), 
-            'comboBox' => true, 
+            'refJoinColumns' => array("RazonSocial"), // De esta relacion queremos traer estos campos por JOIN
+            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Personas',
             'refColumns' => 'Id',
@@ -99,8 +99,8 @@ class Almacenes_Model_DbTable_Remitos extends Facturacion_Model_DbTable_Comproba
         'TransportistasRetiro' => array(
             'columns' => 'TransportistaRetiroDeOrigen',
             'refTableClass' => 'Base_Model_DbTable_Transportistas',
-            'refJoinColumns' => array("RazonSocial"), 
-            'comboBox' => true, 
+            'refJoinColumns' => array("RazonSocial"), // De esta relacion queremos traer estos campos por JOIN
+            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Personas',
             'refColumns' => 'Id',
@@ -109,8 +109,8 @@ class Almacenes_Model_DbTable_Remitos extends Facturacion_Model_DbTable_Comproba
         'TransportistasEntrego' => array(
             'columns' => 'TransportistaEntregoEnDestino',
             'refTableClass' => 'Base_Model_DbTable_Transportistas',
-            'refJoinColumns' => array("RazonSocial"),
-            'comboBox' => true, 
+            'refJoinColumns' => array("RazonSocial"), // De esta relacion queremos traer estos campos por JOIN
+            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Personas',
             'refColumns' => 'Id',
@@ -119,8 +119,8 @@ class Almacenes_Model_DbTable_Remitos extends Facturacion_Model_DbTable_Comproba
         'FletesFormasPagos' => array(
             'columns' => 'FleteFormaPago',
             'refTableClass' => 'Base_Model_DbTable_FletesFormasPagos',
-            'refJoinColumns' => array("Descripcion"), 
-            'comboBox' => true, 
+            'refJoinColumns' => array("Descripcion"), // De esta relacion queremos traer estos campos por JOIN
+            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'FletesTiposDePagos',
             'refColumns' => 'Id'
@@ -128,8 +128,8 @@ class Almacenes_Model_DbTable_Remitos extends Facturacion_Model_DbTable_Comproba
         'DepositoPropio' => array(
             'columns' => 'DepositoSalida',
             'refTableClass' => 'Base_Model_DbTable_Depositos',
-            'refJoinColumns' => array("Comentario"), 
-            'comboBox' => true, 
+            'refJoinColumns' => array("Comentario"), // De esta relacion queremos traer estos campos por JOIN
+            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Direcciones',
             'refColumns' => 'Id',
@@ -138,8 +138,8 @@ class Almacenes_Model_DbTable_Remitos extends Facturacion_Model_DbTable_Comproba
         'DepositoTercero' => array(
             'columns' => 'DepositoEntrega',
             'refTableClass' => 'Base_Model_DbTable_Depositos',
-            'refJoinColumns' => array("Direccion"), 
-            'comboBox' => true, 
+            'refJoinColumns' => array("Direccion"), // De esta relacion queremos traer estos campos por JOIN
+            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Direcciones',
             'refColumns' => 'Id',
@@ -200,7 +200,11 @@ class Almacenes_Model_DbTable_Remitos extends Facturacion_Model_DbTable_Comproba
                 $this->salirSi_estaCerrado($row->Id);
             }
 
-
+//            foreach ($R_R as $row) {
+//                parent::update($data, "Id = $row->Id");
+//                // Publico y updateo
+//                Rad_PubSub::publish('R_Borrar', $R_R);
+//            }
             parent::update($data, $where);
             $this->_db->commit();
         } catch (Exception $e) {
@@ -309,7 +313,7 @@ class Almacenes_Model_DbTable_Remitos extends Facturacion_Model_DbTable_Comproba
         }
     }
 
-public function fetchAll($where = null, $order = null, $count = null, $offset = null)
+    public function fetchAll($where = null, $order = null, $count = null, $offset = null)
     {
         if ($_POST['factura']) {
             $idF = $this->_db->quote($_POST['factura'], 'INTEGER');

@@ -1,0 +1,9 @@
+[defaultAbmWindow]
+
+	title = Usuarios
+	width = 900
+	height = 500
+	formWidth = 455
+	formHeight = 280
+	
+[default]

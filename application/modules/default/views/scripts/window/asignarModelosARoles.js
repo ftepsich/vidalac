@@ -1,4 +1,4 @@
-aExt.ns( 'Apps' );
+Ext.ns( 'Apps' );
 
 Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
 	autoStart: true,

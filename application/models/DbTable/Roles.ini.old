@@ -1,0 +1,27 @@
+[defaultAbmWindow]
+	title = Roles	
+	width = 700
+	height = 300
+	formWidth = 600
+	formHeight = 400
+	
+[default]
+
+	Id.header = "Id"
+	Id.editor.width = 70
+	Id.editor.fieldLabel = "Id"
+	Id.width = 70
+	Id.align = "right"
+	
+	Descripcion.header = "Descripcion"
+	Descripcion.editor.width = 200
+	Descripcion.editor.fieldLabel = "Descripcion"
+	Descripcion.width = 200
+	Descripcion.align = "left"
+	
+	Rol.header = "Rol"
+	Rol.editor.width = 70
+	Rol.editor.fieldLabel = "Rol"
+	Rol.width = 70
+	Rol.align = "right"
+	

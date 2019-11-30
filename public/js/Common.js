@@ -115,6 +115,32 @@ Ext.override(Ext.chart.Chart, {
         }
     }
 });
+/**
+ *  fix drag & frop ext 3.4.1.1
+ */
+// Ext.dd.DragDropMgr.getZIndex = function(element) {
+//     var body = document.body,
+//         z,
+//         zIndex = -1;
+//     var overTargetEl = element;
+
+//     element = Ext.getDom(element);
+//     while (element !== body) {
+
+//         // this fixes the problem
+//         if(!element) {
+//             this._remove(overTargetEl); // remove the drop target from the manager
+//             break;
+//         }
+//         // fix end
+
+//         if (!isNaN(z = Number(Ext.fly(element).getStyle('zIndex')))) {
+//             zIndex = z;
+//         }
+//         element = element.parentNode;
+//     }
+//     return zIndex;
+// };
 
 
 /**
@@ -256,7 +282,7 @@ Rad.loginWindow = Ext.extend(Ext.Window, {
                 } else {
                     Ext.Msg.show({
                         title: 'Error',
-                        msg:  'Por favor ingrese un Usuario y ContraseÃ±a correctos.',
+                        msg:  'Por favor ingrese un Usuario y Contraseña correctos.',
                         modal: true,
                         icon: Ext.Msg.ERROR,
                         buttons: Ext.Msg.OK
@@ -307,7 +333,22 @@ Rad.loginWindow = Ext.extend(Ext.Window, {
 });
 
 
-    
+    /**
+     *
+     *  Rad.callRemoteJsonAction({
+     *      url: '/window/Almacenes/partirmmi',
+     *          params: {
+     *              id: selItem.data.Mmi.Id,
+     *              cantidad: text,
+     *          },
+     *          success: function (response) {
+     *          },
+     *          failure: function (response) {
+     *              return true;                    // true Muestra el mensaje de error en una ventanan emergente, false no
+     *          }
+     *  })
+     *  @autor Martin Santangelo
+     */
 Rad.callRemoteJsonAction = function(params) {
     if (params.async == null) params.async = true;
     var cfg = {
@@ -349,7 +390,9 @@ Rad.autoHideFields = function(form, combo, rules) {
         desactivados = {};
 
         if (rules[data.id]) {
+
             des = rules[data.id];
+
             for (var i = des.length - 1; i >= 0; i--) {
                 var field = form.getForm().findField(des[i]);
                 if (field) {

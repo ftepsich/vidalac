@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.21" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
+    <property name="createdBy">Eclipse BIRT Designer Version 2.5.2.v20100208 Build &lt;2.5.2.v20100210-0630></property>
     <property name="units">in</property>
     <method name="initialize"><![CDATA[reportContext.setGlobalVariable("TablaRemitosAsociados_Visible",false);
 reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
@@ -15,7 +15,6 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
     <list-property name="cssStyleSheets">
         <structure>
             <property name="fileName">css/EstiloBase.css</property>
-            <property name="useExternalCss">false</property>
         </structure>
     </list-property>
     <parameters>
@@ -34,8 +33,7 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
         </scalar-parameter>
     </parameters>
     <data-sources>
-        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Base" id="186"
- extends="ConectorDB.DataSource">
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Base" id="186" extends="ConectorDB.DataSource">
             <list-property name="privateDriverProperties">
                 <ex-property>
                     <name>contentBidiFormatStr</name>
@@ -44,12 +42,6 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                 <ex-property>
                     <name>metadataBidiFormatStr</name>
                     <value>ILYNN</value>
-                </ex-property>
-                <ex-property>
-                    <name>disabledMetadataBidiFormatStr</name>
-                </ex-property>
-                <ex-property>
-                    <name>disabledContentBidiFormatStr</name>
                 </ex-property>
             </list-property>
         </oda-data-source>
@@ -195,91 +187,60 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                     </structure>
                     <structure>
                         <property name="position">26</property>
-                        <property name="name">Divisa</property>
-                        <property name="dataType">integer</property>
-                    </structure>
-                    <structure>
-                        <property name="position">27</property>
-                        <property name="name">ValorDivisa</property>
-                        <property name="dataType">float</property>
-                    </structure>
-                    <structure>
-                        <property name="position">28</property>
                         <property name="name">DireccionDeEntrega</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">29</property>
+                        <property name="position">27</property>
                         <property name="name">LocalidadDeEntrega</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">30</property>
+                        <property name="position">28</property>
                         <property name="name">ProvinciaDeEntrega</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">31</property>
+                        <property name="position">29</property>
                         <property name="name">DireccionDeSalida</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">32</property>
+                        <property name="position">30</property>
                         <property name="name">LocalidadDeSalida</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">33</property>
+                        <property name="position">31</property>
                         <property name="name">ProvinciaDeSalida</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">34</property>
+                        <property name="position">32</property>
                         <property name="name">CAE_FechaVencimiento</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">35</property>
+                        <property name="position">33</property>
                         <property name="name">CAE_Obs</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">36</property>
+                        <property name="position">34</property>
                         <property name="name">CAE_Numero</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">37</property>
+                        <property name="position">35</property>
                         <property name="name">AfipCodigoComprobante</property>
                         <property name="dataType">integer</property>
-                    </structure>
-                    <structure>
-                        <property name="position">38</property>
-                        <property name="name">PlanDeCuenta_Descripcion</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                    <structure>
-                        <property name="position">39</property>
-                        <property name="name">FechaVencimiento</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                    <structure>
-                        <property name="position">40</property>
-                        <property name="name">CBUOrigen</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                    <structure>
-                        <property name="position">41</property>
-                        <property name="name">ComprobanteRelacionado</property>
-                        <property name="dataType">string</property>
                     </structure>
                 </list-property>
             </structure>
             <method name="onFetch"><![CDATA[
                 reportContext.setGlobalVariable("Persona",dataSetRow["Persona"]);
-                reportContext.setGlobalVariable("Divisa",dataSetRow["Divisa"]);
                 if (row["ObservacionesImpresas"]){
-                   reportContext.setGlobalVariable("Observaciones_Visible",true);
+	               reportContext.setGlobalVariable("Observaciones_Visible",true);
                 }]]></method>
             <property name="dataSource">Base</property>
             <list-property name="resultSet">
@@ -435,103 +396,68 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                 </structure>
                 <structure>
                     <property name="position">26</property>
-                    <property name="name">Divisa</property>
-                    <property name="nativeName">Divisa</property>
-                    <property name="dataType">integer</property>
-                </structure>
-                <structure>
-                    <property name="position">27</property>
-                    <property name="name">ValorDivisa</property>
-                    <property name="nativeName">ValorDivisa</property>
-                    <property name="dataType">float</property>
-                </structure>
-                <structure>
-                    <property name="position">28</property>
                     <property name="name">DireccionDeEntrega</property>
                     <property name="nativeName">DireccionDeEntrega</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">29</property>
+                    <property name="position">27</property>
                     <property name="name">LocalidadDeEntrega</property>
                     <property name="nativeName">LocalidadDeEntrega</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">30</property>
+                    <property name="position">28</property>
                     <property name="name">ProvinciaDeEntrega</property>
                     <property name="nativeName">ProvinciaDeEntrega</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">31</property>
+                    <property name="position">29</property>
                     <property name="name">DireccionDeSalida</property>
                     <property name="nativeName">DireccionDeSalida</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">32</property>
+                    <property name="position">30</property>
                     <property name="name">LocalidadDeSalida</property>
                     <property name="nativeName">LocalidadDeSalida</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">33</property>
+                    <property name="position">31</property>
                     <property name="name">ProvinciaDeSalida</property>
                     <property name="nativeName">ProvinciaDeSalida</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">34</property>
+                    <property name="position">32</property>
                     <property name="name">CAE_FechaVencimiento</property>
                     <property name="nativeName">CAE_FechaVencimiento</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">35</property>
+                    <property name="position">33</property>
                     <property name="name">CAE_Obs</property>
                     <property name="nativeName">CAE_Obs</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">36</property>
+                    <property name="position">34</property>
                     <property name="name">CAE_Numero</property>
                     <property name="nativeName">CAE_Numero</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">37</property>
+                    <property name="position">35</property>
                     <property name="name">AfipCodigoComprobante</property>
                     <property name="nativeName">AfipCodigoComprobante</property>
                     <property name="dataType">integer</property>
                 </structure>
-                <structure>
-                    <property name="position">38</property>
-                    <property name="name">PlanDeCuenta_Descripcion</property>
-                    <property name="nativeName">PlanDeCuenta_Descripcion</property>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="position">39</property>
-                    <property name="name">FechaVencimiento</property>
-                    <property name="nativeName">FechaVencimiento</property>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="position">40</property>
-                    <property name="name">CBUOrigen</property>
-                    <property name="nativeName">CBUOrigen</property>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="position">41</property>
-                    <property name="name">ComprobanteRelacionado</property>
-                    <property name="nativeName">ComprobanteRelacionado</property>
-                    <property name="dataType">string</property>
-                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[call Birt_Comprobante_Divisa_Cabecera(?);]]></xml-property>
-            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+            <xml-property name="queryText"><![CDATA[call Birt_Comprobante_Cabecera(?);]]></xml-property>
+            <xml-property name="designerValues">
+            <![CDATA[<?xml version="1.0" encoding="UTF-8"?>
             <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
               <Version>1.0</Version>
               <design:ResultSets derivedMetaData="true">
@@ -901,7 +827,8 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                   </design:resultSetColumns>
                 </design:resultSetDefinitions>
               </design:ResultSets>
-            </model:DesignValues>]]></xml-property>
+            </model:DesignValues>]]>
+            </xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="DetalleComprobante" id="700">
             <list-property name="parameters">
@@ -1020,8 +947,9 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[call Birt_Comprobante_Divisa_Detalle(?);]]></xml-property>
-            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+            <xml-property name="queryText"><![CDATA[call Birt_Comprobante_Detalle(?);]]></xml-property>
+            <xml-property name="designerValues">
+            <![CDATA[<?xml version="1.0" encoding="UTF-8"?>
             <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
               <Version>1.0</Version>
               <design:ResultSets derivedMetaData="true">
@@ -1144,7 +1072,8 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                   </design:resultSetColumns>
                 </design:resultSetDefinitions>
               </design:ResultSets>
-            </model:DesignValues>]]></xml-property>
+            </model:DesignValues>]]>
+            </xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="RemitosAsociados" id="1186">
             <list-property name="parameters">
@@ -1187,14 +1116,14 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                     <property name="dataType">date</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[
-            SELECT fNumeroCompleto(CR.ComprobanteHijo,'CG') AS NumeroCompleto,
+            <xml-property name="queryText">
+            <![CDATA[SELECT fNumeroCompleto(CR.ComprobanteHijo,'CG') AS NumeroCompleto,
                             C.FechaEmision AS FechaEmision
                      FROM    ComprobantesRelacionados CR    
                      INNER JOIN Comprobantes C          ON C.Id = CR.ComprobanteHijo
                      INNER JOIN TiposDeComprobantes TC  ON TC.Id = C.TipoDeComprobante
-                     WHERE  CR.ComprobantePadre = ? AND TC.Grupo in (4,10)
-            ]]></xml-property>
+                     WHERE  CR.ComprobantePadre = ? AND TC.Grupo in (4,10)]]>
+            </xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="NetosGravados" id="1279">
             <list-property name="parameters">
@@ -1236,7 +1165,7 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[call Birt_ComprobanteEmitido_Divisa_NetosGravados(?,0);]]></xml-property>
+            <xml-property name="queryText"><![CDATA[call Birt_ComprobanteEmitido_NetosGravados(?,0);]]></xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Impuestos" id="1284">
             <list-property name="columnHints">
@@ -1288,16 +1217,15 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[
-                SELECT CI.Descripcion  AS Impuesto,
-                       (C.Monto/IFNULL(CP.ValorDivisa,1)) AS Monto
-                FROM Comprobantes C
-                INNER JOIN ConceptosImpositivos CI  ON C.ConceptoImpositivo = CI.Id 
-                INNER JOIN Comprobantes         CP  ON CP.Id = C.ComprobantePadre
-                INNER JOIN TiposDeComprobantes  TC  ON CP.TipoDeComprobante = TC.Id 
-                WHERE TC.DiscriminaImpuesto = 1 
-                  AND C.ComprobantePadre=?
-            ]]></xml-property>
+            <xml-property name="queryText">
+                <![CDATA[SELECT CI.Descripcion  AS Impuesto,
+                                C.Monto         AS Monto
+                         FROM Comprobantes C
+                         INNER JOIN ConceptosImpositivos CI       on C.ConceptoImpositivo = CI.Id 
+                         INNER JOIN Comprobantes         CPadre   on CPadre.Id = C.ComprobantePadre
+                         INNER JOIN TiposDeComprobantes  TC       on CPadre.TipoDeComprobante = TC.Id 
+                         WHERE TC.DiscriminaImpuesto = 1 and C.ComprobantePadre=?]]>
+            </xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="CodigoBarraI2of5" id="2682">
             <list-property name="parameters">
@@ -1332,8 +1260,8 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                     </structure>
                 </list-property>
             </structure>
-            <method name="onFetch"><![CDATA[
-            function barcode(serie){
+            <method name="onFetch">
+            <![CDATA[function barcode(serie){
                         var arrStr = serie.split(",");
                         var i = 0;
                         var texto = "";
@@ -1407,8 +1335,8 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                     return code25i;  //Return encoded string
                 }
             }
-            reportContext.setPersistentGlobalVariable("encodeCode2Of5i", encodeCode2Of5i);
-            ]]></method>
+            reportContext.setPersistentGlobalVariable("encodeCode2Of5i", encodeCode2Of5i);]]>
+            </method>
             <property name="dataSource">Base</property>
             <list-property name="resultSet">
                 <structure>
@@ -1528,29 +1456,21 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                     <property name="nativeDataType">4</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[
-                SELECT CASE WHEN IFNULL(C.Divisa,1) = 1 
-                            THEN fNumeroALetras(fComprobante_Monto_Total(C.Id)) 
-                            ELSE fNumeroALetras(fComprobante_Monto_Total(C.Id)/NULLIF(C.ValorDivisa,1))
-                       END AS MontoTotalLetras,
-                       IFNULL(C.Divisa,1) AS DivisaCambio, 
-                       CASE WHEN IFNULL(C.Divisa,1) = 1
-                            THEN IFNULL(C.ValorDivisaCambio,D.CambioActual)
-                            ELSE ROUND(C.ValorDivisa,2)
-                       END AS ValorDivisaCambio, 
-                       D.Descripcion AS DescDivisaCambio, 
-                       D.SimboloMonetario,
-                       CASE WHEN IFNULL(C.Divisa,1) = 1 
-                       THEN ROUND(fComprobante_Monto_Total(C.Id)/IFNULL(C.ValorDivisaCambio,D.CambioActual),2)
-                       ELSE ROUND(fComprobante_Monto_Total(C.Id)/IFNULL(C.ValorDivisa,1),2) 
-                       END AS MontoTotalDivisaCambio,
-                       CAST(P.NoImprimirLeyendaDolar AS UNSIGNED INTEGER) AS NoImprimirLeyendaDolar
-                FROM Comprobantes C 
-                INNER JOIN  TiposDeComprobantes TC ON C.TipoDeComprobante = TC.Id
-                INNER JOIN  Personas P ON C.Persona = P.Id
-                LEFT  JOIN  TiposDeDivisas D ON IFNULL(C.DivisaCambio,2) = D.Id
-                WHERE C.Id = ?]]></xml-property>
-            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+            <xml-property name="queryText">
+                <![CDATA[SELECT fNumeroALetras(fComprobante_Monto_Total(C.Id)) AS MontoTotalLetras,
+                                C.DivisaCambio, 
+                                C.ValorDivisaCambio, 
+                                D.Descripcion AS DescDivisaCambio, 
+                                D.SimboloMonetario,
+                                ROUND(fComprobante_Monto_Total(C.Id)/NULLIF(C.ValorDivisaCambio,0),2) AS MontoTotalDivisaCambio,
+                                CAST(P.NoImprimirLeyendaDolar AS UNSIGNED INTEGER) AS NoImprimirLeyendaDolar
+                        FROM Comprobantes C 
+                        INNER JOIN  TiposDeComprobantes TC ON C.TipoDeComprobante = TC.Id
+                        INNER JOIN  Personas P ON C.Persona = P.Id
+                        LEFT  JOIN  TiposDeDivisas D ON C.DivisaCambio = D.Id
+                        WHERE C.Id = ?]]></xml-property>
+            <xml-property name="designerValues">
+                <![CDATA[<?xml version="1.0" encoding="UTF-8"?>
                 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
                   <Version>2.0</Version>
                   <design:ResultSets derivedMetaData="true">
@@ -1707,7 +1627,8 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                       <design:criteria/>
                     </design:resultSetDefinitions>
                   </design:ResultSets>
-                </model:DesignValues>]]></xml-property>
+                </model:DesignValues>]]>
+            </xml-property>
         </oda-data-set>
     </data-sets>
     <styles>
@@ -1799,11 +1720,11 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                                     <cell id="2336">
                                         <label id="2338">
                                             <property name="style">encabezado-Estilo-1</property>
-                                            <text-property name="text">Alimentos Vida S.A.</text-property>
+                                            <text-property name="text">{{EMPRESA_NOMBRE_LARGO}}</text-property>
                                         </label>
                                         <label id="2339">
                                             <property name="style">nombre-cabecera</property>
-                                            <text-property name="text">Fabricación y Ventas de Productos Alimenticios</text-property>
+                                            <text-property name="text">{{ACTIVIDAD_DETALLE_CORTO}}</text-property>
                                         </label>
                                     </cell>
                                 </row>
@@ -1820,25 +1741,25 @@ reportContext.setGlobalVariable("Observaciones_Visible",false);]]></method>
                                     <cell id="2344">
                                         <label id="2346">
                                             <property name="style">encabezado-Estilo-3</property>
-                                            <text-property name="text">Antonio Salellas 1825 - Parana - Entre Rios</text-property>
+                                            <text-property name="text">{{EMPRESA_DIRECCION_COMPLETA}}</text-property>
                                         </label>
                                         <label id="2347">
                                             <property name="style">encabezado-Estilo-3</property>
-                                            <text-property name="text">(0343) 4269400/4269444</text-property>
+                                            <text-property name="text">{{EMPRESA_TELEFONOS}}</text-property>
                                         </label>
                                         <label id="2348">
                                             <property name="style">encabezado-Estilo-3</property>
-                                            <text-property name="text">vidalac@vidalac.com</text-property>
+                                            <text-property name="text">{{EMPRESA_MAIL}}</text-property>
                                         </label>
                                     </cell>
                                     <cell id="2345">
                                         <text id="2349">
                                             <property name="style">encabezado-Estilo-3</property>
                                             <property name="contentType">auto</property>
-                                            <text-property name="content"><![CDATA[[CUIT: 30-71067391-4
-ING. BRUTOS Nᴼ: 908-619964-5
-INICIO ACTIVIDADES: 12-08-2008
-IVA RESP. INSCRIPTO]]></text-property>
+                                            <text-property name="content"><![CDATA[{{EMPRESA_CUIT_CON_TITULO}}
+{{EMPRESA_ING_BRUTOS_CON_TITULO}}
+{{EMPRESA_INICIO_ACTIVIDAD_CON_TITULO}}
+{{EMPRESA_COND_IVA_CON_TITULO}}]]></text-property>
                                         </text>
                                     </cell>
                                 </row>
@@ -1847,7 +1768,7 @@ IVA RESP. INSCRIPTO]]></text-property>
                     </row>
                 </grid>
             </page-header>
-            <page-footer>
+           <page-footer>
                 <grid id="2727">
                     <property name="dataSet">ResumenComprobante</property>
                     <list-property name="boundDataColumns">
@@ -1918,16 +1839,8 @@ IVA RESP. INSCRIPTO]]></text-property>
                             </list-property>
                             <text-data id="2731">
                                 <property name="fontSize">8pt</property>
-                                <expression name="valueExpr">
-if ( row["NoImprimirLeyendaDolar"] == 0 ) { 
-if ( row["DivisaCambio"] == 2 ) { 
-BirtStr.concat("&lt;b>Son Dolares : ",row["MontoTotalLetras"],".-&lt;/b>")
-} else {
-BirtStr.concat("&lt;b>Son Pesos : ",row["MontoTotalLetras"],".-&lt;/b>")
-}
-}
-                                </expression>
                                 <property name="contentType">html</property>
+                                <expression name="valueExpr">if ( row["NoImprimirLeyendaDolar"] == 0 ) { BirtStr.concat("&lt;b&gt;Son Pesos : ",row["MontoTotalLetras"],".-&lt;/b&gt;") }</expression>
                             </text-data>
                         </cell>
                     </row>
@@ -1937,16 +1850,8 @@ BirtStr.concat("&lt;b>Son Pesos : ",row["MontoTotalLetras"],".-&lt;/b>")
                             <property name="style">pie-sin-borde</property>
                             <text-data id="2734">
                                 <property name="fontSize">8pt</property>
-                                <expression name="valueExpr">
-if ( row["NoImprimirLeyendaDolar"] == 0 ) { 
-if ( row["DivisaCambio"] == 2 ) {
-BirtStr.concat("Total &lt;b> U$S : ", row["MontoTotalDivisaCambio"], "&lt;/b>. A efectos impositivos el tipo de cambio aplicado a la presente factura es &lt;b>$ ", row["ValorDivisaCambio"], "&lt;/b>. De pagarse en pesos se cancelará al TC al cierre del día anterior al de efectivo pago.")
-} else {
-BirtStr.concat("Total &lt;b> U$S : ", row["MontoTotalDivisaCambio"], " Cambio Base BNA Vendedor : ", row["ValorDivisaCambio"], "&lt;/b>. El monto podrá ser cancelado a su vencimiento en U$S o su equivalente en pesos al tipo de cambio BNA vendedor del día de su efectiva acreditación. El incumplimiento de las condiciones pactadas, o diferencias en el tipo de cambio superiores al 2% podrá derivar en un ajuste de precios al momento de su acreditación final.") 
-}
-}
-                                </expression>
                                 <property name="contentType">html</property>
+                                <expression name="valueExpr">if ( row["NoImprimirLeyendaDolar"] == 0 ) { BirtStr.concat("&lt;b&gt;Total ",row["SimboloMonetario"], " : ", row["MontoTotalDivisaCambio"], " Cambio Base BNA Vendedor : ", row["ValorDivisaCambio"], "&lt;/b&gt;. El monto podrá ser cancelado a su vencimiento en U$S o su equivalente en pesos al tipo de cambio BNA vendedor del día de su efectiva acreditación. El incumplimiento de las condiciones pactadas, o diferencias en el tipo de cambio superiores al 2% podrá derivar en un ajuste de precios al momento de su acreditación final.") }</expression>
                             </text-data>
                         </cell>
                     </row>
@@ -1968,19 +1873,19 @@ BirtStr.concat("Total &lt;b> U$S : ", row["MontoTotalDivisaCambio"], " Cambio Ba
                                     <cell id="2747">
                                         <property name="textAlign">right</property>
                                         <auto-text id="2748">
-                                            <property name="textAlign">right</property>
                                             <property name="display">inline</property>
+                                            <property name="textAlign">right</property>
                                             <property name="type">page-number</property>
                                         </auto-text>
                                         <text id="2749">
-                                            <property name="textAlign">center</property>
                                             <property name="display">inline</property>
+                                            <property name="textAlign">center</property>
                                             <property name="contentType">plain</property>
                                             <text-property name="content"><![CDATA[/]]></text-property>
                                         </text>
                                         <auto-text id="2750">
-                                            <property name="textAlign">left</property>
                                             <property name="display">inline</property>
+                                            <property name="textAlign">left</property>
                                             <property name="type">total-page</property>
                                         </auto-text>
                                     </cell>
@@ -2002,8 +1907,8 @@ BirtStr.concat("Total &lt;b> U$S : ", row["MontoTotalDivisaCambio"], " Cambio Ba
                 <property name="width">5.4in</property>
             </column>
             <row id="2512">
-                <property name="fontSize">6pt</property>
                 <property name="height">0.15625in</property>
+                <property name="fontSize">6pt</property>
                 <cell id="2513">
                     <property name="style">ids</property>
                     <property name="paddingBottom">3pt</property>
@@ -2110,8 +2015,8 @@ BirtStr.concat("Total &lt;b> U$S : ", row["MontoTotalDivisaCambio"], " Cambio Ba
                 <property name="width">5.925in</property>
             </column>
             <column id="2488">
-                <property name="verticalAlign">top</property>
                 <property name="width">1.925in</property>
+                <property name="verticalAlign">top</property>
             </column>
             <row id="2489">
                 <cell id="2490">
@@ -2153,8 +2058,8 @@ while (i &lt; arrStr.length) {&#13;
                             <property name="width">0.40625in</property>
                         </column>
                         <column id="2705">
-                            <property name="verticalAlign">top</property>
                             <property name="width">5.010416666666667in</property>
+                            <property name="verticalAlign">top</property>
                         </column>
                         <column id="2706">
                             <property name="width">0.4375in</property>
@@ -2392,26 +2297,6 @@ this.setDisplayValue(encodeCode2Of5i(this.getValue()));  //Set to encoded value
                 <structure>
                     <property name="name">CAE_Numero</property>
                     <expression name="expression" type="javascript">dataSetRow["CAE_Numero"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">CBUOrigen</property>
-                    <text-property name="displayName">CBUOrigen</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["CBUOrigen"]</expression>
-                    <property name="dataType">string</property>
-                    <property name="allowExport">true</property>
-                </structure>
-                <structure>
-                    <property name="name">FechaVencimiento</property>
-                    <text-property name="displayName">FechaVencimiento</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["FechaVencimiento"]</expression>
-                    <property name="dataType">date</property>
-                    <property name="allowExport">true</property>
-                </structure>
-                <structure>
-                    <property name="name">ComprobanteRelacionado</property>
-                    <text-property name="displayName">ComprobanteRelacionado</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["ComprobanteRelacionado"]</expression>
                     <property name="dataType">string</property>
                 </structure>
             </list-property>
@@ -2701,80 +2586,21 @@ this.setDisplayValue(encodeCode2Of5i(this.getValue()));  //Set to encoded value
                     </data>
                 </cell>
             </row>
-            <row id="2751">
-                <cell id="2752">
+            <row id="1139">
+                <cell id="1140">
                     <property name="paddingTop">1pt</property>
                     <label id="2508">
                         <property name="style">nombre-cabecera</property>
                         <text-property name="text">CAE</text-property>
                     </label>
                 </cell>
-                <cell id="2753">
+                <cell id="1141">
                     <property name="paddingTop">1pt</property>
                     <text-data id="2509">
                         <property name="style">campo-cabecera</property>
                         <expression name="valueExpr">BirtStr.concat(row["CAE_Numero"]," (Vto: ", row["CAE_FechaVencimiento"], ")")</expression>
                         <property name="contentType">html</property>
                     </text-data>
-                </cell>
-                <cell id="2754">
-                    <property name="paddingTop">1pt</property>
-                </cell>
-                <cell id="2755">
-                    <property name="paddingTop">1pt</property>
-                    <property name="verticalAlign">bottom</property>
-                    <label id="2758">
-                        <property name="style">nombre-cabecera</property>
-                        <list-property name="visibility">
-                            <structure>
-                                <property name="format">all</property>
-                                <expression name="valueExpr">row["FechaVencimiento"] == null</expression>
-                            </structure>
-                        </list-property>
-                        <text-property name="text">Fecha Vto.</text-property>
-                    </label>
-                </cell>
-                <cell id="2756">
-                    <property name="paddingTop">1pt</property>
-                    <property name="verticalAlign">bottom</property>
-                    <data id="2760">
-                        <property name="style">campo-cabecera</property>
-                        <list-property name="visibility">
-                            <structure>
-                                <property name="format">all</property>
-                                <expression name="valueExpr">row["FechaVencimiento"] == null</expression>
-                            </structure>
-                        </list-property>
-                        <property name="resultSetColumn">FechaVencimiento</property>
-                    </data>
-                </cell>
-            </row>
-            <row id="1139">
-                <cell id="1140">
-                    <property name="paddingTop">1pt</property>
-                    <label id="2757">
-                        <property name="style">nombre-cabecera</property>
-                        <list-property name="visibility">
-                            <structure>
-                                <property name="format">all</property>
-                                <expression name="valueExpr">row["CBUOrigen"] == null</expression>
-                            </structure>
-                        </list-property>
-                        <text-property name="text">CBU</text-property>
-                    </label>
-                </cell>
-                <cell id="1141">
-                    <property name="paddingTop">1pt</property>
-                    <data id="2759">
-                        <property name="style">campo-cabecera</property>
-                        <list-property name="visibility">
-                            <structure>
-                                <property name="format">all</property>
-                                <expression name="valueExpr">row["CBUOrigen"] == null</expression>
-                            </structure>
-                        </list-property>
-                        <property name="resultSetColumn">CBUOrigen</property>
-                    </data>
                 </cell>
                 <cell id="1142">
                     <property name="paddingTop">1pt</property>
@@ -2789,91 +2615,6 @@ this.setDisplayValue(encodeCode2Of5i(this.getValue()));  //Set to encoded value
                         <expression name="valueExpr">BirtStr.concat('Nº: ', row["CodigoDeComprobante"] ,' ', row["NumeroCompleto"],'  /  C: ', row["IdComprobante"],'  /  P: ',row["Persona"]);</expression>
                         <property name="contentType">html</property>
                     </text-data>
-                </cell>
-            </row>
-            <row id="2761">
-                <cell id="2762">
-                    <property name="paddingTop">1pt</property>
-                    <label id="2767">
-                        <property name="style">nombre-cabecera</property>
-                        <list-property name="visibility">
-                            <structure>
-                                <property name="format">all</property>
-                                <expression name="valueExpr">row["ComprobanteRelacionado"] == null</expression>
-                            </structure>
-                        </list-property>
-                        <text-property name="text">Cbte. Relacionado</text-property>
-                    </label>
-                </cell>
-                <cell id="2763">
-                    <property name="paddingTop">1pt</property>
-                    <data id="2768">
-                        <property name="backgroundAttachment">scroll</property>
-                        <property name="backgroundPositionX">0%</property>
-                        <property name="backgroundPositionY">0%</property>
-                        <property name="backgroundRepeat">repeat</property>
-                        <property name="fontFamily">"Verdana"</property>
-                        <property name="fontSize">9pt</property>
-                        <property name="fontWeight">lighter</property>
-                        <property name="fontStyle">normal</property>
-                        <property name="fontVariant">normal</property>
-                        <property name="color">#000000</property>
-                        <property name="textLineThrough">none</property>
-                        <property name="textOverline">none</property>
-                        <property name="textUnderline">none</property>
-                        <property name="borderBottomColor">black</property>
-                        <property name="borderBottomStyle">none</property>
-                        <property name="borderBottomWidth">medium</property>
-                        <property name="borderLeftColor">black</property>
-                        <property name="borderLeftStyle">none</property>
-                        <property name="borderLeftWidth">medium</property>
-                        <property name="borderRightColor">black</property>
-                        <property name="borderRightStyle">none</property>
-                        <property name="borderRightWidth">medium</property>
-                        <property name="borderTopColor">black</property>
-                        <property name="borderTopStyle">none</property>
-                        <property name="borderTopWidth">medium</property>
-                        <property name="marginTop">0pt</property>
-                        <property name="marginLeft">0pt</property>
-                        <property name="marginBottom">0pt</property>
-                        <property name="marginRight">0pt</property>
-                        <property name="paddingTop">1pt</property>
-                        <property name="paddingLeft">1pt</property>
-                        <property name="paddingBottom">1pt</property>
-                        <property name="paddingRight">1pt</property>
-                        <property name="letterSpacing">normal</property>
-                        <property name="lineHeight">normal</property>
-                        <property name="orphans">2</property>
-                        <property name="textTransform">none</property>
-                        <property name="whiteSpace">normal</property>
-                        <property name="widows">2</property>
-                        <property name="wordSpacing">normal</property>
-                        <property name="display">block</property>
-                        <property name="pageBreakAfter">auto</property>
-                        <property name="pageBreakBefore">auto</property>
-                        <property name="pageBreakInside">auto</property>
-                        <property name="showIfBlank">false</property>
-                        <property name="canShrink">false</property>
-                        <property name="overflow">hidden</property>
-                        <list-property name="visibility">
-                            <structure>
-                                <property name="format">all</property>
-                                <expression name="valueExpr">row["ComprobanteRelacionado"] == null</expression>
-                            </structure>
-                        </list-property>
-                        <property name="resultSetColumn">ComprobanteRelacionado</property>
-                    </data>
-                </cell>
-                <cell id="2764">
-                    <property name="paddingTop">1pt</property>
-                </cell>
-                <cell id="2765">
-                    <property name="paddingTop">1pt</property>
-                    <property name="verticalAlign">bottom</property>
-                </cell>
-                <cell id="2766">
-                    <property name="paddingTop">1pt</property>
-                    <property name="verticalAlign">bottom</property>
                 </cell>
             </row>
         </grid>
@@ -2902,11 +2643,13 @@ this.setDisplayValue(encodeCode2Of5i(this.getValue()));  //Set to encoded value
                 </structure>
                 <structure>
                     <property name="name">Articulo</property>
+<property name="textAlign">right</property>
                     <expression name="expression" type="javascript">dataSetRow["Articulo"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
                     <property name="name">Cantidad</property>
+                <property name="textAlign">right</property>
                     <expression name="expression" type="javascript">dataSetRow["Cantidad"]</expression>
                     <property name="dataType">decimal</property>
                 </structure>
@@ -3006,13 +2749,13 @@ this.setDisplayValue(encodeCode2Of5i(this.getValue()));  //Set to encoded value
                 <row id="1154">
                     <cell id="1155">
                         <data id="1172">
-                            <property name="textAlign">right</property>
+                    <property name="textAlign">right</property>
                             <property name="resultSetColumn">Cantidad</property>
                         </data>
                     </cell>
                     <cell id="1156">
                         <data id="1174">
-                            <property name="textAlign">right</property>
+                <property name="textAlign">right</property>
                             <property name="resultSetColumn">Articulo</property>
                         </data>
                     </cell>
@@ -3022,10 +2765,8 @@ this.setDisplayValue(encodeCode2Of5i(this.getValue()));  //Set to encoded value
                                 <property name="category">Currency</property>
                                 <property name="pattern">$ #,##0.00</property>
                             </structure>
+                            <method name="onCreate"><![CDATA[if ( reportContext.getGlobalVariable("Persona") == 3582 ) { this.getStyle().numberFormat="$ #,##0.000"; }]]></method>
                             <property name="textAlign">right</property>
-                            <method name="onCreate"><![CDATA[
-                                if ( reportContext.getGlobalVariable("Persona") == 3582 ) { this.getStyle().numberFormat="$ #,##0.000"; }
-                                if ( reportContext.getGlobalVariable("Divisa") == 2 ) { this.getStyle().numberFormat="u$s #,##0.00"; } ]]></method>
                             <property name="resultSetColumn">PrecioUnitario</property>
                         </data>
                     </cell>
@@ -3046,7 +2787,6 @@ this.setDisplayValue(encodeCode2Of5i(this.getValue()));  //Set to encoded value
                                 <property name="pattern">$ #,##0.00</property>
                             </structure>
                             <property name="textAlign">right</property>
-                            <method name="onCreate"><![CDATA[if ( reportContext.getGlobalVariable("Divisa") == 2 ) { this.getStyle().numberFormat="u$s #,##0.00"; } ]]></method>
                             <property name="resultSetColumn">MontoSinDescuento</property>
                         </data>
                     </cell>
@@ -3072,7 +2812,6 @@ this.setDisplayValue(encodeCode2Of5i(this.getValue()));  //Set to encoded value
                                 <property name="category">Currency</property>
                                 <property name="pattern">$ #,##0.00</property>
                             </structure>
-                            <method name="onCreate"><![CDATA[if ( reportContext.getGlobalVariable("Divisa") == 2 ) { this.getStyle().numberFormat="u$s #,##0.00"; } ]]></method>
                             <property name="resultSetColumn">SubTotal</property>
                         </data>
                     </cell>
@@ -3496,7 +3235,6 @@ else&#13;
                                         <property name="pattern">$ #,##0.00</property>
                                     </structure>
                                     <property name="textAlign">right</property>
-                                    <method name="onCreate"><![CDATA[if ( reportContext.getGlobalVariable("Divisa") == 2 ) { this.getStyle().numberFormat="u$s #,##0.00"; } ]]></method>
                                     <property name="resultSetColumn">SumDescuento</property>
                                 </data>
                             </cell>
@@ -3540,7 +3278,6 @@ else&#13;
                                             <property name="pattern">$ #,##0.00</property>
                                         </structure>
                                         <property name="textAlign">right</property>
-                                        <method name="onCreate"><![CDATA[if ( reportContext.getGlobalVariable("Divisa") == 2 ) { this.getStyle().numberFormat="u$s #,##0.00"; } ]]></method>
                                         <property name="resultSetColumn">NetoGravado</property>
                                     </data>
                                 </cell>
@@ -3583,7 +3320,6 @@ else&#13;
                                             <property name="pattern">$ #,##0.00</property>
                                         </structure>
                                         <property name="textAlign">right</property>
-                                        <method name="onCreate"><![CDATA[if ( reportContext.getGlobalVariable("Divisa") == 2 ) { this.getStyle().numberFormat="u$s #,##0.00"; } ]]></method>
                                         <property name="resultSetColumn">Monto</property>
                                     </data>
                                 </cell>
@@ -3685,7 +3421,6 @@ else&#13;
                                         <property name="category">Currency</property>
                                         <property name="pattern">$ #,##0.00</property>
                                     </structure>
-                                    <method name="onCreate"><![CDATA[if ( reportContext.getGlobalVariable("Divisa") == 2 ) { this.getStyle().numberFormat="u$s #,##0.00"; } ]]></method>
                                     <property name="resultSetColumn">MontoTotal</property>
                                 </data>
                             </cell>

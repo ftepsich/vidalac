@@ -53,11 +53,8 @@ class Base_Model_DbTable_ChequesDarDestinos extends Base_Model_DbTable_Cheques
                         throw new Rad_Db_Table_Exception('Debe ingresar el Estado del Cheque.');
                     }
                     // Si se entrega a un socio no hay relacion con una cuenta bancaria destino, sino controlar
-                    if($data['ChequeEstado'] <> 11) {
-                        if (!$data['CuentaDeMovimiento'] && !$row['CuentaDeMovimiento']) {
-                            throw new Rad_Db_Table_Exception('Debe ingresar la Cuenta del Banco donde se realizo la operacion con el cheque.');
-                        }
-                    }
+
+                    
                 }
 
             }
