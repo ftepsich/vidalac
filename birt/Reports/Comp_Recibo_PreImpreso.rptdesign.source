@@ -831,7 +831,7 @@ WHERE fEstadoRelHijoPago(C.Id) COLLATE utf8_general_ci NOT IN ('Totalmente', 'Co
 -- AND fEstadoRelHijoPago(C.Id) <>  COLLATE utf8_general_ci
 AND C.Cerrado = 1
 AND C.Anulado = 0
-AND TC.Grupo IN(1,6,7,8,12,13)
+AND TC.Grupo IN(1,6,7,8,12,13,23,24,26)
 -- AND C.Id NOT IN(SELECT CR.ComprobanteHijo FROM ComprobantesRelacionados CR WHERE CR.ComprobantePadre = ?)
 AND C.Persona = (SELECT C3.Persona FROM Comprobantes C3 WHERE C3.Id = ?)]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>

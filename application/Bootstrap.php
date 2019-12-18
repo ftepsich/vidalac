@@ -49,6 +49,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 'ignore_user_abort' => true
             );
              $backendOptions = array(
+                'cache_dir' => '/usr/share/nginx/vidalac/data/cache'
             );
             $cache = Zend_Cache::factory(
                 'Core', 'Zend_Cache_Backend_File', $frontendOptions, $backendOptions, false, true
@@ -119,12 +120,4 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         );
         return $moduleLoader;
     }
-    /*
-      protected function _initAcl()
-      {
-          $this->bootstrap('db');
-          $db = $this->getResource('db');
-          $acl = Rad_Acl::getInstance($db);
-          return $acl;
-      } */
 }
