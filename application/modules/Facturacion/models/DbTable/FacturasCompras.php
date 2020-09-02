@@ -392,7 +392,7 @@ class Facturacion_Model_DbTable_FacturasCompras extends Facturacion_Model_DbTabl
             $RenglonOrdenDePagoDetalle = array(
                 'Comprobante'           => $idOP,
                 'PrecioUnitario'        => $monto,
-                'Observaciones'         => 'Efectivo',
+                'Observaciones'         => 'Contado',
                 'Caja'                  => $caja
             );
 

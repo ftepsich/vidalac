@@ -715,7 +715,7 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
             $RenglonReciboDetalle = array(
                 'Comprobante'           => $idRecibo,
                 'PrecioUnitario'        => $monto,
-                'Observaciones'         => 'Efectivo',
+                'Observaciones'         => 'Contado',
                 'Caja'                  => $caja
             );
 

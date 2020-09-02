@@ -138,6 +138,7 @@ class Contable_Model_DbTable_LibrosIVA extends Rad_Db_Table
         }
         return $R;
     }	
+
     /**
      * Retorna el contienido de un libro de iva con el formato pedido por AFIP
      * ---------
@@ -162,19 +163,19 @@ class Contable_Model_DbTable_LibrosIVA extends Rad_Db_Table
      * Retorna el contienido de un libro de iva con el formato pedido por AFIP
      * ---------
      * @param int $idLibro      identificador del Libro de IVA
-     * @param int $tipoDeLibro  1: Compra 2: Venta
+     * @param int $tipoDeLibro  1: Compra 2: Venta 
      * @param int $parte        1: Cabecera 2: Detalle
      * @param int $importacion  0: No 1: Si
      * @param int $forma        0: ancho fijo, 1: separado por como (0 es la que se debe mandar)
      *
      * @return array
      */
-    public function exportadorAFIPres4597 ($idLibro, $tipoDeLibro, $parte, $importacion, $forma) {
+    public function exportadorAFIPres4597 ($idLibro, $tipoDeLibro, $parte, $forma) {
 
         $txtTipo        = ($tipoDeLibro == 1) ? "Compra" : "Venta";
         $txtParte       = ($parte == 1) ? "" : "_Detalle";
-        $txtImportacion = ($importacion == 0) ? "" : "_Importacion";
-        $sql            = "call AFIP_exportador_LibroIVA_".$txtTipo.$txtImportacion."_res4597".$txtParte."($idLibro, $forma)";
+        $txtImportacion = ($importacion == 0) ? "" : _"Importacion";
+        $sql            = "call AFIP_exportador_LibroIVA_".$txtTipo."_res4597".$txtImportacion.$txtParte."($idLibro, $forma)";
         $R = $this->_db->fetchAll($sql);
         if (!count($R)) throw new Rad_Db_Table_Exception('No se encuentra el libro de IVA a exportar o no tiene registros.');
         return $R;

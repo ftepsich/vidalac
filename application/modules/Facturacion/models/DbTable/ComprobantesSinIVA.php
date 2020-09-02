@@ -366,7 +366,7 @@ class Facturacion_Model_DbTable_ComprobantesSinIVA extends Facturacion_Model_DbT
             $RenglonOrdenDePagoDetalle = array(
                 'Comprobante'           => $idOP,
                 'PrecioUnitario'        => $monto,
-                'Observaciones'         => 'Efectivo',
+                'Observaciones'         => 'Contado',
                 'Caja'                  => $caja
             );
 

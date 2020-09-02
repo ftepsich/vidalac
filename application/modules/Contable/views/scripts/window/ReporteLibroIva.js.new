@@ -1,3 +1,4 @@
+
 Ext.ns( 'Apps' );
 
 Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
@@ -91,11 +92,10 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                                 ['Exportador AFIP res 3685 Alicuotas', '7'],
                                 //['Test Exp. AFIP res 3685 Cabecera (separado por coma)', '8'],
                                 //['Test Exp. AFIP res 3685 Detalle  (separado por coma)', '9'],
-                                //['Test Exportador AFIP (pre 3685) -- para control con valores negativos', '4'],
-                                ['IVA digital - Cabecera (Res. 4597)', '16'],
+                                //['Test Exportador AFIP (pre 3685) -- para control con valores negativos', '4']
+   				['IVA digital - Cabecera (Res. 4597)', '16'],
                                 ['IVA digital - Alicuotas (Res. 4597)', '17'],
                                 ['IVA digital - Importacion - Cabecera  (Res. 4597)', '18'],
-                                ['IVA digital - Importacion - Alicuotas (Res. 4597)', '19']
                         ]
                     }),
                     value: 1,

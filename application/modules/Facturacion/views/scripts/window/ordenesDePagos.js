@@ -385,7 +385,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
             activeItem: 0,
             deferredRender : false,
             items: [{
-                    title:'Efectivo',
+                    title:'Contado',
                     bodyStyle:'padding:25px',
                     layout:'form',
                     items:[

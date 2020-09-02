@@ -328,41 +328,13 @@
         </simple-master-page>
     </page-setup>
     <body>
-        <grid name="TextoEncabezado" id="2518">
-            <list-property name="visibility">
-                <structure>
-                    <property name="format">xls</property>
-                    <expression name="valueExpr" type="javascript">true</expression>
-                </structure>
-            </list-property>
-            <row id="2519">
-                <cell id="2520"/>
-            </row>
-            <row id="2521">
-                <cell id="2522">
-                    <grid id="2653">
-                        <property name="width">13.6in</property>
-                        <column id="2654">
-                            <property name="width">13.6in</property>
-                        </column>
-                        <row id="2661">
-                            <cell id="2662">
-                                <label id="2670">
-                                    <property name="fontFamily">"Verdana"</property>
-                                    <property name="fontSize">12pt</property>
-                                    <property name="fontWeight">bold</property>
-                                    <property name="fontStyle">normal</property>
-                                    <text-property name="text">{TEXTO}</text-property>
-                                </label>
-                            </cell>
-                        </row>
-                    </grid>
-                </cell>
-            </row>
-            <row id="2790">
-                <cell id="2791"/>
-            </row>
-        </grid>
+        <label id="2670">
+            <property name="fontFamily">"Verdana"</property>
+            <property name="fontSize">12pt</property>
+            <property name="fontWeight">bold</property>
+            <property name="fontStyle">normal</property>
+            <text-property name="text">{TEXTO}</text-property>
+        </label>
         <table id="3141">
             <property name="fontFamily">"Verdana"</property>
             <property name="fontSize">6pt</property>

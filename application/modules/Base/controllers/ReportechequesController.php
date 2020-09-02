@@ -261,6 +261,7 @@ class Base_ReporteChequesController extends Rad_Window_Controller_Action
         $db = Zend_Registry::get('db');
         $param   = $this->buildParametros($rq,$db);
         $formato = ($rq->formato) ? $rq->formato : 'pdf';
+        $formato = 'xls';
         switch ($formato) {
             case 'pdf': 
             case 'xls':

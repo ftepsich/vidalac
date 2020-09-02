@@ -198,31 +198,78 @@ FROM Personas P
             <property name="leftMargin">0.25in</property>
             <property name="showHeaderOnFirst">true</property>
             <property name="showFooterOnLast">true</property>
+       <overridden-values>
+                <ref-entry baseId="2434" name="Cabecera" id="2434"/>
+                <ref-entry baseId="2435" id="2435"/>
+                <ref-entry baseId="2436" id="2436"/>
+                <ref-entry baseId="2438" name="NewLabel1" id="2438"/>
+                <ref-entry baseId="2404" name="NewGrid" id="2404"/>
+                <ref-entry baseId="2405" id="2405"/>
+                <ref-entry baseId="2406" id="2406"/>
+                <ref-entry baseId="2419" id="2419"/>
+                <ref-entry baseId="2417" id="2417"/>
+                <ref-entry baseId="2407" id="2407"/>
+                <ref-entry baseId="2408" id="2408"/>
+                <ref-entry baseId="2409" id="2409"/>
+                <ref-entry baseId="2433" name="NewLabel" id="2433"/>
+                <ref-entry baseId="2410" id="2410"/>
+                <ref-entry baseId="2432" name="NewText" id="2432"/>
+                <ref-entry baseId="2418" id="2418"/>
+                <ref-entry baseId="2416" id="2416"/>
+                <ref-entry baseId="2411" id="2411"/>
+                <ref-entry baseId="2421" name="NewGrid1" id="2421"/>
+                <ref-entry baseId="2422" id="2422"/>
+                <ref-entry baseId="2423" id="2423"/>
+                <ref-entry baseId="2424" id="2424"/>
+                <ref-entry baseId="2425" id="2425"/>
+                <ref-entry baseId="2426" id="2426"/>
+                <ref-entry baseId="2427" name="NewAutoText" id="2427"/>
+                <ref-entry baseId="2428" id="2428"/>
+                <ref-entry baseId="2429" name="NewText1" id="2429"/>
+                <ref-entry baseId="2430" id="2430"/>
+                <ref-entry baseId="2431" name="NewAutoText1" id="2431"/>
+            </overridden-values>
+
         </simple-master-page>
     </page-setup>
     <body>
-        <grid name="Separador 1" id="2478">
-            <property name="height">5pt</property>
-            <column id="2479"/>
-            <row id="2480">
-                <cell id="2481"/>
+         <grid name="TextoEncabezado" id="2518">
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">xls</property>
+                    <expression name="valueExpr" type="javascript">true</expression>
+                </structure>
+            </list-property>
+            <row id="2519">
+                <cell id="2520"/>
             </row>
-        </grid>
-        <grid name="Titulos" id="2447">
-            <property name="width">19.706166666666668cm</property>
-            <column id="2448">
-                <property name="width">19.706166666666668cm</property>
-            </column>
-            <row id="2452">
-                <cell id="2453">
-                    <label id="2457">
+            <row id="2521">
+                <cell id="2522">
+                    <grid id="2653">
+                        <property name="width">13.6in</property>
+                        <column id="2654">
+                            <property name="width">13.6in</property>
+                        </column>
+                        <row id="2661">
+                            <cell id="2662">
+                                <label id="2670">
                         <property name="style">encabezado-Estilo-1</property>
-                        <text-property name="text">{TEXTO}</text-property>
-                    </label>
+
+                                    <property name="fontFamily">"Verdana"</property>
+                                    <property name="fontSize">12pt</property>
+                                    <property name="fontWeight">bold</property>
+                                    <property name="fontStyle">normal</property>
+                                    <text-property name="text">{TEXTO}</text-property>
+                                </label>
+                            </cell>
+                        </row>
+                    </grid>
                 </cell>
             </row>
-        </grid>
-        <grid name="Separador 2" id="2474">
+            <row id="2790">
+                <cell id="2791"/>
+            </row>
+        </grid>        <grid name="Separador 2" id="2474">
             <property name="height">5pt</property>
             <column id="2475"/>
             <row id="2476">

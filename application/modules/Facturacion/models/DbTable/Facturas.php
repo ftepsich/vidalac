@@ -24,7 +24,6 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
         );
 
 
-    
     protected $_calculatedFields = array(
         'EstadoPagado' => "fEstadoRelHijoPago(Comprobantes.Id) COLLATE utf8_general_ci ",
         'EstadoRecibido' => "fEstadoRelPadre(Comprobantes.Id) COLLATE utf8_general_ci",

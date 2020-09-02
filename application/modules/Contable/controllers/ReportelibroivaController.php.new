@@ -58,17 +58,16 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action {
         }
 
         if ($param['modelo'] == 6 || $param['modelo'] == 7 || $param['modelo'] == 8 || $param['modelo'] == 9) {
-
             // Exporto en formato CSV para la Afip
             $M = new Contable_Model_DbTable_LibrosIVA();
             // $parte: 1 Cabecera, 2 Alicuotas (Detalle)            
-            $parte = ($param['modelo'] == 6 || $param['modelo'] == 8) ? 1 : 2;
+            $parte = ($param['modelo'] == 6) ? 1 : 2;
             // $forma: 0 de ancho fijo, 1 separado por comas (0 es como pide Afip)            
             $forma = ($param['modelo'] == 6 || $param['modelo'] == 7) ? 0 : 1;
             // $alicuotas son los reportes de los detalles (7 y 9)
             $alicuota = ($param['modelo'] == 6 || $param['modelo'] == 8) ? "" : "_alicuotas";
             // $test para que en el nombre ponga test cuando no lo hagan como Afip pide
-            $test = ($param['modelo'] == 6 || $param['modelo'] == 7) ? "" : "__TEST__";
+            // $test = ($param['modelo'] == 6 || $param['modelo'] == 7) ? "" : "__TEST__";
             $datos = $M->exportadorAFIPres3685($param['libro'], $param['tipo'], $parte, $forma);
 
             $e = new FileExport(FileExport::MODE_SEPARATOR);
@@ -76,7 +75,7 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action {
             $e->addAll($datos);
             $contenido = str_replace("\r\n\r\n", "\r\n", $e->getContent());
             $R = $M->find($param['libro'])->current();
-            $Nombre = "AFIPRes3685_" . $R->Anio . "-" . str_pad($R->Mes, 2, '0', STR_PAD_LEFT) . "_" . $test . $Nombre . $alicuota . "_" . date('YmdHis') . ".txt";
+            $Nombre = $R->Anio . "-" . str_pad($R->Mes, 2, '0', STR_PAD_LEFT) . "_" . $test . $Nombre . $alicuota . "_" . date('YmdHis') . ".txt";
             header("Content-disposition: attachment; filename=$Nombre");
             header("Content-type: text/csv");
             echo $contenido;
@@ -93,8 +92,8 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action {
             // $forma: 0 de ancho fijo, 1 separado por comas (0 es como pide Afip)
             $forma = ($param['modelo'] == 16 || $param['modelo'] == 17 || $param['modelo'] == 18 || $param['modelo'] == 19) ? 0 : 1;
             // $alicuotas son los reportes de los detalles (17 y 19)
-            $txtalicuota = ($param['modelo'] == 16 || $param['modelo'] == 18) ? "" : "_alicuotas";
-            $txtimportacion = ($param['modelo'] == 16 || $param['modelo'] == 17) ? "" : "_importacion";
+            $alicuota = ($param['modelo'] == 16 || $param['modelo'] == 18) ? "" : "_alicuotas";
+            $importador = ($param['modelo'] == 16 || $param['modelo'] == 17) ? "" : "_importador";
             $datos = $M->exportadorAFIPres4597($param['libro'], $param['tipo'], $parte, $importacion, $forma);
 
             $e = new FileExport(FileExport::MODE_SEPARATOR);
@@ -102,7 +101,7 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action {
             $e->addAll($datos);
             $contenido = str_replace("\r\n\r\n", "\r\n", $e->getContent());
             $R = $M->find($param['libro'])->current();
-            $Nombre = "AFIPRes4597_" . $R->Anio . "-" . str_pad($R->Mes, 2, '0', STR_PAD_LEFT) . "_" . $test . $Nombre . $txtimportacion . $txtalicuota . "_" . date('YmdHis') . ".txt";
+            $Nombre = $R->Anio . "-" . str_pad($R->Mes, 2, '0', STR_PAD_LEFT) . "_" . $test . $Nombre . $importador . $alicuota . "_" . date('YmdHis') . ".txt";
             header("Content-disposition: attachment; filename=$Nombre");
             header("Content-type: text/csv");
             echo $contenido;
@@ -121,7 +120,7 @@ class Contable_ReporteLibroIvaController extends Rad_Window_Controller_Action {
                 };
             } else {
                 $Nombre = $Nombre . "__paraControl_NoValido_AFIP__";
-                // desimal con coma
+                // decimal con coma
                 $formatoSalida = function($e) {
                     return str_replace('.', ',', $e);
                 };

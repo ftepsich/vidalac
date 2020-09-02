@@ -53,11 +53,11 @@
                                     <cell id="2336">
                                         <label name="NewLabel" id="2338">
                                             <property name="style">encabezado-Estilo-1</property>
-                                            <text-property name="text">{{EMPRESA_NOMBRE_LARGO}}</text-property>
+                                            <text-property name="text">Alimentos Vida S.A.</text-property>
                                         </label>
                                         <label name="NewLabel1" id="2339">
                                             <property name="style">nombre-cabecera</property>
-                                            <text-property name="text">{{ACTIVIDAD_DETALLE_CORTO}}</text-property>
+                                            <text-property name="text">Fabricación y Ventas de Productos Alimenticios</text-property>
                                         </label>
                                     </cell>
                                 </row>
@@ -74,25 +74,25 @@
                                     <cell id="2344">
                                         <label name="NewLabel2" id="2346">
                                             <property name="style">encabezado-Estilo-3</property>
-                                            <text-property name="text">{{EMPRESA_DIRECCION_COMPLETA}}</text-property>
+                                            <text-property name="text">Antonio Salellas 1825 - Parana - Entre Rios</text-property>
                                         </label>
                                         <label name="NewLabel3" id="2347">
                                             <property name="style">encabezado-Estilo-3</property>
-                                            <text-property name="text">{{EMPRESA_TELEFONOS}}</text-property>
+                                            <text-property name="text">(0343) 4269400/4269444</text-property>
                                         </label>
                                         <label name="NewLabel4" id="2348">
                                             <property name="style">encabezado-Estilo-3</property>
-                                            <text-property name="text">{{EMPRESA_MAIL}}</text-property>
+                                            <text-property name="text">vidalac@vidalac.com</text-property>
                                         </label>
                                     </cell>
                                     <cell id="2345">
                                         <text name="NewText" id="2349">
                                             <property name="style">encabezado-Estilo-3</property>
                                             <property name="contentType">auto</property>
-                                            <text-property name="content"><![CDATA[{{EMPRESA_CUIT_CON_TITULO}}
-{{EMPRESA_ING_BRUTOS_CON_TITULO}}
-{{EMPRESA_INICIO_ACTIVIDAD_CON_TITULO}}
-{{EMPRESA_COND_IVA_CON_TITULO}}]]></text-property>
+                                            <text-property name="content"><![CDATA[CUIT: 30-71067391-4
+ING. BRUTOS Nᴼ: 908-619964-5
+INICIO ACTIVIDADES: 12-08-2008
+IVA RESP. INSCRIPTO]]></text-property>
                                         </text>
                                     </cell>
                                 </row>
@@ -123,11 +123,6 @@
                     <row id="2408">
                         <property name="height">0.6773333333333333cm</property>
                         <property name="style">pie</property>
-                            <cell id="2609">
-                            <label name="NewLabel6" id="2633">
-                                <text-property name="text">Son $ :</text-property>
-                            </label>
-                        </cell>
                         <cell id="2409">
                             <label name="NewLabel5" id="2433">
                                 <text-property name="text">Impreso el :</text-property>
@@ -137,7 +132,7 @@
                             <text name="NewText1" id="2432">
                                 <property name="textAlign">left</property>
                                 <property name="contentType">html</property>
-                                <text-property name="content"><![CDATA[<value-of format="dd/MM/YYYY">new Date()</value-of>]]></text-property>
+                                <text-property name="content"><![CDATA[<value-of format="MM/dd/YYYY">new Date()</value-of>]]></text-property>
                             </text>
                         </cell>
                         <cell id="2418"/>
