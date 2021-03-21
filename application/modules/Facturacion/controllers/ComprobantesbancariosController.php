@@ -76,18 +76,6 @@ class Facturacion_ComprobantesBancariosController extends Rad_Window_Controller_
         unset($config);
 
         /**
-         * Articulos Relacionados (Paso 2 -/ subgrilla)
-         */
-        // $config->withPaginator        = false;
-        // $config->loadAuto             = false;
-        // $config->id                   = $this->getName() . '_GridArticulosRel';
-        // $this->view->gridArticulosRel = $this->view->radGrid(
-        //                 'Facturacion_Model_DbTable_vRelFacturasArticulosOrdenesArticulos',
-        //                 $config
-        // );
-        // unset($config);
-
-        /**
          * Asociar Conceptos impositivos a Comprobante Bancario (Paso 3)
          */
         $config->abmWindowTitle  = 'Concepto Impositivo';
