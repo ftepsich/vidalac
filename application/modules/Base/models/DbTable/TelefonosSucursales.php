@@ -11,17 +11,16 @@ class Base_Model_DbTable_TelefonosSucursales extends  Base_Model_DbTable_Telefon
  		'BancosSucursales' => array(
             'columns'           => 'BancoSucursal',
             'refTableClass'     => 'Base_Model_DbTable_BancosSucursales',
-     		'refJoinColumns'    => array("Descripcion"),                     // De esta relacion queremos traer estos campos por JOIN
-     		'comboBox'			=> true,                                     // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
-     		'comboSource'		=> 'datagateway/combolist',
+     		'refJoinColumns'    => array("Descripcion"),                    
+     		'comboBox'			=> true,                                     
             'refTable'			=> 'BancosSucursales',
             'refColumns'        => 'Id'
         ),
 		'TiposDeTelefonos' => array(
             'columns'           => 'TipoDeTelefono',
             'refTableClass'     => 'Base_Model_DbTable_TiposDeTelefonos',
-     		'refJoinColumns'    => array("Descripcion"),                     // De esta relacion queremos traer estos campos por JOIN
-     		'comboBox'			=> true,                                     // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+     		'refJoinColumns'    => array("Descripcion"),                     
+     		'comboBox'			=> true,                                    
      		'comboSource'		=> 'datagateway/combolist',
             'refTable'			=> 'TiposDeTelefonos',
             'refColumns'        => 'Id'
@@ -29,11 +28,6 @@ class Base_Model_DbTable_TelefonosSucursales extends  Base_Model_DbTable_Telefon
 
 	);
 	// fin  protected $_referenceMap -----------------------------------------------------------------------------
-
-
-	
-	
-	
 }
 
 ?>
