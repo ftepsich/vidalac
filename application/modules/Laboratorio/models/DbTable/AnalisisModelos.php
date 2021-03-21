@@ -27,7 +27,7 @@ class Laboratorio_Model_DbTable_AnalisisModelos extends Rad_Db_Table
      		'comboSource'		=> 'datagateway/combolist',
             'refTable'			=> 'AnalisisTiposModelos',
             'refColumns'        => 'Id',
-     		'comboPageSize'     => 20            //DEFINE EL TAMAÑO DE LA PAGINA DEL COMBO (Se arma un combo de busqueda)
+     		'comboPageSize'     => 20            
 			
         ),
         'Analisis' => array(
@@ -38,7 +38,7 @@ class Laboratorio_Model_DbTable_AnalisisModelos extends Rad_Db_Table
      		'comboSource'		=> 'datagateway/combolist',
             'refTable'			=> 'Analisis',
             'refColumns'        => 'Id',
-            'comboPageSize'     => 20            //DEFINE EL TAMAÑO DE LA PAGINA DEL COMBO (Se arma un combo de busqueda)
+            'comboPageSize'     => 20            
         )
 		 
 );
