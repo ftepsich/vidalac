@@ -14,14 +14,14 @@ class Base_Model_DbTable_VBancosCuentas extends Rad_Db_Table
     
     public function fetchEsPropia ($where = null, $order = null, $count = null, $offset = null)
     {
-        $condicion = "Propia = 1 and Persona is not null";
+        $condicion = "Propia <> 1 and Persona is not null";
         $where = $this->_addCondition($where, $condicion);
         return self::fetchAll ($where , $order , $count , $offset );
     }
 
     public function fetchNoEsPropia ($where = null, $order = null, $count = null, $offset = null)
     {
-        $condicion = "Propia <> 1 and Persona is not null";
+        $condicion = "Propia <> 1 and Persona is not null and Cerrada = 0";
         $where = $this->_addCondition($where, $condicion);
         return self::fetchAll ($where , $order , $count , $offset );
     }  
