@@ -168,6 +168,42 @@ class Facturacion_FacturasVentasMinoristasController extends Rad_Window_Controll
         $this->_forward('report', 'BirtReporter', 'Window', $params);
     }
 
+    public function verfacturaqrAction()
+    {
+        $this->_helper->viewRenderer->setNoRender(true);
+
+        $modelFV    = new Facturacion_Model_DbTable_FacturasVentas();
+
+        $rq         = $this->getRequest();
+        $params     = $rq->getParams();
+
+        $db         = $modelFV->getAdapter();
+
+        $id         = $params['id'];
+
+        $factura    = $modelFV->find($db->quote($id, 'INTEGER'))->current();
+
+        if (!$factura) {
+            echo "{success: false, msg: 'No se encontro el comprobante a imprimir'}";
+            return;
+        }
+
+        $adaptador  = $modelFV->getAdaptadorPunto($factura->Punto);
+
+        if ($adaptador->getRequiereImpresion()){
+            // Es una factura electronica (Se imprime como un comp original)
+            $params['output']   = 'pdf';
+            $params['template'] = 'Comp_FacturaEmitida_Electronica_QR';
+        } else {
+            // Es un comprobante no electronico... se imprime como una copia
+            $params['output']   = 'pdf';
+            $params['template'] = 'Comp_FacturaEmitida_Ver';
+        }
+
+        $this->_forward('report', 'BirtReporter', 'Window', $params);
+    }
+
+
     // public function cerrarfacturaAction ()
     // {
     //     $this->_helper->viewRenderer->setNoRender(true);
