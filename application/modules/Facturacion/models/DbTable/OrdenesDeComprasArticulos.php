@@ -41,8 +41,8 @@ class Facturacion_Model_DbTable_OrdenesDeComprasArticulos extends Facturacion_Mo
         'Articulos' => array(
             'columns'           => 'Articulo',
             'refTableClass'     => 'Base_Model_DbTable_ArticulosGenericos',
-     		'refJoinColumns'    => array("Descripcion","DescArreglada" =>"IF(ComprobantesDetalles.Articulo is null,ComprobantesDetalles.Observaciones,Articulos.Descripcion)", 'Tipo'),                     // De esta relacion queremos traer estos campos por JOIN
-     		'comboBox'			=> true,                                     // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+     		'refJoinColumns'    => array("Descripcion","DescArreglada" =>"IF(ComprobantesDetalles.Articulo is null,ComprobantesDetalles.Observaciones,Articulos.Descripcion)", 'Tipo'),                     
+     		'comboBox'			=> true,                                    
      		'comboSource'		=> 'datagateway/combolist/fetch/EsArticuloParaCompra',
             'refTable'			=> 'Articulos',
             'refColumns'        => 'Id',

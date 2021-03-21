@@ -24,8 +24,8 @@ class Laboratorio_Model_DbTable_Analisis extends Rad_Db_Table
         'TiposDeAnalisis' => array(
             'columns'           => 'TipoAnalisis',
             'refTableClass'     => 'Laboratorio_Model_DbTable_TiposDeAnalisis',
-     		'refJoinColumns'    => array("Descripcion"),                     // De esta relacion queremos traer estos campos por JOIN
-     		'comboBox'			=> true,                                     // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+     		'refJoinColumns'    => array("Descripcion"),                     
+     		'comboBox'			=> true,                                     
      		'comboSource'		=> 'datagateway/combolist',
             'refTable'			=> 'TiposDeAnalisis',
             'refColumns'        => 'Id'
@@ -33,8 +33,8 @@ class Laboratorio_Model_DbTable_Analisis extends Rad_Db_Table
 		'TiposDeCampos' => array(
             'columns'           => 'TipoDeCampo',
             'refTableClass'     => 'Base_Model_DbTable_TiposDeCampos',
-     		'refJoinColumns'    => array("Descripcion"),                     // De esta relacion queremos traer estos campos por JOIN
-     		'comboBox'			=> true,                                     // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+     		'refJoinColumns'    => array("Descripcion"),                    
+     		'comboBox'			=> true,                                    
      		'comboSource'		=> 'datagateway/combolist',
             'refTable'			=> 'TiposDeCampos',
             'refColumns'        => 'Id'

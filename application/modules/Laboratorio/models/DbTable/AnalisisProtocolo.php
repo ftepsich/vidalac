@@ -23,8 +23,8 @@ class Laboratorio_Model_DbTable_AnalisisProtocolo extends Rad_Db_Table
             'columns'           => 'Muestra',
             'refTableClass'     => 'Laboratorio_Model_DbTable_AnalisisMuestras',
      		'refColumns'        => 'Id',
-     		'refJoinColumns'    => array("Identificacion"),                     // De esta relacion queremos traer estos campos por JOIN
-     		'comboBox'			=> true,                                     // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+     		'refJoinColumns'    => array("Identificacion"),                     
+     		'comboBox'			=> true,                                     
      		'comboSource'		=> 'datagateway/combolist',
             'refTable'			=> 'AnalisisMuestras',
             'comboPageSize'     => 20            //DEFINE EL TAMAÑO DE LA PAGINA DEL COMBO (Se arma un combo de busqueda)
@@ -32,8 +32,8 @@ class Laboratorio_Model_DbTable_AnalisisProtocolo extends Rad_Db_Table
         'Analisis' => array(
             'columns'           => 'Analisis',
             'refTableClass'     => 'Laboratorio_Model_DbTable_Analisis',
-     		'refJoinColumns'    => array("Descripcion"),                     // De esta relacion queremos traer estos campos por JOIN
-     		'comboBox'			=> true,                                     // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+     		'refJoinColumns'    => array("Descripcion"),                   
+     		'comboBox'			=> true,                                     
      		'comboSource'		=> 'datagateway/combolist',
             'refTable'			=> 'Analisis',
             'refColumns'        => 'Id',

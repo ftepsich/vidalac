@@ -119,8 +119,8 @@ class Almacenes_Model_DbTable_Remitos extends Facturacion_Model_DbTable_Comproba
         'FletesFormasPagos' => array(
             'columns' => 'FleteFormaPago',
             'refTableClass' => 'Base_Model_DbTable_FletesFormasPagos',
-            'refJoinColumns' => array("Descripcion"), // De esta relacion queremos traer estos campos por JOIN
-            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'refJoinColumns' => array("Descripcion"), 
+            'comboBox' => true, 
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'FletesTiposDePagos',
             'refColumns' => 'Id'
@@ -128,8 +128,8 @@ class Almacenes_Model_DbTable_Remitos extends Facturacion_Model_DbTable_Comproba
         'DepositoPropio' => array(
             'columns' => 'DepositoSalida',
             'refTableClass' => 'Base_Model_DbTable_Depositos',
-            'refJoinColumns' => array("Comentario"), // De esta relacion queremos traer estos campos por JOIN
-            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'refJoinColumns' => array("Comentario"), 
+            'comboBox' => true, 
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Direcciones',
             'refColumns' => 'Id',
@@ -138,8 +138,8 @@ class Almacenes_Model_DbTable_Remitos extends Facturacion_Model_DbTable_Comproba
         'DepositoTercero' => array(
             'columns' => 'DepositoEntrega',
             'refTableClass' => 'Base_Model_DbTable_Depositos',
-            'refJoinColumns' => array("Direccion"), // De esta relacion queremos traer estos campos por JOIN
-            'comboBox' => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'refJoinColumns' => array("Direccion"), 
+            'comboBox' => true, 
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Direcciones',
             'refColumns' => 'Id',
