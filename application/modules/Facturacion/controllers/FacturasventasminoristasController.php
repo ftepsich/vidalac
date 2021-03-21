@@ -189,7 +189,6 @@ class Facturacion_FacturasVentasMinoristasController extends Rad_Window_Controll
         }
 
         $adaptador  = $modelFV->getAdaptadorPunto($factura->Punto);
-
         if ($adaptador->getRequiereImpresion()){
             // Es una factura electronica (Se imprime como un comp original)
             $params['output']   = 'pdf';
@@ -199,29 +198,6 @@ class Facturacion_FacturasVentasMinoristasController extends Rad_Window_Controll
             $params['output']   = 'pdf';
             $params['template'] = 'Comp_FacturaEmitida_Ver';
         }
-
         $this->_forward('report', 'BirtReporter', 'Window', $params);
     }
-
-
-    // public function cerrarfacturaAction ()
-    // {
-    //     $this->_helper->viewRenderer->setNoRender(true);
-
-    //     $request    = $this->getRequest();
-    //     $idFactura  = $request->getParam('id');
-
-    //     $db         = Zend_Registry::get('db');
-    //     $idFactura  = $db->quote($idFactura, 'INTEGER');
-
-    //     try {
-    //         $M_FC = new Facturacion_Model_DbTable_TicketFactura();
-    //         $M_FC->cerrar($idFactura);
-
-    //         echo '{success: true}';
-    //     } catch (Rad_Db_Table_Exception $e) {
-    //         echo "{success: false, msg: '" . addslashes($e->getMessage()) . "'}";
-    //     }
-    // }
-
 }
