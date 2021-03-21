@@ -321,7 +321,7 @@ class Facturacion_Model_DbTable_ComprobantesSinIVA extends Facturacion_Model_DbT
             //Verifico que el comprobantes sea solo de comprobantes sin iva
             $R_TC = $R_CSI->findParentRow('Facturacion_Model_DbTable_TiposDeComprobantes');
             if($R_TC->Grupo <> 21) {
-                throw new Rad_Db_Table_Exception('No se puede generar una Orden de Pago para este Tipo de Comprobante.');
+                throw new Rad_Db_Table_Exception('No se puede generar un comprobante de cancelación interno para este tipo de comprobante.');
             }
             //vuelvo a dejar como estaba la activacion de los campos calculados
             $this->setFetchWithCalcFields = $temp;
@@ -336,6 +336,7 @@ class Facturacion_Model_DbTable_ComprobantesSinIVA extends Facturacion_Model_DbT
             }
 
             $M_OPSI = new Facturacion_Model_DbTable_OrdenesDePagosSinIVA(array(), false);
+            $d = new DateTime();
 
             // Armo un array de la Orden de Pago
             $RenglonOrdenDePagoSinIVA = array(
@@ -343,26 +344,26 @@ class Facturacion_Model_DbTable_ComprobantesSinIVA extends Facturacion_Model_DbT
                 'FechaEmision'          => $R_CSI->FechaEmision
             );
 
-            //creo la Orden de Pago
+            //creo la orden de pago sin IVA
             $idOP = $M_OPSI->insert($RenglonOrdenDePagoSinIVA);
-            //relaciono el comprobante sin iva con la Orden de Pago recien creada
+            //relaciono el comprobante sin iva con la Orden de Pago sin IVA recien creada
             $RenglonOrdenDePagoSinIVAComprobante = array(
                 'ComprobantePadre'      => $idOP,
                 'ComprobanteHijo'       => $idComprobante
             );
 
-            //creo la relacion de Orden de Pago y Comprobante Sin IVA
+            //creo la relacion de Orden de Pago sin IVA y Comprobante Sin IVA
             $M_OPSIC = new Facturacion_Model_DbTable_OrdenesDePagosSinIVAComprobantes(array(), false);
             $M_OPSIC->insert($RenglonOrdenDePagoSinIVAComprobante);
 
-            //Inserto los conceptos correspondientes a la Orden de Pago
+            //Inserto los conceptos correspondientes a la Orden de Pago sin IVA
             $M_OPSI->insertarConceptosDesdeControlador($idOP);
 
             //calculo el monto para el detalle de la orden de pago restando los conceptos ya cargados
             $M_CP = new Facturacion_Model_DbTable_ComprobantesPagosSinIVA(array(), false);
             $monto = $this->recuperarMontoTotal($idComprobante) - $M_CP->recuperarTotalPagos($idOP);
 
-            // Armo un array del detalle de la Orden de Pago
+            // Armo un array del detalle de la Orden de Pago sin IVA
             $RenglonOrdenDePagoDetalle = array(
                 'Comprobante'           => $idOP,
                 'PrecioUnitario'        => $monto,
@@ -370,11 +371,11 @@ class Facturacion_Model_DbTable_ComprobantesSinIVA extends Facturacion_Model_DbT
                 'Caja'                  => $caja
             );
 
-            //creo el detalle de la orden de pago
+            //creo el detalle de la orden de pago sin IVA
             $M_OPSID = new Facturacion_Model_DbTable_OrdenesDePagosSinIVADetalles(array(), false);
             $M_OPSID->insert($RenglonOrdenDePagoDetalle);
 
-            //por ultimo cierro la orden de pago
+            //por ultimo cierro la orden de pago sin IVA
             $M_OPSI->cerrar($idOP);
         } else {
             throw new Rad_Db_Table_Exception('No viene el Comprobante Sin IVA.');

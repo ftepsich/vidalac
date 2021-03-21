@@ -276,7 +276,19 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
      */
     createGrid: function() {
         this.grid = Ext.ComponentMgr.create(<?=$this->grid?>);
-    },
+
+    this.grid.getTopToolbar().addButton([
+        {xtype: 'tbfill'},
+        {
+            icon:   'images/wrench.png',
+            cls:    'x-btn-text-icon',
+            menu:[
+                this.botonGenerarOrdenDePagoSinIVA(),
+         
+           ]
+        }
+    ]);
+},
 
     /**
      * Crea la ventana del modulo
@@ -296,6 +308,8 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
             ]
         });
     },
+
+    
 
     /**
      * Da formato a los items del wizard
@@ -333,7 +347,106 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                 ]
             }
         }
-    }
+    },
+
+    botonGenerarOrdenDePagoSinIVA: function() {
+        return {
+            text: 'Generar comprobante de cancelación interno',
+            icon: 'images/arrow_switch.png',
+            scope: this,
+            handler: function() {
+                sel = this.grid.getSelectionModel().getSelected();
+                if (!sel) {
+                    Ext.Msg.alert('Atencion', 'Seleccione un comprobante');
+                    return;
+                }
+                this.win = app.desktop.createWindow({
+                    id: this.id+'-generarODP',
+                    title: 'Generar orden de pago sin IVA para el comprobante',
+                    width: 400,
+                    height: 150,
+                    grid: this.grid,
+                    border: false,
+                    frame: true,
+                    modal: true,
+                    animCollapse: false,
+                    layout: 'fit',
+                    items: {
+                        xtype: 'radform',
+                        border: false,
+                        items: [
+                            {
+                                xtype: 'xdatefield',
+                                ref: '../fecha',
+                                format: 'd/m/Y',
+                                dateFormat:'Y-m-d',
+                                name: 'fecha',
+                                fieldLabel : 'Fecha'
+                            },
+                            {
+                            xtype: 'xcombo',
+                            anchor: '100%',
+                            minChars: 3,
+                            displayField: 'Descripcion',
+                            autoLoad: false,
+                            autoSelect: true,
+                            selectOnFocus: true,
+                            forceSelection: true,
+                            forceReload: true,
+                            hiddenName: 'Caja',
+                            loadingText: 'Cargando...',
+                            lazyRender: true,
+                            searchField: 'Descripcion',
+                            store: new Ext.data.JsonStore({
+                                url: 'datagateway/combolist/m/Contable/model/Cajas',
+                                storeId: 'CajaStore'
+                            }),
+                            typeAhead: false,
+                            valueField: 'Id',
+                            pageSize: 10,
+                            editable: true,
+                            autocomplete: true,
+                            allowBlank: false,
+                            fieldLabel: 'Caja',
+                            name: 'Caja',
+                            scope: this
+                        }]
+                    },
+                    buttons: [{
+                        text: 'Aceptar',
+                        scope: this,
+                        handler: function() {
+                            //var win = this.findParentByType('window');
+                            var form = this.win.items.first().getForm();
+                            if (form.isValid()) {
+                                var caja = form.findField('Caja');
+                                var id = sel.data.Id;
+                                Ext.Msg.confirm('Confirmar', '¿Desea generar un comprobante de cancelación interno de este comprobante?', function(btn) {
+                                    if (btn == 'yes'){
+                                        Models.Facturacion_Model_ComprobantesSinIVAMapper.generarOrdenDePagoSinIVADesdeElControlador(id, caja.getValue(), function(result, e) {
+                                            if (e.status) {
+                                                app.publish('/desktop/notify', {title: 'Comprobante de cancelación interno', html:'El comprobante de cancelación interno fue creado con éxito'});
+                                                this.win.hide();
+                                                this.win.grid.store.reload();
+                                            }
+                                        }, this);
+                                    }
+                                }, this);
+                            } else {
+                                Ext.Msg.alert('Atencion', 'Debe completar todos los campos requeridos');
+                            }
+                        }
+                    }]
+                });
+                this.win.show();
+            }
+        }
+    },
+
+    
+
 });
+
+
 
 new Apps.<?=$this->name?>();
