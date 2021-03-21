@@ -23,7 +23,7 @@ class Laboratorio_Model_DbTable_AnalisisValoresListas extends Rad_Db_Table
         
 	        'Analisis' => array(
             'columns'           => 'Analisis',
-            'refTableClass'     => 'Laboratorio_Model_DbTable_Analisis',//Algo
+            'refTableClass'     => 'Laboratorio_Model_DbTable_Analisis',
      		'refJoinColumns'    => array('Descripcion'),
      		'comboBox'			=> true,
      		'comboSource'		=> 'datagateway/combolist',
