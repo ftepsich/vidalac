@@ -61,6 +61,15 @@ class Base_Model_DbTable_PersonasIngresosBrutos extends Rad_Db_Table
             'comboSource'        => 'datagateway/combolist',
             'refTable'           => 'CodigosActividadesAfip',
             'refColumns'         => 'Id'
+        ),
+        'TipoDeOperacion' => array(
+            'columns'            => 'TipoDeOperacion',
+            'refTableClass'      => 'Base_Model_DbTable_TiposOperacionesAter',
+            'refJoinColumns'     => array('Descripcion'),
+            'comboBox'           => true,
+            'comboSource'        => 'datagateway/combolist',
+            'refTable'           => 'TiposOperacionesAter',
+            'refColumns'         => 'Id'
         )
     );
 

@@ -183,6 +183,15 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'TiposDeCondicionesDePago',
             'refColumns' => 'Id',
+        ),
+        'SistemasDeNegociacion' => array(
+            'columns' => 'SistemaDeNegociacion',
+            'refTableClass' => 'Facturacion_Model_DbTable_TiposDeSistemasDeNegociacion',
+            'refJoinColumns' => array("Descripcion"),
+            'comboBox' => true,
+            'comboSource' => 'datagateway/combolist',
+            'refTable' => 'TiposDeSistemasDeNegociacion',
+            'refColumns' => 'Id',
         )
     );
 
@@ -273,7 +282,7 @@ class Facturacion_Model_DbTable_FacturasVentas extends Facturacion_Model_DbTable
             case 12: // Notas de Debito Emitidas
                 $data['DescripcionComprobante'] = 'NDE: ' . $M_CC->_getDescripcionComprobante($row2);
                 break;
-	    case 23: //Facturas de Crédito MiPyMEs 
+	    case 23: //Facturas de Crï¿½dito MiPyMEs 
             $data['DescripcionComprobante'] = 'FCM: ' . $M_CC->_getDescripcionComprobante($row2);
             break;	
             case 24: //Notas de Debito MiPyMEs Emitidas 

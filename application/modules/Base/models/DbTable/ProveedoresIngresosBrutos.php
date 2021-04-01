@@ -59,6 +59,15 @@ class Base_Model_DbTable_ProveedoresIngresosBrutos extends Base_Model_DbTable_Pe
             'comboSource'        => 'datagateway/combolist/fetch/ParaProveedores',
             'refTable'           => 'CodigosActividadesAfip',
             'refColumns'         => 'Id'
+        ),
+      'TipoDeOperacion' => array(
+            'columns'            => 'TipoDeOperacion',
+            'refTableClass'      => 'Base_Model_DbTable_TiposOperacionesAter',
+            'refJoinColumns'     => array('Descripcion'),
+            'comboBox'           => true,
+            'comboSource'        => 'datagateway/combolist',
+            'refTable'           => 'TiposOperacionesAter',
+            'refColumns'         => 'Id'
         )
     );
 

@@ -90,6 +90,7 @@
                                         items: [
                                             <<ListaDePrecio>>,
                                             <<CondicionDePago>>,
+                                            <<SistemaDeNegociacion>>,
                                            <<OrganismoPublico>>
 
                                         ]

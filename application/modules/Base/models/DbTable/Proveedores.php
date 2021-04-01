@@ -24,6 +24,7 @@ class Base_Model_DbTable_Proveedores extends Base_Model_DbTable_Personas
     {
         parent::init();
         $this->_calculatedFields['IBProximosVencimientosCM05'] = "(SELECT COUNT(Id) FROM personasingresosbrutos WHERE Persona = Personas.Id AND FechaVencimientoCM05 IS NOT NULL AND FechaVencimientoCM05 < DATE_ADD(CURDATE(), INTERVAL 10 DAY) )";
+        $this->_calculatedFields['IGProximosVencimientosCertificados'] = "(SELECT COUNT(Id) FROM personasretencionesganancias WHERE Persona = Personas.Id AND FechaVencimientoCertificadoDeExclusion IS NOT NULL AND FechaVencimientoCertificadoDeExclusion < CURDATE() )";
     }
 
     public function fetchTransporte($where = null, $order = null, $count = null, $offset = null)

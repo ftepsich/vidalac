@@ -69,7 +69,7 @@ class Base_Model_DbTable_TransaccionesBancarias extends Rad_Db_Table
             'refTableClass' => 'Base_Model_DbTable_VBancosCuentas',
             'refJoinColumns' => array('Descripcion'),
             'comboBox' => true,
-            'comboSource' => 'datagateway/combolist',
+            'comboSource' => 'datagateway/combolist/fetch/NoEsPropia',
             'refTable' => 'VBancosCuentas',
             'refColumns' => 'CuentaBancariaId',
             'comboPageSize' => 20
