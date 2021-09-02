@@ -2121,7 +2121,6 @@ BirtStr.concat("Total &lt;b> U$S : ", row["MontoTotalDivisaCambio"], " Cambio Ba
                     <grid id="2703">
                         <property name="width">5.854166666666667in</property>
                         <row id="2707">
-                            <cell id="2708"/>
                             <cell id="2709">
                                 <property name="verticalAlign">bottom</property>
                                 <image id="2769">
@@ -2129,6 +2128,16 @@ BirtStr.concat("Total &lt;b> U$S : ", row["MontoTotalDivisaCambio"], " Cambio Ba
                                     <property name="width">150px</property>
                                     <property name="source">url</property>
                                     <expression name="uri" type="constant">https://chart.googleapis.com/chart?chs=300x300&amp;cht=qr&amp;chl=https://www.afip.gob.ar/fe/qr/?p=eyJ2ZXIiOjEsImZlY2hhIjoiMjAyMS0wMi0yNSIsImN1aXQiOjMwNzEwNjczOTE0LCJwdG9WdGEiOjEwLCJ0aXBvQ21wIjoxLCJucm9DbXAiOjExMDksImltcG9ydGUiOjE0NzU4MS4yOCwibW9uZWRhIjoiUEVTIiwiY3R6IjoxLjAwMDAwMCwidGlwb0RvY1JlYyI6ODAsIm5yb0RvY1JlYyI6MjAzMTcwMDc5NTgsInRpcG9Db2RBdXQiOiJFIiwiY29kQXV0Ijo3MTA4NDIxNDA2OTE4N30=</expression>
+                                </image>
+                            </cell>
+                            <cell id="9001">
+                                <property name="verticalAlign">bottom</property>
+                                <image id="9002">
+                                    <property name="height">90px</property>
+                                    <property name="width">190px</property>
+                                    <property name="source">file</property>
+                                    <expression name="uri" type="constant">/resources/AfipComprobanteAutorizado.jpg</expression>
+
                                 </image>
                             </cell>
                             <cell id="2710"/>
