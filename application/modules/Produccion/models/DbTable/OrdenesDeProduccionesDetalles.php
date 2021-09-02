@@ -26,7 +26,7 @@ class Produccion_Model_DbTable_OrdenesDeProduccionesDetalles extends Rad_Db_Tabl
             'columns'        => 'ArticuloVersion',
             'refTableClass'  => 'Base_Model_DbTable_ArticulosVersiones',
             'refJoinColumns' => array("Descripcion"),
-            'comboBox'       => true, // Armar un combo con esta relacion - Algo mas queres haragan programa algo :P -
+            'comboBox'       => true, 
             'comboSource'    => 'datagateway/combolist/fetch/EsArticuloInsumo',
             'refTable'       => 'ArticulosVersiones',
             'refColumns'     => 'Id',
