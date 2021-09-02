@@ -43,7 +43,7 @@ class Base_Model_DbTable_GeneradorDeCheques extends Rad_Db_Table
         'Chequeras' => array(
             'columns' => 'Chequera',
             'refTableClass' => 'Base_Model_DbTable_Chequeras',
-            'refJoinColumns' => array("NumeroDeChequera"),
+            'refJoinColumns' => array("ChequeraTipo"),
             'comboBox' => true,
             'comboSource' => 'datagateway/combolist',
             'refTable' => 'Chequeras',
@@ -218,8 +218,6 @@ class Base_Model_DbTable_GeneradorDeCheques extends Rad_Db_Table
 
         if ($numero) {
             return $numero;
-        } else {
-            throw new Rad_Db_Table_Exception("La Chequera se encuentra completamente utilizada.");
         }
     }
 

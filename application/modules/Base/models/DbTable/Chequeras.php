@@ -22,25 +22,6 @@ class Base_Model_DbTable_Chequeras extends Rad_Db_Table
             'allowEmpty'=>false,
             'messages' => array('Debe ingresar el tipo la cuenta bancaria.')
         ),
-        'Serie' => array(
-            'NotEmpty',
-            'allowEmpty'=>false,
-            array(
-                'Db_NoRecordExists',
-                'Chequeras',
-                'Serie',
-                'CuentaBancaria = {CuentaBancaria} AND Serie = "{Serie}" AND NumeroDeChequera = {NumeroDeChequera} AND  Id <> {Id}'
-            ),
-            'messages' => array(
-                'Falta ingresar el Numero de Serie.',
-                'El numero de Serie de la Chequera ya existe.'
-            )
-        ),
-        'NumeroInicio' => array(
-            'NotEmpty',
-            'allowEmpty'=>false,
-            'messages' => array('Debe ingresar el primer numero de la chequera.')
-        ),
         'NumeroDeChequera' => array(
             'NotEmpty',
             'allowEmpty'=>false,
