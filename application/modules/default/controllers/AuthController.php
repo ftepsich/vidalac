@@ -107,15 +107,7 @@ class AuthController extends Zend_Controller_Action
         echo md5($hwId);
     }
 
-    protected function _checkHardware()
-    {
-        $hwId = shell_exec("sudo /usr/sbin/dmidecode |grep 'Serial Number:'");
-        return true;
-        if (!$hwId) {
-            return false;
-        }
-        return ("905686403935953b27e84624215f2d8f" == md5($hwId));
-    }
+
 
     /**
      * logout de usuarios
