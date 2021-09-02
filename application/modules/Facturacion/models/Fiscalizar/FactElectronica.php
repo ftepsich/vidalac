@@ -144,10 +144,10 @@ class Facturacion_Model_Fiscalizar_FactElectronica extends Facturacion_Fiscaliza
            $FEDetRequest->FchVtoPago   = date('Ymd', strtotime($comprobante->FechaVencimiento));
         }
 
-        $FEDetRequest->MonId        = 'PES';
-        $FEDetRequest->MonCotiz     = 1;
-//        $FEDetRequest->MonId        = $afipDivisa->Codigo;
-//        $FEDetRequest->MonCotiz     = $cotizacion;
+       // $FEDetRequest->MonId        = 'PES';
+       // $FEDetRequest->MonCotiz     = 1;
+        $FEDetRequest->MonId        = $afipDivisa->Codigo;
+        $FEDetRequest->MonCotiz     = $cotizacion;
 //        $FEDetRequest->FchServDesde = date('Ymd', date('U'));
 //        $FEDetRequest->FchServHasta = date('Ymd', date('U'));
 //
@@ -186,6 +186,24 @@ class Facturacion_Model_Fiscalizar_FactElectronica extends Facturacion_Fiscaliza
             $FEDetRequest->Tributos->Tributo[] = $tmp;
         }
 
+        // Opcionales para Notas de Debito o credito (obligatorio)
+        if ($afipTiposDeComprobantes->Codigo == 2 || $afipTiposDeComprobantes->Codigo == 3 || $afipTiposDeComprobantes->Codigo ==  8  || $afipTiposDeComprobantes->Codigo == 13 ){
+            if (in_array($comprobante->TipoDeComprobante,array(29,30,31,37))) {
+                if ($comprobante->ComprobanteRelacionado) {
+                    $modelFEA = new Facturacion_Model_DbTable_FacturacionElectronicaAfip();
+                    $rsFEA = $modelFEA->fetchRow('Comprobante = '.$comprobante->ComprobanteRelacionado);
+                    $tmp = new stdClass();
+                    $tmp->Tipo    = $rsFEA->CbteTipo;
+                    $tmp->PtoVta  = $rsFEA->PtoVta;
+                    $tmp->Nro     = $rsFEA->CbteDesde;
+                    $tmp->Cuit    = $rsFEA->Cuit;
+                    $tmp->CbteFch = $rsFEA->CbteFch;
+                    $FEDetRequest->CbtesAsoc->CbteAsoc[] = $tmp;
+   
+              }
+            }
+        }
+
         // Opcionales para MiPyMEs (obligatorio)
         if ($afipTiposDeComprobantes->Codigo >= 201 && $afipTiposDeComprobantes->Codigo <= 208){
            
@@ -204,6 +222,14 @@ class Facturacion_Model_Fiscalizar_FactElectronica extends Facturacion_Fiscaliza
               //$tmp->Id      = "2102";
               //$tmp->Valor   = "CBU.ALIAS";
               //$FEDetRequest->Opcionales->Opcional[] = $tmp;
+              // Sistema De Negociacion
+              $afipnegociacion = $comprobantesModel->afip_SistemaDeNegociacion($comprobante->Id);
+              foreach ($afipnegociacion as $negociacion) {
+                  $tmp = new stdClass();
+                  $tmp->Id      = "27";
+                  $tmp->Valor   = $negociacion['Codigo'];
+                  $FEDetRequest->Opcionales->Opcional[] = $tmp;
+              }
 
            }
     
@@ -221,6 +247,9 @@ class Facturacion_Model_Fiscalizar_FactElectronica extends Facturacion_Fiscaliza
                $tmp->Valor   = "S";
                $FEDetRequest->Opcionales->Opcional[] = $tmp;
            }
+
+    
+
            // Comprobante Relacionado a la Anulacion
 
            if (in_array($comprobante->TipoDeComprobante,array(81,82,83,84,85,86,87))) {
@@ -241,7 +270,6 @@ class Facturacion_Model_Fiscalizar_FactElectronica extends Facturacion_Fiscaliza
               }
 
            }
-
         }
 
         $FeDetReq[0] = $FEDetRequest;

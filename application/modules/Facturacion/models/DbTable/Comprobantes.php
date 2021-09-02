@@ -1830,6 +1830,19 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         }
     }
 
+    public function afip_SistemaDeNegociacion ($idComprobante)
+    {
+        $sql = "select  TSN.Abreviatura AS Codigo
+                from    Comprobantes C
+                join    tiposdesistemasdenegociacion TSN on C.SistemaDeNegociacion = TSN.Id
+                where   C.Id = $idComprobante";
+
+        $R = $this->_db->fetchAll($sql);
+
+        return $R;
+    }
+
+
     /* **********************************************************************
       Funciones para salir
      * ********************************************************************* */
