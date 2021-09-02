@@ -196,7 +196,7 @@ class Almacenes_Model_DbTable_Remitos extends Facturacion_Model_DbTable_Comproba
              * TODO: Esto se puede optimizar para no hacer una peticion por cada registro
              * Simplemente agregando Cerrada = 1 en el where y viendo si retorna algun row
              */
-            foreach ($R_R as $row) {
+           foreach ($R_R as $row) {
                 $this->salirSi_estaCerrado($row->Id);
             }
 
