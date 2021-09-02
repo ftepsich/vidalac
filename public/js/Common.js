@@ -115,32 +115,6 @@ Ext.override(Ext.chart.Chart, {
         }
     }
 });
-/**
- *  fix drag & frop ext 3.4.1.1
- */
-// Ext.dd.DragDropMgr.getZIndex = function(element) {
-//     var body = document.body,
-//         z,
-//         zIndex = -1;
-//     var overTargetEl = element;
-
-//     element = Ext.getDom(element);
-//     while (element !== body) {
-
-//         // this fixes the problem
-//         if(!element) {
-//             this._remove(overTargetEl); // remove the drop target from the manager
-//             break;
-//         }
-//         // fix end
-
-//         if (!isNaN(z = Number(Ext.fly(element).getStyle('zIndex')))) {
-//             zIndex = z;
-//         }
-//         element = element.parentNode;
-//     }
-//     return zIndex;
-// };
 
 
 /**
@@ -322,7 +296,7 @@ Rad.loginWindow = Ext.extend(Ext.Window, {
 
         this.buttons = [{
             id: 'submit-button',
-            text:'Login',
+            text:'Iniciar sesion',
             scope: this,
             handler: this.formulario.login
         }];
@@ -333,22 +307,7 @@ Rad.loginWindow = Ext.extend(Ext.Window, {
 });
 
 
-    /**
-     *
-     *  Rad.callRemoteJsonAction({
-     *      url: '/window/Almacenes/partirmmi',
-     *          params: {
-     *              id: selItem.data.Mmi.Id,
-     *              cantidad: text,
-     *          },
-     *          success: function (response) {
-     *          },
-     *          failure: function (response) {
-     *              return true;                    // true Muestra el mensaje de error en una ventanan emergente, false no
-     *          }
-     *  })
-     *  @autor Martin Santangelo
-     */
+    
 Rad.callRemoteJsonAction = function(params) {
     if (params.async == null) params.async = true;
     var cfg = {

@@ -19,7 +19,9 @@
 
                         <<FechaEntrega>>,
                         <<DepositoEntrega>>,
-                        <<Observaciones>>
+                        <<Observaciones>>,
+                        <<ObservacionesImpresas>>
+
                     ]
                 }
             ]
