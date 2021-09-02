@@ -198,7 +198,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                 return;
             }
 
-            if (record.data.ModalidadIva != 3) {
+            if (record.data.ModalidadIva != 3 && record.data.ModalidadIva != 4) {
                 if (tipo < 29) {
                     combo.setValue(25);
                 } else if (tipo <= 32 ) {
@@ -531,6 +531,24 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     });
                  }
             },
+            {
+                text: 'Ver QR',
+                icon: 'images/eye.png',
+                cls: 'x-btn-text-icon',
+                scope: this.grid,
+                handler: function () {
+                    sel = this.getSelectionModel().getSelected();
+                    if (!sel) return;
+                    param = 'id/'+sel.data.Id;
+                    app.publish('/desktop/modules/js/commonApps/showUrl.js', {
+                       action: 'launch',
+                       url: '/Facturacion/FacturasVentas/verfacturaqr/'+param,
+                       width: 900,
+                       height: 500,
+                       title: 'Factura'
+                   });
+                }
+           },
             {
                 xtype: 'tbfill'
             },
